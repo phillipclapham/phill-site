@@ -157,13 +157,21 @@ function updateIndexHtml(posts) {
   const indexPath = path.join(__dirname, 'index.html');
   let html = fs.readFileSync(indexPath, 'utf8');
   
+  // Remove existing blog content (everything between "<!-- Blog Archive Page -->" and "<!-- Contact Page -->")
+  const blogStartRegex = /(\s*<!-- Blog Archive Page -->[\s\S]*?)<!-- Contact Page -->/;
+  if (blogStartRegex.test(html)) {
+    html = html.replace(blogStartRegex, '        <!-- Contact Page -->');
+  }
+  
   // Generate blog content
   const blogArchive = generateBlogArchive(posts);
   const blogPosts = posts.map(post => generateBlogPost(post));
   
-  // Add blog navigation item after wu wei
-  const navRegex = /(<li><a href="#wuwei" class="nav-link">無 為<\/a><\/li>)/;
-  html = html.replace(navRegex, '$1\n          <li><a href="#blog" class="nav-link">blog</a></li>');
+  // Add blog navigation item after wu wei (only if not already present)
+  if (!html.includes('href="#blog"')) {
+    const navRegex = /(<li><a href="#wuwei" class="nav-link">無 為<\/a><\/li>)/;
+    html = html.replace(navRegex, '$1\n          <li><a href="#blog" class="nav-link">blog</a></li>');
+  }
   
   // Find where to insert blog content (after contact page, before main closing tag)
   const insertPoint = html.indexOf('        <!-- Contact Page -->');
@@ -192,9 +200,10 @@ function updateIndexHtml(posts) {
   // Insert blog content
   html = html.slice(0, insertPoint) + blogArchivePage + blogPostPages + html.slice(insertPoint);
   
-  // Add blog CSS styles before closing </style> tag
-  const cssEndRegex = /(\s*<\/style>)/;
-  const blogCss = `
+  // Add blog CSS styles before closing </style> tag (only if not already present)
+  if (!html.includes('/* Blog category and tag styles */')) {
+    const cssEndRegex = /(\s*<\/style>)/;
+    const blogCss = `
       /* Blog category and tag styles */
       .blog-meta-tags {
         font-size: 11px;
@@ -226,12 +235,14 @@ function updateIndexHtml(posts) {
         margin-bottom: 20px;
       }
 $1`;
-  
-  html = html.replace(cssEndRegex, blogCss);
+    
+    html = html.replace(cssEndRegex, blogCss);
+  }
 
-  // Add blog routing JavaScript before the closing script tag
-  const scriptEndRegex = /(\s*<\/script>)/;
-  const blogJs = `
+  // Add blog routing JavaScript before the closing script tag (only if not already present)
+  if (!html.includes('window.filterByCategory')) {
+    const scriptEndRegex = /(\s*<\/script>)/;
+    const blogJs = `
   // Blog filtering functions
   window.filterByCategory = function(category) {
     const posts = document.querySelectorAll('.blog-post-item');
@@ -372,8 +383,9 @@ $1`;
   // Handle browser back/forward
   window.addEventListener('popstate', handleInitialRoute);
 $1`;
-  
-  html = html.replace(scriptEndRegex, blogJs);
+    
+    html = html.replace(scriptEndRegex, blogJs);
+  }
   
   // Write updated HTML
   fs.writeFileSync(indexPath, html, 'utf8');
