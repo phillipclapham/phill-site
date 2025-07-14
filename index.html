@@ -2059,7 +2059,11 @@
         });
       });
       // Blog filtering functions
+      let filterCleared = false; // Flag to prevent route handler from re-applying filters
+      
       window.filterByCategory = function (category) {
+        filterCleared = false; // Reset flag when actively filtering
+        
         const posts = document.querySelectorAll(".blog-post-item");
         const filters = document.getElementById("blog-filters");
         const activeFilter = document.getElementById("active-filter");
@@ -2119,6 +2123,8 @@
       };
 
       window.clearFilter = function () {
+        filterCleared = true; // Set flag to prevent route handler from re-applying
+        
         const posts = document.querySelectorAll(".blog-post-item");
         const filters = document.getElementById("blog-filters");
         const categoryNavItems =
@@ -2138,7 +2144,8 @@
 
         filters.style.display = "none";
 
-        // Don't update URL - just clear the filter state
+        // Update URL to clear the filter parameters
+        history.replaceState(null, null, '#blog');
       };
 
       // Blog routing functions (global scope)
@@ -2198,7 +2205,7 @@
           showBlogArchive();
 
           // Handle category/tag filtering from URL
-          if (queryString) {
+          if (queryString && !filterCleared) {
             const params = new URLSearchParams(queryString);
             if (params.get("category")) {
               setTimeout(() => filterByCategory(params.get("category")), 100);
