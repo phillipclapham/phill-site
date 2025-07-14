@@ -2138,8 +2138,7 @@
 
         filters.style.display = "none";
 
-        // Update URL using hash-based routing without triggering hashchange
-        history.replaceState(null, null, '#blog');
+        // Don't update URL - just clear the filter state
       };
 
       // Blog routing functions (global scope)
@@ -2206,26 +2205,6 @@
             } else if (params.get("tag")) {
               setTimeout(() => filterByTag(params.get("tag")), 100);
             }
-          } else {
-            // No query string - ensure filters are cleared
-            setTimeout(() => {
-              const posts = document.querySelectorAll(".blog-post-item");
-              const filters = document.getElementById("blog-filters");
-              const categoryNavItems = document.querySelectorAll(".category-nav-item");
-              
-              posts.forEach((post) => {
-                post.style.display = "block";
-              });
-              
-              categoryNavItems.forEach((item) => {
-                item.classList.remove("active");
-                if (item.textContent === "All") {
-                  item.classList.add("active");
-                }
-              });
-              
-              filters.style.display = "none";
-            }, 100);
           }
           return;
         }
