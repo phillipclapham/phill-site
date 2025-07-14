@@ -2123,8 +2123,6 @@
       };
 
       window.clearFilter = function () {
-        filterCleared = true; // Set flag to prevent route handler from re-applying
-        
         const posts = document.querySelectorAll(".blog-post-item");
         const filters = document.getElementById("blog-filters");
         const categoryNavItems =
@@ -2143,9 +2141,8 @@
         });
 
         filters.style.display = "none";
-
-        // Update URL to clear the filter parameters
-        history.replaceState(null, null, '#blog');
+        
+        // Don't touch the URL at all - just clear visual state
       };
 
       // Blog routing functions (global scope)
@@ -2204,15 +2201,8 @@
           const [route, queryString] = hash.split("?");
           showBlogArchive();
 
-          // Handle category/tag filtering from URL
-          if (queryString && !filterCleared) {
-            const params = new URLSearchParams(queryString);
-            if (params.get("category")) {
-              setTimeout(() => filterByCategory(params.get("category")), 100);
-            } else if (params.get("tag")) {
-              setTimeout(() => filterByTag(params.get("tag")), 100);
-            }
-          }
+          // Disable automatic URL-based filtering to prevent loops
+          // Filters are now purely manual via button clicks
           return;
         }
 
