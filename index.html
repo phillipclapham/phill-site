@@ -2024,6 +2024,9 @@
             // Show corresponding page
             const targetPage = this.getAttribute("href").substring(1);
             document.getElementById(targetPage).classList.add("active");
+            
+            // Update URL hash
+            window.location.hash = targetPage;
           });
         });
 
@@ -2050,6 +2053,9 @@
             .querySelector('.nav-link[href="#home"]')
             .classList.add("active");
           document.getElementById("home").classList.add("active");
+          
+          // Update URL hash
+          window.location.hash = "home";
         });
       });
       // Blog filtering functions
@@ -2200,6 +2206,26 @@
             } else if (params.get("tag")) {
               setTimeout(() => filterByTag(params.get("tag")), 100);
             }
+          } else {
+            // No query string - ensure filters are cleared
+            setTimeout(() => {
+              const posts = document.querySelectorAll(".blog-post-item");
+              const filters = document.getElementById("blog-filters");
+              const categoryNavItems = document.querySelectorAll(".category-nav-item");
+              
+              posts.forEach((post) => {
+                post.style.display = "block";
+              });
+              
+              categoryNavItems.forEach((item) => {
+                item.classList.remove("active");
+                if (item.textContent === "All") {
+                  item.classList.add("active");
+                }
+              });
+              
+              filters.style.display = "none";
+            }, 100);
           }
           return;
         }
