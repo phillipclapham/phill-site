@@ -81,7 +81,7 @@ function generateCategoryTags(post) {
     items.push(tags);
   }
   
-  return items.length > 0 ? `<div class="blog-meta-tags">${items.join(' • ')}</div>` : '';
+  return items.length > 0 ? `<div class="blog-meta-tags">${items.join(' / ')}</div>` : '';
 }
 
 function generateBlogArchive(posts) {
