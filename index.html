@@ -1677,165 +1677,170 @@
           document.getElementById("home").classList.add("active");
         });
       });
-      // Blog filtering functions
-      window.filterByCategory = function (category) {
-        const posts = document.querySelectorAll(".blog-post-item");
-        const filters = document.getElementById("blog-filters");
-        const activeFilter = document.getElementById("active-filter");
-
-        posts.forEach((post) => {
-          const postCategory = post.getAttribute("data-category");
-          if (postCategory === category) {
-            post.style.display = "block";
-          } else {
-            post.style.display = "none";
-          }
-        });
-
-        filters.style.display = "block";
-        activeFilter.textContent = "Category: " + category;
-
-        // Update URL
-        if (history.pushState) {
-          history.pushState(
-            null,
-            null,
-            "/blog?category=" + encodeURIComponent(category)
-          );
-        }
-      };
-
-      window.filterByTag = function (tag) {
-        const posts = document.querySelectorAll(".blog-post-item");
-        const filters = document.getElementById("blog-filters");
-        const activeFilter = document.getElementById("active-filter");
-
-        posts.forEach((post) => {
-          const postTags = post.getAttribute("data-tags").split(",");
-          if (postTags.includes(tag)) {
-            post.style.display = "block";
-          } else {
-            post.style.display = "none";
-          }
-        });
-
-        filters.style.display = "block";
-        activeFilter.textContent = "Tag: " + tag;
-
-        // Update URL
-        if (history.pushState) {
-          history.pushState(null, null, "/blog?tag=" + encodeURIComponent(tag));
-        }
-      };
-
-      window.clearFilter = function () {
-        const posts = document.querySelectorAll(".blog-post-item");
-        const filters = document.getElementById("blog-filters");
-
-        posts.forEach((post) => {
-          post.style.display = "block";
-        });
-
-        filters.style.display = "none";
-
-        // Update URL
-        if (history.pushState) {
-          history.pushState(null, null, "/blog");
-        }
-      };
-
-      // Blog routing functions (global scope)
-      window.showBlogPost = function (slug) {
-        // Remove active from all
-        document
-          .querySelectorAll(".nav-link")
-          .forEach((nav) => nav.classList.remove("active"));
-        document
-          .querySelectorAll(".page")
-          .forEach((page) => page.classList.remove("active"));
-
-        // Show blog post
-        const postPage = document.getElementById("blog-" + slug);
-        if (postPage) {
-          postPage.classList.add("active");
-          // Update URL without page reload
-          if (history.pushState) {
-            history.pushState(null, null, "/blog/" + slug);
-          }
-        }
-      };
-
-      window.showBlogArchive = function () {
-        // Remove active from all
-        document
-          .querySelectorAll(".nav-link")
-          .forEach((nav) => nav.classList.remove("active"));
-        document
-          .querySelectorAll(".page")
-          .forEach((page) => page.classList.remove("active"));
-
-        // Show blog archive and activate nav
-        document
-          .querySelector('.nav-link[href="#blog"]')
-          .classList.add("active");
-        document.getElementById("blog").classList.add("active");
-
-        // Update URL
-        if (history.pushState) {
-          history.pushState(null, null, "/blog");
-        }
-      };
-
-      // Handle initial page load based on URL
-      function handleInitialRoute() {
-        const path = window.location.pathname;
-        const params = new URLSearchParams(window.location.search);
-
-        if (path.startsWith("/blog/")) {
-          const slug = path.replace("/blog/", "");
-          if (document.getElementById("blog-" + slug)) {
-            showBlogPost(slug);
-            return;
-          }
-        } else if (path === "/blog") {
-          showBlogArchive();
-
-          // Handle category/tag filtering from URL
-          if (params.get("category")) {
-            setTimeout(() => filterByCategory(params.get("category")), 100);
-          } else if (params.get("tag")) {
-            setTimeout(() => filterByTag(params.get("tag")), 100);
-          }
-          return;
-        }
-
-        // Default behavior for other routes
-        const hash = window.location.hash || "#home";
-        const targetPage = hash.substring(1);
-        if (document.getElementById(targetPage)) {
-          document
-            .querySelectorAll(".nav-link")
-            .forEach((nav) => nav.classList.remove("active"));
-          document
-            .querySelectorAll(".page")
-            .forEach((page) => page.classList.remove("active"));
-
-          document
-            .querySelector(`.nav-link[href="${hash}"]`)
-            ?.classList.add("active");
-          document.getElementById(targetPage).classList.add("active");
-        }
-      }
-
-      // Call on load when DOM is ready
-      if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", handleInitialRoute);
+  // Blog filtering functions
+  window.filterByCategory = function(category) {
+    const posts = document.querySelectorAll('.blog-post-item');
+    const filters = document.getElementById('blog-filters');
+    const activeFilter = document.getElementById('active-filter');
+    const categoryNavItems = document.querySelectorAll('.category-nav-item');
+    
+    posts.forEach(post => {
+      const postCategory = post.getAttribute('data-category');
+      if (postCategory === category) {
+        post.style.display = 'block';
       } else {
-        handleInitialRoute();
+        post.style.display = 'none';
       }
+    });
+    
+    // Update category nav active states
+    categoryNavItems.forEach(item => {
+      item.classList.remove('active');
+      if (item.textContent === category) {
+        item.classList.add('active');
+      }
+    });
+    
+    filters.style.display = 'block';
+    activeFilter.textContent = 'Category: ' + category;
+    
+    // Update URL using hash-based routing with query params
+    window.location.hash = 'blog?category=' + encodeURIComponent(category);
+  };
+  
+  window.filterByTag = function(tag) {
+    const posts = document.querySelectorAll('.blog-post-item');
+    const filters = document.getElementById('blog-filters');
+    const activeFilter = document.getElementById('active-filter');
+    const categoryNavItems = document.querySelectorAll('.category-nav-item');
+    
+    posts.forEach(post => {
+      const postTags = post.getAttribute('data-tags').split(',');
+      if (postTags.includes(tag)) {
+        post.style.display = 'block';
+      } else {
+        post.style.display = 'none';
+      }
+    });
+    
+    // Reset category nav when filtering by tag
+    categoryNavItems.forEach(item => {
+      item.classList.remove('active');
+    });
+    
+    filters.style.display = 'block';
+    activeFilter.textContent = 'Tag: ' + tag;
+    
+    // Update URL using hash-based routing with query params
+    window.location.hash = 'blog?tag=' + encodeURIComponent(tag);
+  };
+  
+  window.clearFilter = function() {
+    const posts = document.querySelectorAll('.blog-post-item');
+    const filters = document.getElementById('blog-filters');
+    const categoryNavItems = document.querySelectorAll('.category-nav-item');
+    
+    posts.forEach(post => {
+      post.style.display = 'block';
+    });
+    
+    // Reset category nav to "All"
+    categoryNavItems.forEach(item => {
+      item.classList.remove('active');
+      if (item.textContent === 'All') {
+        item.classList.add('active');
+      }
+    });
+    
+    filters.style.display = 'none';
+    
+    // Update URL using hash-based routing
+    window.location.hash = 'blog';
+  };
 
-      // Handle browser back/forward
-      window.addEventListener("popstate", handleInitialRoute);
+  // Blog routing functions (global scope)
+  window.showBlogPost = function(slug) {
+    // Remove active from all
+    document.querySelectorAll('.nav-link').forEach(nav => nav.classList.remove('active'));
+    document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+    
+    // Show blog post
+    const postPage = document.getElementById('blog-' + slug);
+    if (postPage) {
+      postPage.classList.add('active');
+      // Update URL using hash-based routing for GitHub Pages compatibility
+      window.location.hash = 'blog-' + slug;
+    }
+  };
+  
+  window.showBlogArchive = function() {
+    // Remove active from all
+    document.querySelectorAll('.nav-link').forEach(nav => nav.classList.remove('active'));
+    document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+    
+    // Show blog archive and activate nav
+    document.querySelector('.nav-link[href="#blog"]').classList.add('active');
+    document.getElementById('blog').classList.add('active');
+    
+    // Update URL using hash-based routing
+    window.location.hash = 'blog';
+  };
+  
+  // Handle initial page load based on URL
+  function handleInitialRoute() {
+    const hash = window.location.hash.substring(1) || 'home';
+    
+    // Handle blog post routes like #blog-post-slug
+    if (hash.startsWith('blog-')) {
+      const slug = hash.replace('blog-', '');
+      if (document.getElementById('blog-' + slug)) {
+        showBlogPost(slug);
+        return;
+      }
+    }
+    
+    // Handle blog routes like #blog or #blog?category=Politics
+    if (hash.startsWith('blog')) {
+      const [route, queryString] = hash.split('?');
+      showBlogArchive();
+      
+      // Handle category/tag filtering from URL
+      if (queryString) {
+        const params = new URLSearchParams(queryString);
+        if (params.get('category')) {
+          setTimeout(() => filterByCategory(params.get('category')), 100);
+        } else if (params.get('tag')) {
+          setTimeout(() => filterByTag(params.get('tag')), 100);
+        }
+      }
+      return;
+    }
+    
+    // Default behavior for other routes
+    const targetPage = hash;
+    if (document.getElementById(targetPage)) {
+      document.querySelectorAll('.nav-link').forEach(nav => nav.classList.remove('active'));
+      document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+      
+      document.querySelector(`.nav-link[href="#${hash}"]`)?.classList.add('active');
+      document.getElementById(targetPage).classList.add('active');
+    }
+  }
+  
+  // Call on load when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', handleInitialRoute);
+  } else {
+    handleInitialRoute();
+  }
+  
+  // Handle browser back/forward and hash changes
+  window.addEventListener('hashchange', handleInitialRoute);
+
+      
+  
+
+
     </script>
   </body>
 </html>

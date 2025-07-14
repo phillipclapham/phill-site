@@ -259,7 +259,8 @@ function updateIndexHtml(posts) {
         color: var(--text-secondary);
         cursor: pointer;
         transition: color 0.3s ease;
-        margin-right: 8px;
+        display: inline-block;
+        margin-right: 16px;
       }
       
       .category-nav-item:not(:last-child)::after {
@@ -280,9 +281,25 @@ $1`;
     html = html.replace(cssEndRegex, blogCss);
   }
 
-  // Add blog routing JavaScript before the closing script tag (only if not already present)
-  if (!html.includes('window.filterByCategory')) {
-    const scriptEndRegex = /(\s*<\/script>)/;
+  // Remove ALL existing blog JavaScript 
+  while (html.includes('// Blog filtering functions')) {
+    const startIndex = html.indexOf('// Blog filtering functions');
+    const endIndex = html.indexOf('window.addEventListener(\'hashchange\', handleInitialRoute);', startIndex);
+    if (endIndex === -1) {
+      // Try to find popstate version
+      const popstateEnd = html.indexOf('window.addEventListener(\'popstate\', handleInitialRoute);', startIndex);
+      if (popstateEnd !== -1) {
+        html = html.substring(0, startIndex) + html.substring(popstateEnd + 'window.addEventListener(\'popstate\', handleInitialRoute);'.length);
+      } else {
+        break; // Safety exit
+      }
+    } else {
+      html = html.substring(0, startIndex) + html.substring(endIndex + 'window.addEventListener(\'hashchange\', handleInitialRoute);'.length);
+    }
+  }
+  
+  // Add blog routing JavaScript before the closing script tag
+  const scriptEndRegex = /(\s*<\/script>)/;
     const blogJs = `
   // Blog filtering functions
   window.filterByCategory = function(category) {
@@ -444,9 +461,8 @@ $1`;
   // Handle browser back/forward and hash changes
   window.addEventListener('hashchange', handleInitialRoute);
 $1`;
-    
-    html = html.replace(scriptEndRegex, blogJs);
-  }
+  
+  html = html.replace(scriptEndRegex, blogJs);
   
   // Write updated HTML
   fs.writeFileSync(indexPath, html, 'utf8');
