@@ -3,12 +3,14 @@
 ## Immediate Tasks
 
 ### 1. Fix Category Navigation Spacing
-**Status**: In progress
+
+**Status**: DONE
 **Issue**: Category nav items (All • Life Notes • Poetry • Politics) need proper spacing
 **Solution**: CSS update for `.category-nav-item` with proper margins
 **Priority**: Low (cosmetic)
 
 ### 2. Commit Current URL Fixes + Project Memory
+
 **Status**: Ready
 **Changes**: Hash-based routing, JavaScript cleanup, event propagation fixes, project memory structure
 **Impact**: Resolves major functionality issues and establishes wu wei organization
@@ -17,6 +19,7 @@
 ## Bug Fixes Needed
 
 ### 3. Clear Filter Button Not Working
+
 **Status**: Identified
 **Issue**: When filtering by category/tag, the "✕ clear" button doesn't properly return to unfiltered archive
 **Behavior**: Should show all posts and reset category nav to "All"
@@ -24,7 +27,8 @@
 **Priority**: Medium (affects user experience)
 
 ### 4. URL Cleanup on Navigation
-**Status**: Identified  
+
+**Status**: Identified
 **Issue**: When navigating away from blog pages, URL retains blog hash fragments
 **Example**: Moving from `#blog?category=Poetry` to home should clear to `#home`, not stay on blog URL
 **Impact**: Creates URL confusion and affects back/forward navigation
@@ -34,8 +38,10 @@
 ## Potential Enhancements (Apply Six Cuts)
 
 ### RSS Feed Generation
+
 **Consideration**: Auto-generate RSS feed during build
 **Six Cuts Analysis**:
+
 - Necessity: Moderate (some users prefer RSS)
 - Efficiency: Would require additional build logic
 - Friction: Adds complexity to build process
@@ -45,8 +51,10 @@
 **Decision**: Defer until clear demand
 
 ### Search Functionality
+
 **Consideration**: Client-side search across blog posts
 **Six Cuts Analysis**:
+
 - Necessity: Low (only 3 posts currently)
 - Efficiency: Would require search index generation
 - Friction: Adds JavaScript complexity
@@ -56,8 +64,10 @@
 **Decision**: Defer until content reaches critical mass
 
 ### Comment System
+
 **Consideration**: Enable reader engagement
 **Six Cuts Analysis**:
+
 - Necessity: Questionable (blog serves transmission, not discussion)
 - Efficiency: Would require external service or complex implementation
 - Friction: Significant - moderation, spam, storage
@@ -69,11 +79,13 @@
 ## Maintenance Considerations
 
 ### Content Workflow
+
 **Current**: Add markdown file → run `npm run build` → commit
 **Optimization potential**: Git hooks to auto-build on markdown changes
 **Trade-off**: Convenience vs. simplicity
 
 ### Build Script Evolution
+
 **Current**: Functional but could be more elegant
 **Potential refactoring**: Extract functions, improve error handling
 **Apply principle**: Only refactor if friction increases with content volume
