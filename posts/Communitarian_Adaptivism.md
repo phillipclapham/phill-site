@@ -7,8 +7,6 @@ tags: ["politics", "natural order", "community"]
 category: "Politics"
 ---
 
-# Communitarian Adaptivism: A Politics of Natural Order
-
 ## The Opening
 
 We live in times of great unraveling. Climate shifts, inequality rises, democracy strains under its own weight. Yet within this dissolution lies an ancient truth: when artificial structures crumble, natural patterns emerge.

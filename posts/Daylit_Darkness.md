@@ -7,8 +7,6 @@ tags: ["non-duality", "poetry", "zen", "no-mind"]
 category: "Poetry"
 ---
 
-# Daylit Darkness
-
 Imbued with deep joyful shadow,
 Hold a wisp of dark cloud
 in hand, control it with no mind.

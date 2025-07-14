@@ -7,8 +7,6 @@ tags: ["zen", "non-duality", "practice"]
 category: "Life Notes"
 ---
 
-# **OPEN SKY**
-
 **Note**: This is not instruction. It is transmission.
 
 If it resonates, let it ripple through you. If not, let it pass like wind through reeds.
