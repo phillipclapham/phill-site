@@ -2025,8 +2025,8 @@
             const targetPage = this.getAttribute("href").substring(1);
             document.getElementById(targetPage).classList.add("active");
             
-            // Update URL hash
-            window.location.hash = targetPage;
+            // Update URL hash without triggering hashchange handler
+            history.replaceState(null, null, '#' + targetPage);
           });
         });
 
@@ -2054,8 +2054,8 @@
             .classList.add("active");
           document.getElementById("home").classList.add("active");
           
-          // Update URL hash
-          window.location.hash = "home";
+          // Update URL hash without triggering hashchange handler
+          history.replaceState(null, null, '#home');
         });
       });
       // Blog filtering functions
@@ -2138,8 +2138,8 @@
 
         filters.style.display = "none";
 
-        // Update URL using hash-based routing
-        window.location.hash = "blog";
+        // Update URL using hash-based routing without triggering hashchange
+        history.replaceState(null, null, '#blog');
       };
 
       // Blog routing functions (global scope)
@@ -2176,8 +2176,8 @@
           .classList.add("active");
         document.getElementById("blog").classList.add("active");
 
-        // Update URL using hash-based routing
-        window.location.hash = "blog";
+        // Update URL using hash-based routing without triggering hashchange
+        history.replaceState(null, null, '#blog');
       };
 
       // Handle initial page load based on URL
