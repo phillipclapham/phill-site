@@ -94,6 +94,19 @@ function generateBlogArchive(posts) {
     `;
   }
 
+  // Extract unique categories from posts
+  const categories = [...new Set(posts.map(post => post.category).filter(Boolean))].sort();
+  
+  // Generate category navigation
+  const categoryNav = categories.length > 0 ? `
+    <div class="blog-category-nav">
+      <span class="category-nav-item active" onclick="clearFilter()">All</span>
+      ${categories.map(category => 
+        `<span class="category-nav-item" onclick="filterByCategory('${category}')">${category}</span>`
+      ).join('')}
+    </div>
+  ` : '';
+
   const postList = posts.map(post => `
     <div class="experience-item blog-post-item" style="cursor: pointer;" onclick="showBlogPost('${post.slug}')" data-category="${post.category}" data-tags="${post.tags.join(',')}">
       <h3 style="color: var(--accent-green); margin-bottom: 10px;">
@@ -114,6 +127,7 @@ function generateBlogArchive(posts) {
         <p style="color: var(--text-secondary); margin-bottom: 20px;">
           Thoughts on technology, consciousness, and the spaces between.
         </p>
+        ${categoryNav}
         <div id="blog-filters" style="display: none;">
           <span style="color: var(--text-secondary); font-size: 12px;">Filtering: </span>
           <span id="active-filter" style="color: var(--accent-amber);"></span>
@@ -234,6 +248,33 @@ function updateIndexHtml(posts) {
         border-bottom: 1px solid var(--border-dim);
         margin-bottom: 20px;
       }
+      
+      /* Category navigation styles */
+      .blog-category-nav {
+        margin-bottom: 25px;
+        font-size: 13px;
+      }
+      
+      .category-nav-item {
+        color: var(--text-secondary);
+        cursor: pointer;
+        transition: color 0.3s ease;
+        margin-right: 8px;
+      }
+      
+      .category-nav-item:not(:last-child)::after {
+        content: " • ";
+        color: var(--text-dim);
+        margin-left: 8px;
+      }
+      
+      .category-nav-item:hover {
+        color: var(--accent-amber);
+      }
+      
+      .category-nav-item.active {
+        color: var(--accent-amber);
+      }
 $1`;
     
     html = html.replace(cssEndRegex, blogCss);
@@ -248,6 +289,7 @@ $1`;
     const posts = document.querySelectorAll('.blog-post-item');
     const filters = document.getElementById('blog-filters');
     const activeFilter = document.getElementById('active-filter');
+    const categoryNavItems = document.querySelectorAll('.category-nav-item');
     
     posts.forEach(post => {
       const postCategory = post.getAttribute('data-category');
@@ -255,6 +297,14 @@ $1`;
         post.style.display = 'block';
       } else {
         post.style.display = 'none';
+      }
+    });
+    
+    // Update category nav active states
+    categoryNavItems.forEach(item => {
+      item.classList.remove('active');
+      if (item.textContent === category) {
+        item.classList.add('active');
       }
     });
     
@@ -271,6 +321,7 @@ $1`;
     const posts = document.querySelectorAll('.blog-post-item');
     const filters = document.getElementById('blog-filters');
     const activeFilter = document.getElementById('active-filter');
+    const categoryNavItems = document.querySelectorAll('.category-nav-item');
     
     posts.forEach(post => {
       const postTags = post.getAttribute('data-tags').split(',');
@@ -279,6 +330,11 @@ $1`;
       } else {
         post.style.display = 'none';
       }
+    });
+    
+    // Reset category nav when filtering by tag
+    categoryNavItems.forEach(item => {
+      item.classList.remove('active');
     });
     
     filters.style.display = 'block';
@@ -293,9 +349,18 @@ $1`;
   window.clearFilter = function() {
     const posts = document.querySelectorAll('.blog-post-item');
     const filters = document.getElementById('blog-filters');
+    const categoryNavItems = document.querySelectorAll('.category-nav-item');
     
     posts.forEach(post => {
       post.style.display = 'block';
+    });
+    
+    // Reset category nav to "All"
+    categoryNavItems.forEach(item => {
+      item.classList.remove('active');
+      if (item.textContent === 'All') {
+        item.classList.add('active');
+      }
     });
     
     filters.style.display = 'none';
