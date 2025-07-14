@@ -1,0 +1,17 @@
+{
+  "name": "phill-site",
+  "version": "1.0.0",
+  "description": "Phillip Clapham's personal website with blog",
+  "main": "build.js",
+  "scripts": {
+    "build": "node build.js",
+    "dev": "node build.js && python3 -m http.server 8000"
+  },
+  "dependencies": {
+    "marked": "^9.1.0",
+    "gray-matter": "^4.0.3"
+  },
+  "devDependencies": {},
+  "author": "Phillip Clapham",
+  "license": "MIT"
+}

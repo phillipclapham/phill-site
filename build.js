@@ -1,0 +1,262 @@
+const fs = require('fs');
+const path = require('path');
+const { marked } = require('marked');
+const matter = require('gray-matter');
+
+// Configure marked for our terminal aesthetic
+marked.setOptions({
+  breaks: true,
+  gfm: true
+});
+
+// Custom renderer to match our CSS classes
+const renderer = new marked.Renderer();
+renderer.heading = function(text, level) {
+  return `<h${level}>${text}</h${level}>\n`;
+};
+renderer.paragraph = function(text) {
+  return `<p>${text}</p>\n`;
+};
+renderer.blockquote = function(quote) {
+  return `<blockquote>${quote}</blockquote>\n`;
+};
+
+function slugify(text) {
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+function readPosts() {
+  const postsDir = path.join(__dirname, 'posts');
+  const posts = [];
+
+  try {
+    const files = fs.readdirSync(postsDir).filter(file => file.endsWith('.md'));
+    
+    for (const file of files) {
+      const content = fs.readFileSync(path.join(postsDir, file), 'utf8');
+      const { data: frontmatter, content: markdown } = matter(content);
+      
+      // Generate slug from filename if not provided
+      const slug = frontmatter.slug || slugify(path.basename(file, '.md'));
+      
+      // Default values
+      const post = {
+        slug,
+        title: frontmatter.title || path.basename(file, '.md').replace(/_/g, ' '),
+        date: frontmatter.date || new Date().toISOString().split('T')[0],
+        excerpt: frontmatter.excerpt || '',
+        content: marked(markdown, { renderer }),
+        filename: file
+      };
+      
+      posts.push(post);
+    }
+    
+    // Sort by date (newest first)
+    posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+    
+    return posts;
+  } catch (error) {
+    console.error('Error reading posts:', error);
+    return [];
+  }
+}
+
+function generateBlogArchive(posts) {
+  if (posts.length === 0) {
+    return `
+      <div class="content">
+        <h1>Blog</h1>
+        <p>No posts yet. Check back soon!</p>
+      </div>
+    `;
+  }
+
+  const postList = posts.map(post => `
+    <div class="experience-item" style="cursor: pointer;" onclick="showBlogPost('${post.slug}')">
+      <h3 style="color: var(--accent-green); margin-bottom: 10px;">
+        ${post.title}
+      </h3>
+      <div class="experience-meta" style="margin-bottom: 15px;">
+        ${formatDate(post.date)}
+      </div>
+      ${post.excerpt ? `<p style="color: var(--text-secondary);">${post.excerpt}</p>` : ''}
+    </div>
+  `).join('');
+
+  return `
+    <div class="content">
+      <h1>Blog</h1>
+      <p style="margin-bottom: 40px; color: var(--text-secondary);">
+        Thoughts on technology, consciousness, and the spaces between.
+      </p>
+      ${postList}
+    </div>
+  `;
+}
+
+function generateBlogPost(post) {
+  return `
+    <div class="content">
+      <div style="margin-bottom: 20px;">
+        <span style="color: var(--text-secondary); font-size: 12px; cursor: pointer;" onclick="showBlogArchive()">
+          ← Back to Blog
+        </span>
+      </div>
+      <h1>${post.title}</h1>
+      <div style="color: var(--text-secondary); margin-bottom: 30px; font-size: 13px;">
+        ${formatDate(post.date)}
+      </div>
+      ${post.content}
+    </div>
+  `;
+}
+
+function formatDate(dateString) {
+  const date = new Date(dateString);
+  return date.toLocaleDateString('en-US', { 
+    year: 'numeric', 
+    month: 'long', 
+    day: 'numeric' 
+  });
+}
+
+function updateIndexHtml(posts) {
+  const indexPath = path.join(__dirname, 'index.html');
+  let html = fs.readFileSync(indexPath, 'utf8');
+  
+  // Generate blog content
+  const blogArchive = generateBlogArchive(posts);
+  const blogPosts = posts.map(post => generateBlogPost(post));
+  
+  // Add blog navigation item after wu wei
+  const navRegex = /(<li><a href="#wuwei" class="nav-link">無 為<\/a><\/li>)/;
+  html = html.replace(navRegex, '$1\n          <li><a href="#blog" class="nav-link">blog</a></li>');
+  
+  // Find where to insert blog content (after contact page, before main closing tag)
+  const insertPoint = html.indexOf('        <!-- Contact Page -->');
+  if (insertPoint === -1) {
+    console.error('Could not find insertion point for blog content');
+    return;
+  }
+  
+  // Create blog archive page
+  const blogArchivePage = `
+        <!-- Blog Archive Page -->
+        <div id="blog" class="page">
+          ${blogArchive}
+        </div>
+
+`;
+  
+  // Create individual blog post pages
+  const blogPostPages = posts.map(post => `
+        <!-- Blog Post: ${post.title} -->
+        <div id="blog-${post.slug}" class="page">
+          ${generateBlogPost(post)}
+        </div>
+`).join('');
+  
+  // Insert blog content
+  html = html.slice(0, insertPoint) + blogArchivePage + blogPostPages + html.slice(insertPoint);
+  
+  // Add blog routing JavaScript before the closing script tag
+  const scriptEndRegex = /(\s*<\/script>)/;
+  const blogJs = `
+  // Blog routing functions (global scope)
+  window.showBlogPost = function(slug) {
+    // Remove active from all
+    document.querySelectorAll('.nav-link').forEach(nav => nav.classList.remove('active'));
+    document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+    
+    // Show blog post
+    const postPage = document.getElementById('blog-' + slug);
+    if (postPage) {
+      postPage.classList.add('active');
+      // Update URL without page reload
+      if (history.pushState) {
+        history.pushState(null, null, '/blog/' + slug);
+      }
+    }
+  };
+  
+  window.showBlogArchive = function() {
+    // Remove active from all
+    document.querySelectorAll('.nav-link').forEach(nav => nav.classList.remove('active'));
+    document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+    
+    // Show blog archive and activate nav
+    document.querySelector('.nav-link[href="#blog"]').classList.add('active');
+    document.getElementById('blog').classList.add('active');
+    
+    // Update URL
+    if (history.pushState) {
+      history.pushState(null, null, '/blog');
+    }
+  };
+  
+  // Handle initial page load based on URL
+  function handleInitialRoute() {
+    const path = window.location.pathname;
+    if (path.startsWith('/blog/')) {
+      const slug = path.replace('/blog/', '');
+      if (document.getElementById('blog-' + slug)) {
+        showBlogPost(slug);
+        return;
+      }
+    } else if (path === '/blog') {
+      showBlogArchive();
+      return;
+    }
+    
+    // Default behavior for other routes
+    const hash = window.location.hash || '#home';
+    const targetPage = hash.substring(1);
+    if (document.getElementById(targetPage)) {
+      document.querySelectorAll('.nav-link').forEach(nav => nav.classList.remove('active'));
+      document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+      
+      document.querySelector(\`.nav-link[href="\${hash}"]\`)?.classList.add('active');
+      document.getElementById(targetPage).classList.add('active');
+    }
+  }
+  
+  // Call on load when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', handleInitialRoute);
+  } else {
+    handleInitialRoute();
+  }
+  
+  // Handle browser back/forward
+  window.addEventListener('popstate', handleInitialRoute);
+$1`;
+  
+  html = html.replace(scriptEndRegex, blogJs);
+  
+  // Write updated HTML
+  fs.writeFileSync(indexPath, html, 'utf8');
+  console.log(`✓ Built ${posts.length} blog posts`);
+  posts.forEach(post => {
+    console.log(`  - ${post.title} (/blog/${post.slug})`);
+  });
+}
+
+function main() {
+  console.log('Building blog...');
+  
+  const posts = readPosts();
+  updateIndexHtml(posts);
+  
+  console.log('✓ Blog build complete!');
+}
+
+// Run if called directly
+if (require.main === module) {
+  main();
+}
+
+module.exports = { readPosts, updateIndexHtml };
