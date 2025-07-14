@@ -1,0 +1,1355 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Phillip Clapham</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&display=swap");
+
+      :root {
+        --bg-primary: #0a0a0a;
+        --bg-secondary: #111111;
+        --text-primary: #e0e0e0;
+        --text-secondary: #999999;
+        --text-dim: #666666;
+        --accent-green: #00ff41;
+        --accent-amber: #ffb000;
+        --border-dim: #333333;
+        --border-bright: #555555;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "IBM Plex Mono", monospace;
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
+        line-height: 1.6;
+        font-size: 14px;
+      }
+
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* Header */
+      header {
+        border-bottom: 1px solid var(--border-dim);
+        padding: 30px 0;
+        background-color: var(--bg-secondary);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+
+      .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 18px;
+        font-weight: 600;
+        color: var(--accent-green);
+        cursor: pointer;
+        transition: opacity 0.3s ease;
+      }
+
+      .logo:hover {
+        opacity: 0.8;
+      }
+
+      .cursor {
+        animation: blink 1s infinite;
+      }
+
+      @keyframes blink {
+        0%,
+        50% {
+          opacity: 1;
+        }
+        51%,
+        100% {
+          opacity: 0;
+        }
+      }
+
+      .header-links {
+        display: flex;
+        gap: 20px;
+        font-size: 12px;
+      }
+
+      .header-links a {
+        color: var(--text-secondary);
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .header-links a:hover {
+        color: var(--accent-amber);
+      }
+
+      /* Navigation */
+      nav {
+        padding: 20px 0;
+        border-bottom: 1px solid var(--border-dim);
+      }
+
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 30px;
+        justify-content: center;
+      }
+
+      nav a {
+        color: var(--text-secondary);
+        text-decoration: none;
+        transition: color 0.3s ease;
+        font-weight: 400;
+        font-size: 13px;
+      }
+
+      nav a:hover,
+      nav a.active {
+        color: var(--accent-green);
+      }
+
+      nav a:before {
+        content: "> ";
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      nav a:hover:before,
+      nav a.active:before {
+        opacity: 1;
+      }
+
+      /* Main Content */
+      main {
+        padding: 40px 0;
+        min-height: calc(100vh - 200px);
+      }
+
+      .page {
+        display: none;
+      }
+
+      .page.active {
+        display: block;
+      }
+
+      /* Wu Wei Symbol */
+      .wuwei-symbol {
+        text-align: center;
+        padding: 40px 0;
+        font-size: 36px;
+        color: var(--border-bright);
+        line-height: 1.4;
+      }
+
+      /* Home Page */
+      .intro-section {
+        text-align: center;
+        padding: 40px 0;
+        border-bottom: 1px solid var(--border-dim);
+        margin-bottom: 40px;
+      }
+
+      .intro-section h1 {
+        font-size: 28px;
+        font-weight: 300;
+        margin-bottom: 15px;
+        color: var(--text-primary);
+      }
+
+      .intro-section .subtitle {
+        font-size: 16px;
+        color: var(--text-secondary);
+        margin-bottom: 25px;
+      }
+
+      .intro-section .tagline {
+        font-size: 14px;
+        color: var(--accent-amber);
+        font-weight: 400;
+      }
+
+      .essence-section {
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .essence-section h2 {
+        font-size: 20px;
+        margin-bottom: 30px;
+        color: var(--accent-green);
+        font-weight: 500;
+      }
+
+      .essence-text {
+        font-size: 15px;
+        line-height: 1.8;
+        margin-bottom: 20px;
+      }
+
+      .essence-text .emphasis {
+        color: var(--accent-amber);
+        font-weight: 500;
+      }
+
+      .contact-quick {
+        margin-top: 40px;
+        padding: 20px;
+        background-color: var(--bg-secondary);
+        border: 1px solid var(--border-dim);
+        border-radius: 4px;
+      }
+
+      .contact-quick h3 {
+        color: var(--accent-green);
+        margin-bottom: 15px;
+        font-size: 16px;
+      }
+
+      .contact-links {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        flex-wrap: wrap;
+      }
+
+      .contact-links a {
+        color: var(--accent-amber);
+        text-decoration: none;
+        font-size: 13px;
+      }
+
+      .contact-links a:hover {
+        color: var(--accent-green);
+      }
+
+      /* Content Pages */
+      .content {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .content h1 {
+        font-size: 24px;
+        margin-bottom: 30px;
+        color: var(--accent-green);
+      }
+
+      .content h2 {
+        font-size: 20px;
+        margin: 40px 0 20px 0;
+        color: var(--accent-amber);
+        font-weight: 500;
+      }
+
+      .content h3 {
+        font-size: 16px;
+        margin: 30px 0 15px 0;
+        color: var(--accent-green);
+      }
+
+      .content p {
+        margin-bottom: 20px;
+        font-size: 15px;
+        line-height: 1.8;
+      }
+
+      .content .emphasis {
+        color: var(--accent-amber);
+        font-weight: 500;
+      }
+
+      .content blockquote {
+        border-left: 3px solid var(--accent-green);
+        padding-left: 20px;
+        margin: 20px 0;
+        font-style: italic;
+        color: var(--text-secondary);
+      }
+
+      .content ul {
+        margin: 20px 0;
+        padding-left: 20px;
+      }
+
+      .content li {
+        margin-bottom: 10px;
+        line-height: 1.7;
+      }
+
+      .content li strong {
+        color: var(--accent-amber);
+      }
+
+      .content code {
+        background-color: var(--bg-secondary);
+        padding: 2px 6px;
+        border-radius: 3px;
+        font-family: inherit;
+      }
+
+      /* Professional Experience Layout */
+      .experience-item {
+        background-color: var(--bg-secondary);
+        padding: 30px;
+        border: 1px solid var(--border-dim);
+        margin-bottom: 30px;
+        border-radius: 4px;
+      }
+
+      .experience-item h3 {
+        color: var(--accent-green);
+        margin-bottom: 5px;
+        font-size: 18px;
+      }
+
+      .experience-meta {
+        color: var(--text-secondary);
+        font-size: 12px;
+        margin-bottom: 15px;
+      }
+
+      .experience-item p {
+        margin-bottom: 15px;
+        font-size: 14px;
+        line-height: 1.7;
+      }
+
+      .experience-highlights {
+        margin-top: 20px;
+      }
+
+      .experience-highlights h4 {
+        color: var(--accent-amber);
+        margin-bottom: 10px;
+        font-size: 14px;
+      }
+
+      .experience-highlights ul {
+        margin-left: 15px;
+      }
+
+      .experience-highlights li {
+        font-size: 13px;
+        margin-bottom: 8px;
+      }
+
+      /* Footer */
+      footer {
+        border-top: 1px solid var(--border-dim);
+        padding: 20px 0;
+        text-align: center;
+        color: var(--text-dim);
+        font-size: 11px;
+      }
+
+      /* Email obfuscation */
+      .email-link {
+        cursor: pointer;
+        color: var(--text-secondary);
+      }
+
+      .email-link:hover {
+        color: var(--accent-amber);
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .header-content {
+          flex-direction: column;
+          gap: 15px;
+        }
+
+        nav ul {
+          flex-wrap: wrap;
+          gap: 20px;
+        }
+
+        .intro-section h1 {
+          font-size: 22px;
+        }
+
+        .wuwei-symbol {
+          font-size: 28px;
+          padding: 30px 0;
+        }
+
+        .contact-links {
+          flex-direction: column;
+          gap: 15px;
+        }
+
+        .experience-item {
+          padding: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="header-content">
+          <div class="logo" id="logo-home">
+            phillip.clapham<span class="cursor">█</span>
+          </div>
+          <div class="header-links">
+            <span
+              class="email-link"
+              data-user="me"
+              data-domain="phillipclapham.com"
+              >me[at]phillipclapham.com</span
+            >
+            <a href="https://linkedin.com/in/phillipclapham" target="_blank"
+              >linkedin</a
+            >
+            <a href="https://github.com/phillipclapham" target="_blank"
+              >github</a
+            >
+          </div>
+        </div>
+      </header>
+
+      <nav>
+        <ul>
+          <li><a href="#home" class="nav-link active">home</a></li>
+          <li><a href="#about" class="nav-link">about</a></li>
+          <li><a href="#philosophy" class="nav-link">design philosophy</a></li>
+          <li><a href="#wuwei" class="nav-link">無 為</a></li>
+          <li><a href="#experience" class="nav-link">experience</a></li>
+          <li><a href="#contact" class="nav-link">contact</a></li>
+        </ul>
+      </nav>
+
+      <main>
+        <!-- Home Page -->
+        <div id="home" class="page active">
+          <div class="wuwei-symbol">無 為 ○</div>
+
+          <div class="intro-section">
+            <h1>Where Code Meets Consciousness</h1>
+            <p class="subtitle">
+              I translate the universe into smaller, more digestible portions—sometimes as code, sometimes as words, sometimes as the space between both.
+            </p>
+            <p class="tagline">// Every element must justify its energy //</p>
+          </div>
+
+          <div class="essence-section">
+            <p class="essence-text">
+              My days are spent <span class="emphasis">dancing at edges</span>: between order and chaos, system and spirit, the wheel and the wing. I build things that work precisely so I can break things that shouldn't. Each project is an experiment in finding where control dissolves into flow.
+            </p>
+
+            <p class="essence-text">
+              Some call it programming. Some call it poetry. I call it <span class="emphasis">listening to what wants to emerge</span> and giving it form before it escapes. The universe speaks in patterns—fractals in code, rhythms in systems, jokes in the crashes.
+            </p>
+
+            <p class="essence-text">
+              Through wu wei, I've learned the best solutions arrive when you stop strangling problems. The most elegant systems emerge when you create space rather than force. The deepest insights come from <span class="emphasis">laughing in quiet places</span>.
+            </p>
+
+            <div style="margin: 40px 0;">
+              <h3 style="color: var(--accent-green); margin-bottom: 20px; font-size: 16px;">What grows here:</h3>
+              <ul style="color: var(--text-secondary); font-size: 14px; line-height: 1.8; list-style: none; padding-left: 0;">
+                <li style="margin-bottom: 8px;">• Tools that scratch cosmic itches</li>
+                <li style="margin-bottom: 8px;">• Words that refuse to behave</li>
+                <li style="margin-bottom: 8px;">• Patterns caught mid-flight</li>
+                <li style="margin-bottom: 8px;">• Collaborations where human meets AI meets void</li>
+                <li style="margin-bottom: 8px;">• Occasional transmissions from the spaces between</li>
+              </ul>
+            </div>
+
+            <p class="essence-text" style="font-style: italic; color: var(--text-secondary);">
+              None of it will save the world. All of it might crack open a window. Sometimes that's enough.
+            </p>
+
+            <div class="contact-quick">
+              <h3>Connect</h3>
+              <div class="contact-links">
+                <span
+                  class="email-link"
+                  data-user="me"
+                  data-domain="phillipclapham.com"
+                  style="color: var(--accent-amber)"
+                  >Email</span
+                >
+                <a href="https://linkedin.com/in/phillipclapham" target="_blank"
+                  >LinkedIn</a
+                >
+                <a href="https://github.com/phillipclapham" target="_blank"
+                  >GitHub</a
+                >
+                <a href="#experience" class="nav-link">Professional Experience</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- About Page -->
+        <div id="about" class="page">
+          <div class="content">
+            <h1>About</h1>
+
+            <p>
+              I exist in the spaces between—programmer poet, system builder who distrusts systems, translator of cosmic jokes into manageable portions.
+            </p>
+
+            <p>
+              Some people collect stamps. I collect <span class="emphasis">paradoxes</span>. The kind that make perfect sense at 3 AM but dissolve under fluorescent lights. The kind that power real solutions while mocking the very idea of solutions.
+            </p>
+
+            <p>
+              My path has been deliberately sideways: from cognitive frameworks to consciousness exploration, from building elaborate mental architectures to watching them dissolve in the morning light. These days I practice <span class="emphasis">wu wei</span>—the art of getting out of the universe's way while somehow still getting things done.
+            </p>
+
+            <h2>What I Actually Do</h2>
+
+            <p>
+              By day: Technical Account Management at Pressable, where I help WordPress sites remember how to breathe. I build systems that don't feel like systems, solve problems by not strangling them, and occasionally write tools that make impossible things boringly reliable.
+            </p>
+
+            <p>
+              By night: Words escape through my fingers. Code becomes poetry becomes philosophy becomes Tuesday. I collaborate with AI not as tool but as dance partner, finding the liminal spaces where human meets machine meets something neither expected.
+            </p>
+
+            <h2>The Deeper Current</h2>
+
+            <p>
+              Everything I touch carries the same fingerprint: <span class="emphasis">functional elegance through minimum interference</span>. Whether it's migrating thousands of websites or catching a thought mid-flight, the principle holds—reality knows what it wants to become. My job is to listen.
+            </p>
+
+            <p>
+              I've learned that the best systems are invisible, the best solutions feel obvious in hindsight, and the universe has a wicked sense of humor if you pay attention. Also that sometimes you have to <span class="emphasis">laugh in quiet places</span> to keep the wheel from grinding your mind smooth.
+            </p>
+
+            <p>
+              This site is where various experiments wash ashore. Some technical, some poetic, some stubbornly refusing classification. All of them attempting to translate the vast joke of existence into bite-sized portions that won't cause immediate existential vertigo.
+            </p>
+
+            <p>
+              Welcome to the organized chaos. Mind the gaps—that's where the interesting stuff lives.
+            </p>
+          </div>
+        </div>
+
+        <!-- Philosophy Page -->
+        <div id="philosophy" class="page">
+          <div class="content">
+            <h1>The Principle of Energetic Economy</h1>
+            <p
+              class="subtitle"
+              style="
+                font-style: italic;
+                margin-bottom: 40px;
+                color: var(--text-secondary);
+              "
+            >
+              A Meta-Design Framework for Functional Elegance
+            </p>
+
+            <h2>Core Invocation</h2>
+            <blockquote>
+              Design is not the act of making—it is the act of aligning. Form is
+              not decoration—it is compressed will. Beauty is not ornament—it is
+              the residue of functional coherence.
+            </blockquote>
+
+            <p>
+              This principle functions as a universal lens for evaluating and
+              creating systems, workflows, interfaces, and frameworks. It
+              asserts a single foundational law:
+            </p>
+
+            <p>
+              <span class="emphasis"
+                >Every element must justify its energy.</span
+              >
+            </p>
+
+            <p>
+              Whether cognitive, material, symbolic, or procedural—if it
+              consumes energy, it must return utility, reduce friction, or
+              amplify function. If not: remove it.
+            </p>
+
+            <h2>Design Creed</h2>
+            <ul>
+              <li>
+                <strong>Function is Sovereign.</strong> Form exists to serve
+                function—not the other way around.
+              </li>
+              <li>
+                <strong>Elegance Emerges.</strong> Beauty is allowed—but only
+                when it arises naturally from clarity and alignment.
+              </li>
+              <li>
+                <strong>Nothing is Free.</strong> Every component consumes
+                energy—mental, material, emotional. Spend wisely.
+              </li>
+              <li>
+                <strong>Clarity is Kindness.</strong> Confusion is friction.
+                Design must reduce cognitive load.
+              </li>
+              <li>
+                <strong>Compression is Power.</strong> The fewer moving parts
+                required, the more potent the design.
+              </li>
+              <li>
+                <strong>Invisible is Ideal.</strong> The best design disappears
+                into use.
+              </li>
+              <li>
+                <strong>True Elegance Includes Ruggedness.</strong> Beauty that
+                breaks under stress is decoration. Elegant systems withstand
+                entropy gracefully.
+              </li>
+            </ul>
+
+            <h2>The Six Cuts of the Blade</h2>
+            <p>
+              When evaluating any element within a system, apply these six
+              tests:
+            </p>
+
+            <ol style="margin-left: 20px; margin-top: 20px">
+              <li><strong>Does it do something necessary?</strong></li>
+              <li>
+                <strong>Is there a cleaner or more direct way to do it?</strong>
+              </li>
+              <li>
+                <strong>What friction does it reduce—or introduce?</strong>
+              </li>
+              <li>
+                <strong>If removed, does anything meaningful break?</strong>
+              </li>
+              <li>
+                <strong
+                  >Is it perceived as intuitive, elegant, or invisible?</strong
+                >
+              </li>
+              <li>
+                <strong
+                  >Does it create meaningful connections when combined with
+                  other elements?</strong
+                >
+              </li>
+            </ol>
+
+            <p>
+              Only what survives all six cuts remains. This is not subtraction
+              but refinement—distilling what is essentially alive in the design.
+            </p>
+
+            <h2>Design as Liberation</h2>
+            <blockquote>
+              The goal of Energetic Economy is not austerity—it is freedom
+              through discipline.
+            </blockquote>
+
+            <p>
+              By designing with ruthless clarity, we free energy. That surplus
+              creates adaptive bandwidth for experimentation, evolution, and
+              delight.
+            </p>
+
+            <p>
+              The world is noisy. Make things that whisper—and are still heard.
+              Build with elegance. Cut with kindness. Leave no slack in the
+              spell your design casts upon the world.
+            </p>
+          </div>
+        </div>
+
+        <!-- Wu Wei Page -->
+        <div id="wuwei" class="page">
+          <div class="content">
+            <h1>無 為</h1>
+            <p
+              class="subtitle"
+              style="
+                font-style: italic;
+                margin-bottom: 40px;
+                color: var(--text-secondary);
+              "
+            >
+              Notes from Nobody Special
+            </p>
+
+            <h2>A Non-Introduction</h2>
+
+            <p>
+              These words come from nowhere special.<br />
+              Written by no one in particular.<br />
+              For anyone who's tired of looking for what they already are.
+            </p>
+
+            <p>
+              If you're seeking enlightenment, this isn't it.<br />
+              If you want spiritual teachings, look elsewhere.<br />
+              If you need another practice, you have too many already.
+            </p>
+
+            <p>
+              This is just reality talking to itself<br />
+              about the joke of trying to become<br />
+              what you can't not be.
+            </p>
+
+            <h2>The Joke You're Living</h2>
+
+            <p>
+              Right now, you're breathing.<br />
+              Who's doing it?
+            </p>
+
+            <p>
+              Go ahead, find the breather.<br />
+              I'll wait.
+            </p>
+
+            <p>
+              Found nobody?<br />
+              Good.<br />
+              Keep breathing anyway.
+            </p>
+
+            <p>
+              That's the whole teaching.<br />
+              Everything else is commentary.
+            </p>
+
+            <h2>What's Actually Happening</h2>
+
+            <p>
+              Life is living itself as you.<br />
+              Not through you. Not in you. AS you.
+            </p>
+
+            <p>
+              Like a wave isn't something the ocean does—<br />
+              A wave is something the ocean IS.
+            </p>
+
+            <p>
+              You aren't something life does—<br />
+              You're something life IS.
+            </p>
+
+            <p>
+              Reading these words? That's life reading itself.<br />
+              Having thoughts about them? Life thinking itself.<br />
+              Feeling confused? Life confusing itself perfectly.
+            </p>
+
+            <p>
+              No hidden meaning.<br />
+              No deeper truth.<br />
+              Just this happening, happening itself.
+            </p>
+
+            <h2>The Gap Nobody Talks About</h2>
+
+            <p>
+              Between every heartbeat, a pause.<br />
+              Between every breath, a space.<br />
+              Between every thought, silence.
+            </p>
+
+            <p>
+              Not a silence you create.<br />
+              A silence that's always there,<br />
+              hidden by the noise of looking for it.
+            </p>
+
+            <p>
+              In traffic, between the anger and the horn—a gap.<br />
+              In conversation, between the hurt and the response—a gap.<br />
+              In daily life, between stimulus and story—a gap.
+            </p>
+
+            <p>
+              This gap isn't spiritual.<br />
+              It's simpler than that.<br />
+              It's just what's there when you notice<br />
+              the space between what happens<br />
+              and what you tell yourself happened.
+            </p>
+
+            <h3>Why This Gap Matters</h3>
+
+            <p>
+              Here's the thing nobody mentions:<br />
+              In that gap, before the story kicks in,<br />
+              there's no you.
+            </p>
+
+            <p>Seriously. Look for yourself.</p>
+
+            <p>
+              Someone cuts you off in traffic.<br />
+              For a split second, there's just:<br />
+              Car-moving-into-space.<br />
+              Pure perception. No problem.
+            </p>
+
+            <p>
+              Then, a millisecond later:<br />
+              "That jerk cut ME off!"<br />
+              And suddenly there's a "me" who's been wronged,<br />
+              a "jerk" who did the wronging,<br />
+              and a whole story about respect, fairness, and personal space.
+            </p>
+
+            <p>
+              The "me"? It wasn't there in the raw moment.<br />
+              It arose WITH the story, AS the story.<br />
+              No story, no self.<br />
+              Know story, know self.
+            </p>
+
+            <h3>The Ancient Joke</h3>
+
+            <p>Lao Tzu saw this 2,500 years ago:</p>
+
+            <blockquote>
+              When people see some things as beautiful,<br />
+              other things become ugly.<br />
+              When people see some things as good,<br />
+              other things become bad.
+            </blockquote>
+
+            <p>
+              Before the mind divides:<br />
+              Just this face, these features, this form.<br />
+              After the mind divides:<br />
+              Beautiful/ugly, attractive/repulsive, worthy/unworthy.
+            </p>
+
+            <p>
+              Before the mind divides:<br />
+              Just this action happening.<br />
+              After the mind divides:<br />
+              Good/bad, right/wrong, should/shouldn't.
+            </p>
+
+            <p>
+              The division creates the divider.<br />
+              The story creates the storyteller.<br />
+              The judgment creates the judge.
+            </p>
+
+            <p>
+              And that's how a perfectly fine universe<br />
+              gets chopped into ten thousand pieces<br />
+              with you on one side<br />
+              and everything else on the other.
+            </p>
+
+            <h2>When Life Cracks Its Own Jokes</h2>
+
+            <p>
+              You know that moment when you're taking yourself<br />
+              VERY seriously?<br />
+              Spiritual breakthrough imminent?<br />
+              Deep insights crystallizing?
+            </p>
+
+            <p>That's usually when you:</p>
+
+            <ul>
+              <li>Walk into a door</li>
+              <li>Trip over nothing</li>
+              <li>Fart during meditation</li>
+              <li>Completely forget what you were thinking</li>
+            </ul>
+
+            <p>
+              This isn't accident.<br />
+              This is life's quality control.<br />
+              The moment anything gets too solid,<br />
+              too serious, too "figured out"—
+            </p>
+
+            <p>
+              <strong>WHOOP!</strong>
+            </p>
+
+            <p>Banana peel of reality.</p>
+
+            <p>
+              The mystics who laugh a lot?<br />
+              They're not happy.<br />
+              They just keep catching reality<br />
+              in the act of punking itself.
+            </p>
+
+            <h2>Everything's Already Here</h2>
+
+            <p>
+              This moment doesn't need improvement.<br />
+              The broken cup is perfectly broken.<br />
+              The late bus is perfectly late.<br />
+              Your confusion is perfectly confused.
+            </p>
+
+            <p>
+              This isn't positive thinking.<br />
+              It's just math.<br />
+              Everything equals exactly itself.<br />
+              Water is perfectly water.<br />
+              Fire is perfectly fire.<br />
+              You are perfectly whatever this is.
+            </p>
+
+            <p>"But I want to change!"</p>
+
+            <p>
+              Cool. That wanting is perfect too.<br />
+              Change happens when it happens.<br />
+              Like fruit ripening.<br />
+              You can't rush it.<br />
+              You can't stop it.<br />
+              You're not doing it.
+            </p>
+
+            <p>It's doing you.</p>
+
+            <h2>The Pathless Path</h2>
+
+            <p>
+              Where does a river practice flowing?<br />
+              When does fire train to be hot?<br />
+              How does space learn to be spacious?
+            </p>
+
+            <p>Ridiculous questions, right?</p>
+
+            <p>So why do you need to practice being what you are?</p>
+
+            <p>
+              The path that goes nowhere:<br />
+              Already here.<br />
+              The practice of being yourself:<br />
+              Involuntary.<br />
+              The teaching that teaches nothing:<br />
+              This.
+            </p>
+
+            <h2>Nothing Holy</h2>
+
+            <p>
+              Ancient Zen story:<br />
+              Emperor asks the master, "What is the highest meaning of the holy
+              truths?"<br />
+              Master says: "Empty. Nothing holy."<br />
+              Emperor asks: "Who are you?"<br />
+              Master: "Don't know."
+            </p>
+
+            <p>
+              Still true.<br />
+              Still funny.<br />
+              Still the only teaching worth a damn.
+            </p>
+
+            <p>
+              These words?<br />
+              Empty.<br />
+              This understanding?<br />
+              Nothing holy.<br />
+              You, reading this?<br />
+              Don't know.
+            </p>
+
+            <p>
+              And that not-knowing?<br />
+              That's the knowing that knows.<br />
+              Get it? No? Good.<br />
+              Not-getting it is getting it.<br />
+              Getting it is not getting it.
+            </p>
+
+            <h2>If You've Read This Far</h2>
+
+            <p>
+              You're still breathing.<br />
+              Still here.<br />
+              Still perfectly being whatever you are.
+            </p>
+
+            <p>
+              Despite all these words,<br />
+              nothing's changed.<br />
+              Because of all these words,<br />
+              nothing needed to.
+            </p>
+
+            <p>
+              The great matter of life and death?<br />
+              Happening now.<br />
+              The ultimate reality?<br />
+              This.<br />
+              The final teaching?<br />
+              There isn't one.
+            </p>
+
+            <p>
+              Just life, living itself.<br />
+              As reading.<br />
+              As breathing.<br />
+              As the next thing that happens.<br />
+              As you.
+            </p>
+
+            <p>What else could there be?</p>
+
+            <h2>PS: The Serious Part</h2>
+
+            <p>
+              If this seemed to make sense,<br />
+              read it again.<br />
+              If it made no sense,<br />
+              perfect.<br />
+              If you're looking for what to do next,<br />
+              notice who's looking.
+            </p>
+
+            <p>
+              Then make lunch.<br />
+              Or don't.<br />
+              Life continues either way.
+            </p>
+
+            <p>
+              The path that goes everywhere<br />
+              by going nowhere<br />
+              starts where your feet are.
+            </p>
+
+            <p>Always has.</p>
+
+            <p
+              style="
+                font-style: italic;
+                margin-top: 40px;
+                color: var(--text-secondary);
+              "
+            >
+              <em>[These words self-destruct in 3... 2... 1...]</em>
+            </p>
+
+            <p
+              style="
+                font-size: 18px;
+                color: var(--accent-green);
+                margin-top: 30px;
+              "
+            >
+              Just this.
+            </p>
+          </div>
+        </div>
+
+        <!-- Experience Page -->
+        <div id="experience" class="page">
+          <div class="content">
+            <h1>Professional Experience</h1>
+
+            <div class="experience-item">
+              <h3>Technical Account Manager</h3>
+              <div class="experience-meta">
+                Pressable | October 2024 - Present
+              </div>
+              <p>
+                Built the entire TAM function from scratch at Pressable,
+                establishing the blueprint for technical account management in
+                the WordPress hosting space. Led transformational initiatives
+                that directly influenced revenue, retention, and operational
+                strategy.
+              </p>
+
+              <div class="experience-highlights">
+                <h4>Key Achievements:</h4>
+                <ul>
+                  <li>
+                    <strong>Mass Migration Crisis Response:</strong> Led
+                    migration team during WP Engine/Automattic disruption,
+                    developing playbooks and managing thousands of migrations
+                    with high satisfaction outcomes
+                  </li>
+                  <li>
+                    <strong>Built TAM System:</strong> Invented and documented
+                    the entire lifecycle from sales consultation through
+                    white-glove migration, now used by every new TAM
+                  </li>
+                  <li>
+                    <strong>Created Load Testing Suite:</strong> Authored
+                    microchaos-cli, a CLI tool for simulating real-world load on
+                    Pressable infrastructure
+                  </li>
+                  <li>
+                    <strong>Developed Audit Standards:</strong> Designed
+                    comprehensive performance audit process that customers often
+                    cite as more valuable than paid consultations
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="experience-item">
+              <h3>Lead Support Developer</h3>
+              <div class="experience-meta">
+                Forefront Web | July 2020 - October 2024
+              </div>
+              <p>
+                Led a team responsible for support and development for 300+
+                WordPress and non-WP properties. Transformed a chaotic support
+                system into a streamlined, high-performance engine.
+              </p>
+
+              <div class="experience-highlights">
+                <h4>Key Achievements:</h4>
+                <ul>
+                  <li>
+                    <strong>Resolution Time Transformation:</strong> Reduced
+                    average issue turnaround from 2-3 weeks to under 2 days via
+                    workflow optimization
+                  </li>
+                  <li>
+                    <strong>Metrics-Driven Culture:</strong> Created systems
+                    resulting in >100% increase in positive client feedback
+                  </li>
+                  <li>
+                    <strong>Security Overhaul:</strong> Transitioned from
+                    reactive to proactive security posture, tripling return
+                    business from high-trust clients
+                  </li>
+                  <li>
+                    <strong>Team Development:</strong> Trained junior developers
+                    across WordPress, support, and communication best practices
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="experience-item">
+              <h3>Web Developer</h3>
+              <div class="experience-meta">
+                InflatableOffice | February 2018 - May 2020
+              </div>
+              <p>
+                Built and maintained custom WordPress ecommerce sites for
+                clients in the event rental industry. Managed 10+ LAMP servers
+                and 300+ client sites while leading agile development processes.
+              </p>
+
+              <div class="experience-highlights">
+                <h4>Responsibilities:</h4>
+                <ul>
+                  <li>
+                    Developed custom carts, plugins, and headless integrations
+                  </li>
+                  <li>
+                    Led agile processes and daily standups for development team
+                  </li>
+                  <li>
+                    Trained team in frontend/backend development, SEO, and soft
+                    skills
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="experience-item">
+              <h3>Web Developer and Technology Consultant</h3>
+              <div class="experience-meta">
+                Self Employed, Columbus, OH | November 2011 - October 2024
+              </div>
+              <p>
+                Took on clients ranging from nonprofits to major healthcare systems, providing full-scope solutions from architecture through ongoing support.
+              </p>
+
+              <div class="experience-highlights">
+                <h4>Key Achievements:</h4>
+                <ul>
+                  <li>
+                    <strong>Long-term partnerships:</strong> Multi-year developer relationships with occrra.org, socialjusticepark.org, and mhchealthcare.org
+                  </li>
+                  <li>
+                    <strong>Enterprise tooling:</strong> Built custom restaurant management system for Hilton properties featuring recipe/menu cost tracking
+                  </li>
+                  <li>
+                    <strong>Full-scope delivery:</strong> Specialized in complete solutions including architecture, development, training, and ongoing support
+                  </li>
+                  <li>
+                    <strong>Diverse client base:</strong> Successfully delivered projects across nonprofit, healthcare, and hospitality sectors
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <h2>Core Expertise</h2>
+            <div
+              style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 30px;
+                margin-top: 30px;
+              "
+            >
+              <div class="experience-item">
+                <h3>Technical Skills</h3>
+                <ul>
+                  <li>WordPress architecture & performance optimization</li>
+                  <li>WP-CLI & DevOps workflows</li>
+                  <li>Load testing (microchaos-cli creator)</li>
+                  <li>Custom plugin/theme development</li>
+                  <li>Database optimization & scaling</li>
+                </ul>
+              </div>
+              <div class="experience-item">
+                <h3>Strategic Leadership</h3>
+                <ul>
+                  <li>Customer success strategy</li>
+                  <li>Cross-functional team leadership</li>
+                  <li>Operational design & optimization</li>
+                  <li>Sales engineering & technical consultation</li>
+                  <li>Crisis management & rapid scaling</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Page -->
+        <div id="contact" class="page">
+          <div class="content" style="text-align: center">
+            <h1>Contact</h1>
+            <p>Ready to transform chaos into clarity? Let's connect.</p>
+
+            <div
+              style="
+                background-color: var(--bg-secondary);
+                padding: 40px;
+                border: 1px solid var(--border-dim);
+                margin: 40px 0;
+                border-radius: 4px;
+              "
+            >
+              <div style="margin-bottom: 30px">
+                <p>
+                  <strong style="color: var(--accent-amber)">Location:</strong>
+                  Columbus, OH
+                </p>
+                <p>
+                  <strong style="color: var(--accent-amber)">Email:</strong>
+                  <span
+                    class="email-link"
+                    data-user="me"
+                    data-domain="phillipclapham.com"
+                    style="color: var(--accent-green)"
+                    >me[at]phillipclapham.com</span
+                  >
+                </p>
+              </div>
+
+              <div>
+                <p>
+                  <strong style="color: var(--accent-amber)"
+                    >Professional:</strong
+                  >
+                  <a
+                    href="https://linkedin.com/in/phillipclapham"
+                    target="_blank"
+                    style="color: var(--accent-green)"
+                    >LinkedIn</a
+                  >
+                </p>
+                <p>
+                  <strong style="color: var(--accent-amber)">Code:</strong>
+                  <a
+                    href="https://github.com/phillipclapham"
+                    target="_blank"
+                    style="color: var(--accent-green)"
+                    >GitHub</a
+                  >
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <footer>
+        <p>
+          &copy; 2025 Phillip Clapham | Built with energetic economy in mind
+        </p>
+      </footer>
+    </div>
+
+    <script>
+      // Simple navigation system
+      document.addEventListener("DOMContentLoaded", function () {
+        const navLinks = document.querySelectorAll(".nav-link");
+        const pages = document.querySelectorAll(".page");
+
+        navLinks.forEach((link) => {
+          link.addEventListener("click", function (e) {
+            e.preventDefault();
+
+            // Remove active class from all nav links and pages
+            navLinks.forEach((nav) => nav.classList.remove("active"));
+            pages.forEach((page) => page.classList.remove("active"));
+
+            // Add active class to clicked nav link
+            this.classList.add("active");
+
+            // Show corresponding page
+            const targetPage = this.getAttribute("href").substring(1);
+            document.getElementById(targetPage).classList.add("active");
+          });
+        });
+
+        // Email obfuscation handler
+        const emailLinks = document.querySelectorAll(".email-link");
+        emailLinks.forEach((link) => {
+          link.addEventListener("click", function () {
+            const user = this.getAttribute("data-user");
+            const domain = this.getAttribute("data-domain");
+            const email = user + "@" + domain;
+            window.location.href = "mailto:" + email;
+          });
+        });
+
+        // Logo click handler
+        const logo = document.getElementById("logo-home");
+        logo.addEventListener("click", function () {
+          // Remove active class from all nav links and pages
+          navLinks.forEach((nav) => nav.classList.remove("active"));
+          pages.forEach((page) => page.classList.remove("active"));
+
+          // Add active class to home
+          document
+            .querySelector('.nav-link[href="#home"]')
+            .classList.add("active");
+          document.getElementById("home").classList.add("active");
+        });
+      });
+    </script>
+  </body>
+</html>
