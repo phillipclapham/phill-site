@@ -20,10 +20,10 @@
 
 ### 3. Clear Filter Button Not Working
 
-**Status**: Identified
-**Issue**: When filtering by category/tag, the "✕ clear" button doesn't properly return to unfiltered archive
-**Behavior**: Should show all posts and reset category nav to "All"
-**Root cause**: Likely filter clearing logic not properly resetting all states
+**Status**: FIXED
+**Issue**: When filtering by category/tag, the "✕ clear" button didn't properly return to unfiltered archive
+**Solution**: Disabled automatic URL-based filtering, made filters purely manual
+**Root cause**: Infinite loop between URL routing and filter clearing
 **Priority**: Medium (affects user experience)
 
 ### 4. URL Cleanup on Navigation
