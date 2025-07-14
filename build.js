@@ -71,12 +71,12 @@ function generateCategoryTags(post) {
   const items = [];
   
   if (post.category) {
-    items.push(`<span class="blog-category" onclick="filterByCategory('${post.category}')" title="Category: ${post.category}">${post.category}</span>`);
+    items.push(`<span class="blog-category" onclick="filterByCategory('${post.category}'); event.stopPropagation();" title="Category: ${post.category}">${post.category}</span>`);
   }
   
   if (post.tags && post.tags.length > 0) {
     const tags = post.tags.map(tag => 
-      `<span class="blog-tag" onclick="filterByTag('${tag}')" title="Tag: ${tag}">${tag}</span>`
+      `<span class="blog-tag" onclick="filterByTag('${tag}'); event.stopPropagation();" title="Tag: ${tag}">${tag}</span>`
     ).join(' • ');
     items.push(tags);
   }
@@ -311,10 +311,8 @@ $1`;
     filters.style.display = 'block';
     activeFilter.textContent = 'Category: ' + category;
     
-    // Update URL
-    if (history.pushState) {
-      history.pushState(null, null, '/blog?category=' + encodeURIComponent(category));
-    }
+    // Update URL using hash-based routing with query params
+    window.location.hash = 'blog?category=' + encodeURIComponent(category);
   };
   
   window.filterByTag = function(tag) {
@@ -340,10 +338,8 @@ $1`;
     filters.style.display = 'block';
     activeFilter.textContent = 'Tag: ' + tag;
     
-    // Update URL
-    if (history.pushState) {
-      history.pushState(null, null, '/blog?tag=' + encodeURIComponent(tag));
-    }
+    // Update URL using hash-based routing with query params
+    window.location.hash = 'blog?tag=' + encodeURIComponent(tag);
   };
   
   window.clearFilter = function() {
@@ -365,10 +361,8 @@ $1`;
     
     filters.style.display = 'none';
     
-    // Update URL
-    if (history.pushState) {
-      history.pushState(null, null, '/blog');
-    }
+    // Update URL using hash-based routing
+    window.location.hash = 'blog';
   };
 
   // Blog routing functions (global scope)
@@ -381,10 +375,8 @@ $1`;
     const postPage = document.getElementById('blog-' + slug);
     if (postPage) {
       postPage.classList.add('active');
-      // Update URL without page reload
-      if (history.pushState) {
-        history.pushState(null, null, '/blog/' + slug);
-      }
+      // Update URL using hash-based routing for GitHub Pages compatibility
+      window.location.hash = 'blog-' + slug;
     }
   };
   
@@ -397,43 +389,47 @@ $1`;
     document.querySelector('.nav-link[href="#blog"]').classList.add('active');
     document.getElementById('blog').classList.add('active');
     
-    // Update URL
-    if (history.pushState) {
-      history.pushState(null, null, '/blog');
-    }
+    // Update URL using hash-based routing
+    window.location.hash = 'blog';
   };
   
   // Handle initial page load based on URL
   function handleInitialRoute() {
-    const path = window.location.pathname;
-    const params = new URLSearchParams(window.location.search);
+    const hash = window.location.hash.substring(1) || 'home';
     
-    if (path.startsWith('/blog/')) {
-      const slug = path.replace('/blog/', '');
+    // Handle blog post routes like #blog-post-slug
+    if (hash.startsWith('blog-')) {
+      const slug = hash.replace('blog-', '');
       if (document.getElementById('blog-' + slug)) {
         showBlogPost(slug);
         return;
       }
-    } else if (path === '/blog') {
+    }
+    
+    // Handle blog routes like #blog or #blog?category=Politics
+    if (hash.startsWith('blog')) {
+      const [route, queryString] = hash.split('?');
       showBlogArchive();
       
       // Handle category/tag filtering from URL
-      if (params.get('category')) {
-        setTimeout(() => filterByCategory(params.get('category')), 100);
-      } else if (params.get('tag')) {
-        setTimeout(() => filterByTag(params.get('tag')), 100);
+      if (queryString) {
+        const params = new URLSearchParams(queryString);
+        if (params.get('category')) {
+          setTimeout(() => filterByCategory(params.get('category')), 100);
+        } else if (params.get('tag')) {
+          setTimeout(() => filterByTag(params.get('tag')), 100);
+        }
       }
       return;
     }
     
     // Default behavior for other routes
-    const hash = window.location.hash || '#home';
-    const targetPage = hash.substring(1);
+    const targetPage = hash;
     if (document.getElementById(targetPage)) {
       document.querySelectorAll('.nav-link').forEach(nav => nav.classList.remove('active'));
       document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
       
-      document.querySelector(\`.nav-link[href="\${hash}"]\`)?.classList.add('active');
+      document.querySelector(\`.nav-link[href="#\${hash}"]\`)?.classList.add('active');
       document.getElementById(targetPage).classList.add('active');
     }
   }
@@ -445,8 +441,8 @@ $1`;
     handleInitialRoute();
   }
   
-  // Handle browser back/forward
-  window.addEventListener('popstate', handleInitialRoute);
+  // Handle browser back/forward and hash changes
+  window.addEventListener('hashchange', handleInitialRoute);
 $1`;
     
     html = html.replace(scriptEndRegex, blogJs);
