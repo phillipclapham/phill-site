@@ -3,6 +3,8 @@ title: "Open Sky"
 date: "2025-01-15"
 excerpt: "Notes from nowhere special, written by no one in particular, for anyone who's tired of looking for what they already are."
 slug: "open-sky"
+tags: ["zen", "non-duality", "practice"]
+category: "Life Notes"
 ---
 
 # **OPEN SKY**

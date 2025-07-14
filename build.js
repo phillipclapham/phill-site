@@ -48,6 +48,8 @@ function readPosts() {
         title: frontmatter.title || path.basename(file, '.md').replace(/_/g, ' '),
         date: frontmatter.date || new Date().toISOString().split('T')[0],
         excerpt: frontmatter.excerpt || '',
+        category: frontmatter.category || '',
+        tags: frontmatter.tags || [],
         content: marked(markdown, { renderer }),
         filename: file
       };
@@ -65,6 +67,23 @@ function readPosts() {
   }
 }
 
+function generateCategoryTags(post) {
+  const items = [];
+  
+  if (post.category) {
+    items.push(`<span class="blog-category" onclick="filterByCategory('${post.category}')" title="Category: ${post.category}">${post.category}</span>`);
+  }
+  
+  if (post.tags && post.tags.length > 0) {
+    const tags = post.tags.map(tag => 
+      `<span class="blog-tag" onclick="filterByTag('${tag}')" title="Tag: ${tag}">${tag}</span>`
+    ).join(' • ');
+    items.push(tags);
+  }
+  
+  return items.length > 0 ? `<div class="blog-meta-tags">${items.join(' • ')}</div>` : '';
+}
+
 function generateBlogArchive(posts) {
   if (posts.length === 0) {
     return `
@@ -76,24 +95,34 @@ function generateBlogArchive(posts) {
   }
 
   const postList = posts.map(post => `
-    <div class="experience-item" style="cursor: pointer;" onclick="showBlogPost('${post.slug}')">
+    <div class="experience-item blog-post-item" style="cursor: pointer;" onclick="showBlogPost('${post.slug}')" data-category="${post.category}" data-tags="${post.tags.join(',')}">
       <h3 style="color: var(--accent-green); margin-bottom: 10px;">
         ${post.title}
       </h3>
-      <div class="experience-meta" style="margin-bottom: 15px;">
+      <div class="experience-meta" style="margin-bottom: 10px;">
         ${formatDate(post.date)}
       </div>
-      ${post.excerpt ? `<p style="color: var(--text-secondary);">${post.excerpt}</p>` : ''}
+      ${generateCategoryTags(post)}
+      ${post.excerpt ? `<p style="color: var(--text-secondary); margin-top: 15px;">${post.excerpt}</p>` : ''}
     </div>
   `).join('');
 
   return `
     <div class="content">
       <h1>Blog</h1>
-      <p style="margin-bottom: 40px; color: var(--text-secondary);">
-        Thoughts on technology, consciousness, and the spaces between.
-      </p>
-      ${postList}
+      <div style="margin-bottom: 40px;">
+        <p style="color: var(--text-secondary); margin-bottom: 20px;">
+          Thoughts on technology, consciousness, and the spaces between.
+        </p>
+        <div id="blog-filters" style="display: none;">
+          <span style="color: var(--text-secondary); font-size: 12px;">Filtering: </span>
+          <span id="active-filter" style="color: var(--accent-amber);"></span>
+          <span style="color: var(--text-secondary); cursor: pointer; margin-left: 10px;" onclick="clearFilter()">✕ clear</span>
+        </div>
+      </div>
+      <div id="blog-posts">
+        ${postList}
+      </div>
     </div>
   `;
 }
@@ -163,9 +192,109 @@ function updateIndexHtml(posts) {
   // Insert blog content
   html = html.slice(0, insertPoint) + blogArchivePage + blogPostPages + html.slice(insertPoint);
   
+  // Add blog CSS styles before closing </style> tag
+  const cssEndRegex = /(\s*<\/style>)/;
+  const blogCss = `
+      /* Blog category and tag styles */
+      .blog-meta-tags {
+        font-size: 11px;
+        margin-bottom: 10px;
+      }
+      
+      .blog-category, .blog-tag {
+        color: var(--accent-amber);
+        cursor: pointer;
+        transition: color 0.3s ease;
+        text-decoration: none;
+      }
+      
+      .blog-category:hover, .blog-tag:hover {
+        color: var(--accent-green);
+      }
+      
+      .blog-category {
+        font-weight: 500;
+      }
+      
+      .blog-tag {
+        font-weight: 400;
+      }
+      
+      #blog-filters {
+        padding: 10px 0;
+        border-bottom: 1px solid var(--border-dim);
+        margin-bottom: 20px;
+      }
+$1`;
+  
+  html = html.replace(cssEndRegex, blogCss);
+
   // Add blog routing JavaScript before the closing script tag
   const scriptEndRegex = /(\s*<\/script>)/;
   const blogJs = `
+  // Blog filtering functions
+  window.filterByCategory = function(category) {
+    const posts = document.querySelectorAll('.blog-post-item');
+    const filters = document.getElementById('blog-filters');
+    const activeFilter = document.getElementById('active-filter');
+    
+    posts.forEach(post => {
+      const postCategory = post.getAttribute('data-category');
+      if (postCategory === category) {
+        post.style.display = 'block';
+      } else {
+        post.style.display = 'none';
+      }
+    });
+    
+    filters.style.display = 'block';
+    activeFilter.textContent = 'Category: ' + category;
+    
+    // Update URL
+    if (history.pushState) {
+      history.pushState(null, null, '/blog?category=' + encodeURIComponent(category));
+    }
+  };
+  
+  window.filterByTag = function(tag) {
+    const posts = document.querySelectorAll('.blog-post-item');
+    const filters = document.getElementById('blog-filters');
+    const activeFilter = document.getElementById('active-filter');
+    
+    posts.forEach(post => {
+      const postTags = post.getAttribute('data-tags').split(',');
+      if (postTags.includes(tag)) {
+        post.style.display = 'block';
+      } else {
+        post.style.display = 'none';
+      }
+    });
+    
+    filters.style.display = 'block';
+    activeFilter.textContent = 'Tag: ' + tag;
+    
+    // Update URL
+    if (history.pushState) {
+      history.pushState(null, null, '/blog?tag=' + encodeURIComponent(tag));
+    }
+  };
+  
+  window.clearFilter = function() {
+    const posts = document.querySelectorAll('.blog-post-item');
+    const filters = document.getElementById('blog-filters');
+    
+    posts.forEach(post => {
+      post.style.display = 'block';
+    });
+    
+    filters.style.display = 'none';
+    
+    // Update URL
+    if (history.pushState) {
+      history.pushState(null, null, '/blog');
+    }
+  };
+
   // Blog routing functions (global scope)
   window.showBlogPost = function(slug) {
     // Remove active from all
@@ -201,6 +330,8 @@ function updateIndexHtml(posts) {
   // Handle initial page load based on URL
   function handleInitialRoute() {
     const path = window.location.pathname;
+    const params = new URLSearchParams(window.location.search);
+    
     if (path.startsWith('/blog/')) {
       const slug = path.replace('/blog/', '');
       if (document.getElementById('blog-' + slug)) {
@@ -209,6 +340,13 @@ function updateIndexHtml(posts) {
       }
     } else if (path === '/blog') {
       showBlogArchive();
+      
+      // Handle category/tag filtering from URL
+      if (params.get('category')) {
+        setTimeout(() => filterByCategory(params.get('category')), 100);
+      } else if (params.get('tag')) {
+        setTimeout(() => filterByTag(params.get('tag')), 100);
+      }
       return;
     }
     
