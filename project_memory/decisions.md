@@ -61,3 +61,11 @@ Categories and tags arose organically from content rather than predefined taxono
 
 ### Elegant Ruggedness
 Single-file architecture is both beautiful and resilient - no broken dependencies, works anywhere.
+
+## Recent Problem-Solving Approach
+
+### Clear Filter Loop Issue
+**Problem**: Clear filter button created infinite loops with URL-based routing
+**Wu Wei Solution**: Stop fighting the system - disabled automatic URL filtering, made filters purely manual
+**Learning**: Sometimes the most elegant solution is subtraction, not addition
+**Result**: Clean, immediate filter clearing without complexity
