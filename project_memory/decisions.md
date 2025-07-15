@@ -69,3 +69,29 @@ Single-file architecture is both beautiful and resilient - no broken dependencie
 **Wu Wei Solution**: Stop fighting the system - disabled automatic URL filtering, made filters purely manual
 **Learning**: Sometimes the most elegant solution is subtraction, not addition
 **Result**: Clean, immediate filter clearing without complexity
+
+## Easter Egg Implementation Decisions
+
+### Matrix Rain Debugging Strategy
+**Problem**: Matrix rain columns invisible during wu wei hover
+**Root Cause**: CSS positioning conflict (columns starting at -200vh)
+**Solution**: Systematic microtask breakdown - test static, then animation, then interaction
+**Learning**: Visual effects need incremental verification to isolate issues
+
+### Logo Glitch Design
+**Decision**: Reality corruption aesthetic over simple color changes
+**Implementation**: CSS filters (hue-rotate, contrast, brightness) + pixel displacement
+**Text Morphing**: "phillip.clapham" → "root@void" → "undefined.undefined" → "system.error"
+**Timing**: 5+ clicks in 2 seconds triggers, 2.5 second duration
+
+### Morse Code Cursor Philosophy
+**Decision**: Time-based switching between "stillness" (day) and "sleep" (night)
+**Technical**: Custom keyframe animations with accurate morse timing
+**Subtlety**: Extremely subtle - only rewards most attentive users
+**Wu Wei**: Hidden depth beneath simple blinking cursor
+
+### Easter Egg Integration Principle
+**Philosophy**: Technical sophistication disguised as simplicity
+**Implementation**: No cognitive overhead for non-explorers
+**Discovery**: Natural user behavior triggers (hover, clicks, time awareness)
+**Function**: Each serves delight without breaking site flow

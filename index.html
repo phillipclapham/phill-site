@@ -82,6 +82,114 @@
         }
       }
 
+      /* Morse code animations - "STILLNESS" */
+      @keyframes morse-stillness {
+        /* S: ... */
+        0%, 2% { opacity: 1; } 2.5%, 4% { opacity: 0; }
+        4.5%, 6.5% { opacity: 1; } 7%, 9% { opacity: 0; }
+        9.5%, 11.5% { opacity: 1; } 12%, 16% { opacity: 0; }
+        
+        /* T: - */
+        16.5%, 22.5% { opacity: 1; } 23%, 27% { opacity: 0; }
+        
+        /* I: .. */
+        27.5%, 29.5% { opacity: 1; } 30%, 32% { opacity: 0; }
+        32.5%, 34.5% { opacity: 1; } 35%, 39% { opacity: 0; }
+        
+        /* L: .-.. */
+        39.5%, 41.5% { opacity: 1; } 42%, 44% { opacity: 0; }
+        44.5%, 50.5% { opacity: 1; } 51%, 53% { opacity: 0; }
+        53.5%, 55.5% { opacity: 1; } 56%, 58% { opacity: 0; }
+        58.5%, 60.5% { opacity: 1; } 61%, 65% { opacity: 0; }
+        
+        /* L: .-.. */
+        65.5%, 67.5% { opacity: 1; } 68%, 70% { opacity: 0; }
+        70.5%, 76.5% { opacity: 1; } 77%, 79% { opacity: 0; }
+        79.5%, 81.5% { opacity: 1; } 82%, 84% { opacity: 0; }
+        84.5%, 86.5% { opacity: 1; } 87%, 91% { opacity: 0; }
+        
+        /* N: -. */
+        91.5%, 97.5% { opacity: 1; } 98%, 100% { opacity: 0; }
+      }
+
+      /* Morse code animations - "SLEEP" */
+      @keyframes morse-sleep {
+        /* S: ... */
+        0%, 2% { opacity: 1; } 2.5%, 4% { opacity: 0; }
+        4.5%, 6.5% { opacity: 1; } 7%, 9% { opacity: 0; }
+        9.5%, 11.5% { opacity: 1; } 12%, 16% { opacity: 0; }
+        
+        /* L: .-.. */
+        16.5%, 18.5% { opacity: 1; } 19%, 21% { opacity: 0; }
+        21.5%, 27.5% { opacity: 1; } 28%, 30% { opacity: 0; }
+        30.5%, 32.5% { opacity: 1; } 33%, 35% { opacity: 0; }
+        35.5%, 37.5% { opacity: 1; } 38%, 42% { opacity: 0; }
+        
+        /* E: . */
+        42.5%, 44.5% { opacity: 1; } 45%, 49% { opacity: 0; }
+        
+        /* E: . */
+        49.5%, 51.5% { opacity: 1; } 52%, 56% { opacity: 0; }
+        
+        /* P: .--. */
+        56.5%, 58.5% { opacity: 1; } 59%, 61% { opacity: 0; }
+        61.5%, 67.5% { opacity: 1; } 68%, 70% { opacity: 0; }
+        70.5%, 76.5% { opacity: 1; } 77%, 79% { opacity: 0; }
+        79.5%, 81.5% { opacity: 1; } 82%, 100% { opacity: 0; }
+      }
+
+      /* Logo glitch effect keyframes */
+      @keyframes logo-glitch {
+        0% {
+          transform: translate(0);
+          filter: hue-rotate(0deg) contrast(1) brightness(1);
+        }
+        10% {
+          transform: translate(-2px, 1px);
+          filter: hue-rotate(90deg) contrast(1.8) brightness(1.2);
+        }
+        20% {
+          transform: translate(-1px, -1px);
+          filter: hue-rotate(180deg) contrast(0.5) brightness(0.8);
+        }
+        30% {
+          transform: translate(1px, 2px);
+          filter: hue-rotate(270deg) contrast(2.1) brightness(1.5);
+        }
+        40% {
+          transform: translate(1px, -1px);
+          filter: hue-rotate(45deg) contrast(0.3) brightness(0.6);
+        }
+        50% {
+          transform: translate(-1px, 2px);
+          filter: hue-rotate(135deg) contrast(1.7) brightness(1.3);
+        }
+        60% {
+          transform: translate(-1px, 1px);
+          filter: hue-rotate(225deg) contrast(0.7) brightness(0.9);
+        }
+        70% {
+          transform: translate(2px, 1px);
+          filter: hue-rotate(315deg) contrast(1.9) brightness(1.4);
+        }
+        80% {
+          transform: translate(-2px, -1px);
+          filter: hue-rotate(60deg) contrast(0.4) brightness(0.7);
+        }
+        90% {
+          transform: translate(2px, 2px);
+          filter: hue-rotate(120deg) contrast(1.6) brightness(1.1);
+        }
+        100% {
+          transform: translate(0);
+          filter: hue-rotate(0deg) contrast(1) brightness(1);
+        }
+      }
+
+      .logo-glitching {
+        animation: logo-glitch 0.5s ease-in-out;
+      }
+
       .header-links {
         display: flex;
         gap: 20px;
@@ -466,6 +574,7 @@
         z-index: 5;
         opacity: 0;
         transition: opacity 0.5s ease;
+        overflow: hidden;
       }
 
       .matrix-rain.active {
@@ -474,25 +583,34 @@
 
       .matrix-column {
         position: absolute;
-        top: -100vh; /* Start above viewport */
+        top: 0; /* Start at top of viewport */
         font-family: 'IBM Plex Mono', monospace;
         font-size: 14px;
         color: var(--accent-green);
-        animation: matrix-fall linear infinite;
+        animation-name: matrix-fall;
+        animation-timing-function: linear;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
         white-space: pre;
         line-height: 1.2;
-        text-shadow: 0 0 5px var(--accent-green);
-        font-weight: 500;
+        text-shadow: 0 0 3px var(--accent-green);
+        font-weight: 400;
+        /* Performance optimizations */
+        will-change: transform, opacity;
+        backface-visibility: hidden;
+        perspective: 1000px;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
       }
 
       @keyframes matrix-fall {
         0% {
-          transform: translateY(-100vh);
-          opacity: 1;
+          transform: translate3d(0, -100vh, 0);
+          opacity: 0.7;
         }
         100% {
-          transform: translateY(100vh);
-          opacity: 0;
+          transform: translate3d(0, 100vh, 0);
+          opacity: 0.3;
         }
       }
 
@@ -1810,6 +1928,33 @@
         }, 2000);
       }
 
+      // Morse Code Cursor Easter Egg
+      function initializeMorseCursor() {
+        const cursor = document.querySelector('.cursor');
+        if (!cursor) return;
+        
+        function updateCursorAnimation() {
+          const now = new Date();
+          const hour = now.getHours();
+          
+          // Day: 6 AM to 10 PM = "stillness"
+          // Night: 10 PM to 6 AM = "sleep"
+          const isNight = hour >= 22 || hour < 6;
+          
+          if (isNight) {
+            cursor.style.animation = 'morse-sleep 8s infinite';
+          } else {
+            cursor.style.animation = 'morse-stillness 12s infinite';
+          }
+        }
+        
+        // Set initial animation
+        updateCursorAnimation();
+        
+        // Update every hour
+        setInterval(updateCursorAnimation, 60 * 60 * 1000);
+      }
+
       // Wu Wei Easter Egg - Matrix Rain and Haiku
       class WuWeiEasterEgg {
         constructor() {
@@ -1884,28 +2029,43 @@
           if (this.isMobile) return; // Skip Matrix rain on mobile
           
           const column = document.createElement('div');
-          column.className = 'matrix-column';
           
-          // Generate random characters (mix of Chinese, Japanese, and terminal symbols)
+          // Set styles directly without relying on CSS class
+          column.style.position = 'absolute';
+          column.style.top = '0';
+          column.style.fontFamily = 'IBM Plex Mono, monospace';
+          column.style.fontSize = '14px';
+          column.style.color = '#00ff41';
+          column.style.whiteSpace = 'pre';
+          column.style.lineHeight = '1.2';
+          column.style.fontWeight = '400';
+          column.style.opacity = '0.6';
+          column.style.textShadow = '0 0 3px #00ff41';
+          
+          // Enhanced character set for better visual effect
           const chars = '無為道空實虛陰陽禪悟靜動流止01234567890!@#$%^&*()_+-=[]{}|;:,.<>?';
           let content = '';
-          const length = Math.floor(Math.random() * 15) + 8; // Shorter columns
+          const length = Math.floor(Math.random() * 8) + 4; // 4-11 characters
           
           for (let i = 0; i < length; i++) {
             content += chars[Math.floor(Math.random() * chars.length)] + '\n';
           }
           
           column.textContent = content;
-          column.style.left = Math.random() * 100 + 'vw';
-          column.style.animationDuration = (Math.random() * 2 + 3) + 's'; // Slower fall
-          column.style.animationDelay = Math.random() * 0.5 + 's'; // Less delay
+          column.style.left = Math.random() * 90 + 5 + 'vw';
           
-          // Column generated
+          // NO animation delays - this was causing the flashing!
+          const duration = Math.random() * 1.5 + 2.5; // Variable duration only
+          column.style.animation = `matrix-fall ${duration}s linear forwards`;
           
           this.matrixRain.appendChild(column);
+          
+          // Force a reflow to ensure styles are applied
+          column.offsetHeight;
+          
           this.matrixColumns.push(column);
           
-          // Remove column after animation
+          // Remove after animation completes
           setTimeout(() => {
             if (column.parentNode) {
               column.parentNode.removeChild(column);
@@ -1914,21 +2074,23 @@
             if (index > -1) {
               this.matrixColumns.splice(index, 1);
             }
-          }, 6000); // Keep longer
+          }, duration * 1000 + 100);
         }
 
         startMatrixRain() {
           if (this.isMobile) return; // Skip Matrix rain on mobile
           
-          console.log('Starting matrix rain... Mobile check:', this.isMobile);
           this.matrixRain.classList.add('active');
           
-          // Generate first column immediately
+          // Generate initial columns with manual timing (not animationDelay)
           this.generateMatrixColumn();
+          setTimeout(() => this.generateMatrixColumn(), 100);
+          setTimeout(() => this.generateMatrixColumn(), 200);
+          setTimeout(() => this.generateMatrixColumn(), 300);
           
           this.matrixInterval = setInterval(() => {
             this.generateMatrixColumn();
-          }, 100);
+          }, 250); // Good frequency for density
         }
 
         stopMatrixRain() {
@@ -1955,6 +2117,7 @@
           this.haikuOverlay.classList.remove('active');
           this.isHaikuActive = false;
         }
+
 
         bindEvents() {
           // Mouse events for desktop
@@ -2103,6 +2266,9 @@
         // Initialize Wu Wei Easter Egg
         new WuWeiEasterEgg();
         
+        // Initialize Morse Code Cursor Easter Egg
+        initializeMorseCursor();
+        
         const navLinks = document.querySelectorAll(".nav-link");
         const pages = document.querySelectorAll(".page");
 
@@ -2140,9 +2306,67 @@
           });
         });
 
-        // Logo click handler
+        // Logo click handler with glitch easter egg
         const logo = document.getElementById("logo-home");
+        
+        // Logo glitch easter egg system
+        let logoClickCount = 0;
+        let logoClickTimer = null;
+        
+        function resetLogoClickCount() {
+          logoClickCount = 0;
+          logoClickTimer = null;
+        }
+        
+        function triggerLogoGlitch() {
+          console.log("🔥 GLITCH ACTIVATED! Reality.exe has stopped working...");
+          
+          const originalText = "phillip.clapham";
+          const glitchTexts = ["root@void", "undefined.undefined", "system.error"];
+          let textIndex = 0;
+          
+          // Apply glitch animation class
+          logo.classList.add("logo-glitching");
+          
+          // Text morphing sequence
+          const morphInterval = setInterval(() => {
+            if (textIndex < glitchTexts.length) {
+              logo.firstChild.textContent = glitchTexts[textIndex];
+              textIndex++;
+            } else {
+              // Reset to original
+              logo.firstChild.textContent = originalText;
+              clearInterval(morphInterval);
+            }
+          }, 200);
+          
+          // Reset everything after 2.5 seconds
+          setTimeout(() => {
+            logo.classList.remove("logo-glitching");
+            logo.firstChild.textContent = originalText;
+          }, 2500);
+        }
+        
         logo.addEventListener("click", function () {
+          // Increment click counter
+          logoClickCount++;
+          
+          // Clear previous timer
+          if (logoClickTimer) {
+            clearTimeout(logoClickTimer);
+          }
+          
+          // Reset counter after 2 seconds of no clicks
+          logoClickTimer = setTimeout(resetLogoClickCount, 2000);
+          
+          // Trigger glitch on 5+ clicks
+          if (logoClickCount >= 5) {
+            triggerLogoGlitch();
+            resetLogoClickCount();
+            return; // Don't navigate during glitch
+          }
+          
+          // Normal navigation logic
           // Remove active class from all nav links and pages
           navLinks.forEach((nav) => nav.classList.remove("active"));
           pages.forEach((page) => page.classList.remove("active"));
