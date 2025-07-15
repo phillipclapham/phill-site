@@ -1638,8 +1638,137 @@
     </div>
 
     <script>
+      // Hidden console messages - for the curious developers
+      function initializeConsoleMessages() {
+        // ASCII art wu wei symbol
+        console.log(`
+    %c無 為 ○
+    
+%cSystem initialized...
+%cLoading consciousness drivers... %c[OK]
+%cMounting /dev/null to /ego... %c[OK]
+%cBootstrap complete. Reality.exe running.
+
+%c"The Tao that can be console.logged is not the eternal Tao"
+
+%c$ whoami
+%cError: self not found. Try again after enlightenment.
+
+%c$ ls -la /meaning
+%ctotal ∞
+%cdrwxr-xr-x  consciousness/
+%c-rw-r--r--  meaning_of_life.txt (42 bytes)
+%cdrwx------  .hidden_wisdom/
+%c-rwxrwxrwx  emptiness.void (0 bytes, contains everything)
+
+%cWelcome to the space between spaces.
+%cEnjoy your stay in the organized chaos.`, 
+          'color: #00ff41; font-size: 16px; font-weight: bold',
+          'color: #999999',
+          'color: #999999',
+          'color: #00ff41',
+          'color: #999999', 
+          'color: #00ff41',
+          'color: #999999',
+          'color: #00ff41',
+          'color: #ffb000; font-style: italic',
+          'color: #00ff41',
+          'color: #ff4444',
+          'color: #00ff41',
+          'color: #999999',
+          'color: #999999',
+          'color: #999999',
+          'color: #999999',
+          'color: #999999',
+          'color: #00ff41',
+          'color: #666666; font-style: italic'
+        );
+
+        // Trigger initial page messages
+        setTimeout(() => {
+          const currentPage = window.location.hash.substring(1) || 'home';
+          triggerPageMessages(currentPage);
+        }, 2000);
+      }
+
+      // Function to trigger page-specific console messages
+      function triggerPageMessages(page) {
+        const pageMessages = {
+          'home': [
+            '%c> Reality check: You are here.',
+            '%c> The universe is experiencing itself subjectively through you.',
+            '%c> Press F12 to peek behind the curtain... oh wait, you already did.'
+          ],
+          'about': [
+            '%c> About? About what? About time you asked.',
+            '%c> Investigating the investigator, I see.',
+            '%c> Warning: Recursion detected in self.query()'
+          ],
+          'philosophy': [
+            '%c> Philosophy.exe loaded. Prepare for existential overflow.',
+            '%c> Every element must justify its energy... including this message.',
+            '%c> Design principle #1: If it consumes cycles, it better be worth it.'
+          ],
+          'wuwei': [
+            '%c> 無為 - The art of not-doing by doing not-art.',
+            '%c> You found the pathless path. Congratulations on going nowhere.',
+            '%c> The teaching that teaches nothing: // No comment.'
+          ],
+          'blog': [
+            '%c> Blog.thoughts() executing...',
+            '%c> Words escaping through fingers, forming patterns.',
+            '%c> Each post: a message in a bottle thrown into the digital ocean.'
+          ],
+          'experience': [
+            '%c> Experience: the thing you get right after you need it.',
+            '%c> Professional.exe has been running for ' + (new Date().getFullYear() - 2011) + ' years.',
+            '%c> Still debugging reality. ETA: undefined.'
+          ],
+          'contact': [
+            '%c> Contact established. Signal strength: uncertain.',
+            '%c> Ready to transform chaos into clarity? Me too.',
+            '%c> $ ping phillip.clapham // Response time: ~24 hours'
+          ]
+        };
+
+        // Check for blog post pages
+        if (page.startsWith('blog-')) {
+          pageMessages[page] = [
+            '%c> Reading post.content... Consciousness level rising.',
+            '%c> Error 404: Ego not found. Feature, not bug.',
+            '%c> This transmission will self-destruct in: ∞ seconds'
+          ];
+        }
+
+        const messages = pageMessages[page] || pageMessages['home'];
+        const colors = ['#00ff41', '#ffb000', '#666666'];
+        
+        console.log(`%c\n→ Navigated to /${page}`, 'color: #00ff41; font-weight: bold');
+        
+        messages.forEach((msg, i) => {
+          setTimeout(() => {
+            console.log(msg, colors[i % colors.length]);
+          }, (i + 1) * 500);
+        });
+      }
+
+      // Add breadcrumb mysteries (only on initial load)
+      function showBreadcrumbs() {
+        setTimeout(() => {
+          console.log('%c\n🔍 For the truly curious:', 'color: #ffb000; font-weight: bold');
+          console.log('%c• Try hovering over the 無 為 ○ symbol for a while...', 'color: #999999');
+          console.log('%c• What happens if you click the logo multiple times?', 'color: #999999');
+          console.log('%c• localStorage.getItem("enlightenment") // returns null, as expected', 'color: #666666');
+          console.log('%c• The real easter eggs were the console.logs we made along the way.', 'color: #666666; font-style: italic');
+        }, 6000);
+      }
+
       // Simple navigation system
       document.addEventListener("DOMContentLoaded", function () {
+        // Initialize hidden console messages
+        initializeConsoleMessages();
+        showBreadcrumbs();
+        
         const navLinks = document.querySelectorAll(".nav-link");
         const pages = document.querySelectorAll(".page");
 
@@ -1660,6 +1789,9 @@
             
             // Update URL hash without triggering hashchange handler
             history.replaceState(null, null, '#' + targetPage);
+            
+            // Trigger page-specific console messages
+            triggerPageMessages(targetPage);
           });
         });
 
