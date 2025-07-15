@@ -442,9 +442,128 @@
         border-bottom: 1px solid var(--border-dim);
         margin-bottom: 20px;
       }
+
+      /* Wu Wei Easter Egg Styles */
+      .wuwei-symbol {
+        cursor: pointer;
+        transition: color 0.3s ease;
+        position: relative;
+        z-index: 10;
+      }
+
+      .wuwei-symbol:hover {
+        color: var(--accent-green);
+      }
+
+      /* Matrix Rain Effect */
+      .matrix-rain {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        pointer-events: none;
+        z-index: 5;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+      }
+
+      .matrix-rain.active {
+        opacity: 0.7; /* Slightly more visible */
+      }
+
+      .matrix-column {
+        position: absolute;
+        top: -100vh; /* Start above viewport */
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 14px;
+        color: var(--accent-green);
+        animation: matrix-fall linear infinite;
+        white-space: pre;
+        line-height: 1.2;
+        text-shadow: 0 0 5px var(--accent-green);
+        font-weight: 500;
+      }
+
+      @keyframes matrix-fall {
+        0% {
+          transform: translateY(-100vh);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(100vh);
+          opacity: 0;
+        }
+      }
+
+      /* Haiku Overlay */
+      .haiku-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(10, 10, 10, 0.95);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 100;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 2s ease, visibility 2s ease;
+        pointer-events: none;
+      }
+
+      .haiku-overlay.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .haiku-content {
+        text-align: center;
+        max-width: 600px;
+        padding: 40px;
+      }
+
+      .haiku-text {
+        font-size: 24px;
+        line-height: 1.8;
+        color: var(--text-primary);
+        margin-bottom: 30px;
+        font-weight: 300;
+      }
+
+      .haiku-attribution {
+        font-size: 14px;
+        color: var(--text-secondary);
+        font-style: italic;
+      }
+
+      /* Mobile adaptations */
+      @media (max-width: 480px) {
+        .haiku-text {
+          font-size: 18px;
+          line-height: 1.6;
+        }
+        
+        .matrix-column {
+          font-size: 12px;
+        }
+      }
     </style>
   </head>
   <body>
+    <!-- Matrix Rain Background -->
+    <div class="matrix-rain" id="matrixRain"></div>
+    
+    <!-- Haiku Overlay -->
+    <div class="haiku-overlay" id="haikuOverlay">
+      <div class="haiku-content">
+        <div class="haiku-text" id="haikuText"></div>
+        <div class="haiku-attribution" id="haikuAttribution"></div>
+      </div>
+    </div>
+
     <div class="container">
       <header>
         <div class="header-content">
@@ -1691,6 +1810,218 @@
         }, 2000);
       }
 
+      // Wu Wei Easter Egg - Matrix Rain and Haiku
+      class WuWeiEasterEgg {
+        constructor() {
+          this.matrixRain = document.getElementById('matrixRain');
+          this.haikuOverlay = document.getElementById('haikuOverlay');
+          this.haikuText = document.getElementById('haikuText');
+          this.haikuAttribution = document.getElementById('haikuAttribution');
+          this.wuweiSymbol = document.querySelector('.wuwei-symbol');
+          
+          this.hoverTimeout = null;
+          this.isHaikuActive = false;
+          this.matrixColumns = [];
+          this.isMobile = window.innerWidth <= 480; // More conservative mobile detection
+          
+          this.initializeHaikus();
+          this.bindEvents();
+        }
+
+        initializeHaikus() {
+          this.haikus = {
+            morning: {
+              text: "Birds sing to silence—\nthe space between their songs holds\nall possible music",
+              attribution: "— from the spaces between"
+            },
+            afternoon: {
+              text: "Sunlight asks nothing\nof the shadow it creates—\nboth dance without knowing",
+              attribution: "— midday transmission"
+            },
+            evening: {
+              text: "Daylight surrenders—\nnot defeated, just complete.\nDarkness was waiting",
+              attribution: "— evening's teaching"
+            },
+            lateNight: {
+              text: "Three AM teaches:\nthe universe doesn't care\nthat you're still awake",
+              attribution: "— wisdom of the sleepless"
+            },
+            default: {
+              text: "No path leads nowhere—\nevery step arrives exactly\nwhere it was going",
+              attribution: "— the pathless way"
+            }
+          };
+
+          // Special occasion haikus
+          const today = new Date();
+          const month = today.getMonth() + 1;
+          const day = today.getDate();
+          
+          if (month === 1 && day === 1) {
+            this.haikus.special = {
+              text: "New year, old cosmos—\nthe calendar resets but\ninfinity yawns",
+              attribution: "— new year, same void"
+            };
+          }
+        }
+
+        getCurrentHaiku() {
+          const hour = new Date().getHours();
+          
+          // Check for special occasions first
+          if (this.haikus.special) return this.haikus.special;
+          
+          // Time-based selection
+          if (hour >= 5 && hour < 12) return this.haikus.morning;
+          if (hour >= 12 && hour < 17) return this.haikus.afternoon;
+          if (hour >= 17 && hour < 22) return this.haikus.evening;
+          if (hour >= 22 || hour < 5) return this.haikus.lateNight;
+          
+          return this.haikus.default;
+        }
+
+        generateMatrixColumn() {
+          if (this.isMobile) return; // Skip Matrix rain on mobile
+          
+          const column = document.createElement('div');
+          column.className = 'matrix-column';
+          
+          // Generate random characters (mix of Chinese, Japanese, and terminal symbols)
+          const chars = '無為道空實虛陰陽禪悟靜動流止01234567890!@#$%^&*()_+-=[]{}|;:,.<>?';
+          let content = '';
+          const length = Math.floor(Math.random() * 15) + 8; // Shorter columns
+          
+          for (let i = 0; i < length; i++) {
+            content += chars[Math.floor(Math.random() * chars.length)] + '\n';
+          }
+          
+          column.textContent = content;
+          column.style.left = Math.random() * 100 + 'vw';
+          column.style.animationDuration = (Math.random() * 2 + 3) + 's'; // Slower fall
+          column.style.animationDelay = Math.random() * 0.5 + 's'; // Less delay
+          
+          // Column generated
+          
+          this.matrixRain.appendChild(column);
+          this.matrixColumns.push(column);
+          
+          // Remove column after animation
+          setTimeout(() => {
+            if (column.parentNode) {
+              column.parentNode.removeChild(column);
+            }
+            const index = this.matrixColumns.indexOf(column);
+            if (index > -1) {
+              this.matrixColumns.splice(index, 1);
+            }
+          }, 6000); // Keep longer
+        }
+
+        startMatrixRain() {
+          if (this.isMobile) return; // Skip Matrix rain on mobile
+          
+          console.log('Starting matrix rain... Mobile check:', this.isMobile);
+          this.matrixRain.classList.add('active');
+          
+          // Generate first column immediately
+          this.generateMatrixColumn();
+          
+          this.matrixInterval = setInterval(() => {
+            this.generateMatrixColumn();
+          }, 100);
+        }
+
+        stopMatrixRain() {
+          this.matrixRain.classList.remove('active');
+          if (this.matrixInterval) {
+            clearInterval(this.matrixInterval);
+            this.matrixInterval = null;
+          }
+        }
+
+        showHaiku() {
+          const haiku = this.getCurrentHaiku();
+          this.haikuText.innerHTML = haiku.text.replace(/\n/g, '<br>');
+          this.haikuAttribution.textContent = haiku.attribution;
+          
+          this.haikuOverlay.classList.add('active');
+          this.isHaikuActive = true;
+          
+          // Add to console for developers
+          console.log(`%c\n${haiku.text}\n${haiku.attribution}`, 'color: #00ff41; font-style: italic; font-size: 14px;');
+        }
+
+        hideHaiku() {
+          this.haikuOverlay.classList.remove('active');
+          this.isHaikuActive = false;
+        }
+
+        bindEvents() {
+          // Mouse events for desktop
+          this.wuweiSymbol.addEventListener('mouseenter', () => {
+            this.startMatrixRain();
+            
+            // Long hover timeout for haiku reveal
+            this.hoverTimeout = setTimeout(() => {
+              this.stopMatrixRain();
+              this.showHaiku();
+            }, 5000);
+          });
+
+          this.wuweiSymbol.addEventListener('mouseleave', () => {
+            if (this.hoverTimeout) {
+              clearTimeout(this.hoverTimeout);
+              this.hoverTimeout = null;
+            }
+            this.stopMatrixRain();
+            
+            if (!this.isHaikuActive) {
+              // Only stop rain if haiku isn't showing
+            }
+          });
+
+          // Global mouse move to hide haiku
+          document.addEventListener('mousemove', (e) => {
+            if (this.isHaikuActive && !this.wuweiSymbol.contains(e.target)) {
+              this.hideHaiku();
+            }
+          });
+
+          // Touch events for mobile (simplified)
+          if (this.isMobile) {
+            let touchTimeout = null;
+            
+            this.wuweiSymbol.addEventListener('touchstart', (e) => {
+              e.preventDefault();
+              touchTimeout = setTimeout(() => {
+                this.showHaiku();
+              }, 1500);
+            });
+
+            this.wuweiSymbol.addEventListener('touchend', (e) => {
+              if (touchTimeout) {
+                clearTimeout(touchTimeout);
+                touchTimeout = null;
+              }
+            });
+
+            // Touch anywhere else to hide haiku on mobile
+            document.addEventListener('touchstart', (e) => {
+              if (this.isHaikuActive && !this.wuweiSymbol.contains(e.target)) {
+                this.hideHaiku();
+              }
+            });
+          }
+
+          // Keyboard escape to hide haiku
+          document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && this.isHaikuActive) {
+              this.hideHaiku();
+            }
+          });
+        }
+      }
+
       // Function to trigger page-specific console messages
       function triggerPageMessages(page) {
         const pageMessages = {
@@ -1768,6 +2099,9 @@
         // Initialize hidden console messages
         initializeConsoleMessages();
         showBreadcrumbs();
+        
+        // Initialize Wu Wei Easter Egg
+        new WuWeiEasterEgg();
         
         const navLinks = document.querySelectorAll(".nav-link");
         const pages = document.querySelectorAll(".page");
