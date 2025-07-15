@@ -103,11 +103,74 @@
 3. **Reader experience**: ✅ Clear navigation, fast loading, shareable URLs
 4. **Maintenance burden**: ✅ Minimal ongoing complexity
 
-Current status: ✅ **Project complete** - Core functionality achieved with elegant simplicity
+Current status: ✅ **Core functionality complete** - Blog system working elegantly
+Current focus: 🎭 **Easter egg implementation** - Adding playful depth beneath simplicity
+
+## Easter Egg Implementation Project
+
+### Philosophy
+Hidden delights that embody the site's wu wei principles - technical sophistication disguised as simplicity. Each easter egg should whisper rather than shout, reward attention, and feel natural within the terminal aesthetic.
+
+### Implementation Order & Status
+
+1. **Hidden Console Messages** (PRIORITY: Next up)
+   - Status: Ready to implement
+   - Complexity: Low
+   - Impact: Quick win, sets playful tone
+   - Technical: Console.log on page load, different messages per page
+
+2. **Wu Wei Symbol Hover → Matrix Rain → Haiku**
+   - Status: Planned, awaiting console messages completion
+   - Complexity: High
+   - Impact: Maximum wow factor
+   - Technical: CSS animations, time-based haiku selection, mobile adaptations
+
+3. **Logo Glitch Effect (5+ clicks)**
+   - Status: Planned
+   - Complexity: Medium
+   - Impact: Fun discovery moment
+   - Technical: CSS filters + transforms, text morphing, reality corruption aesthetic
+
+4. **Morse Code Cursor Blink (stillness/sleep)**
+   - Status: Planned
+   - Complexity: Medium
+   - Impact: Extremely subtle reward for attention
+   - Technical: Keyframe modification, time-based switching
+
+### Technical Specifications
+
+**Console Messages Style**: Zen Unix Hacker
+- Mix philosophical depth with terminal humor
+- Page-specific messages aligned with content
+- ASCII art wu wei symbol on load
+- Breadcrumb mysteries for developers
+
+**Haiku Selection Logic**: Time/Date Based
+- Morning/afternoon/evening/late night variations
+- Day-of-week rotation for consistency
+- Special occasion overrides
+- Example themes: awakening, completion, mystery, timelessness
+
+**Mobile Adaptations**:
+- Wu wei: Long press (1.5s) → haiku without rain
+- Logo glitch: Works with taps
+- Morse cursor: Skip (no visible cursor)
+- Console: Add desktop hint
+
+**Glitch Aesthetic**: Reality.exe Corruption
+- Digital artifacts (color shifts, pixel displacement)
+- Text morphing: "phillip.clapham" → "root@void" → "undefined.undefined"
+- CSS filters: hue-rotate, contrast, RGB channel separation
+- Brief glimpses of "underlying reality"
+
+### Wu Wei Principles Applied
+- **Invisible is ideal**: Effects triggered by natural user behavior
+- **Compression is power**: Maximum impact with minimal code
+- **Functional elegance**: Each easter egg serves delight without breaking flow
+- **No cognitive overhead**: Site remains fully usable for non-explorers
 
 ## Next Session Focus
 
-- **Content creation**: Add new blog posts as inspiration emerges
-- **Observation**: Monitor user behavior and site performance
-- **Wu wei maintenance**: Only intervene if clear friction emerges
-- **Potential enhancements**: Apply Six Cuts rigorously to any new feature requests
+- **Current microtask**: Implement hidden console messages
+- **Session scope**: Focus purely on console.log implementation
+- **Context management**: Let memory hold the big picture while flow state handles the present task
