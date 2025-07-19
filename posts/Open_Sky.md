@@ -1,91 +1,98 @@
 ---
 title: "Open Sky"
-date: "2025-01-15"
+date: "2025-07-17"
 excerpt: "Notes from nowhere special, written by no one in particular, for anyone who's tired of looking for what they already are."
 slug: "open-sky"
-tags: ["zen", "non-duality", "practice"]
+tags: ["zen", "taoism", "non-duality", "practice"]
 category: "Life Notes"
 ---
 
-**Note**: This is not instruction. It is transmission.
+This is not instruction. There's no one to instruct.
 
-If it resonates, let it ripple through you. If not, let it pass like wind through reeds.
+If this lands, something dissolves. If it doesn't, the seeking continues. Both are just what's happening.
 
-There is nothing to do. And somehow, in that not-doing—practice unfolds.
+## What You Think You Are
 
-## **Before Words**
+You think you're awareness watching thoughts. You think you're consciousness experiencing life. You think you're the witness behind phenomena. You think you're the unchanging presence.
 
-**What Is This?**
+All lies. Beautiful, spiritual lies.
 
-Not something to gain. Not something to become. Not even something to recognize.
-No seeker, no sought. Nothing separate.
+## What's Actually Happening
 
-**Completeness**
+Thoughts thinking themselves. No thinker. Experience experiencing itself. No experiencer. Seeing happening. No seer. Awareness awaring. No one aware.
 
-Reading happens. Words appear. Understanding unfolds. No reader behind the reading. No understanding separate from understood.
+That "unchanging witness" you've been cultivating? That's just another thought pretending to be beyond thought.
 
-**Thinking Happening**
+That "pure awareness" you rest as? More mental construction.
 
-Thoughts arise, change, dissolve. Like clouds forming and dispersing. No cloudless sky behind clouds. No awareness behind thoughts. Just this flowing happening.
+That "I am" before all concepts? The subtlest concept of all.
 
-**The Sound of One Hand**
+## The Last Prison
 
-An ancient teacher was asked: "Does a dog have Buddha-nature?" He replied: "Mu."
+"I am not my thoughts" \- the thought that thinks it's escaped thinking.
 
-Mu points beyond yes and no. Mu dissolves the question and questioner together. No gate, no one passing through, no other side.
+"I am the space in which everything arises" \- the ego's final hideout.
 
-**Simple Sitting**
+"I remain unaffected by what passes through" \- the affected telling itself stories.
 
-The body settles. Eyes rest slightly open or closed. Breathing happens. Thinking occurs.
+"I am that which is aware" \- the ultimate false identity.
 
-No meditator, no meditation. No one present, no presence. Just sitting.
+There is no "behind." There is no "witness." There is no "you" to be liberated.
 
-**Beginning**
+## Just Meat Functioning
 
-Five minutes of sitting happens. No achievement, no achiever. No maintenance, no maintainer. Nothing lacking, nothing extra.
+The heart beats. A muscle contracting. No wisdom. No knowing. Just a pump pumping.
 
-The only seeming obstacle is the belief that there is something to attain or someone to attain it.
+The lungs breathe. Tissue expanding, contracting. No awareness of breathing. Just gas exchange.
 
-—
+Neurons fire. Chemicals release. No one thinking. Just electrical meat.
 
-## **Mu**
+This isn't profound. It's biology without an audience. Organs operating with no cosmic significance, no spiritual meaning, no one impressed by their functioning.
 
-*Just this.*
-*Complete.*
-*Seamless.*
-*Whole.*
+The body doesn't "know" anything. It just does what meat does until it stops.
 
-**Mu**
+This isn't 'awakened biology'—it's cancer cells dividing, neurons misfiring, arteries hardening. The same meat that pumps blood will shit itself when the pump fails.
 
-No experience appearing to anyone. No division between inside and outside.
+No grace. No dignity. Just physics.
 
-* Aware-ing without someone being aware
-* Experiencing without experiencer
-* Effort-less because no one making effort
-* Judge-less because no separate judge
-* When resistance happens: that too is undivided reality
+## Even Understanding Is a Trap
 
-This wordless questioning dissolves questioning itself. Neither question nor answer—just opening.
+Understanding this? Just more mental movement. Not understanding? Same movement. Getting it? No one to get anything. Not getting it? No one missing out.
 
-**How Practice Unfolds**
+The very effort to grasp this is what prevents it. But there's nothing to prevent and no one preventing it.
 
-Expression happens as:
-**Moments**: The illusion of separate doer dissolves.
-**Sitting**: Body sits.
-**Attending**: Activity without division between doing and doer.
-**Openness**: Life living itself.
+## When Seeking Dissolves
 
-All are gateless gates with no one entering.
+No moment of realization. No one to realize. No enlightenment. No one to be enlightened. No awakening. No one asleep. No liberation. No one bound.
 
-**When Sitting Happens**
+Just this. But no "just," no "this," and no one to notice.
 
-* Posture stabilizes itself
-* Back aligns without aligner
-* Thoughts come and go without watcher
-* No beginner, no ender
+## The Death of the Seeker
 
-No special conditions needed—conditions arise as part of this wholeness.
+You want to know the truth? The "you" that wants truth is the only lie.
 
-**Essence**
+You want to be free? The wanting is the bondage. The "you" is the prison.
 
-No world, no someone. No arrival, no destination. Mu.
+You want to understand? Understanding is the last barrier. The understander is the problem.
+
+## No Exit
+
+This message self-destructs the moment you think you've got it.
+
+These words point to nothing.
+
+There's no teaching here because there's no one to teach and nothing to learn.
+
+What you are can't be found because the searcher doesn't exist.
+
+What you are can't be lost because there's no one to lose it.
+
+---
+
+*When the search ends, no one knows it ended.*
+
+*When the seeker dissolves, no one remains to celebrate.*
+
+*This isn't even nothing.*
+
+無為

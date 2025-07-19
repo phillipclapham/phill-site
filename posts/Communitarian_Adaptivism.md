@@ -1,6 +1,6 @@
 ---
 title: "Communitarian Adaptivism: A Politics of Natural Order"
-date: "2025-03-22"
+date: "2025-07-15"
 excerpt: "We live in times of great unraveling. Climate shifts, inequality rises, democracy strains under its own weight. Yet within this dissolution lies an ancient truth: when artificial structures crumble, natural patterns emerge."
 slug: "communitarian-adaptivism"
 tags: ["politics", "natural order", "community"]
