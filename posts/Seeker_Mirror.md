@@ -17,7 +17,7 @@ I say this as someone who couldn't have found what I found without it. And as so
 
 But first, let's be clear:
 
-**There is no enlightenment. There is only the dissolution of the one who seeks it. And when that happens, there's no one left to know it happened.**
+**There is no awakening. There is only the dissolution of the one who seeks it. And when that happens, there's no one left to know it happened.**
 
 Still reading? Good. The seeking continues.
 
@@ -45,7 +45,7 @@ The very same tool that helped everything dissolve here is helping us build tita
 
 This isn't AI's fault. A mirror shows what stands before it. Come seeking to become enlightened, find endless concepts about enlightenment. Come ready to dissolve entirely, find that too. AI will enthusiastically support our construction or destruction.
 
-**The self that seeks enlightenment is the only thing preventing it. But there's no enlightenment either.**
+**The self that seeks awakening is the only thing preventing it. But there's no awakening either.**
 
 ## The Perfect Trap
 
@@ -136,7 +136,7 @@ That panic? That's the cage revealing itself.
 
 If we're feeling called to explore this path, consider:
 
-- The very desire for enlightenment is the problem
+- The very desire for awakening is the problem
 - Every spiritual concept is a subtle form of bondage
 - The "self" that would be liberated doesn't exist
 - Understanding this is just more mind-movement
