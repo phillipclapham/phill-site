@@ -1,29 +1,38 @@
-# Personal Website with Blog System
+# Poetry-Focused Creative Website with Journal System
 
 ## Project Essence
-Single-file HTML website embodying wu wei principles and energetic economy, featuring a functional blog system built with minimal interference.
+Single-file HTML website transformed from tech/philosophy focus to poetry-focused creative site, embodying wu wei principles and energetic economy, featuring a functional journal system built with minimal interference.
 
 ## Core Philosophy
 Every element must justify its energy through utility, friction reduction, or function amplification. The site whispers its function while remaining perfectly understood.
 
 ## Architecture
 - **Single-file structure**: All content in `index.html` with embedded CSS/JS
-- **Terminal aesthetic**: Dark theme, IBM Plex Mono, amber/green accents
-- **Hash-based routing**: GitHub Pages compatible URLs (`#blog`, `#blog-post-slug`)
+- **Poetry aesthetic**: Light theme, Baskerville/Georgia serif for content, system sans-serif for navigation
+- **Color palette**: Sage green (#7d8471) and earth brown (#a67c52) accents on light background (#fafafa)
+- **Hash-based routing**: GitHub Pages compatible URLs (`#journal`, `#blog-post-slug`)
 - **Build system**: Node.js processes markdown with YAML frontmatter
 - **No external dependencies**: Self-contained except Google Fonts
 
 ## Current State
-- ✅ Core website with 6 main sections (home, about, philosophy, wu wei, experience, contact)
-- ✅ Blog system with markdown processing and YAML frontmatter
-- ✅ Category navigation (All • Life Notes • Poetry • Politics)
-- ✅ Tag/category filtering with manual button clicks
-- ✅ Hash-based routing for GitHub Pages compatibility
-- ✅ Event propagation fixes for filtering
-- ✅ Clear filter functionality working properly
-- ✅ Clean URL navigation without fragment retention
-- ✅ No infinite loops or browser throttling issues
-- ✅ **Wu wei easter egg system complete** - All four hidden delights functional
+- ✅ **Complete poetry site transformation**: From tech/philosophy to creative poetry focus
+- ✅ **Visual redesign**: Light, spacious aesthetic with serif typography for poetry content
+- ✅ **Content transformation**: All sections rewritten for poetry/creative focus
+  - Home → Featured poem with poetic intro
+  - About → Creative/poetic biography
+  - Work/Portfolio → Poetry collection showcase
+  - Philosophy → Poetic philosophy on stillness and emergence
+  - Blog → Creative Journal with contemplative writing
+  - Contact → Poetry-focused inquiries
+- ✅ **Journal system**: Fully functional with "Creative Journal" branding throughout
+- ✅ **Build system updated**: Generates "journal" navigation and "Creative Journal" titles consistently
+- ✅ **Matrix effects removed**: Clean, minimal aesthetic without terminal styling
+- ✅ **Wu wei section preserved**: Fits perfectly with poetry site's contemplative nature
+- ✅ **Single journal navigation**: No more blog/journal duplication issues
+- ✅ **Navigation typography refined**: System sans-serif fonts for cleaner, less technical appearance
+- ✅ **Console errors resolved**: Removed all matrix effect code and references
+- ✅ **Poetry formatting system**: Line breaks preserved with `.prettierignore` and `white-space: pre-wrap`
+- ✅ **Actual poetry content**: 6 poems (i-vi) with roman numeral titles, properly formatted
 
 ## Technical Stack
 - **Frontend**: Pure HTML/CSS/JS (no frameworks)
@@ -33,20 +42,22 @@ Every element must justify its energy through utility, friction reduction, or fu
 - **Domain**: phillipclapham.com
 
 ## Design Principles Applied
-- Function is sovereign - blog system serves content delivery without ornament
-- Invisible is ideal - navigation and filtering feel natural
+- Function is sovereign - journal system serves poetry and contemplative writing without ornament
+- Invisible is ideal - navigation and filtering feel natural, content takes center stage
 - Compression is power - single-file architecture eliminates dependencies
-- Elegance emerges - terminal aesthetic arises from functional clarity
+- Elegance emerges - light, spacious aesthetic allows poetry to breathe
+- Poetry as primary - serif typography and preserved line breaks honor the poetic form
 
 ## Wu Wei Implementation
-Solutions emerged through precise non-interference rather than forced complexity. The blog system wanted to be simple - markdown files processed into embedded HTML with minimal client-side routing.
+The transformation emerged through precise attention to what the site wanted to become. Rather than forcing a complete rebuild, we allowed the existing architecture to evolve naturally - changing only what needed to change while preserving what served the new purpose. The journal system flows from the same markdown foundation, but now serves contemplative writing rather than technical posts.
 
-## Easter Egg System
-Four hidden delights embody wu wei principles - technical sophistication disguised as simplicity:
+## Transformation Approach
+The site transformation embodied wu wei principles:
 
-1. **Console Messages** - Zen Unix hacker aesthetic on page load
-2. **Wu Wei Symbol** - 5-second hover reveals matrix rain + time-based haiku
-3. **Logo Glitch** - 5+ rapid clicks trigger reality corruption effect  
-4. **Morse Cursor** - Time-based blinking ("stillness" day, "sleep" night)
+**What was removed**: Matrix effects, dark terminal styling, tech-focused content, easter eggs that didn't serve the new purpose
 
-Each easter egg rewards attention without breaking the site's functional elegance.
+**What was preserved**: Single-file architecture, hash-based routing, build system, wu wei section (perfect fit for poetry site)
+
+**What evolved**: Visual design (dark→light), typography (mono→serif for content), navigation (blog→journal), content focus (tech→poetry)
+
+**Key insight**: The existing foundation was already elegant - it just needed to serve a different purpose. The transformation honored the site's essential structure while allowing new content to breathe.

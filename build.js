@@ -88,7 +88,7 @@ function generateBlogArchive(posts) {
   if (posts.length === 0) {
     return `
       <div class="content">
-        <h1>Blog</h1>
+        <h1>Creative Journal</h1>
         <p>No posts yet. Check back soon!</p>
       </div>
     `;
@@ -122,10 +122,10 @@ function generateBlogArchive(posts) {
 
   return `
     <div class="content">
-      <h1>Blog</h1>
+      <h1>Creative Journal</h1>
       <div style="margin-bottom: 40px;">
         <p style="color: var(--text-secondary); margin-bottom: 20px;">
-          Thoughts on technology, consciousness, and the spaces between.
+          Reflections on contemplative practice, the creative process, and the emergence of poetry from stillness.
         </p>
         ${categoryNav}
         <div id="blog-filters" style="display: none;">
@@ -146,7 +146,7 @@ function generateBlogPost(post) {
     <div class="content">
       <div style="margin-bottom: 20px;">
         <span style="color: var(--text-secondary); font-size: 12px; cursor: pointer;" onclick="showBlogArchive()">
-          ← Back to Blog
+          ← Back to Journal
         </span>
       </div>
       <h1>${post.title}</h1>
@@ -171,48 +171,62 @@ function updateIndexHtml(posts) {
   const indexPath = path.join(__dirname, 'index.html');
   let html = fs.readFileSync(indexPath, 'utf8');
   
-  // Remove existing blog content (everything between "<!-- Blog Archive Page -->" and "<!-- Contact Page -->")
-  const blogStartRegex = /(\s*<!-- Blog Archive Page -->[\s\S]*?)<!-- Contact Page -->/;
-  if (blogStartRegex.test(html)) {
-    html = html.replace(blogStartRegex, '        <!-- Contact Page -->');
-  }
+  // Remove ALL existing journal/blog content completely - start fresh each time
+  // This removes everything from first journal/blog comment to Contact Page
+  const journalContentRegex = /\s*<!-- Journal Archive Page -->[\s\S]*?(?=\s*<!-- Contact Page -->)/g;
+  html = html.replace(journalContentRegex, '');
+  
+  // Also remove any individual blog post pages that might exist after Contact Page
+  const blogPostRegex = /\s*<!-- Journal Post:[\s\S]*?(?=\s*<\/main>|\s*<!-- |$)/g;
+  html = html.replace(blogPostRegex, '');
   
   // Generate blog content
   const blogArchive = generateBlogArchive(posts);
   const blogPosts = posts.map(post => generateBlogPost(post));
   
-  // Add blog navigation item after wu wei (only if not already present)
-  if (!html.includes('href="#blog"')) {
-    const navRegex = /(<li><a href="#wuwei" class="nav-link">無 為<\/a><\/li>)/;
-    html = html.replace(navRegex, '$1\n          <li><a href="#blog" class="nav-link">blog</a></li>');
-  }
+  // Ensure we have exactly one journal navigation item
+  // First remove any existing blog and duplicate journal links
+  html = html.replace(/<li><a href="#blog" class="nav-link">blog<\/a><\/li>\s*/g, '');
   
-  // Find where to insert blog content (after contact page, before main closing tag)
+  // Remove any existing journal links first
+  html = html.replace(/<li><a href="#journal" class="nav-link">journal<\/a><\/li>\s*/g, '');
+  
+  // Then add exactly one journal link after wu wei
+  const navRegex = /(<li><a href="#wuwei" class="nav-link">無 為<\/a><\/li>)/;
+  html = html.replace(navRegex, '$1\n          <li><a href="#journal" class="nav-link">journal</a></li>');
+  
+  // Find where to insert journal content (before Contact Page)
   const insertPoint = html.indexOf('        <!-- Contact Page -->');
   if (insertPoint === -1) {
-    console.error('Could not find insertion point for blog content');
+    console.error('Could not find insertion point for journal content');
     return;
   }
   
-  // Create blog archive page
-  const blogArchivePage = `
-        <!-- Blog Archive Page -->
-        <div id="blog" class="page">
+  // Only add journal content if we have posts or want to show empty journal
+  let journalContent = '';
+  
+  // Create journal archive page
+  journalContent += `
+        <!-- Journal Archive Page -->
+        <div id="journal" class="page">
           ${blogArchive}
         </div>
 
 `;
   
-  // Create individual blog post pages
-  const blogPostPages = posts.map(post => `
-        <!-- Blog Post: ${post.title} -->
+  // Create individual journal post pages (only if posts exist)
+  if (posts.length > 0) {
+    const journalPostPages = posts.map(post => `
+        <!-- Journal Post: ${post.title} -->
         <div id="blog-${post.slug}" class="page">
           ${generateBlogPost(post)}
         </div>
 `).join('');
+    journalContent += journalPostPages;
+  }
   
-  // Insert blog content
-  html = html.slice(0, insertPoint) + blogArchivePage + blogPostPages + html.slice(insertPoint);
+  // Insert journal content before Contact Page
+  html = html.slice(0, insertPoint) + journalContent + html.slice(insertPoint);
   
   // Add blog CSS styles before closing </style> tag (only if not already present)
   if (!html.includes('/* Blog category and tag styles */')) {
@@ -329,7 +343,7 @@ $1`;
     activeFilter.textContent = 'Category: ' + category;
     
     // Update URL using hash-based routing with query params
-    window.location.hash = 'blog?category=' + encodeURIComponent(category);
+    window.location.hash = 'journal?category=' + encodeURIComponent(category);
   };
   
   window.filterByTag = function(tag) {
@@ -356,7 +370,7 @@ $1`;
     activeFilter.textContent = 'Tag: ' + tag;
     
     // Update URL using hash-based routing with query params
-    window.location.hash = 'blog?tag=' + encodeURIComponent(tag);
+    window.location.hash = 'journal?tag=' + encodeURIComponent(tag);
   };
   
   window.clearFilter = function() {
@@ -379,7 +393,7 @@ $1`;
     filters.style.display = 'none';
     
     // Update URL using hash-based routing
-    window.location.hash = 'blog';
+    window.location.hash = 'journal';
   };
 
   // Blog routing functions (global scope)
@@ -402,12 +416,12 @@ $1`;
     document.querySelectorAll('.nav-link').forEach(nav => nav.classList.remove('active'));
     document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
     
-    // Show blog archive and activate nav
-    document.querySelector('.nav-link[href="#blog"]').classList.add('active');
-    document.getElementById('blog').classList.add('active');
+    // Show journal archive and activate nav
+    document.querySelector('.nav-link[href="#journal"]').classList.add('active');
+    document.getElementById('journal').classList.add('active');
     
     // Update URL using hash-based routing
-    window.location.hash = 'blog';
+    window.location.hash = 'journal';
   };
   
   // Handle initial page load based on URL
@@ -423,8 +437,8 @@ $1`;
       }
     }
     
-    // Handle blog routes like #blog or #blog?category=Politics
-    if (hash.startsWith('blog')) {
+    // Handle journal routes like #journal or #journal?category=Politics
+    if (hash.startsWith('journal')) {
       const [route, queryString] = hash.split('?');
       showBlogArchive();
       

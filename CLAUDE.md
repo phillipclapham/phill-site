@@ -49,3 +49,11 @@ The site embodies Phillip's "Principle of Energetic Economy" - every element mus
 **Single-file architecture**: All CSS and JavaScript are embedded to maintain the self-contained nature.
 
 **Progressive enhancement**: Core content is accessible even without JavaScript.
+
+## Poetry Formatting
+
+**Preserving line breaks**: The site uses `white-space: pre-wrap` CSS to preserve poetry formatting. To prevent Prettier from flattening line breaks:
+
+1. **Main solution**: `.prettierignore` file excludes `index.html` from Prettier formatting
+2. **Backup solution**: Poetry sections are wrapped with `<!-- prettier-ignore-start -->` and `<!-- prettier-ignore-end -->` comments
+3. **When adding new poems**: Write line breaks directly in the HTML within `<div class="poem">` tags
