@@ -1,6 +1,6 @@
 ---
 title: "Where Poems Come From"
-date: "2025-01-04"
+date: "2025-08-04"
 excerpt: "I write nothing. This isn't modesty or metaphor. When a poem arrives, there's no one writing—just words emerging from silence."
 slug: "where-poems-come-from"
 tags: ["poetry", "process", "wu-wei", "contemplation", "silence"]
