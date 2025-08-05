@@ -26,13 +26,17 @@ Every element must justify its energy through utility, friction reduction, or fu
   - Contact → Poetry-focused inquiries
 - ✅ **Journal system**: Fully functional with "Creative Journal" branding throughout
 - ✅ **Build system updated**: Generates "journal" navigation and "Creative Journal" titles consistently
+  - Build script fixed to correctly inject journal navigation after philosophy section
+  - Journal navigation now appears consistently in menu
 - ✅ **Matrix effects removed**: Clean, minimal aesthetic without terminal styling
 - ✅ **Wu wei section archived**: Content preserved in `/drafts/wuwei-page.md`, navigation streamlined
 - ✅ **Single journal navigation**: No more blog/journal duplication issues
 - ✅ **Navigation typography refined**: System sans-serif fonts for cleaner, less technical appearance
 - ✅ **Console errors resolved**: Removed all matrix effect code and references
 - ✅ **Poetry formatting system**: Line breaks preserved with `.prettierignore` and `white-space: pre-wrap`
-- ✅ **Actual poetry content**: 6 poems (i-vi) with roman numeral titles, properly formatted
+- ✅ **Complete poetry collection**: 18 poems (i-xviii) with sequential roman numerals, optimal reading order
+  - Curated collection from poetry_page.md with themes from gentle observation to mortality
+  - All formatting preserved with exact line breaks and spacing
 
 ## Technical Stack
 - **Frontend**: Pure HTML/CSS/JS (no frameworks)

@@ -99,12 +99,21 @@ The transformation embodied the core principles:
 - Updated CSS to `white-space: pre-wrap` for better line break preservation
 - Documented solution in CLAUDE.md for future reference
 
-### ✅ Poetry Content Update
-**Replaced placeholder poems with actual content**:
-- 6 poems numbered with roman numerals (i-vi)
-- Preserved exact line breaks and spacing as specified
-- Poems cover themes from contemplative walks to everyday moments
-- Content flows from "long walk" (i) to "sunbeam on my face" (vi)
+### ✅ Journal Navigation Fix
+**Issue**: Journal page disappeared from navigation menu after post changes
+**Root Cause**: Build script was looking for non-existent "wu wei" navigation item
+**Solution**: 
+- Fixed build script to look for "philosophy" navigation item instead
+- Modified build.js line 195 to correctly inject journal link after philosophy
+- Journal navigation now appears consistently in menu
+
+### ✅ Complete Poetry Content Update
+**Replaced all poetry with curated collection from poetry_page.md**:
+- 18 poems with sequential roman numerals (i-xviii)
+- Preserved exact line breaks and optimal reading order
+- Themes range from gentle observation to nature, mortality, and human experience
+- Content flows from "rain washed away the road home" (i) to "wind and lightning bringing fire" (xviii)
+- All formatting preserved with prettier-ignore comments
 
 ### ✅ Build System Fix (Aug 5, 2025)
 **Issue**: Build script was additive-only, old posts persisted after deletion
@@ -164,4 +173,4 @@ The website has evolved through progressive refinement to its current minimal, c
 4. **Wu wei archival**: Content preserved while streamlining site focus
 5. **Technical integrity**: All systems function correctly with clean, minimal aesthetic
 
-**Next activities**: The foundation is now optimized for pure poetry focus. Add contemplative writing to journal system and continue refining the essential poetic expression.
+**Next activities**: The foundation is now complete with full poetry collection and working journal system. Continue adding contemplative writing to journal and maintain the minimal, elegant aesthetic.

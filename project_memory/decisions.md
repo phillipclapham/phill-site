@@ -90,12 +90,18 @@ Single-file architecture is both beautiful and resilient - no broken dependencie
 **Sections Updated**:
 - Home → Featured poem with contemplative introduction
 - About → Creative biography emphasizing poetic practice
-- Work/Portfolio → Poetry collection showcase
+- Work/Portfolio → Poetry collection showcase (18 poems i-xviii)
 - Philosophy → Poetic philosophy on stillness and emergence
 - Blog → Creative Journal with contemplative writing focus
 - Contact → Poetry-focused inquiry form
 
-**Preserved**: Wu wei section (perfect fit for contemplative poetry site)
+**Poetry Collection Decision**: 
+- Replaced initial 6 poems with curated 18-poem collection from poetry_page.md
+- Sequential roman numerals (i-xviii) for clean navigation
+- Optimal reading order maintained from source material
+- Themes flow from gentle observation to deeper contemplations on mortality and nature
+
+**Preserved**: Wu wei section initially, later archived to `/drafts/wuwei-page.md` for streamlined navigation
 
 ### Matrix Effect Removal
 **Decision**: Remove all matrix rain and terminal styling effects
