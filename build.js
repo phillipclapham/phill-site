@@ -191,8 +191,8 @@ function updateIndexHtml(posts) {
   // Remove any existing journal links first
   html = html.replace(/<li><a href="#journal" class="nav-link">journal<\/a><\/li>\s*/g, '');
   
-  // Then add exactly one journal link after wu wei
-  const navRegex = /(<li><a href="#wuwei" class="nav-link">無 為<\/a><\/li>)/;
+  // Then add exactly one journal link after philosophy
+  const navRegex = /(<li><a href="#philosophy" class="nav-link">philosophy<\/a><\/li>)/;
   html = html.replace(navRegex, '$1\n          <li><a href="#journal" class="nav-link">journal</a></li>');
   
   // Find where to insert journal content (before Contact Page)

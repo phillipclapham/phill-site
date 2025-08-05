@@ -27,7 +27,7 @@ Every element must justify its energy through utility, friction reduction, or fu
 - ✅ **Journal system**: Fully functional with "Creative Journal" branding throughout
 - ✅ **Build system updated**: Generates "journal" navigation and "Creative Journal" titles consistently
 - ✅ **Matrix effects removed**: Clean, minimal aesthetic without terminal styling
-- ✅ **Wu wei section preserved**: Fits perfectly with poetry site's contemplative nature
+- ✅ **Wu wei section archived**: Content preserved in `/drafts/wuwei-page.md`, navigation streamlined
 - ✅ **Single journal navigation**: No more blog/journal duplication issues
 - ✅ **Navigation typography refined**: System sans-serif fonts for cleaner, less technical appearance
 - ✅ **Console errors resolved**: Removed all matrix effect code and references
@@ -54,9 +54,9 @@ The transformation emerged through precise attention to what the site wanted to 
 ## Transformation Approach
 The site transformation embodied wu wei principles:
 
-**What was removed**: Matrix effects, dark terminal styling, tech-focused content, easter eggs that didn't serve the new purpose
+**What was removed**: Matrix effects, dark terminal styling, tech-focused content, wu wei navigation/page (archived to drafts), easter eggs that didn't serve the new purpose
 
-**What was preserved**: Single-file architecture, hash-based routing, build system, wu wei section (perfect fit for poetry site)
+**What was preserved**: Single-file architecture, hash-based routing, build system
 
 **What evolved**: Visual design (dark→light), typography (mono→serif for content), navigation (blog→journal), content focus (tech→poetry)
 

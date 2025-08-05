@@ -19,7 +19,7 @@ All major sections rewritten for poetry focus:
 - **Philosophy** → Poetic philosophy on stillness and emergence
 - **Blog** → Creative Journal with contemplative writing focus
 - **Contact** → Poetry-focused inquiry form
-- **Wu Wei** → Preserved (perfect fit for contemplative poetry site)
+- **Wu Wei** → Archived to `/drafts/wuwei-page.md` (streamlined navigation)
 
 ### ✅ Technical System Updates
 - **Navigation**: Blog → Journal throughout all systems
@@ -49,7 +49,7 @@ The site now serves its new purpose elegantly:
 - **Light aesthetic**: Spacious design that allows poetry to breathe
 - **Serif typography**: Optimal readability for extended poetic content
 - **Journal system**: Fully functional for contemplative writing and reflections
-- **Wu wei integration**: Philosophy section perfectly complements poetry focus
+- **Streamlined navigation**: Wu wei content archived, focus on core poetry sections
 
 ## Future Considerations (Wu Wei Approach)
 
@@ -106,8 +106,62 @@ The transformation embodied the core principles:
 - Poems cover themes from contemplative walks to everyday moments
 - Content flows from "long walk" (i) to "sunbeam on my face" (vi)
 
-## Status: Poetry Site Complete & Optimized
+### ✅ Build System Fix (Aug 5, 2025)
+**Issue**: Build script was additive-only, old posts persisted after deletion
+**Solution**: 
+- Modified build script to completely rebuild journal section each time
+- Removes all existing journal/blog content before regenerating
+- Now accurately reflects current `/posts` directory contents
+- Clean empty state shows "No posts yet" when directory is empty
 
-The website is now fully functional with actual poetry content and robust formatting preservation. All technical issues resolved, poetry properly displayed, and VS Code workflow optimized.
+### ✅ Navigation Auto-Scroll Fix (Aug 5, 2025)
+**Issue**: Clicking nav items caused unwanted page scrolling
+**Solution**: Added `setTimeout(() => window.scrollTo(0, 0), 0)` to navigation handler
+**Result**: Clean navigation without jarring scroll behavior
 
-**Next activities**: Continue adding poetry and journal content. The foundation handles all formatting automatically while preserving the contemplative aesthetic.
+### ✅ Content Refinement (Aug 5, 2025)
+**About page**: Replaced lengthy content with minimal poetic expression:
+```
+Reality knowing itself
+through words that no one writes
+
+Finding laughter in the low places
+Finding perfection in what is
+
+無為
+```
+
+**Philosophy page**: Replaced explanatory content with direct pointing:
+```
+just sit or stand or move or live
+control ceases
+not resignation
+radical engagement with now
+...
+```
+
+**Wu wei section**: Archived to `/drafts/wuwei-page.md` and removed from navigation
+- Content preserved for potential future use
+- Navigation streamlined to: home, about, poetry, philosophy, journal, contact
+- Site focus narrowed to essential poetry elements
+
+## Status: Poetry Site Refined & Streamlined
+
+The website has evolved through progressive refinement to its current minimal, contemplative state:
+
+### Current Navigation & Content
+- **home**: Featured poetry and essence
+- **about**: Minimal poetic self-description  
+- **poetry**: Six poems (i-vi) with preserved formatting
+- **philosophy**: Direct non-dual pointing
+- **journal**: Build system ready for contemplative writing
+- **contact**: Poetry-focused connection
+
+### Recent Achievements
+1. **Build system robustness**: Complete rebuild approach eliminates stale content
+2. **Navigation smoothness**: Auto-scroll eliminated for better UX
+3. **Content compression**: About and Philosophy reduced to essential poetic expression
+4. **Wu wei archival**: Content preserved while streamlining site focus
+5. **Technical integrity**: All systems function correctly with clean, minimal aesthetic
+
+**Next activities**: The foundation is now optimized for pure poetry focus. Add contemplative writing to journal system and continue refining the essential poetic expression.
