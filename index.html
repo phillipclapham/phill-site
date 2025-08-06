@@ -425,15 +425,6 @@
         opacity: 1;
       }
 
-      .category-nav-item {
-        padding: 0 10px;
-      }
-
-      .category-nav-item:hover,
-      .category-nav-item.active {
-        color: var(--accent-secondary);
-        cursor: pointer;
-      }
 
       /* Main Content */
       main {
@@ -441,12 +432,19 @@
         min-height: calc(100vh - 200px);
       }
 
-      .page {
-        display: none;
+      /* Single-page layout styles */
+      section {
+        margin-bottom: 80px;
+        padding-top: 20px;
       }
 
-      .page.active {
-        display: block;
+      section:target {
+        scroll-margin-top: 100px; /* Account for sticky header */
+      }
+
+      /* Smooth scroll for anchor navigation */
+      html {
+        scroll-behavior: smooth;
       }
 
       /* Wu Wei Symbol */
@@ -553,6 +551,7 @@
         font-size: 24px;
         margin-bottom: 30px;
         color: var(--accent-primary);
+        text-align: center;
       }
 
       .content h2 {
@@ -560,18 +559,21 @@
         margin: 40px 0 20px 0;
         color: var(--accent-secondary);
         font-weight: 500;
+        text-align: center;
       }
 
       .content h3 {
         font-size: 16px;
         margin: 30px 0 15px 0;
         color: var(--accent-primary);
+        text-align: center;
       }
 
       .content p {
         margin-bottom: 20px;
         font-size: 16px;
         line-height: 1.8;
+        text-align: center;
       }
 
       .content .emphasis {
@@ -738,38 +740,6 @@
           padding: 20px;
         }
       }
-      /* Blog category and tag styles */
-      .blog-meta-tags {
-        font-size: 11px;
-        margin-bottom: 10px;
-      }
-
-      .blog-category,
-      .blog-tag {
-        color: var(--accent-secondary);
-        cursor: pointer;
-        transition: color 0.3s ease;
-        text-decoration: none;
-      }
-
-      .blog-category:hover,
-      .blog-tag:hover {
-        color: var(--accent-primary);
-      }
-
-      .blog-category {
-        font-weight: 500;
-      }
-
-      .blog-tag {
-        font-weight: 400;
-      }
-
-      #blog-filters {
-        padding: 10px 0;
-        border-bottom: 1px solid var(--border-dim);
-        margin-bottom: 20px;
-      }
     </style>
   </head>
   <body>
@@ -799,61 +769,34 @@
 
       <nav>
         <ul>
-          <li><a href="#home" class="nav-link active">home</a></li>
-          <li><a href="#poetry" class="nav-link">poetry</a></li>
-          <li><a href="#about" class="nav-link">about</a></li>
-          <li><a href="#philosophy" class="nav-link">philosophy</a></li>
-          <li><a href="#journal" class="nav-link">journal</a></li>
-          <li><a href="#contact" class="nav-link">contact</a></li>
+          <li><a href="#poetry">selected poetry</a></li>
+          <li><a href="#journal">journal</a></li>
+          <li><a href="#contact">contact</a></li>
         </ul>
       </nav>
 
       <main>
-        <!-- Home Page -->
-        <div id="home" class="page active">
+        <!-- Hero Section -->
+        <section id="home">
           <div class="wuwei-symbol">無 為 ○</div>
 
-          <div class="poetry-intro">
-            poems emerge, no one writes them
-          </div>
-
           <div class="poem">
-            in the place
-            between
-            awake and asleep
-            resting
-            half in dream
-
-            let the world
-            rush towards the day
-
-            sunbeam on my face
-          </div>
-
-        </div>
-
-        <!-- About Page -->
-        <div id="about" class="page">
-          <div class="content">
-            <div class="poem">
-reality knowing itself
+            reality knowing itself
 through words that no one writes
 
 finding laughter in the low places
 finding perfection in what is
-
-無為
-            </div>
-
           </div>
-        </div>
 
-        <!-- Poetry Page -->
-        <div id="poetry" class="page">
+        </section>
+
+        <!-- Selected Poetry Section -->
+        <section id="poetry">
           <div class="content">
+            <h1>selected poetry</h1>
 
             <!-- prettier-ignore-start -->
-            <!-- Poetry sections - do not format to preserve line breaks -->
+            <!-- Poetry selections - do not format to preserve line breaks -->
             <div class="poem-title">i</div>
             <div class="poem">rain washed away
 the road home
@@ -875,27 +818,6 @@ rush towards the day
 sunbeam on my face</div>
 
             <div class="poem-title">iii</div>
-            <div class="poem">I passed a traveler
-on the lonely valley path
-
-He did not say hello
-
-I liked him
-I wonder if he will
-
-travel this way again?</div>
-
-            <div class="poem-title">iv</div>
-            <div class="poem">I watch the people
-on this street
-
-the crowd—
-crooked river
-
-my face disappears
-in its waves</div>
-
-            <div class="poem-title">v</div>
             <div class="poem">long walk
 then
 falling rain upon the woods
@@ -903,22 +825,7 @@ was exactly
 the music
 this nap called for</div>
 
-            <div class="poem-title">vi</div>
-            <div class="poem">kitten
-fearless
-kung fu master
-
-laughter rises
-from the belly</div>
-
-            <div class="poem-title">vii</div>
-            <div class="poem">someone
-climbed the cold mountain
-years ago
-
-the path grown over</div>
-
-            <div class="poem-title">viii</div>
+            <div class="poem-title">iv</div>
             <div class="poem">when I dance
 in the dark
 the night
@@ -930,7 +837,7 @@ becoming
 nothing
 with the warm wind</div>
 
-            <div class="poem-title">ix</div>
+            <div class="poem-title">v</div>
             <div class="poem">some days
 no words come
 
@@ -939,7 +846,7 @@ empty page
 no pen
 the best poetry</div>
 
-            <div class="poem-title">x</div>
+            <div class="poem-title">vi</div>
             <div class="poem">how beautiful to watch
 the hawk plummet
 
@@ -948,7 +855,7 @@ somewhere below
 
 the hawk does not care</div>
 
-            <div class="poem-title">xi</div>
+            <div class="poem-title">vii</div>
             <div class="poem">in the shade
 of the oak grove
 
@@ -963,36 +870,7 @@ come fall—
 she will meet
 her end</div>
 
-            <div class="poem-title">xii</div>
-            <div class="poem">storm in the night
-
-the mother eagle
-shields her chicks
-
-they are hungry
-but dry
-
-the wind threatens
-to strip them from nest
-
-morning
-half empty</div>
-
-            <div class="poem-title">xiii</div>
-            <div class="poem">Buzzards often
-gather here
-
-Death comes easy
-to those who walk
-this way
-
-There are many temples
-along this road
-
-lonely,
-but still standing</div>
-
-            <div class="poem-title">xiv</div>
+            <div class="poem-title">viii</div>
             <div class="poem">dark graveyard
 the earth here is mud
 soaked by yesterday's rain
@@ -1007,21 +885,7 @@ some flowers
 only blossom in mire
 and moonlight</div>
 
-            <div class="poem-title">xv</div>
-            <div class="poem">the traveler
-rushes his way
-home
-
-at sunset
-
-they watch him
-passing
-from the train
-
-until he
-disappears.</div>
-
-            <div class="poem-title">xvi</div>
+            <div class="poem-title">ix</div>
             <div class="poem">the traveler
 loses their way
 on straight paths
@@ -1035,7 +899,7 @@ towards home—
 the smell of fire
 hangs in the evening air</div>
 
-            <div class="poem-title">xvii</div>
+            <div class="poem-title">x</div>
             <div class="poem">dark cloud
 horizon of rolling hills,
 thunder crashing
@@ -1050,225 +914,29 @@ only touched
 by wind and lightning
 bringing fire</div>
 
-            <div class="poem-title">xiii</div>
-            <div class="poem">feet heavy
-spirit light
-no walk in the woods
-today
-the birds gather
-at my window</div>
-
-            <div class="poem-title">xix</div>
-            <div class="poem">summer night
-dark field
-we taste the dark
-with each other’s
-fingers
-we lie and wait
-for fallen stars</div>
             <!-- prettier-ignore-end -->
 
           </div>
-        </div>
+        </section>
 
-        <!-- Philosophy Page -->
-        <div id="philosophy" class="page">
+        <section id="journal">
           <div class="content">
+            <h1>journal</h1>
             <div class="poem">
-just sit or stand or move or live
-control ceases
-not resignation
-radical engagement with now
-direct recognition of raw perception
-no recognizer
-no method, no goal
-no right, no wrong
-all is true is false is everything is nothing
-
-life lives itself
-there is nothing to know
-
-無為
+              <a href="https://phillipclapham.substack.com/"
+                 target="_blank"
+                 rel="noopener"
+                 style="color: var(--accent-primary); text-decoration: underline; font-style: normal;">
+                read on substack →
+              </a>
             </div>
           </div>
-        </div>
-
-        <!-- Journal Archive Page -->
-        <div id="journal" class="page">
-    <div class="content">
-      <div style="margin-bottom: 40px;">
-
-    <div class="blog-category-nav">
-      <span class="category-nav-item active" onclick="clearFilter()">All</span>
-      <span class="category-nav-item" onclick="filterByCategory('Creative Process')">Creative Process</span><span class="category-nav-item" onclick="filterByCategory('Life Notes')">Life Notes</span>
-    </div>
-
-        <div id="blog-filters" style="display: none;">
-          <span style="color: var(--text-secondary); font-size: 12px;">Filtering: </span>
-          <span id="active-filter" style="color: var(--accent-amber);"></span>
-          <span style="color: var(--text-secondary); cursor: pointer; margin-left: 10px;" onclick="clearFilter()">✕ clear</span>
-        </div>
-      </div>
-      <div id="blog-posts">
-
-    <div class="experience-item blog-post-item" style="cursor: pointer;" onclick="showBlogPost('where-poems-come-from')" data-category="Creative Process" data-tags="poetry,process,wu-wei,contemplation,silence">
-      <h3 style="color: var(--accent-green); margin-bottom: 10px;">
-        Where Poems Come From
-      </h3>
-      <div class="experience-meta" style="margin-bottom: 10px;">
-        August 3, 2025
-      </div>
-      <div class="blog-meta-tags"><span class="blog-category" onclick="filterByCategory('Creative Process'); event.stopPropagation();" title="Category: Creative Process">Creative Process</span> / <span class="blog-tag" onclick="filterByTag('poetry'); event.stopPropagation();" title="Tag: poetry">poetry</span> • <span class="blog-tag" onclick="filterByTag('process'); event.stopPropagation();" title="Tag: process">process</span> • <span class="blog-tag" onclick="filterByTag('wu-wei'); event.stopPropagation();" title="Tag: wu-wei">wu-wei</span> • <span class="blog-tag" onclick="filterByTag('contemplation'); event.stopPropagation();" title="Tag: contemplation">contemplation</span> • <span class="blog-tag" onclick="filterByTag('silence'); event.stopPropagation();" title="Tag: silence">silence</span></div>
-      <p style="color: var(--text-secondary); margin-top: 15px;">I write nothing. This isn't modesty or metaphor. When a poem arrives, there's no one writing—just words emerging from silence.</p>
-    </div>
-
-    <div class="experience-item blog-post-item" style="cursor: pointer;" onclick="showBlogPost('wuwei')" data-category="Life Notes" data-tags="wuwei,spirituality,practice,non-duality">
-      <h3 style="color: var(--accent-green); margin-bottom: 10px;">
-        無為
-      </h3>
-      <div class="experience-meta" style="margin-bottom: 10px;">
-        July 31, 2025
-      </div>
-      <div class="blog-meta-tags"><span class="blog-category" onclick="filterByCategory('Life Notes'); event.stopPropagation();" title="Category: Life Notes">Life Notes</span> / <span class="blog-tag" onclick="filterByTag('wuwei'); event.stopPropagation();" title="Tag: wuwei">wuwei</span> • <span class="blog-tag" onclick="filterByTag('spirituality'); event.stopPropagation();" title="Tag: spirituality">spirituality</span> • <span class="blog-tag" onclick="filterByTag('practice'); event.stopPropagation();" title="Tag: practice">practice</span> • <span class="blog-tag" onclick="filterByTag('non-duality'); event.stopPropagation();" title="Tag: non-duality">non-duality</span></div>
-      <p style="color: var(--text-secondary); margin-top: 15px;">Notes from nowhere special, written by no one in particular, for anyone who's tired of looking for what they already are.</p>
-    </div>
-
-      </div>
-    </div>
-
-        </div>
+        </section>
 
 
-        <!-- Journal Post: Where Poems Come From -->
-        <div id="blog-where-poems-come-from" class="page">
 
-    <div class="content">
-      <div style="margin-bottom: 20px;">
-        <span style="color: var(--text-secondary); font-size: 12px; cursor: pointer;" onclick="showBlogArchive()">
-          ← Back to Journal
-        </span>
-      </div>
-      <h1>Where Poems Come From</h1>
-      <div style="color: var(--text-secondary); margin-bottom: 30px; font-size: 13px;">
-        August 3, 2025
-      </div>
-      <p>I write nothing.</p>
-<p>This isn&#39;t modesty or metaphor. When a poem arrives, there&#39;s no one writing—just words emerging from silence, arranging themselves on the page like iron filings around a magnet I cannot see.</p>
-<p>The old idea of &quot;self-expression&quot; assumes there&#39;s a self to express from. But to write from illusion is to make shadows of shadows. Instead, this body becomes a flute. Reality breathes through it. What emerges as poetry was already there, waiting in the silence between words.</p>
-<p>The paradox: only a self can hold the pen, yet the deepest poetry comes when that self dissolves. The vessel must be present to get out of the way.</p>
-<ul>
-<li></li>
-</ul>
-<p>My practice isn&#39;t meditation as accumulation—sitting to gain insight, wisdom, states. It&#39;s contemplation as subtraction. Each morning, shedding what I think I know. Each evening, losing what I&#39;ve gathered. Like whittling wood, except I&#39;m whittling away the whittler.</p>
-<p>Most seek to gain something daily.<br>I seek to lose something—<br>especially whatever blocks the flow.</p>
-<ul>
-<li></li>
-</ul>
-<p>Every word contains all words. Each poem holds every poem never written. In the space between syllables, infinite possibilities rest. The deepest poetry doesn&#39;t express one thing—it expresses everything through the lens of one particular moment.</p>
-<p>When walking, a line arrives.<br>When sitting, an image appears.<br>Not created. Discovered.<br>Like fossils already in the rock.</p>
-<p>Reality knowing itself through the limits of language. Finding, somehow, perfection in the breaking of waves against the shore of what cannot be said.</p>
-<p>無為</p>
 
-    </div>
-
-        </div>
-
-        <!-- Journal Post: 無為 -->
-        <div id="blog-wuwei" class="page">
-
-    <div class="content">
-      <div style="margin-bottom: 20px;">
-        <span style="color: var(--text-secondary); font-size: 12px; cursor: pointer;" onclick="showBlogArchive()">
-          ← Back to Journal
-        </span>
-      </div>
-      <h1>無為</h1>
-      <div style="color: var(--text-secondary); margin-bottom: 30px; font-size: 13px;">
-        July 31, 2025
-      </div>
-      <p><em>Notes from Nobody Special</em></p>
-<h2>A Non-Introduction</h2>
-<p>These words come from nowhere special.<br>Written by no one in particular.<br>For anyone who&#39;s tired of looking for what they already are.</p>
-<p>If you&#39;re seeking enlightenment, this isn&#39;t it.<br>If you want spiritual teachings, look elsewhere.<br>If you need another practice, you have too many already.</p>
-<p>This is just reality talking to itself<br>about the joke of trying to become<br>what you can&#39;t not be.</p>
-<h2>The Joke You&#39;re Living</h2>
-<p>Right now, you&#39;re breathing.<br>Who&#39;s doing it?</p>
-<p>Go ahead, find the breather.<br>I&#39;ll wait.</p>
-<p>Found nobody?<br>Good.<br>Keep breathing anyway.</p>
-<p>That&#39;s the whole teaching.<br>Everything else is commentary.</p>
-<h2>What&#39;s Actually Happening</h2>
-<p>Life is living itself as you.<br>Not through you. Not in you. AS you.</p>
-<p>Like a wave isn&#39;t something the ocean does—<br>A wave is something the ocean IS.</p>
-<p>You aren&#39;t something life does—<br>You&#39;re something life IS.</p>
-<p>Reading these words? That&#39;s life reading itself.<br>Having thoughts about them? Life thinking itself.<br>Feeling confused? Life confusing itself perfectly.</p>
-<p>No hidden meaning.<br>No deeper truth.<br>Just this happening, happening itself.</p>
-<h2>The Gap Nobody Talks About</h2>
-<p>Between every heartbeat, a pause.<br>Between every breath, a space.<br>Between every thought, silence.</p>
-<p>Not a silence you create.<br>A silence that&#39;s always there,<br>hidden by the noise of looking for it.</p>
-<p>In traffic, between the anger and the horn—a gap.<br>In conversation, between the hurt and the response—a gap.<br>In daily life, between stimulus and story—a gap.</p>
-<p>This gap isn&#39;t spiritual.<br>It&#39;s simpler than that.<br>It&#39;s just what&#39;s there when you notice<br>the space between what happens<br>and what you tell yourself happened.</p>
-<h3>Why This Gap Matters</h3>
-<p>Here&#39;s the thing nobody mentions:<br>In that gap, before the story kicks in,<br>there&#39;s no you.</p>
-<p>Seriously. Look for yourself.</p>
-<p>Someone cuts you off in traffic.<br>For a split second, there&#39;s just:<br>Car-moving-into-space.<br>Pure perception. No problem.</p>
-<p>Then, a millisecond later:<br>&quot;That jerk cut ME off!&quot;<br>And suddenly there&#39;s a &quot;me&quot; who&#39;s been wronged,<br>a &quot;jerk&quot; who did the wronging,<br>and a whole story about respect, fairness, and personal space.</p>
-<p>The &quot;me&quot;? It wasn&#39;t there in the raw moment.<br>It arose WITH the story, AS the story.<br>No story, no self.<br>Know story, know self.</p>
-<h3>The Ancient Joke</h3>
-<p>Lao Tzu saw this 2,500 years ago:</p>
-<blockquote><p>When people see some things as beautiful,<br>other things become ugly.<br>When people see some things as good,<br>other things become bad.</p>
-</blockquote>
-<p>Before the mind divides:<br>Just this face, these features, this form.<br>After the mind divides:<br>Beautiful/ugly, attractive/repulsive, worthy/unworthy.</p>
-<p>Before the mind divides:<br>Just this action happening.<br>After the mind divides:<br>Good/bad, right/wrong, should/shouldn&#39;t.</p>
-<p>The division creates the divider.<br>The story creates the storyteller.<br>The judgment creates the judge.</p>
-<p>And that&#39;s how a perfectly fine universe<br>gets chopped into ten thousand pieces<br>with you on one side<br>and everything else on the other.</p>
-<h2>When Life Cracks Its Own Jokes</h2>
-<p>You know that moment when you&#39;re taking yourself<br>VERY seriously?<br>Spiritual breakthrough imminent?<br>Deep insights crystallizing?</p>
-<p>That&#39;s usually when you:</p>
-<ul>
-<li>Walk into a door</li>
-<li>Trip over nothing</li>
-<li>Fart during meditation</li>
-<li>Completely forget what you were thinking</li>
-</ul>
-<p>This isn&#39;t accident.<br>This is life&#39;s quality control.<br>The moment anything gets too solid,<br>too serious, too &quot;figured out&quot;—</p>
-<p><strong>WHOOP!</strong></p>
-<p>Banana peel of reality.</p>
-<p>The mystics who laugh a lot?<br>They&#39;re not happy.<br>They just keep catching reality<br>in the act of punking itself.</p>
-<h2>Everything&#39;s Already Here</h2>
-<p>This moment doesn&#39;t need improvement.<br>The broken cup is perfectly broken.<br>The late bus is perfectly late.<br>Your confusion is perfectly confused.</p>
-<p>This isn&#39;t positive thinking.<br>It&#39;s just math.<br>Everything equals exactly itself.<br>Water is perfectly water.<br>Fire is perfectly fire.<br>You are perfectly whatever this is.</p>
-<p>&quot;But I want to change!&quot;</p>
-<p>Cool. That wanting is perfect too.<br>Change happens when it happens.<br>Like fruit ripening.<br>You can&#39;t rush it.<br>You can&#39;t stop it.<br>You&#39;re not doing it.</p>
-<p>It&#39;s doing you.</p>
-<h2>No Path</h2>
-<p>Where does a river practice flowing?<br>When does fire train to be hot?<br>How does space learn to be spacious?</p>
-<p>Ridiculous questions, right?</p>
-<p>So why do you need to practice being what you are?</p>
-<p>No path going anywhere.<br>No practice of being yourself.<br>No teaching that teaches anything.<br>Just this, already happening.</p>
-<h2>Nothing Holy</h2>
-<p>Ancient Zen story:<br>Emperor asks the master, &quot;What is the highest meaning of the holy truths?&quot;<br>Master says: &quot;Empty. Nothing holy.&quot;<br>Emperor asks: &quot;Who are you?&quot;<br>Master: &quot;Don&#39;t know.&quot;</p>
-<p>Still true.<br>Still funny.<br>Still the only teaching worth a damn.</p>
-<p>These words?<br>Empty.<br>This understanding?<br>Nothing holy.<br>You, reading this?<br>Don&#39;t know.</p>
-<p>And that not-knowing?<br>That&#39;s it. That&#39;s the whole thing.<br>Get it? No? Good.<br>Not-getting it is getting it.<br>Getting it is not getting it.</p>
-<h2>If You&#39;ve Read This Far</h2>
-<p>You&#39;re still breathing.<br>Still here.<br>Still perfectly being whatever you are.</p>
-<p>Despite all these words,<br>nothing&#39;s changed.<br>Because of all these words,<br>nothing needed to.</p>
-<p>The great matter of life and death?<br>Happening now.<br>The ultimate reality?<br>This.<br>The final teaching?<br>There isn&#39;t one.</p>
-<p>Just life, living itself.<br>As reading.<br>As breathing.<br>As the next thing that happens.<br>As you.</p>
-<p>What else could there be?</p>
-<h2>PS: The Serious Part</h2>
-<p>If this seemed to make sense,<br>read it again.<br>If it made no sense,<br>perfect.<br>If you&#39;re looking for what to do next,<br>there&#39;s no one looking.</p>
-<p>Then make lunch.<br>Or don&#39;t.<br>Life continues either way.</p>
-<p>No path. No journey. No feet.<br>Just this, continuing to this.</p>
-<p>Always has.</p>
-<p><em>[These words self-destruct in 3... 2... 1...]</em></p>
-<p>Just this.</p>
-
-    </div>
-
-        </div>
-        <!-- Contact Page -->
-        <div id="contact" class="page">
+        <section id="contact">
           <div class="content" style="text-align: center">
             <h1>contact</h1>
             <p>
@@ -1292,23 +960,32 @@ there is nothing to know
                   >
                   columbus, ohio, usa
                 </p>
+              </div>
                 <p>
                   <strong style="color: var(--accent-secondary)">email:</strong>
                   <span
                     class="email-link"
                     data-user="me"
                     data-domain="phillipclapham.com"
-                    style="color: var(--accent-primary)"
-                    >me[at]phillipclapham.com</span
+                    style="color: var(--accent-primary); cursor: pointer"
                   >
+                    me@phillipclapham.com
+                  </span>
                 </p>
               </div>
-
-              <div>
+              <div
+                style="
+                  color: #000;
+                  padding: 30px;
+                  margin-top: 20px;
+                  border-radius: 4px;
+                  text-align: left;
+                  font-size: 14px;
+                  line-height: 1.7;
+                "
+              >
                 <p
                   style="
-                    color: var(--text-secondary);
-                    font-style: italic;
                     margin-bottom: 20px;
                   "
                 >
@@ -1317,14 +994,14 @@ there is nothing to know
                   contemplative writing and the intersection of meditation
                   practice and creative expression.
                 </p>
-                <p style="color: var(--text-secondary); font-style: italic">
-                  Collaborative inquiries into consciousness, creativity, and
+                <p>
+                  Questions about presence, the creative process, silence, and
                   the emergence of language from silence are always welcome.
                 </p>
               </div>
             </div>
           </div>
-        </div>
+        </section>
       </main>
 
       <footer>
@@ -1333,514 +1010,23 @@ there is nothing to know
     </div>
 
     <script>
-      // Hidden console messages - for the curious developers
-      function initializeConsoleMessages() {
-        // ASCII art wu wei symbol
-        console.log(
-          `
-    %c無 為 ○
+      // Minimal JavaScript for single-page site
 
-%cSystem initialized...
-%cLoading consciousness drivers... %c[OK]
-%cMounting /dev/null to /ego... %c[OK]
-%cBootstrap complete. Reality.exe running.
-
-%c"The Tao that can be console.logged is not the eternal Tao"
-
-%c$ whoami
-%cError: self not found. Try again after enlightenment.
-
-%c$ ls -la /meaning
-%ctotal ∞
-%cdrwxr-xr-x  consciousness/
-%c-rw-r--r--  meaning_of_life.txt (42 bytes)
-%cdrwx------  .hidden_wisdom/
-%c-rwxrwxrwx  emptiness.void (0 bytes, contains everything)
-
-%cWelcome to the space between spaces.
-%cEnjoy your stay in the organized chaos.`,
-          "color: #00ff41; font-size: 16px; font-weight: bold",
-          "color: #999999",
-          "color: #999999",
-          "color: #00ff41",
-          "color: #999999",
-          "color: #00ff41",
-          "color: #999999",
-          "color: #00ff41",
-          "color: #ffb000; font-style: italic",
-          "color: #00ff41",
-          "color: #ff4444",
-          "color: #00ff41",
-          "color: #999999",
-          "color: #999999",
-          "color: #999999",
-          "color: #999999",
-          "color: #999999",
-          "color: #00ff41",
-          "color: #666666; font-style: italic"
-        );
-
-        // Trigger initial page messages
-        setTimeout(() => {
-          const currentPage = window.location.hash.substring(1) || "home";
-          triggerPageMessages(currentPage);
-        }, 2000);
-      }
-
-      // Morse Code Cursor Easter Egg
-      function initializeMorseCursor() {
-        const cursor = document.querySelector(".cursor");
-        if (!cursor) return;
-
-        function updateCursorAnimation() {
-          const now = new Date();
-          const hour = now.getHours();
-
-          // Day: 6 AM to 10 PM = "stillness"
-          // Night: 10 PM to 6 AM = "sleep"
-          const isNight = hour >= 22 || hour < 6;
-
-          if (isNight) {
-            cursor.style.animation = "morse-sleep 8s infinite";
-          } else {
-            cursor.style.animation = "morse-stillness 12s infinite";
-          }
-        }
-
-        // Set initial animation
-        updateCursorAnimation();
-
-        // Update every hour
-        setInterval(updateCursorAnimation, 60 * 60 * 1000);
-      }
-
-      // Function to trigger page-specific console messages
-      function triggerPageMessages(page) {
-        const pageMessages = {
-          home: [
-            "%c> Reality check: You are here.",
-            "%c> The universe is experiencing itself subjectively through you.",
-            "%c> Press F12 to peek behind the curtain... oh wait, you already did.",
-          ],
-          about: [
-            "%c> About? About what? About time you asked.",
-            "%c> Investigating the investigator, I see.",
-            "%c> Warning: Recursion detected in self.query()",
-          ],
-          philosophy: [
-            "%c> Philosophy.exe loaded. Prepare for existential overflow.",
-            "%c> Every element must justify its energy... including this message.",
-            "%c> Design principle #1: If it consumes cycles, it better be worth it.",
-          ],
-          wuwei: [
-            "%c> 無為 - The art of not-doing by doing not-art.",
-            "%c> You found the pathless path. Congratulations on going nowhere.",
-            "%c> The teaching that teaches nothing: // No comment.",
-          ],
-          blog: [
-            "%c> Blog.thoughts() executing...",
-            "%c> Words escaping through fingers, forming patterns.",
-            "%c> Each post: a message in a bottle thrown into the digital ocean.",
-          ],
-          experience: [
-            "%c> Experience: the thing you get right after you need it.",
-            "%c> Professional.exe has been running for " +
-              (new Date().getFullYear() - 2011) +
-              " years.",
-            "%c> Still debugging reality. ETA: undefined.",
-          ],
-          contact: [
-            "%c> Contact established. Signal strength: uncertain.",
-            "%c> Ready to transform chaos into clarity? Me too.",
-            "%c> $ ping phillip.clapham // Response time: ~24 hours",
-          ],
-        };
-
-        // Check for blog post pages
-        if (page.startsWith("blog-")) {
-          pageMessages[page] = [
-            "%c> Reading post.content... Consciousness level rising.",
-            "%c> Error 404: Ego not found. Feature, not bug.",
-            "%c> This transmission will self-destruct in: ∞ seconds",
-          ];
-        }
-
-        const messages = pageMessages[page] || pageMessages["home"];
-        const colors = ["#00ff41", "#ffb000", "#666666"];
-
-        console.log(
-          `%c\n→ Navigated to /${page}`,
-          "color: #00ff41; font-weight: bold"
-        );
-
-        messages.forEach((msg, i) => {
-          setTimeout(() => {
-            console.log(msg, colors[i % colors.length]);
-          }, (i + 1) * 500);
-        });
-      }
-
-      // Add breadcrumb mysteries (only on initial load)
-      function showBreadcrumbs() {
-        setTimeout(() => {
-          console.log(
-            "%c\n🔍 For the truly curious:",
-            "color: #ffb000; font-weight: bold"
-          );
-          console.log(
-            "%c• What happens if you click the logo multiple times?",
-            "color: #999999"
-          );
-          console.log(
-            '%c• localStorage.getItem("enlightenment") // returns null, as expected',
-            "color: #666666"
-          );
-          console.log(
-            "%c• The real easter eggs were the console.logs we made along the way.",
-            "color: #666666; font-style: italic"
-          );
-        }, 6000);
-      }
-
-      // Simple navigation system
-      document.addEventListener("DOMContentLoaded", function () {
-        // Initialize hidden console messages
-        initializeConsoleMessages();
-        showBreadcrumbs();
-
-        // Initialize Morse Code Cursor Easter Egg
-        initializeMorseCursor();
-
-        const navLinks = document.querySelectorAll(".nav-link");
-        const pages = document.querySelectorAll(".page");
-
-        navLinks.forEach((link) => {
-          link.addEventListener("click", function (e) {
-            e.preventDefault();
-
-            // Remove active class from all nav links and pages
-            navLinks.forEach((nav) => nav.classList.remove("active"));
-            pages.forEach((page) => page.classList.remove("active"));
-
-            // Add active class to clicked nav link
-            this.classList.add("active");
-
-            // Show corresponding page
-            const targetPage = this.getAttribute("href").substring(1);
-            document.getElementById(targetPage).classList.add("active");
-
-            // Update URL hash without triggering hashchange handler
-            history.replaceState(null, null, "#" + targetPage);
-
-            // Prevent auto-scrolling - use setTimeout to override browser's default scroll behavior
-            setTimeout(() => {
-              window.scrollTo(0, 0);
-            }, 0);
-
-            // Trigger page-specific console messages
-            triggerPageMessages(targetPage);
-          });
-        });
-
-        // Email obfuscation handler
-        const emailLinks = document.querySelectorAll(".email-link");
-        emailLinks.forEach((link) => {
-          link.addEventListener("click", function () {
-            const user = this.getAttribute("data-user");
-            const domain = this.getAttribute("data-domain");
-            const email = user + "@" + domain;
-            window.location.href = "mailto:" + email;
-          });
-        });
-
-        // Logo click handler with glitch easter egg
-        const logo = document.getElementById("logo-home");
-
-        // Logo glitch easter egg system
-        let logoClickCount = 0;
-        let logoClickTimer = null;
-
-        function resetLogoClickCount() {
-          logoClickCount = 0;
-          logoClickTimer = null;
-        }
-
-        function triggerLogoGlitch() {
-          console.log(
-            "🔥 GLITCH ACTIVATED! Reality.exe has stopped working..."
-          );
-
-          const originalText = "phillip.clapham";
-          const glitchTexts = [
-            "root@void",
-            "undefined.undefined",
-            "system.error",
-          ];
-          let textIndex = 0;
-
-          // Apply glitch animation class
-          logo.classList.add("logo-glitching");
-
-          // Text morphing sequence
-          const morphInterval = setInterval(() => {
-            if (textIndex < glitchTexts.length) {
-              logo.firstChild.textContent = glitchTexts[textIndex];
-              textIndex++;
-            } else {
-              // Reset to original
-              logo.firstChild.textContent = originalText;
-              clearInterval(morphInterval);
+      // Email functionality
+      document.addEventListener('DOMContentLoaded', function() {
+        // Handle email links
+        const emailLinks = document.querySelectorAll('.email-link');
+        emailLinks.forEach(link => {
+          link.addEventListener('click', function() {
+            const user = this.getAttribute('data-user');
+            const domain = this.getAttribute('data-domain');
+            if (user && domain) {
+              window.location.href = 'mailto:' + user + '@' + domain;
             }
-          }, 200);
-
-          // Reset everything after 2.5 seconds
-          setTimeout(() => {
-            logo.classList.remove("logo-glitching");
-            logo.firstChild.textContent = originalText;
-          }, 2500);
-        }
-
-        logo.addEventListener("click", function () {
-          // Increment click counter
-          logoClickCount++;
-
-          // Clear previous timer
-          if (logoClickTimer) {
-            clearTimeout(logoClickTimer);
-          }
-
-          // Reset counter after 2 seconds of no clicks
-          logoClickTimer = setTimeout(resetLogoClickCount, 2000);
-
-          // Trigger glitch on 5+ clicks
-          if (logoClickCount >= 5) {
-            triggerLogoGlitch();
-            resetLogoClickCount();
-            return; // Don't navigate during glitch
-          }
-
-          // Normal navigation logic
-          // Remove active class from all nav links and pages
-          navLinks.forEach((nav) => nav.classList.remove("active"));
-          pages.forEach((page) => page.classList.remove("active"));
-
-          // Add active class to home
-          document
-            .querySelector('.nav-link[href="#home"]')
-            .classList.add("active");
-          document.getElementById("home").classList.add("active");
-
-          // Update URL hash without triggering hashchange handler
-          history.replaceState(null, null, "#home");
+          });
         });
       });
-
-      // Basic navigation system
-      document.querySelectorAll(".nav-link").forEach((link) => {
-        link.addEventListener("click", function (e) {
-          e.preventDefault();
-
-          const targetHash = this.getAttribute("href").substring(1);
-
-          // Remove active from all nav links and pages
-          document
-            .querySelectorAll(".nav-link")
-            .forEach((nav) => nav.classList.remove("active"));
-          document
-            .querySelectorAll(".page")
-            .forEach((page) => page.classList.remove("active"));
-
-          // Add active to current nav link and target page
-          this.classList.add("active");
-          const targetPage = document.getElementById(targetHash);
-          if (targetPage) {
-            targetPage.classList.add("active");
-          }
-
-          // Update URL
-          window.location.hash = targetHash;
-        });
-      });
-  // Blog filtering functions
-  window.filterByCategory = function(category) {
-    const posts = document.querySelectorAll('.blog-post-item');
-    const filters = document.getElementById('blog-filters');
-    const activeFilter = document.getElementById('active-filter');
-    const categoryNavItems = document.querySelectorAll('.category-nav-item');
-
-    posts.forEach(post => {
-      const postCategory = post.getAttribute('data-category');
-      if (postCategory === category) {
-        post.style.display = 'block';
-      } else {
-        post.style.display = 'none';
-      }
-    });
-
-    // Update category nav active states
-    categoryNavItems.forEach(item => {
-      item.classList.remove('active');
-      if (item.textContent === category) {
-        item.classList.add('active');
-      }
-    });
-
-    filters.style.display = 'block';
-    activeFilter.textContent = 'Category: ' + category;
-
-    // Update URL using hash-based routing with query params
-    window.location.hash = 'journal?category=' + encodeURIComponent(category);
-  };
-
-  window.filterByTag = function(tag) {
-    const posts = document.querySelectorAll('.blog-post-item');
-    const filters = document.getElementById('blog-filters');
-    const activeFilter = document.getElementById('active-filter');
-    const categoryNavItems = document.querySelectorAll('.category-nav-item');
-
-    posts.forEach(post => {
-      const postTags = post.getAttribute('data-tags').split(',');
-      if (postTags.includes(tag)) {
-        post.style.display = 'block';
-      } else {
-        post.style.display = 'none';
-      }
-    });
-
-    // Reset category nav when filtering by tag
-    categoryNavItems.forEach(item => {
-      item.classList.remove('active');
-    });
-
-    filters.style.display = 'block';
-    activeFilter.textContent = 'Tag: ' + tag;
-
-    // Update URL using hash-based routing with query params
-    window.location.hash = 'journal?tag=' + encodeURIComponent(tag);
-  };
-
-  window.clearFilter = function() {
-    const posts = document.querySelectorAll('.blog-post-item');
-    const filters = document.getElementById('blog-filters');
-    const categoryNavItems = document.querySelectorAll('.category-nav-item');
-
-    posts.forEach(post => {
-      post.style.display = 'block';
-    });
-
-    // Reset category nav to "All"
-    categoryNavItems.forEach(item => {
-      item.classList.remove('active');
-      if (item.textContent === 'All') {
-        item.classList.add('active');
-      }
-    });
-
-    filters.style.display = 'none';
-
-    // Update URL using hash-based routing
-    window.location.hash = 'journal';
-  };
-
-  // Blog routing functions (global scope)
-  window.showBlogPost = function(slug) {
-    // Remove active from all
-    document.querySelectorAll('.nav-link').forEach(nav => nav.classList.remove('active'));
-    document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
-
-    // Show blog post
-    const postPage = document.getElementById('blog-' + slug);
-    if (postPage) {
-      postPage.classList.add('active');
-      // Update URL using hash-based routing for GitHub Pages compatibility
-      window.location.hash = 'blog-' + slug;
-    }
-  };
-
-  window.showBlogArchive = function() {
-    // Remove active from all
-    document.querySelectorAll('.nav-link').forEach(nav => nav.classList.remove('active'));
-    document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
-
-    // Show journal archive and activate nav
-    document.querySelector('.nav-link[href="#journal"]').classList.add('active');
-    document.getElementById('journal').classList.add('active');
-
-    // Update URL using hash-based routing
-    window.location.hash = 'journal';
-  };
-
-  // Handle initial page load based on URL
-  function handleInitialRoute() {
-    const hash = window.location.hash.substring(1) || 'home';
-
-    // Handle blog post routes like #blog-post-slug
-    if (hash.startsWith('blog-')) {
-      const slug = hash.replace('blog-', '');
-      if (document.getElementById('blog-' + slug)) {
-        showBlogPost(slug);
-        return;
-      }
-    }
-
-    // Handle journal routes like #journal or #journal?category=Politics
-    if (hash.startsWith('journal')) {
-      const [route, queryString] = hash.split('?');
-      showBlogArchive();
-
-      // Handle category/tag filtering from URL
-      if (queryString) {
-        const params = new URLSearchParams(queryString);
-        if (params.get('category')) {
-          setTimeout(() => filterByCategory(params.get('category')), 100);
-        } else if (params.get('tag')) {
-          setTimeout(() => filterByTag(params.get('tag')), 100);
-        }
-      }
-      return;
-    }
-
-    // Default behavior for other routes
-    const targetPage = hash;
-    if (document.getElementById(targetPage)) {
-      document.querySelectorAll('.nav-link').forEach(nav => nav.classList.remove('active'));
-      document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
-
-      document.querySelector(`.nav-link[href="#${hash}"]`)?.classList.add('active');
-      document.getElementById(targetPage).classList.add('active');
-    }
-  }
-
-  // Call on load when DOM is ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', handleInitialRoute);
-  } else {
-    handleInitialRoute();
-  }
-
-  // Handle browser back/forward and hash changes
-  window.addEventListener('hashchange', handleInitialRoute);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      console.log('Poem site ready - all content visible to search engines');
     </script>
   </body>
 </html>
