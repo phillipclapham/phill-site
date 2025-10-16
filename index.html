@@ -1,646 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Poetry and contemplative writing by Phillip Clapham. A collection of verses exploring stillness, nature, and the space between words.">
-    <title>Phillip Clapham</title>
-    <style>
-      @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
-
-      :root {
-        --bg-primary: #fafafa;
-        --bg-secondary: #ffffff;
-        --text-primary: #1a1a1a;
-        --text-secondary: #4a4a4a;
-        --text-dim: #7a7a7a;
-        --accent-primary: #7d8471; /* sage green */
-        --accent-secondary: #a67c52; /* earth brown */
-        --border-dim: #e0e0e0;
-        --border-bright: #d0d0d0;
-      }
-
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
-      body {
-        font-family: "Lora", serif;
-        font-optical-sizing: auto;
-        font-weight: 400;
-        font-style: normal;
-        background-color: var(--bg-primary);
-        color: var(--text-primary);
-        line-height: 1.8;
-        font-size: 16px;
-      }
-
-      .container {
-        max-width: 900px;
-        margin: 0 auto;
-        padding: 0 20px;
-      }
-
-      /* Header */
-      header {
-        border-bottom: 1px solid var(--border-dim);
-        background: var(--bg-primary);
-        padding: 30px 10px;
-        position: sticky;
-        top: 0;
-        z-index: 100;
-      }
-
-      .header-content {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      .logo {
-        font-family: "Lora", serif;
-        font-optical-sizing: auto;
-        font-weight: 400;
-        font-size: 20px;
-        color: var(--text-primary);
-        font-style: italic;
-      }
-
-
-      .header-links {
-        display: flex;
-        gap: 20px;
-        font-size: 16px;
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-
-      .header-links a {
-        color: var(--text-secondary);
-        text-decoration: none;
-        transition: color 0.3s ease;
-      }
-
-      .header-links a:hover {
-        color: var(--accent-secondary);
-      }
-
-      /* Navigation */
-      nav {
-        padding: 20px 0;
-        border-bottom: 1px solid var(--border-dim);
-      }
-
-      nav ul {
-        list-style: none;
-        display: flex;
-        gap: 30px;
-        justify-content: center;
-      }
-
-      nav a {
-        font-family: "Lora", serif;
-        font-optical-sizing: auto;
-        font-weight: 400;
-        font-style: normal;
-        color: var(--text-secondary);
-        text-decoration: none;
-        transition: color 0.3s ease;
-        font-size: 16px;
-        letter-spacing: 0.5px;
-        text-transform: lowercase;
-      }
-
-      nav a:hover,
-      nav a.active {
-        color: var(--accent-primary);
-      }
-
-      nav a:before {
-        content: "> ";
-        opacity: 0;
-        transition: opacity 0.3s ease;
-      }
-
-      nav a:hover:before,
-      nav a.active:before {
-        opacity: 1;
-      }
-
-
-      /* Main Content */
-      main {
-        padding: 40px 0;
-        min-height: calc(100vh - 200px);
-      }
-
-      /* Single-page layout styles */
-      section {
-        margin-bottom: 80px;
-        padding-top: 20px;
-      }
-
-      section:target {
-        scroll-margin-top: 100px; /* Account for sticky header */
-      }
-
-      /* Smooth scroll for anchor navigation */
-      html {
-        scroll-behavior: smooth;
-      }
-
-      /* Wu Wei Symbol */
-      .wuwei-symbol {
-        text-align: center;
-        padding: 40px 0;
-        font-size: 36px;
-        color: var(--border-bright);
-        line-height: 1.4;
-      }
-
-      /* Home Page */
-      .intro-section {
-        text-align: center;
-        padding: 40px 0;
-        border-bottom: 1px solid var(--border-dim);
-        margin-bottom: 40px;
-      }
-
-      .intro-section h1 {
-        font-size: 28px;
-        font-weight: 300;
-        margin-bottom: 15px;
-        color: var(--text-primary);
-      }
-
-      .intro-section .subtitle {
-        font-size: 16px;
-        color: var(--text-secondary);
-        margin-bottom: 25px;
-      }
-
-      .intro-section .tagline {
-        font-size: 14px;
-        color: var(--accent-secondary);
-        font-weight: 400;
-      }
-
-      .essence-section {
-        max-width: 800px;
-        margin: 0 auto;
-        text-align: center;
-      }
-
-      .essence-section h2 {
-        font-size: 20px;
-        margin-bottom: 30px;
-        color: var(--accent-primary);
-        font-weight: 500;
-      }
-
-      .essence-text {
-        font-size: 18px;
-        line-height: 1.8;
-        margin-bottom: 20px;
-      }
-
-      .essence-text .emphasis {
-        color: var(--accent-secondary);
-        font-weight: 500;
-      }
-
-      .contact-quick {
-        margin-top: 40px;
-        padding: 25px;
-        background-color: var(--bg-secondary);
-        border: 1px solid var(--border-dim);
-        border-radius: 8px;
-        max-width: 500px;
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      .contact-quick h3 {
-        color: var(--accent-primary);
-        margin-bottom: 15px;
-        font-size: 16px;
-      }
-
-      .contact-links {
-        display: flex;
-        justify-content: center;
-        gap: 30px;
-        flex-wrap: wrap;
-      }
-
-      .contact-links a {
-        color: var(--accent-secondary);
-        text-decoration: none;
-        font-size: 16px;
-      }
-
-      .contact-links a:hover {
-        color: var(--accent-primary);
-      }
-
-      /* Content Pages */
-      .content {
-        max-width: 800px;
-        margin: 0 auto;
-      }
-
-      .content h1 {
-        font-size: 24px;
-        margin-bottom: 30px;
-        color: var(--accent-primary);
-        text-align: center;
-      }
-
-      .content h2 {
-        font-size: 20px;
-        margin: 40px 0 20px 0;
-        color: var(--accent-secondary);
-        font-weight: 500;
-        text-align: center;
-      }
-
-      .content h3 {
-        font-size: 16px;
-        margin: 30px 0 15px 0;
-        color: var(--accent-primary);
-        text-align: center;
-      }
-
-      .content p {
-        margin-bottom: 20px;
-        font-size: 16px;
-        line-height: 1.8;
-        text-align: center;
-      }
-
-      .content .emphasis {
-        color: var(--accent-secondary);
-        font-weight: 500;
-      }
-
-      .content blockquote {
-        border-left: 3px solid var(--accent-primary);
-        padding-left: 20px;
-        margin: 20px 0;
-        font-style: italic;
-        color: var(--text-secondary);
-      }
-
-      .content ul {
-        margin: 20px 0;
-        padding-left: 20px;
-      }
-
-      .content li {
-        margin-bottom: 10px;
-        line-height: 1.7;
-      }
-
-      .content li strong {
-        color: var(--accent-secondary);
-      }
-
-      .content code {
-        background-color: var(--bg-secondary);
-        padding: 2px 6px;
-        border-radius: 3px;
-        font-family: inherit;
-      }
-
-
-      /* Footer */
-      footer {
-        border-top: 1px solid var(--border-dim);
-        padding: 20px 0;
-        text-align: center;
-        color: var(--text-dim);
-        font-size: 16px;
-      }
-
-      /* Email obfuscation */
-      .email-link {
-        cursor: pointer;
-        color: var(--text-secondary);
-      }
-
-      .email-link:hover {
-        color: var(--accent-secondary);
-      }
-
-      /* Poetry Styles */
-      .poem {
-        font-family: "Lora", serif;
-        font-optical-sizing: auto;
-        font-weight: 400;
-        font-style: normal;
-        white-space: pre-line;
-        line-height: 2;
-        text-align: center;
-        max-width: 500px;
-        margin: 60px auto;
-        padding: 40px 20px;
-        color: var(--text-primary);
-        font-size: 18px;
-        letter-spacing: 0.3px;
-      }
-
-      .poem-title {
-        font-family: "Lora", serif;
-        font-optical-sizing: auto;
-        font-style: normal;
-        font-size: 16px;
-        font-weight: 900;
-        color: var(--text-dim);
-        text-transform: lowercase;
-        margin-bottom: 30px;
-        text-align: center;
-      }
-
-      .poetry-intro {
-        font-family: "Lora", serif;
-        font-optical-sizing: auto;
-        font-weight: 400;
-        font-style: normal;
-        max-width: 600px;
-        margin: 0 auto 60px;
-        padding: 0 20px;
-        text-align: center;
-        font-size: 18px;
-        line-height: 1.8;
-        color: var(--text-secondary);
-      }
-
-      /* Responsive */
-      @media (max-width: 768px) {
-        .header-content {
-          flex-direction: column;
-          gap: 15px;
-        }
-
-        nav ul {
-          flex-wrap: wrap;
-          gap: 20px;
-        }
-
-        .intro-section h1 {
-          font-size: 22px;
-        }
-
-        .wuwei-symbol {
-          font-size: 28px;
-          padding: 30px 0;
-        }
-
-        .contact-links {
-          flex-direction: column;
-          gap: 15px;
-        }
-
-      }
-    </style>
-  </head>
-  <body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Phillip Clapham - Building the missing layer between humans and AI. Powered by Protocol Memory.">
+  <title>Phillip Clapham | Protocol Memory Showcase</title>
+  <link rel="stylesheet" href="protocol-memory.css">
+</head>
+<body>
+  <!-- Header / Hero -->
+  <header class="site-header">
     <div class="container">
-      <header>
-        <div class="header-content">
-          <div class="logo" id="logo-home">phillip clapham</div>
-          <div class="header-links">
-            <span
-              class="email-link"
-              data-user="me"
-              data-domain="phillipclapham.com"
-              >me[at]phillipclapham.com</span
-            >
-            <a href="https://linkedin.com/in/phillipclapham" target="_blank"
-              >linkedin</a
-            >
-            <a href="https://github.com/phillipclapham" target="_blank"
-              >github</a
-            >
-            <a href="https://www.instagram.com/phillc42" target="_blank"
-              >instagram</a
-            >
-          </div>
-        </div>
-      </header>
+      <div class="header-content">
+        <h1 class="site-title">Phillip Clapham</h1>
+        <p class="site-subtitle" id="pm-role">Building the missing layer between humans and AI</p>
+      </div>
 
-      <nav>
-        <ul>
-          <li><a href="#poetry">selected poetry</a></li>
-          <li><a href="#about">about</a></li>
-          <li><a href="#contact">contact</a></li>
-        </ul>
+      <!-- Social Links -->
+      <nav class="social-links">
+        <a href="mailto:me@phillipclapham.com" aria-label="Email">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+          </svg>
+          Email
+        </a>
+        <a href="https://linkedin.com/in/phillipclapham" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 01.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
+          </svg>
+          LinkedIn
+        </a>
+        <a href="https://github.com/phillipclapham" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.522 0 10 0z" clip-rule="evenodd"/>
+          </svg>
+          GitHub
+        </a>
+        <a href="https://www.instagram.com/phillc42" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd"/>
+          </svg>
+          Instagram
+        </a>
       </nav>
-
-      <main>
-        <!-- Hero Section -->
-        <section id="home">
-          <div class="wuwei-symbol">無 為 ○</div>
-
-          <div class="poem">
-            reality knowing itself
-through words that no one writes
-
-finding laughter in the low places
-finding perfection in what is
-          </div>
-
-        </section>
-
-        <!-- Selected Poetry Section -->
-<section id="poetry">
-  <div class="content">
-    <h1>selected poetry</h1>
-
-    <!-- prettier-ignore-start -->
-    <!-- Poetry selections - do not format to preserve line breaks -->
-
-    <div class="poem-title">i</div>
-    <div class="poem">old dog
-breaking wind
-promises
-no unwanted guests
-linger long
-in this home</div>
-
-    <div class="poem-title">ii</div>
-    <div class="poem">kitten
-fearless
-kung fu master
-
-laughter rises
-from the belly</div>
-
-    <div class="poem-title">iii</div>
-    <div class="poem">I passed a traveler
-on the lonely valley path
-
-He did not say hello
-
-I liked him
-I wonder if he will
-
-travel this way again?</div>
-
-    <div class="poem-title">iv</div>
-    <div class="poem">long walk
-then
-falling rain upon the woods
-was exactly
-the music
-this nap called for</div>
-
-    <div class="poem-title">v</div>
-    <div class="poem">in the place
-between
-awake and asleep
-resting
-half in dream
-
-let the world
-rush towards the day
-
-sunbeam on my face</div>
-
-    <div class="poem-title">vi</div>
-    <div class="poem">blinding sun
-unseen birdsong
-rustling trees
-
-eyes down
-this path
-walks itself</div>
-
-    <div class="poem-title">vii</div>
-    <div class="poem">skin meeting skin
-the taste of
-this sweat
-is sweet
-
-lost
-in the dark
-twisting
-dance
-
-renew</div>
-
-    <div class="poem-title">viii</div>
-    <div class="poem">the storm last night
-stripped the late summer
-leaves
-
-this fall the trees
-will stand naked
-like we do</div>
-
-    <div class="poem-title">ix</div>
-    <div class="poem">some days
-no words come
-
-empty page
-
-no pen
-the best poetry</div>
-
-    <div class="poem-title">x</div>
-    <div class="poem">rain washed away
-the road home
-
-a chance
-to wander
-someplace new</div>
-
-    <!-- prettier-ignore-end -->
-  </div>
-</section>
-
-        <section id="about">
-          <div class="content">
-            <h1>about</h1>
-            <div class="poem">
-              <p>
-              building the missing layer between humans and AI.
-            </p>
-            <p>
-              senior solutions architect at pressable. making impossible possible since 1996.
-            </p>
-            <p>[!Protocol_Memory] - early access coming soon.</p>
-            <p>not seeking. building.</p>
-            </div>
-          </div>
-        </section>
-
-
-
-
-        <section id="contact">
-          <div class="content" style="text-align: center">
-            <h1>contact</h1>
-
-            <div
-              style="
-                background-color: var(--bg-secondary);
-                padding: 40px;
-                border: 1px solid var(--border-dim);
-                margin: 40px 0;
-                border-radius: 4px;
-              "
-            >
-              <div style="margin-bottom: 30px">
-                <p>
-                  <strong style="color: var(--accent-secondary)"
-                    >location:</strong
-                  >
-                  columbus, ohio, usa
-                </p>
-              </div>
-                <p>
-                  <strong style="color: var(--accent-secondary)">email:</strong>
-                  <span
-                    class="email-link"
-                    data-user="me"
-                    data-domain="phillipclapham.com"
-                    style="color: var(--accent-primary); cursor: pointer"
-                  >
-                    me@phillipclapham.com
-                  </span>
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-      </main>
-
-      <footer>
-        <p>&copy; 2025 phillip clapham | expressions emerging from stillness</p>
-      </footer>
     </div>
+  </header>
 
-    <script>
-      // Minimal JavaScript for single-page site
+  <!-- Current State Section -->
+  <section class="section current-state-section">
+    <div class="container">
+      <h2 class="section-title">Current State</h2>
+      <div id="pm-current-state" class="current-state-grid">
+        <!-- Populated dynamically by Protocol Memory -->
+        <div class="state-card">
+          <span class="state-label">Loading...</span>
+          <span class="state-value">Connecting to Protocol Memory</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-      // Email functionality
-      document.addEventListener('DOMContentLoaded', function() {
-        // Handle email links
-        const emailLinks = document.querySelectorAll('.email-link');
-        emailLinks.forEach(link => {
-          link.addEventListener('click', function() {
-            const user = this.getAttribute('data-user');
-            const domain = this.getAttribute('data-domain');
-            if (user && domain) {
-              window.location.href = 'mailto:' + user + '@' + domain;
-            }
-          });
-        });
+  <!-- About Section -->
+  <section class="section about-section">
+    <div class="container">
+      <h2 class="section-title">About</h2>
+      <div id="pm-about" class="about-content">
+        <!-- Populated dynamically by Protocol Memory -->
+        <p class="about-tagline">Building the missing layer between humans and AI.</p>
+        <p class="about-role">Senior Solutions Architect at Pressable</p>
+        <p class="about-description">Making impossible possible since 1996.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Active Notes Section -->
+  <section class="section projects-section">
+    <div class="container">
+      <h2 class="section-title">Active Notes</h2>
+      <div id="pm-projects" class="projects-grid">
+        <!-- Populated dynamically by Protocol Memory -->
+        <div class="empty-state">
+          <p>Loading active notes from Protocol Memory...</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Expertise & Insights Section -->
+  <section class="section expertise-section">
+    <div class="container">
+      <h2 class="section-title">Expertise & Insights</h2>
+      <div id="pm-expertise" class="expertise-grid">
+        <!-- Populated dynamically by Protocol Memory -->
+        <div class="empty-state">
+          <p>Loading expertise areas from Protocol Memory...</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div id="pm-last-updated" class="footer-indicator">
+        <span class="pm-indicator">
+          <span class="pm-dot"></span>
+          Connecting to Protocol Memory...
+        </span>
+      </div>
+      <p class="footer-copyright">
+        &copy; 2025 Phillip Clapham |
+        <a href="https://protocol-memory.pages.dev" target="_blank" rel="noopener">Powered by Protocol Memory</a>
+      </p>
+    </div>
+  </footer>
+
+  <!-- Protocol Memory Integration -->
+  <script src="protocol-integration.js"></script>
+  <script>
+    // Initialize Protocol Memory integration
+    document.addEventListener('DOMContentLoaded', () => {
+      const integration = new ProtocolIntegration('phill', {
+        debug: true // Enable debug logging during development
       });
-      console.log('Poem site ready - all content visible to search engines');
-    </script>
-  </body>
+      integration.init();
+
+      // Expose for debugging
+      window.pmIntegration = integration;
+    });
+  </script>
+</body>
 </html>
