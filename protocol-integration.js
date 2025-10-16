@@ -42,6 +42,7 @@ class ProtocolIntegration {
    * @param {string} username - Protocol Memory username (from public profile URL)
    * @param {Object} options - Configuration options
    * @param {string} options.apiUrl - API endpoint (default: auto-detect from Supabase)
+   * @param {string} options.anonKey - Supabase anon key for authentication (default: Protocol Memory production key)
    * @param {number} options.refreshInterval - Auto-refresh interval in milliseconds (default: 5 minutes)
    * @param {number} options.retryDelay - Retry delay on error in milliseconds (default: 30 seconds)
    * @param {boolean} options.debug - Enable debug logging (default: false)
@@ -52,6 +53,7 @@ class ProtocolIntegration {
     // Configuration with defaults
     this.config = {
       apiUrl: options.apiUrl || 'https://urfuxifxphtqsrkuoifn.supabase.co/functions/v1/public-profile',
+      anonKey: options.anonKey || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVyZnV4aWZ4cGh0cXNya3VvaWZuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTgwNTY5NzUsImV4cCI6MjA3MzYzMjk3NX0.i_OioOUbgn6BN-38-ps26siSY4_iRH6Ac3boAHywPng',
       refreshInterval: options.refreshInterval || (5 * 60 * 1000), // 5 minutes
       retryDelay: options.retryDelay || (30 * 1000), // 30 seconds
       debug: options.debug || false
@@ -86,7 +88,8 @@ class ProtocolIntegration {
       const response = await fetch(apiUrl, {
         method: 'GET',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${this.config.anonKey}`
         }
       });
 
