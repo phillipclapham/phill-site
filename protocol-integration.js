@@ -137,7 +137,7 @@ class ProtocolIntegration {
         // Simple format: just a string
         energyHTML = `
           <div class="pm-state-item">
-            <span class="pm-label">Energy:</span>
+            <span class="pm-label">Energy</span>
             <span class="pm-value">${this.escapeHtml(energy)}</span>
           </div>
         `;
@@ -148,32 +148,43 @@ class ProtocolIntegration {
           : '';
         energyHTML = `
           <div class="pm-state-item">
-            <span class="pm-label">Energy:</span>
+            <span class="pm-label">Energy</span>
             <span class="pm-value">${this.escapeHtml(energy.display)}${timestampText}</span>
           </div>
         `;
       }
     }
 
+    // Build secondary items (energy, location, availability)
+    const secondaryItems = [energyHTML];
+    if (location) {
+      secondaryItems.push(`
+        <div class="pm-state-item">
+          <span class="pm-label">Location</span>
+          <span class="pm-value">${this.escapeHtml(location)}</span>
+        </div>
+      `);
+    }
+    if (availability) {
+      secondaryItems.push(`
+        <div class="pm-state-item">
+          <span class="pm-label">Availability</span>
+          <span class="pm-value">${this.escapeHtml(availability)}</span>
+        </div>
+      `);
+    }
+
     stateEl.innerHTML = `
       <div class="pm-state-grid">
         ${focus ? `
-          <div class="pm-state-item">
-            <span class="pm-label">Current Focus:</span>
+          <div class="pm-state-item pm-state-focus">
+            <span class="pm-label">Current Focus</span>
             <span class="pm-value">${this.escapeHtml(focus)}</span>
           </div>
         ` : ''}
-        ${energyHTML}
-        ${location ? `
-          <div class="pm-state-item">
-            <span class="pm-label">Location:</span>
-            <span class="pm-value">${this.escapeHtml(location)}</span>
-          </div>
-        ` : ''}
-        ${availability ? `
-          <div class="pm-state-item">
-            <span class="pm-label">Availability:</span>
-            <span class="pm-value">${this.escapeHtml(availability)}</span>
+        ${secondaryItems.length > 0 ? `
+          <div class="pm-state-secondary">
+            ${secondaryItems.join('')}
           </div>
         ` : ''}
       </div>
@@ -208,12 +219,13 @@ class ProtocolIntegration {
     const showTagline = tagline && tagline !== philosophy;
 
     // Build comprehensive about section with semantic hierarchy
+    // Order: tagline, role, current work, background, philosophy
     aboutEl.innerHTML = `
       ${showTagline ? `<p class="pm-tagline">${this.escapeHtml(tagline)}</p>` : ''}
-      ${philosophy ? `<p class="pm-philosophy"><strong>Philosophy:</strong> ${this.escapeHtml(philosophy)}</p>` : ''}
       ${role ? `<p class="pm-role"><strong>Role:</strong> ${this.escapeHtml(role)}</p>` : ''}
-      ${bioContent ? `<div class="pm-bio"><strong>Background:</strong> ${this.escapeHtml(bioContent)}</div>` : ''}
       ${currentWork ? `<p class="pm-current-work"><strong>Current Work:</strong> ${this.escapeHtml(currentWork)}</p>` : ''}
+      ${bioContent ? `<div class="pm-bio"><strong>Background:</strong> ${this.escapeHtml(bioContent)}</div>` : ''}
+      ${philosophy ? `<p class="pm-philosophy"><strong>Philosophy:</strong> ${this.escapeHtml(philosophy)}</p>` : ''}
       ${expertise ? `<p class="pm-expertise-summary"><strong>Expertise:</strong> ${this.escapeHtml(expertise)}</p>` : ''}
     `;
   }
@@ -245,8 +257,9 @@ class ProtocolIntegration {
 
     projectsEl.innerHTML = `
       <ul class="pm-projects-list">
-        ${topSeeds.map(seed => `
-          <li class="pm-project-item">
+        ${topSeeds.map((seed, index) => `
+          <li class="pm-project-item" data-seed-index="${index}">
+            <button class="pm-maximize-icon" data-modal-seed="${index}" aria-label="Open in modal">⤢</button>
             <div class="pm-project-header">
               <span class="pm-project-title">${this.escapeHtml(seed.text || seed.title || 'Untitled')}</span>
               ${seed.priority ? `<span class="pm-priority pm-priority-${seed.priority}">${seed.priority}</span>` : ''}
@@ -263,11 +276,16 @@ class ProtocolIntegration {
         `).join('')}
       </ul>
     `;
+
+    // Store seeds data for modal
+    this.cachedSeeds = topSeeds;
+    // Attach modal handlers for seeds
+    this.attachModalHandlers('seed');
   }
 
   /**
    * Update Expertise section (from contexts)
-   * Displays expertise areas with preview text
+   * Displays expertise areas with preview text and expandable content
    *
    * @param {Array} contexts - Array of context objects
    */
@@ -280,24 +298,93 @@ class ProtocolIntegration {
       return;
     }
 
+    const PREVIEW_LENGTH = 500; // Character limit for preview
+
     expertiseEl.innerHTML = `
       <div class="pm-expertise-grid">
-        ${contexts.map(context => `
-          <div class="pm-expertise-card">
-            <h3 class="pm-expertise-name">${this.escapeHtml(context.name)}</h3>
-            ${context.type ? `<p class="pm-expertise-type">${this.escapeHtml(context.type)}</p>` : ''}
-            ${context.content ? `
-              <p class="pm-expertise-preview">${this.escapeHtml(context.content.substring(0, 150))}${context.content.length > 150 ? '...' : ''}</p>
-            ` : ''}
-            ${context.tags && context.tags.length > 0 ? `
-              <div class="pm-expertise-tags">
-                ${context.tags.map(tag => `<span class="pm-tag">${this.escapeHtml(tag)}</span>`).join('')}
-              </div>
-            ` : ''}
-          </div>
-        `).join('')}
+        ${contexts.map((context, index) => {
+          const contentLength = context.content ? context.content.length : 0;
+          const needsExpansion = contentLength > PREVIEW_LENGTH;
+          const previewText = needsExpansion
+            ? context.content.substring(0, PREVIEW_LENGTH).replace(/\s+\S*$/, '') + '...'
+            : context.content;
+
+          return `
+            <div class="pm-expertise-card" data-card-index="${index}">
+              <button class="pm-maximize-icon" data-modal-context="${index}" aria-label="Open in modal">⤢</button>
+              <h3 class="pm-expertise-name">${this.escapeHtml(context.name)}</h3>
+              ${context.type ? `<p class="pm-expertise-type">${this.escapeHtml(context.type)}</p>` : ''}
+              ${context.content ? `
+                <div class="pm-expertise-content">
+                  <p class="pm-expertise-preview ${needsExpansion ? 'pm-can-expand' : ''}" data-collapsed="true">
+                    ${this.escapeHtml(previewText)}
+                  </p>
+                  ${needsExpansion ? `
+                    <p class="pm-expertise-full" data-full-content style="display: none;">
+                      ${this.escapeHtml(context.content)}
+                    </p>
+                    <button class="pm-show-more-btn" data-expand-btn>
+                      <span data-expand-text>Show more</span> ▼
+                    </button>
+                  ` : ''}
+                </div>
+              ` : ''}
+              ${context.tags && context.tags.length > 0 ? `
+                <div class="pm-expertise-tags">
+                  ${context.tags.map(tag => `<span class="pm-tag">${this.escapeHtml(tag)}</span>`).join('')}
+                </div>
+              ` : ''}
+            </div>
+          `;
+        }).join('')}
       </div>
     `;
+
+    // Store contexts data for modal
+    this.cachedContexts = contexts;
+    // Add click handlers for expansion buttons
+    this.attachExpertiseExpansionHandlers();
+    // Attach modal handlers for contexts
+    this.attachModalHandlers('context');
+  }
+
+  /**
+   * Attach click handlers for expertise card expansion
+   */
+  attachExpertiseExpansionHandlers() {
+    const expertiseEl = document.getElementById('pm-expertise');
+    if (!expertiseEl) return;
+
+    const expandButtons = expertiseEl.querySelectorAll('[data-expand-btn]');
+    expandButtons.forEach(button => {
+      button.addEventListener('click', (e) => {
+        e.preventDefault();
+        const card = button.closest('.pm-expertise-card');
+        const preview = card.querySelector('.pm-expertise-preview');
+        const fullContent = card.querySelector('.pm-expertise-full');
+        const expandText = button.querySelector('[data-expand-text]');
+        const isCollapsed = preview.dataset.collapsed === 'true';
+
+        if (isCollapsed) {
+          // Expand
+          preview.style.display = 'none';
+          fullContent.style.display = 'block';
+          preview.dataset.collapsed = 'false';
+          expandText.textContent = 'Show less';
+          button.innerHTML = '<span data-expand-text>Show less</span> ▲';
+        } else {
+          // Collapse
+          preview.style.display = 'block';
+          fullContent.style.display = 'none';
+          preview.dataset.collapsed = 'true';
+          expandText.textContent = 'Show more';
+          button.innerHTML = '<span data-expand-text>Show more</span> ▼';
+
+          // Scroll card back into view
+          card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      });
+    });
   }
 
   /**
@@ -313,7 +400,7 @@ class ProtocolIntegration {
       <span class="pm-indicator">
         <span class="pm-dot"></span>
         Updated ${timeAgo} via
-        <a href="https://protocol-memory.pages.dev" target="_blank" rel="noopener">Protocol Memory</a>
+        <a href="https://protocolmemory.com" target="_blank" rel="noopener">Protocol Memory</a>
       </span>
     `;
   }
@@ -419,6 +506,105 @@ class ProtocolIntegration {
     if (seconds < 604800) return `${Math.floor(seconds / 86400)} days ago`;
 
     return 'recently';
+  }
+
+  /**
+   * Attach modal handlers for maximize icons
+   * @param {string} type - 'seed' or 'context'
+   */
+  attachModalHandlers(type) {
+    const buttons = document.querySelectorAll(`[data-modal-${type}]`);
+    buttons.forEach(button => {
+      button.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const index = parseInt(button.dataset[`modal${type.charAt(0).toUpperCase() + type.slice(1)}`]);
+        this.openModal(type, index);
+      });
+    });
+  }
+
+  /**
+   * Open modal with content
+   * @param {string} type - 'seed' or 'context'
+   * @param {number} index - Index in cached data
+   */
+  openModal(type, index) {
+    const modal = document.getElementById('pm-modal');
+    const modalBody = modal.querySelector('.pm-modal-body');
+
+    if (!modal || !modalBody) return;
+
+    let content = '';
+
+    if (type === 'seed' && this.cachedSeeds && this.cachedSeeds[index]) {
+      const seed = this.cachedSeeds[index];
+      content = `
+        <h3>${this.escapeHtml(seed.text || seed.title || 'Untitled')}</h3>
+        ${seed.priority ? `<span class="pm-priority pm-priority-${seed.priority}">${seed.priority}</span><br><br>` : ''}
+        ${seed.description ? `<p>${this.escapeHtml(seed.description)}</p>` : ''}
+        ${seed.tags && seed.tags.length > 0 ? `
+          <div class="pm-project-tags">
+            ${seed.tags.map(tag => `<span class="pm-tag">${this.escapeHtml(tag)}</span>`).join('')}
+          </div>
+        ` : ''}
+      `;
+    } else if (type === 'context' && this.cachedContexts && this.cachedContexts[index]) {
+      const context = this.cachedContexts[index];
+      content = `
+        <h3>${this.escapeHtml(context.name)}</h3>
+        ${context.type ? `<p class="pm-expertise-type">${this.escapeHtml(context.type)}</p>` : ''}
+        ${context.content ? `<p>${this.escapeHtml(context.content)}</p>` : ''}
+        ${context.tags && context.tags.length > 0 ? `
+          <div class="pm-expertise-tags">
+            ${context.tags.map(tag => `<span class="pm-tag">${this.escapeHtml(tag)}</span>`).join('')}
+          </div>
+        ` : ''}
+      `;
+    }
+
+    modalBody.innerHTML = content;
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+
+    // Setup modal close handlers
+    this.setupModalCloseHandlers(modal);
+  }
+
+  /**
+   * Setup modal close event handlers
+   * @param {HTMLElement} modal - Modal element
+   */
+  setupModalCloseHandlers(modal) {
+    const closeBtn = modal.querySelector('.pm-modal-close');
+    const backdrop = modal.querySelector('.pm-modal-backdrop');
+
+    // Close button
+    if (closeBtn) {
+      closeBtn.onclick = () => this.closeModal(modal);
+    }
+
+    // Click outside (backdrop)
+    if (backdrop) {
+      backdrop.onclick = () => this.closeModal(modal);
+    }
+
+    // ESC key
+    const escHandler = (e) => {
+      if (e.key === 'Escape') {
+        this.closeModal(modal);
+        document.removeEventListener('keydown', escHandler);
+      }
+    };
+    document.addEventListener('keydown', escHandler);
+  }
+
+  /**
+   * Close modal
+   * @param {HTMLElement} modal - Modal element
+   */
+  closeModal(modal) {
+    modal.style.display = 'none';
+    document.body.style.overflow = '';
   }
 
   /**
