@@ -262,7 +262,12 @@ class ProtocolIntegration {
             <button class="pm-maximize-icon" data-modal-seed="${index}" aria-label="Open in modal">⤢</button>
             <div class="pm-project-header">
               <span class="pm-project-title">${this.escapeHtml(seed.text || seed.title || 'Untitled')}</span>
-              ${seed.priority ? `<span class="pm-priority pm-priority-${seed.priority}">${seed.priority}</span>` : ''}
+              ${(seed.priority || seed.status) ? `
+                <div class="pm-badges">
+                  ${seed.priority ? `<span class="pm-priority pm-priority-${seed.priority}">${seed.priority}</span>` : ''}
+                  ${seed.status ? `<span class="pm-status pm-status-${seed.status}">${seed.status}</span>` : ''}
+                </div>
+              ` : ''}
             </div>
             ${seed.description ? `
               <p class="pm-project-desc">${this.escapeHtml(seed.description)}</p>
@@ -540,7 +545,13 @@ class ProtocolIntegration {
       const seed = this.cachedSeeds[index];
       content = `
         <h3>${this.escapeHtml(seed.text || seed.title || 'Untitled')}</h3>
-        ${seed.priority ? `<span class="pm-priority pm-priority-${seed.priority}">${seed.priority}</span><br><br>` : ''}
+        ${(seed.priority || seed.status) ? `
+          <div class="pm-modal-badges">
+            ${seed.priority ? `<span class="pm-priority pm-priority-${seed.priority}">${seed.priority}</span>` : ''}
+            ${seed.status ? `<span class="pm-status pm-status-${seed.status}">${seed.status}</span>` : ''}
+          </div>
+          <br>
+        ` : ''}
         ${seed.description ? `<p>${this.escapeHtml(seed.description)}</p>` : ''}
         ${seed.tags && seed.tags.length > 0 ? `
           <div class="pm-project-tags">
