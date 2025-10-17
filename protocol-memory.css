@@ -185,7 +185,7 @@ body {
   text-decoration: none;
   font-size: var(--text-sm);
   font-weight: 500;
-  padding: var(--space-2) var(--space-4);
+  padding: var(--space-3) var(--space-4);
   border-radius: var(--radius-lg);
   transition: all var(--transition-base);
 }
@@ -198,6 +198,7 @@ body {
 .social-links svg {
   width: 18px;
   height: 18px;
+  flex-shrink: 0; /* Prevent icon from being squished */
 }
 
 /* Mobile Header */
@@ -440,6 +441,32 @@ body {
   text-align: center;
 }
 
+/* Profile Avatar - Gravatar Integration */
+.profile-avatar {
+  width: 128px;
+  height: 128px;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: var(--color-bg-tertiary);
+  border: 4px solid var(--color-primary);
+  margin: 0 auto var(--space-6);
+  transition: transform var(--transition-base);
+  box-shadow: var(--shadow-md);
+}
+
+.profile-avatar:hover {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Fallback for no avatar - gradient background */
+.profile-avatar:empty {
+  background-color: var(--color-bg-tertiary);
+  background-image: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+}
+
 .about-tagline,
 .pm-tagline {
   font-size: var(--text-2xl);
@@ -498,7 +525,7 @@ body {
 .pm-expertise-summary strong {
   display: block;
   color: var(--color-primary);
-  font-size: var(--text-base);
+  font-size: 1rem; /* Explicit 1rem for consistency */
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -506,7 +533,19 @@ body {
   text-align: center;
 }
 
+/* Ensure all About section labels are consistent */
+.pm-about label,
+.pm-about strong {
+  font-size: 1rem !important; /* Force consistency across all labels */
+}
+
 @media (max-width: 768px) {
+  .profile-avatar {
+    width: 96px;
+    height: 96px;
+    margin-bottom: var(--space-5);
+  }
+
   .about-tagline,
   .pm-tagline {
     font-size: var(--text-xl);
@@ -1285,8 +1324,6 @@ body {
 /* Maximize Icon on Cards */
 .pm-maximize-icon {
   position: absolute;
-  top: var(--space-3);
-  left: var(--space-3);
   background: var(--color-bg);
   border: 1px solid var(--color-border);
   width: 32px;
@@ -1301,6 +1338,18 @@ body {
   color: var(--color-text-secondary);
   font-size: var(--text-sm);
   z-index: var(--z-dropdown);
+}
+
+/* Seed cards - maximize icon bottom-right */
+.pm-project-item .pm-maximize-icon {
+  bottom: var(--space-3);
+  right: var(--space-3);
+}
+
+/* Context cards - maximize icon top-right */
+.pm-expertise-card .pm-maximize-icon {
+  top: var(--space-3);
+  right: var(--space-3);
 }
 
 .pm-maximize-icon:hover {

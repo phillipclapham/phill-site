@@ -104,7 +104,7 @@ class ProtocolIntegration {
 
       // Update all site sections
       this.updateCurrentState(this.data.fields?.current_state);
-      this.updateAbout(this.data.fields?.identity, this.data.fields?.about);
+      await this.updateAbout(this.data.fields?.identity, this.data.fields?.about);
       this.updateProjects(this.data.seeds);
       this.updateExpertise(this.data.contexts);
       this.updateLastUpdatedIndicator();
@@ -193,12 +193,13 @@ class ProtocolIntegration {
 
   /**
    * Update About section
-   * Displays: tagline, philosophy, bio, current work, expertise summary
+   * Displays: avatar, tagline, philosophy, bio, current work, expertise summary
    *
+   * @async
    * @param {Object} identity - Identity fields
    * @param {Object} about - About fields
    */
-  updateAbout(identity, about) {
+  async updateAbout(identity, about) {
     const aboutEl = document.getElementById('pm-about');
     if (!aboutEl) return;
 
@@ -218,9 +219,26 @@ class ProtocolIntegration {
     // Only show tagline if it's different from philosophy (avoid duplication)
     const showTagline = tagline && tagline !== philosophy;
 
+    // Fetch avatar URL (server-side pre-computed OR client-side generated)
+    let avatarHTML = '';
+    const avatarUrl = this.data?.avatar_url; // Server-side pre-computed (privacy-preserving)
+    const email = this.data?.email; // Fallback: client-side generation
+
+    if (avatarUrl) {
+      // Use pre-computed avatar URL from server (preferred)
+      avatarHTML = `<div class="profile-avatar" style="background-image: url('${avatarUrl}')"></div>`;
+    } else if (email) {
+      // Fallback: Generate avatar URL client-side using Gravatar
+      const generatedUrl = await GravatarHelper.getAvatarUrl(email, 256, 'identicon');
+      if (generatedUrl) {
+        avatarHTML = `<div class="profile-avatar" style="background-image: url('${generatedUrl}')"></div>`;
+      }
+    }
+
     // Build comprehensive about section with semantic hierarchy
-    // Order: tagline, role, current work, background, philosophy
+    // Order: avatar, tagline, role, current work, background, philosophy
     aboutEl.innerHTML = `
+      ${avatarHTML}
       ${showTagline ? `<p class="pm-tagline">${this.escapeHtml(tagline)}</p>` : ''}
       ${role ? `<p class="pm-role"><strong>Role:</strong> ${this.escapeHtml(role)}</p>` : ''}
       ${currentWork ? `<p class="pm-current-work"><strong>Current Work:</strong> ${this.escapeHtml(currentWork)}</p>` : ''}
@@ -631,12 +649,88 @@ class ProtocolIntegration {
   }
 }
 
+/**
+ * GravatarHelper - Generate Gravatar URLs from email addresses
+ *
+ * Gravatar (Globally Recognized Avatar) is a service that provides profile pictures
+ * based on email addresses. This helper generates Gravatar URLs for use in Protocol Memory
+ * public profiles and site integrations.
+ *
+ * Privacy-preserving: Uses cryptographic hash (SHA-256) instead of raw email
+ * Fallback: identicon (geometric pattern) for emails without Gravatar
+ *
+ * Usage:
+ * ```javascript
+ * const avatarUrl = await GravatarHelper.getAvatarUrl('user@example.com', 256);
+ * // Returns: https://www.gravatar.com/avatar/[hash]?s=256&d=identicon
+ * ```
+ *
+ * @class GravatarHelper
+ */
+class GravatarHelper {
+  /**
+   * Generate Gravatar URL from email address
+   *
+   * @static
+   * @param {string} email - User email address
+   * @param {number} [size=256] - Image size in pixels (1-2048)
+   * @param {string} [defaultImage='identicon'] - Fallback image type
+   *   Options: 'identicon', 'mp' (mystery person), 'robohash', 'retro', 'wavatar'
+   * @returns {Promise<string|null>} Gravatar URL or null if email invalid
+   *
+   * @example
+   * const url = await GravatarHelper.getAvatarUrl('test@example.com', 128, 'identicon');
+   * // Returns: "https://www.gravatar.com/avatar/[hash]?s=128&d=identicon"
+   */
+  static async getAvatarUrl(email, size = 256, defaultImage = 'identicon') {
+    if (!email || typeof email !== 'string') {
+      return null;
+    }
+
+    // Gravatar requires lowercase, trimmed email
+    const normalized = email.toLowerCase().trim();
+
+    // Generate hash using SHA-256 (Web Crypto API doesn't support MD5)
+    // Gravatar accepts various hash formats including SHA-256
+    const hash = await this.sha256(normalized);
+
+    // Construct Gravatar URL with size and default image parameters
+    return `https://www.gravatar.com/avatar/${hash}?s=${size}&d=${defaultImage}`;
+  }
+
+  /**
+   * Generate SHA-256 hash of string using Web Crypto API
+   *
+   * Note: Gravatar traditionally uses MD5, but accepts SHA-256 as well.
+   * Using SHA-256 because it's available in Web Crypto API (MD5 is not).
+   *
+   * @static
+   * @private
+   * @param {string} string - String to hash
+   * @returns {Promise<string>} Hexadecimal hash string
+   */
+  static async sha256(string) {
+    // Convert string to Uint8Array
+    const msgBuffer = new TextEncoder().encode(string);
+
+    // Hash using Web Crypto API
+    const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+
+    // Convert ArrayBuffer to hex string
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+
+    return hashHex;
+  }
+}
+
 // Export for module systems
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = ProtocolIntegration;
+  module.exports = { ProtocolIntegration, GravatarHelper };
 }
 
 // Expose globally for browser usage
 if (typeof window !== 'undefined') {
   window.ProtocolIntegration = ProtocolIntegration;
+  window.GravatarHelper = GravatarHelper;
 }

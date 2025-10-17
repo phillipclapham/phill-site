@@ -25,16 +25,42 @@ This repo is a **deployment artifact** managed by the [protocol-memory](https://
 
 ## For Developers
 
-Interested in powering your site with Protocol Memory? See the [Site Integration Library documentation](https://github.com/phillipclapham/protocol-memory) in the main project.
+Interested in powering your site with Protocol Memory?
 
-**Quick Start:**
+### Quick Start
+
+**Via CDN** (Recommended):
 ```html
-<script src="protocol-integration.js"></script>
+<!-- Protocol Memory Integration Library -->
+<script src="https://cdn.jsdelivr.net/gh/phillipclapham/protocol-memory@1.0.0/js/protocol-integration.js"></script>
+
+<!-- Optional: Protocol Memory CSS Styles -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/phillipclapham/protocol-memory@1.0.0/css/protocol-memory.css">
+
 <script>
+  // Initialize with your Protocol Memory username
   const integration = new ProtocolIntegration('your-username');
   integration.init();
 </script>
 ```
+
+**Or Self-Host**:
+1. Download from [GitHub Releases](https://github.com/phillipclapham/protocol-memory/releases)
+2. Include in your HTML
+3. Initialize with your username
+
+### Documentation
+
+- **[Integration Guide](https://github.com/phillipclapham/protocol-memory/blob/main/project_memory/INTEGRATION_GUIDE.md)** - Complete usage docs
+- **[Library Hosting](https://github.com/phillipclapham/protocol-memory/blob/main/project_memory/LIBRARY_HOSTING.md)** - Distribution & versioning
+
+### Features
+
+- Auto-refresh every 5 minutes
+- Gravatar profile pictures
+- Current state, about, projects, expertise
+- Graceful fallback to static content
+- Zero dependencies
 
 ---
 
