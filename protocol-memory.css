@@ -212,13 +212,13 @@ body {
   background: var(--color-bg-tertiary);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
-  padding: var(--space-3) var(--space-4);
-  font-size: 20px;
+  padding: var(--space-2) var(--space-3);
+  font-size: 18px;
   cursor: pointer;
   transition: all var(--transition-base);
-  margin-top: var(--space-4);
   min-width: 44px; /* Touch target accessibility */
   min-height: 44px;
+  flex-shrink: 0; /* Prevent squishing in flex container */
 }
 
 .theme-toggle:hover {
@@ -284,6 +284,10 @@ body {
 }
 
 .secondary-nav .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
   padding-top: var(--space-4);
   padding-bottom: var(--space-4);
 }
@@ -331,8 +335,16 @@ body {
 }
 
 @media (max-width: 768px) {
+  .secondary-nav .container {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-4);
+  }
+
   .nav-links {
     gap: var(--space-3);
+    flex: 1 1 100%;
+    justify-content: center;
   }
 
   .nav-links a {
