@@ -22,6 +22,18 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
   <title>Phillip Clapham | Protocol Memory Showcase</title>
+
+  <!-- Theme: Prevent FOUC (Flash of Unstyled Content) -->
+  <script>
+    // Immediately apply saved theme before page renders
+    (function() {
+      const savedTheme = localStorage.getItem('theme-preference');
+      if (savedTheme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
+
   <link rel="stylesheet" href="protocol-memory.css">
 
   <!-- Preload critical resources -->
@@ -65,6 +77,11 @@
           Instagram
         </a>
       </nav>
+
+      <!-- Theme Toggle -->
+      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+        <span class="theme-icon">🌙</span>
+      </button>
     </div>
   </header>
 
@@ -173,6 +190,55 @@
       // Expose for debugging
       window.pmIntegration = integration;
     });
+  </script>
+
+  <!-- Theme Toggle Handler -->
+  <script>
+    (function() {
+      const STORAGE_KEY = 'theme-preference';
+      const themeToggle = document.getElementById('theme-toggle');
+      const themeIcon = themeToggle.querySelector('.theme-icon');
+
+      // Check current theme
+      function getCurrentTheme() {
+        return document.documentElement.getAttribute('data-theme') || 'light';
+      }
+
+      // Update button icon based on current theme
+      function updateThemeIcon() {
+        const currentTheme = getCurrentTheme();
+        if (currentTheme === 'dark') {
+          themeIcon.textContent = '☀️'; // Show sun when in dark mode (click to go light)
+        } else {
+          themeIcon.textContent = '🌙'; // Show moon when in light mode (click to go dark)
+        }
+      }
+
+      // Toggle theme
+      function toggleTheme() {
+        const currentTheme = getCurrentTheme();
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+        // Update DOM
+        if (newTheme === 'dark') {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        } else {
+          document.documentElement.removeAttribute('data-theme');
+        }
+
+        // Save to localStorage
+        localStorage.setItem(STORAGE_KEY, newTheme);
+
+        // Update icon
+        updateThemeIcon();
+      }
+
+      // Initialize icon on page load
+      updateThemeIcon();
+
+      // Add click listener
+      themeToggle.addEventListener('click', toggleTheme);
+    })();
   </script>
 </body>
 </html>
