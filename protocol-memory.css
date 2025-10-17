@@ -781,6 +781,301 @@ body {
 }
 
 /* ========================================
+   ADVANCED ANIMATIONS & POLISH
+   ======================================== */
+
+/* Fade-in animation for sections */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Stagger animation for grid items */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Section entrance animations */
+.section {
+  animation: fadeInUp 0.6s ease-out;
+  animation-fill-mode: both;
+}
+
+.site-header {
+  animation: fadeIn 0.8s ease-out;
+}
+
+.secondary-nav {
+  animation: fadeIn 0.4s ease-out 0.2s;
+  animation-fill-mode: both;
+}
+
+/* Stagger grid items on load */
+.pm-state-item,
+.state-card {
+  animation: slideInUp 0.5s ease-out;
+  animation-fill-mode: both;
+}
+
+.pm-state-item:nth-child(1),
+.state-card:nth-child(1) { animation-delay: 0.1s; }
+.pm-state-item:nth-child(2),
+.state-card:nth-child(2) { animation-delay: 0.2s; }
+.pm-state-item:nth-child(3),
+.state-card:nth-child(3) { animation-delay: 0.3s; }
+.pm-state-item:nth-child(4),
+.state-card:nth-child(4) { animation-delay: 0.4s; }
+
+/* Project cards stagger */
+.pm-project-item {
+  animation: slideInUp 0.5s ease-out;
+  animation-fill-mode: both;
+}
+
+.pm-project-item:nth-child(1) { animation-delay: 0.1s; }
+.pm-project-item:nth-child(2) { animation-delay: 0.15s; }
+.pm-project-item:nth-child(3) { animation-delay: 0.2s; }
+.pm-project-item:nth-child(4) { animation-delay: 0.25s; }
+.pm-project-item:nth-child(5) { animation-delay: 0.3s; }
+
+/* Expertise cards stagger */
+.pm-expertise-card {
+  animation: slideInUp 0.5s ease-out;
+  animation-fill-mode: both;
+}
+
+.pm-expertise-card:nth-child(1) { animation-delay: 0.1s; }
+.pm-expertise-card:nth-child(2) { animation-delay: 0.15s; }
+.pm-expertise-card:nth-child(3) { animation-delay: 0.2s; }
+.pm-expertise-card:nth-child(4) { animation-delay: 0.25s; }
+.pm-expertise-card:nth-child(5) { animation-delay: 0.3s; }
+.pm-expertise-card:nth-child(6) { animation-delay: 0.35s; }
+
+/* Enhanced hover interactions with 3D transforms */
+.pm-project-item,
+.pm-expertise-card {
+  position: relative;
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.pm-project-item:hover,
+.pm-expertise-card:hover {
+  transform: translateY(-4px) scale(1.01);
+}
+
+.pm-state-item:hover,
+.state-card:hover {
+  transform: translateY(-2px);
+}
+
+/* Smooth social link animations */
+.social-links a {
+  position: relative;
+  overflow: hidden;
+}
+
+.social-links a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(15, 118, 110, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.social-links a:hover::before {
+  left: 100%;
+}
+
+/* Loading skeleton animations */
+@keyframes shimmer {
+  0% {
+    background-position: -468px 0;
+  }
+  100% {
+    background-position: 468px 0;
+  }
+}
+
+.empty-state,
+.pm-empty {
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* Priority badge entrance */
+.pm-priority {
+  animation: fadeIn 0.4s ease-out 0.2s;
+  animation-fill-mode: both;
+}
+
+/* Performance optimizations */
+.pm-project-item,
+.pm-expertise-card,
+.pm-state-item,
+.state-card,
+.nav-links a {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ========================================
+   MOBILE TOUCH OPTIMIZATIONS
+   ======================================== */
+
+/* Touch-friendly tap targets (minimum 44px) */
+@media (max-width: 768px) {
+  .nav-links a,
+  .social-links a {
+    min-height: 44px;
+    min-width: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Disable hover effects on touch devices */
+  .pm-project-item:hover,
+  .pm-expertise-card:hover,
+  .pm-state-item:hover,
+  .state-card:hover {
+    transform: none;
+  }
+
+  /* Add active states for touch feedback */
+  .pm-project-item:active,
+  .pm-expertise-card:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+  }
+
+  .nav-links a:active,
+  .social-links a:active {
+    opacity: 0.7;
+  }
+
+  /* Better mobile padding */
+  .container {
+    padding: 0 var(--space-4);
+  }
+
+  .pm-project-item,
+  .pm-expertise-card {
+    padding: var(--space-5);
+  }
+}
+
+/* iOS Safari specific fixes */
+@supports (-webkit-touch-callout: none) {
+  /* Fix for iOS Safari sticky positioning */
+  .secondary-nav {
+    position: -webkit-sticky;
+    position: sticky;
+  }
+
+  /* Prevent iOS Safari bounce effect interference */
+  body {
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Touch action optimizations */
+.pm-project-item,
+.pm-expertise-card,
+.nav-links a,
+.social-links a {
+  touch-action: manipulation; /* Prevent double-tap zoom */
+  -webkit-tap-highlight-color: rgba(15, 118, 110, 0.1);
+}
+
+/* ========================================
+   CROSS-BROWSER COMPATIBILITY
+   ======================================== */
+
+/* Firefox specific fixes */
+@-moz-document url-prefix() {
+  /* Smooth scroll for Firefox */
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Safari backdrop-filter fallback */
+@supports not (backdrop-filter: blur(8px)) {
+  .secondary-nav {
+    background-color: rgba(255, 255, 255, 0.98);
+  }
+}
+
+/* Ensure transforms work across browsers */
+.pm-project-item,
+.pm-expertise-card {
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+/* Grid fallback for older browsers */
+@supports not (display: grid) {
+  .current-state-grid,
+  .pm-state-grid,
+  .projects-grid,
+  .pm-projects-list,
+  .expertise-grid,
+  .pm-expertise-grid {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .pm-state-item,
+  .state-card,
+  .pm-project-item,
+  .pm-expertise-card {
+    flex: 1 1 300px;
+    margin: var(--space-3);
+  }
+}
+
+/* ========================================
    UTILITY CLASSES
    ======================================== */
 
