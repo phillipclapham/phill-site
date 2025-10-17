@@ -210,9 +210,9 @@ class ProtocolIntegration {
     // Build comprehensive about section with semantic hierarchy
     aboutEl.innerHTML = `
       ${showTagline ? `<p class="pm-tagline">${this.escapeHtml(tagline)}</p>` : ''}
-      ${philosophy ? `<p class="pm-philosophy">${this.escapeHtml(philosophy)}</p>` : ''}
+      ${philosophy ? `<p class="pm-philosophy"><strong>Philosophy:</strong> ${this.escapeHtml(philosophy)}</p>` : ''}
       ${role ? `<p class="pm-role">${this.escapeHtml(role)}</p>` : ''}
-      ${bioContent ? `<div class="pm-bio">${this.escapeHtml(bioContent)}</div>` : ''}
+      ${bioContent ? `<div class="pm-bio"><strong>Background:</strong><br>${this.escapeHtml(bioContent)}</div>` : ''}
       ${currentWork ? `<p class="pm-current-work"><strong>Current Work:</strong> ${this.escapeHtml(currentWork)}</p>` : ''}
       ${expertise ? `<p class="pm-expertise-summary"><strong>Expertise:</strong> ${this.escapeHtml(expertise)}</p>` : ''}
     `;
