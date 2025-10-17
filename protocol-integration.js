@@ -236,26 +236,9 @@ class ProtocolIntegration {
     // Only show tagline if it's different from philosophy (avoid duplication)
     const showTagline = tagline && tagline !== philosophy;
 
-    // Fetch avatar URL (server-side pre-computed OR client-side generated)
-    let avatarHTML = '';
-    const avatarUrl = this.data?.avatar_url; // Server-side pre-computed (privacy-preserving)
-    const email = this.data?.email; // Fallback: client-side generation
-
-    if (avatarUrl) {
-      // Use pre-computed avatar URL from server (preferred)
-      avatarHTML = `<div class="profile-avatar" style="background-image: url('${avatarUrl}')"></div>`;
-    } else if (email) {
-      // Fallback: Generate avatar URL client-side using Gravatar
-      const generatedUrl = await GravatarHelper.getAvatarUrl(email, 256, 'identicon');
-      if (generatedUrl) {
-        avatarHTML = `<div class="profile-avatar" style="background-image: url('${generatedUrl}')"></div>`;
-      }
-    }
-
     // Build comprehensive about section with semantic hierarchy
-    // Order: avatar, tagline, role, current work, background, philosophy
+    // Note: Avatar is displayed in header only (via updateHeaderAvatar), not duplicated here
     aboutEl.innerHTML = `
-      ${avatarHTML}
       ${showTagline ? `<p class="pm-tagline">${this.escapeHtml(tagline)}</p>` : ''}
       ${role ? `<p class="pm-role"><strong>Role:</strong> ${this.escapeHtml(role)}</p>` : ''}
       ${currentWork ? `<p class="pm-current-work"><strong>Current Work:</strong> ${this.escapeHtml(currentWork)}</p>` : ''}
