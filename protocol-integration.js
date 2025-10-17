@@ -182,7 +182,7 @@ class ProtocolIntegration {
 
   /**
    * Update About section
-   * Displays: tagline, role, current work
+   * Displays: tagline, philosophy, bio, current work, expertise summary
    *
    * @param {Object} identity - Identity fields
    * @param {Object} about - About fields
@@ -191,14 +191,30 @@ class ProtocolIntegration {
     const aboutEl = document.getElementById('pm-about');
     if (!aboutEl) return;
 
-    const tagline = about?.tagline || identity?.philosophy || '';
-    const role = identity?.role || about?.current_work || '';
+    // Extract all available fields
     const name = identity?.name || '';
+    const tagline = about?.tagline || identity?.tagline || '';
+    const philosophy = identity?.philosophy || '';
+    const role = identity?.role || '';
+    const bio = about?.bio || identity?.bio || '';
+    const customBio = this.data?.custom_bio || '';
+    const currentWork = about?.current_work || '';
+    const expertise = identity?.expertise || '';
 
+    // Determine which bio to use (prefer custom_bio)
+    const bioContent = customBio || bio;
+
+    // Only show tagline if it's different from philosophy (avoid duplication)
+    const showTagline = tagline && tagline !== philosophy;
+
+    // Build comprehensive about section with semantic hierarchy
     aboutEl.innerHTML = `
-      ${name ? `<p class="pm-name">${this.escapeHtml(name)}</p>` : ''}
-      ${tagline ? `<p class="pm-tagline">${this.escapeHtml(tagline)}</p>` : ''}
+      ${showTagline ? `<p class="pm-tagline">${this.escapeHtml(tagline)}</p>` : ''}
+      ${philosophy ? `<p class="pm-philosophy">${this.escapeHtml(philosophy)}</p>` : ''}
       ${role ? `<p class="pm-role">${this.escapeHtml(role)}</p>` : ''}
+      ${bioContent ? `<div class="pm-bio">${this.escapeHtml(bioContent)}</div>` : ''}
+      ${currentWork ? `<p class="pm-current-work"><strong>Current Work:</strong> ${this.escapeHtml(currentWork)}</p>` : ''}
+      ${expertise ? `<p class="pm-expertise-summary"><strong>Expertise:</strong> ${this.escapeHtml(expertise)}</p>` : ''}
     `;
   }
 

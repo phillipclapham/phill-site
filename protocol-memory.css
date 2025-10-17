@@ -375,6 +375,41 @@ body {
   margin-bottom: var(--space-2);
 }
 
+.pm-philosophy {
+  font-size: var(--text-lg);
+  font-weight: 500;
+  color: var(--color-primary);
+  margin-bottom: var(--space-4);
+  font-style: italic;
+  line-height: 1.6;
+}
+
+.pm-bio {
+  font-size: var(--text-base);
+  color: var(--color-text);
+  line-height: 1.8;
+  margin-bottom: var(--space-6);
+  white-space: pre-wrap; /* Preserve line breaks from bio */
+  text-align: left; /* Left-align for readability on longer text */
+  max-width: 650px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.pm-current-work,
+.pm-expertise-summary {
+  font-size: var(--text-base);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-3);
+  line-height: 1.7;
+}
+
+.pm-current-work strong,
+.pm-expertise-summary strong {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
 @media (max-width: 768px) {
   .about-tagline,
   .pm-tagline {
@@ -384,6 +419,14 @@ body {
   .about-role,
   .pm-role {
     font-size: var(--text-base);
+  }
+
+  .pm-philosophy {
+    font-size: var(--text-base);
+  }
+
+  .pm-bio {
+    font-size: var(--text-sm);
   }
 }
 
