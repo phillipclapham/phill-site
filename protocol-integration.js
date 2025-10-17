@@ -211,8 +211,8 @@ class ProtocolIntegration {
     aboutEl.innerHTML = `
       ${showTagline ? `<p class="pm-tagline">${this.escapeHtml(tagline)}</p>` : ''}
       ${philosophy ? `<p class="pm-philosophy"><strong>Philosophy:</strong> ${this.escapeHtml(philosophy)}</p>` : ''}
-      ${role ? `<p class="pm-role">${this.escapeHtml(role)}</p>` : ''}
-      ${bioContent ? `<div class="pm-bio"><strong>Background:</strong><br>${this.escapeHtml(bioContent)}</div>` : ''}
+      ${role ? `<p class="pm-role"><strong>Role:</strong> ${this.escapeHtml(role)}</p>` : ''}
+      ${bioContent ? `<div class="pm-bio"><strong>Background:</strong> ${this.escapeHtml(bioContent)}</div>` : ''}
       ${currentWork ? `<p class="pm-current-work"><strong>Current Work:</strong> ${this.escapeHtml(currentWork)}</p>` : ''}
       ${expertise ? `<p class="pm-expertise-summary"><strong>Expertise:</strong> ${this.escapeHtml(expertise)}</p>` : ''}
     `;
