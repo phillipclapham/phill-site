@@ -32,10 +32,10 @@ Interested in powering your site with Protocol Memory?
 **Via CDN** (Recommended):
 ```html
 <!-- Protocol Memory Integration Library -->
-<script src="https://cdn.jsdelivr.net/gh/phillipclapham/protocol-memory@1.0.0/js/protocol-integration.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/phillipclapham/protocol-memory-integration@1.0.0/protocol-integration.js"></script>
 
 <!-- Optional: Protocol Memory CSS Styles -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/phillipclapham/protocol-memory@1.0.0/css/protocol-memory.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/phillipclapham/protocol-memory-integration@1.0.0/protocol-memory.css">
 
 <script>
   // Initialize with your Protocol Memory username
@@ -45,14 +45,14 @@ Interested in powering your site with Protocol Memory?
 ```
 
 **Or Self-Host**:
-1. Download from [GitHub Releases](https://github.com/phillipclapham/protocol-memory/releases)
+1. Download from [GitHub Releases](https://github.com/phillipclapham/protocol-memory-integration/releases)
 2. Include in your HTML
 3. Initialize with your username
 
 ### Documentation
 
-- **[Integration Guide](https://github.com/phillipclapham/protocol-memory/blob/main/project_memory/INTEGRATION_GUIDE.md)** - Complete usage docs
-- **[Library Hosting](https://github.com/phillipclapham/protocol-memory/blob/main/project_memory/LIBRARY_HOSTING.md)** - Distribution & versioning
+- **[Integration Guide](https://github.com/phillipclapham/protocol-memory-integration/blob/main/README.md)** - Complete usage docs
+- **[Library Hosting](https://github.com/phillipclapham/protocol-memory-integration/blob/main/LIBRARY_HOSTING.md)** - Distribution & versioning
 
 ### Features
 
