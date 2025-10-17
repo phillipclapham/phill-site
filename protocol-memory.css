@@ -286,7 +286,7 @@ body {
 .secondary-nav .container {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   gap: var(--space-6);
   padding-top: var(--space-4);
   padding-bottom: var(--space-4);
@@ -336,15 +336,11 @@ body {
 
 @media (max-width: 768px) {
   .secondary-nav .container {
-    flex-wrap: wrap;
-    justify-content: center;
     gap: var(--space-4);
   }
 
   .nav-links {
-    gap: var(--space-3);
-    flex: 1 1 100%;
-    justify-content: center;
+    gap: var(--space-2);
   }
 
   .nav-links a {
