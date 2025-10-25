@@ -35,6 +35,7 @@ class GameOfLifeFooter {
     this.rows = 0;
     this.grid = [];
     this.nextGrid = [];
+    this.colorGrid = []; // Stores color index for each cell
 
     // Colors (will be updated from CSS variables)
     this.updateColors();
@@ -53,20 +54,44 @@ class GameOfLifeFooter {
 
   /**
    * Get colors from CSS variables (theme-aware)
+   * Uses the same 11-color spectrum as the header neural pulse
    */
   updateColors() {
     const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
 
+    // 11-color spectrum palette (matches header)
     if (isDark) {
-      // Dark mode: Teal with glow
-      this.cellAliveColor = 'rgba(20, 184, 166, 0.6)';
-      this.cellDyingColor = 'rgba(20, 184, 166, 0.3)';
-      this.cellGlow = '0 0 4px rgba(20, 184, 166, 0.4)';
+      // Dark mode: Vibrant spectrum with higher opacity
+      this.spectrumColors = [
+        'rgba(220, 38, 38, 0.7)',   // Crimson
+        'rgba(249, 115, 22, 0.7)',  // Orange
+        'rgba(245, 158, 11, 0.7)',  // Gold
+        'rgba(132, 204, 22, 0.65)', // Lime
+        'rgba(6, 182, 212, 0.65)',  // Cyan
+        'rgba(14, 165, 233, 0.6)',  // Sky
+        'rgba(79, 70, 229, 0.6)',   // Indigo
+        'rgba(147, 51, 234, 0.55)', // Purple
+        'rgba(236, 72, 153, 0.55)', // Magenta
+        'rgba(244, 114, 182, 0.5)', // Pink
+        'rgba(196, 181, 253, 0.45)' // Lavender
+      ];
+      this.cellGlow = 2; // Subtle glow in dark mode
     } else {
-      // Light mode: Subtle dark gray
-      this.cellAliveColor = 'rgba(50, 50, 50, 0.25)';
-      this.cellDyingColor = 'rgba(50, 50, 50, 0.12)';
-      this.cellGlow = 'none';
+      // Light mode: Subtle spectrum (more muted)
+      this.spectrumColors = [
+        'rgba(220, 38, 38, 0.3)',   // Crimson
+        'rgba(249, 115, 22, 0.28)', // Orange
+        'rgba(245, 158, 11, 0.28)', // Gold
+        'rgba(132, 204, 22, 0.26)', // Lime
+        'rgba(6, 182, 212, 0.26)',  // Cyan
+        'rgba(14, 165, 233, 0.24)', // Sky
+        'rgba(79, 70, 229, 0.24)',  // Indigo
+        'rgba(147, 51, 234, 0.22)', // Purple
+        'rgba(236, 72, 153, 0.22)', // Magenta
+        'rgba(244, 114, 182, 0.2)', // Pink
+        'rgba(196, 181, 253, 0.18)' // Lavender
+      ];
+      this.cellGlow = 0; // No glow in light mode
     }
   }
 
@@ -104,6 +129,7 @@ class GameOfLifeFooter {
   initializeGrid() {
     this.grid = Array(this.rows).fill(null).map(() => Array(this.cols).fill(0));
     this.nextGrid = Array(this.rows).fill(null).map(() => Array(this.cols).fill(0));
+    this.colorGrid = Array(this.rows).fill(null).map(() => Array(this.cols).fill(0));
   }
 
   /**
@@ -216,6 +242,10 @@ class GameOfLifeFooter {
 
         if (gridY >= 0 && gridY < this.rows && gridX >= 0 && gridX < this.cols) {
           this.grid[gridY][gridX] = pattern[y][x];
+          // Assign random spectrum color when cell is born
+          if (pattern[y][x]) {
+            this.colorGrid[gridY][gridX] = Math.floor(Math.random() * this.spectrumColors.length);
+          }
         }
       }
     }
@@ -255,8 +285,14 @@ class GameOfLifeFooter {
           // Alive cell
           this.nextGrid[y][x] = (neighbors === 2 || neighbors === 3) ? 1 : 0;
         } else {
-          // Dead cell
-          this.nextGrid[y][x] = (neighbors === 3) ? 1 : 0;
+          // Dead cell - if born, assign random color
+          const willBeBorn = neighbors === 3;
+          this.nextGrid[y][x] = willBeBorn ? 1 : 0;
+
+          if (willBeBorn) {
+            // Assign random spectrum color to newly born cell
+            this.colorGrid[y][x] = Math.floor(Math.random() * this.spectrumColors.length);
+          }
         }
       }
     }
@@ -294,13 +330,17 @@ class GameOfLifeFooter {
     for (let y = 0; y < this.rows; y++) {
       for (let x = 0; x < this.cols; x++) {
         if (this.grid[y][x]) {
-          // Draw alive cell
-          this.ctx.fillStyle = this.cellAliveColor;
+          // Get cell's assigned spectrum color
+          const colorIndex = this.colorGrid[y][x];
+          const cellColor = this.spectrumColors[colorIndex];
 
-          // Add glow in dark mode
-          if (this.cellGlow !== 'none') {
-            this.ctx.shadowColor = this.cellAliveColor;
-            this.ctx.shadowBlur = 4;
+          // Draw alive cell with its spectrum color
+          this.ctx.fillStyle = cellColor;
+
+          // Add subtle glow in dark mode
+          if (this.cellGlow > 0) {
+            this.ctx.shadowColor = cellColor;
+            this.ctx.shadowBlur = this.cellGlow;
           }
 
           this.ctx.fillRect(
