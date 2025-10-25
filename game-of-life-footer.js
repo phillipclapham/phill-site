@@ -59,59 +59,62 @@ class GameOfLifeFooter {
   updateColors() {
     const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
 
-    // 11-color spectrum palette (matches header)
+    // 11-color spectrum palette (matches header) - VIBRANT and DISTINGUISHABLE
     if (isDark) {
-      // Dark mode: Vibrant spectrum with higher opacity
+      // Dark mode: Full saturation spectrum
       this.spectrumColors = [
-        'rgba(220, 38, 38, 0.7)',   // Crimson
-        'rgba(249, 115, 22, 0.7)',  // Orange
-        'rgba(245, 158, 11, 0.7)',  // Gold
-        'rgba(132, 204, 22, 0.65)', // Lime
-        'rgba(6, 182, 212, 0.65)',  // Cyan
-        'rgba(14, 165, 233, 0.6)',  // Sky
-        'rgba(79, 70, 229, 0.6)',   // Indigo
-        'rgba(147, 51, 234, 0.55)', // Purple
-        'rgba(236, 72, 153, 0.55)', // Magenta
-        'rgba(244, 114, 182, 0.5)', // Pink
-        'rgba(196, 181, 253, 0.45)' // Lavender
+        'rgba(220, 38, 38, 0.85)',   // Crimson
+        'rgba(249, 115, 22, 0.85)',  // Orange
+        'rgba(245, 158, 11, 0.85)',  // Gold
+        'rgba(132, 204, 22, 0.8)',   // Lime
+        'rgba(6, 182, 212, 0.8)',    // Cyan
+        'rgba(14, 165, 233, 0.75)',  // Sky
+        'rgba(79, 70, 229, 0.75)',   // Indigo
+        'rgba(147, 51, 234, 0.7)',   // Purple
+        'rgba(236, 72, 153, 0.7)',   // Magenta
+        'rgba(244, 114, 182, 0.65)', // Pink
+        'rgba(196, 181, 253, 0.6)'   // Lavender
       ];
-      this.cellGlow = 2; // Subtle glow in dark mode
+      this.cellGlow = 3; // More glow in dark mode
     } else {
-      // Light mode: Subtle spectrum (more muted)
+      // Light mode: Saturated spectrum (clearly distinguishable colors)
       this.spectrumColors = [
-        'rgba(220, 38, 38, 0.3)',   // Crimson
-        'rgba(249, 115, 22, 0.28)', // Orange
-        'rgba(245, 158, 11, 0.28)', // Gold
-        'rgba(132, 204, 22, 0.26)', // Lime
-        'rgba(6, 182, 212, 0.26)',  // Cyan
-        'rgba(14, 165, 233, 0.24)', // Sky
-        'rgba(79, 70, 229, 0.24)',  // Indigo
-        'rgba(147, 51, 234, 0.22)', // Purple
-        'rgba(236, 72, 153, 0.22)', // Magenta
-        'rgba(244, 114, 182, 0.2)', // Pink
-        'rgba(196, 181, 253, 0.18)' // Lavender
+        'rgba(220, 38, 38, 0.5)',    // Crimson - RED
+        'rgba(249, 115, 22, 0.5)',   // Orange - ORANGE
+        'rgba(245, 158, 11, 0.5)',   // Gold - YELLOW
+        'rgba(132, 204, 22, 0.45)',  // Lime - GREEN
+        'rgba(6, 182, 212, 0.45)',   // Cyan - CYAN
+        'rgba(14, 165, 233, 0.45)',  // Sky - BLUE
+        'rgba(79, 70, 229, 0.45)',   // Indigo - INDIGO
+        'rgba(147, 51, 234, 0.4)',   // Purple - PURPLE
+        'rgba(236, 72, 153, 0.4)',   // Magenta - PINK
+        'rgba(244, 114, 182, 0.4)',  // Pink - LIGHT PINK
+        'rgba(196, 181, 253, 0.35)'  // Lavender - LAVENDER
       ];
       this.cellGlow = 0; // No glow in light mode
     }
   }
 
   /**
-   * Setup canvas dimensions
+   * Setup canvas dimensions - fills entire footer
    */
   setupCanvas() {
     const updateSize = () => {
       const container = this.canvas.parentElement;
       const width = container.clientWidth;
+      const height = container.clientHeight;
 
       // Responsive grid sizing
       const isMobile = width < 768;
       this.cellSize = isMobile ? 6 : 8;
-      this.cols = Math.floor(width / this.cellSize);
-      this.rows = isMobile ? 10 : 12;
 
-      // Set canvas size
+      // Calculate columns and rows to FILL the entire footer
+      this.cols = Math.floor(width / this.cellSize);
+      this.rows = Math.floor(height / this.cellSize);
+
+      // Set canvas size to fill footer
       this.canvas.width = width;
-      this.canvas.height = this.rows * this.cellSize;
+      this.canvas.height = height;
 
       // Update grid if dimensions changed
       if (this.grid.length !== this.rows || this.grid[0]?.length !== this.cols) {
