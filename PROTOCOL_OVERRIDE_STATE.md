@@ -1,16 +1,6 @@
 # Protocol Override Feature - Current State & Todo List
 
-## 🚨 CURRENT ISSUE TO FIX IMMEDIATELY
-
-**Cloud animation is too slow - no visible motion**
-- Need to speed up animation so motion is subtle but VISIBLE
-- Want mesmerizing, dynamic, engaging effect
-- Current: 120s (light), 90s (dark), 100s (mobile)
-- Suggestion: Try 40-60s range for visible but subtle movement
-
----
-
-## ✅ COMPLETED TASKS (5/20)
+## ✅ COMPLETED TASKS (6/20)
 
 ### Phase 1: Ambient Cloud Layer - COMPLETE ✅
 1. ✅ Built subtle background cloud layer (CSS gradient blobs)
@@ -22,31 +12,36 @@
 5. ✅ Added CSS intensity adjustments for Founder Mode
    - Light desktop clouds: Black/gray → Spectrum colors on `[data-mode="founder"]`
    - Light desktop neural pulse: Black/gray → Gradient bars on `[data-mode="founder"]`
+6. ✅ Fixed cloud animation speed - NOW VISIBLE & MESMERIZING
+   - Light: 120s → 50s (2.4x faster)
+   - Dark: 90s → 40s (2.25x faster)
+   - Mobile: 100s → 45s (2.2x faster)
+   - Motion now clearly visible but subtle
 
 ---
 
-## 📋 TODO LIST (15 remaining)
+## 📋 TODO LIST (14 remaining)
 
-### Phase 2: Vortex Toggle & Visual Intensifiers (5 tasks)
-- [ ] 6. Add vortex symbol (🌀) to footer near copyright
-- [ ] 7. Create tooltip system (shows once on first visit, localStorage)
-- [ ] 8. Build toggle mechanism (data-mode attribute switching)
-- [ ] 9. Wire up visual intensifiers (clouds 2x opacity, pulse faster, Game of Life 18 gen/sec, etc)
-- [ ] 10. Add mode indicator UI (FOUNDER MODE ACTIVE)
+### Phase 2: Vortex Toggle & Visual Intensifiers (4 tasks)
+- [ ] 7. Add vortex symbol (🌀) to footer near copyright
+- [ ] 8. Create tooltip system (shows once on first visit, localStorage)
+- [ ] 9. Build toggle mechanism (data-mode attribute switching)
+- [ ] 10. Wire up visual intensifiers (clouds 2x opacity, pulse faster, Game of Life 18 gen/sec, etc)
+- [ ] 11. Add mode indicator UI (FOUNDER MODE ACTIVE)
 
 ### Phase 3: Founder Mode Content (7 tasks)
-- [ ] 11. Create override-content.js file structure
-- [ ] 12. Write Founder Mode tagline copy
-- [ ] 13. Write Founder Mode bio/about copy
-- [ ] 14. Write Founder Mode philosophy section copy
-- [ ] 15. Write Founder Mode role/expertise copy
-- [ ] 16. Wire up content swap system (API content ↔ static founder content)
-- [ ] 17. Add smooth transitions for content changes
+- [ ] 12. Create override-content.js file structure
+- [ ] 13. Write Founder Mode tagline copy
+- [ ] 14. Write Founder Mode bio/about copy
+- [ ] 15. Write Founder Mode philosophy section copy
+- [ ] 16. Write Founder Mode role/expertise copy
+- [ ] 17. Wire up content swap system (API content ↔ static founder content)
+- [ ] 18. Add smooth transitions for content changes
 
 ### Phase 4: Polish & Testing (3 tasks)
-- [ ] 18. Mobile optimization for clouds and toggle
-- [ ] 19. Fine-tune transition timing across all elements
-- [ ] 20. Final polish and testing in both modes
+- [ ] 19. Mobile optimization for clouds and toggle
+- [ ] 20. Fine-tune transition timing across all elements
+- [ ] 21. Final polish and testing in both modes
 
 ---
 
@@ -106,8 +101,8 @@
 - `index.html`: Added `<div class="cloud-layer"></div>` before header
 - `protocol-memory.css`: Added ~300 lines for cloud layer + founder mode hooks
 
-### Current Animation Speeds (TO BE ADJUSTED)
-- **Cloud drift**: 120s (light), 90s (dark), 100s (mobile) - TOO SLOW
+### Current Animation Speeds
+- **Cloud drift**: ✅ 50s (light), 40s (dark), 45s (mobile) - VISIBLE & MESMERIZING
 - **Neural pulse**: Current speeds (various per ring)
 - **Game of Life**: 8 gen/sec → 18 gen/sec in founder mode (not yet implemented)
 
@@ -221,14 +216,7 @@ if (!localStorage.getItem('vortex-tooltip-seen')) {
 
 ## 🎯 NEXT STEPS (PRIORITY ORDER)
 
-### IMMEDIATE (Current Session)
-1. **FIX CLOUD ANIMATION SPEED** - Make motion visible but subtle
-   - Reduce 120s → ~50s (light mode)
-   - Reduce 90s → ~40s (dark mode)
-   - Reduce 100s → ~45s (mobile)
-   - Test and adjust until motion is mesmerizing
-
-### THEN (Next Session - Phase 2)
+### NEXT SESSION - Phase 2: Vortex Toggle
 2. Add 🌀 vortex symbol to footer
 3. Build toggle mechanism (data-mode attribute switching)
 4. Create tooltip system
@@ -264,12 +252,12 @@ The visual transformation (monochrome → spectrum explosion) mirrors the conten
 
 ---
 
-## 📊 PROGRESS: 5/20 Tasks Complete (25%)
+## 📊 PROGRESS: 6/21 Tasks Complete (29%)
 
 **Phase 1**: ✅✅✅✅ (100% complete)
-**Phase 2**: ✅□□□□□ (17% complete)
+**Phase 2**: ✅✅□□□□ (33% complete)
 **Phase 3**: □□□□□□□ (0% complete)
-**Phase 4**: □□□□ (0% complete)
+**Phase 4**: □□□ (0% complete)
 
 ---
 
@@ -286,7 +274,7 @@ To pick up this work in a new conversation:
 
 ---
 
-**Last Updated**: Session during cloud layer implementation
-**Status**: Cloud layer complete, animation needs speed adjustment
-**Blocker**: None - just need to adjust animation timing
+**Last Updated**: Cloud animation speed fix session
+**Status**: Cloud layer complete with visible, mesmerizing motion ✅
+**Blocker**: None - ready for Phase 2 (vortex toggle)
 **Ready to Continue**: YES ✅

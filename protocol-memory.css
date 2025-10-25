@@ -188,8 +188,8 @@ body {
       transparent 70%
     );
 
-  /* Slow morphing animation */
-  animation: cloudDrift 120s ease-in-out infinite;
+  /* Slow morphing animation - visible but subtle */
+  animation: cloudDrift 50s ease-in-out infinite;
 
   /* Smooth transition when switching to founder mode */
   transition: opacity 0.6s ease-in-out;
@@ -214,7 +214,7 @@ body {
 /* Dark mode: Spectrum colors, always vibrant */
 [data-theme="dark"] .cloud-layer {
   opacity: 0.13; /* Split the difference for dark mode */
-  animation: cloudDriftDark 90s ease-in-out infinite;
+  animation: cloudDriftDark 40s ease-in-out infinite;
 
   /* Spectrum gradient blobs */
   background:
@@ -278,7 +278,7 @@ body {
         rgba(236, 72, 153, 0.7) 30%,
         transparent 65%
       );
-    animation-duration: 100s; /* Slightly faster on mobile */
+    animation-duration: 45s; /* Visible motion on mobile */
   }
 }
 
