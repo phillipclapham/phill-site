@@ -154,7 +154,7 @@ body {
   width: 100%;
   height: 100vh;
   z-index: -1;
-  opacity: 0.15; /* Increased so visible on dark sections */
+  opacity: 0.10; /* Sweet spot between original and boosted */
   pointer-events: none;
 
   /* 4 large gradient blobs using spectrum colors */
@@ -210,7 +210,7 @@ body {
 
 /* Dark mode: More visible with slightly different animation */
 [data-theme="dark"] .cloud-layer {
-  opacity: 0.18; /* More visible in dark mode for dark sections */
+  opacity: 0.13; /* Split the difference for dark mode */
   animation: cloudDriftDark 90s ease-in-out infinite;
 }
 
@@ -1088,8 +1088,9 @@ body {
    CURRENT STATE SECTION
    ======================================== */
 
+/* Removed solid background to let clouds show through */
 .current-state-section {
-  background-color: var(--color-bg-secondary);
+  /* background-color: var(--color-bg-secondary); */
 }
 
 .current-state-grid {
@@ -1348,8 +1349,9 @@ body {
    ACTIVE NOTES / PROJECTS SECTION
    ======================================== */
 
+/* Removed solid background to let clouds show through */
 .projects-section {
-  background-color: var(--color-bg-secondary);
+  /* background-color: var(--color-bg-secondary); */
 }
 
 .projects-grid {
@@ -1639,7 +1641,7 @@ body {
   position: relative;
   border-top: 1px solid var(--color-border);
   padding: var(--space-16) 0 var(--space-12) 0;
-  background-color: var(--color-bg-secondary);
+  /* background-color: var(--color-bg-secondary); */ /* Removed to let clouds show through */
   overflow: hidden;
 }
 
