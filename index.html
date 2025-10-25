@@ -44,9 +44,17 @@
     <!-- Theme: Prevent FOUC (Flash of Unstyled Content) -->
     <script>
       // Immediately apply saved theme before page renders
+      // Smart default: Respect user's explicit choice OR system preference
       (function () {
         const savedTheme = localStorage.getItem("theme-preference");
-        if (savedTheme === "dark") {
+        const systemPrefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)"
+        ).matches;
+
+        // Apply dark mode if:
+        // 1. User explicitly saved "dark", OR
+        // 2. No saved preference AND system prefers dark
+        if (savedTheme === "dark" || (!savedTheme && systemPrefersDark)) {
           document.documentElement.setAttribute("data-theme", "dark");
         }
       })();
@@ -61,9 +69,17 @@
     <!-- Header / Hero -->
     <header class="site-header">
       <div class="cognitive-pulse">
+        <div class="pulse-ring pulse-ring-0"></div>
         <div class="pulse-ring pulse-ring-1"></div>
         <div class="pulse-ring pulse-ring-2"></div>
         <div class="pulse-ring pulse-ring-3"></div>
+        <div class="pulse-ring pulse-ring-4"></div>
+        <div class="pulse-ring pulse-ring-5"></div>
+        <div class="pulse-ring pulse-ring-6"></div>
+        <div class="pulse-ring pulse-ring-7"></div>
+        <div class="pulse-ring pulse-ring-8"></div>
+        <div class="pulse-ring pulse-ring-9"></div>
+        <div class="pulse-ring pulse-ring-10"></div>
       </div>
 
       <div class="container">
