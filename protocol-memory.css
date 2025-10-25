@@ -154,8 +154,9 @@ body {
   width: 100%;
   height: 100vh;
   z-index: -1;
-  opacity: 0.10; /* Sweet spot between original and boosted */
+  opacity: 0.20; /* Doubled for visibility in light mode */
   pointer-events: none;
+  overflow: hidden; /* Prevent scrollbars during animation */
 
   /* Light mode desktop: Black/gray gradients (professional, monochrome) */
   background:
@@ -195,25 +196,25 @@ body {
   transition: opacity 0.6s ease-in-out;
 }
 
-/* Cloud drift animation - very slow, subtle movement */
+/* Cloud drift animation - amplified for visibility */
 @keyframes cloudDrift {
   0%, 100% {
     transform: translate(0, 0) scale(1);
   }
   25% {
-    transform: translate(2%, -3%) scale(1.05);
+    transform: translate(8%, -12%) scale(1.15);
   }
   50% {
-    transform: translate(-3%, 2%) scale(0.98);
+    transform: translate(-10%, 8%) scale(0.9);
   }
   75% {
-    transform: translate(1%, 3%) scale(1.02);
+    transform: translate(5%, 10%) scale(1.1);
   }
 }
 
 /* Dark mode: Spectrum colors, always vibrant */
 [data-theme="dark"] .cloud-layer {
-  opacity: 0.13; /* Split the difference for dark mode */
+  opacity: 0.18; /* Boosted for visibility */
   animation: cloudDriftDark 40s ease-in-out infinite;
 
   /* Spectrum gradient blobs */
@@ -249,10 +250,10 @@ body {
     transform: translate(0, 0) scale(1) rotate(0deg);
   }
   33% {
-    transform: translate(-2%, 2%) scale(1.03) rotate(1deg);
+    transform: translate(-8%, 10%) scale(1.12) rotate(3deg);
   }
   66% {
-    transform: translate(3%, -1%) scale(0.99) rotate(-1deg);
+    transform: translate(12%, -6%) scale(0.92) rotate(-3deg);
   }
 }
 
@@ -313,7 +314,7 @@ body {
       rgba(132, 204, 22, 0.6) 40%,
       transparent 70%
     );
-  opacity: 0.12; /* Slightly more visible in founder mode */
+  opacity: 0.22; /* Boosted for founder mode impact */
 }
 
 /* Founder Mode: Light desktop neural pulse bars switch to spectrum gradient bars */
