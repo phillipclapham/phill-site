@@ -157,39 +157,42 @@ body {
   opacity: 0.10; /* Sweet spot between original and boosted */
   pointer-events: none;
 
-  /* 4 large gradient blobs using spectrum colors */
+  /* Light mode desktop: Black/gray gradients (professional, monochrome) */
   background:
-    /* Blob 1: Crimson → Orange (top-left) */
+    /* Blob 1: Dark gray (top-left) */
     radial-gradient(
       ellipse 800px 600px at 15% 20%,
-      rgba(220, 38, 38, 1) 0%,
-      rgba(249, 115, 22, 0.8) 30%,
+      rgba(40, 40, 40, 1) 0%,
+      rgba(50, 50, 50, 0.8) 30%,
       transparent 70%
     ),
-    /* Blob 2: Cyan → Sky (top-right) */
+    /* Blob 2: Medium gray (top-right) */
     radial-gradient(
       ellipse 700px 700px at 85% 25%,
-      rgba(6, 182, 212, 0.9) 0%,
-      rgba(14, 165, 233, 0.7) 35%,
+      rgba(50, 50, 50, 0.9) 0%,
+      rgba(60, 60, 60, 0.7) 35%,
       transparent 70%
     ),
-    /* Blob 3: Purple → Magenta (bottom-left) */
+    /* Blob 3: Dark gray (bottom-left) */
     radial-gradient(
       ellipse 900px 500px at 20% 80%,
-      rgba(147, 51, 234, 0.8) 0%,
-      rgba(236, 72, 153, 0.7) 30%,
+      rgba(45, 45, 45, 0.8) 0%,
+      rgba(55, 55, 55, 0.7) 30%,
       transparent 65%
     ),
-    /* Blob 4: Gold → Lime (center-right) */
+    /* Blob 4: Medium gray (center-right) */
     radial-gradient(
       ellipse 600px 800px at 75% 55%,
-      rgba(245, 158, 11, 0.7) 0%,
-      rgba(132, 204, 22, 0.6) 40%,
+      rgba(50, 50, 50, 0.7) 0%,
+      rgba(60, 60, 60, 0.6) 40%,
       transparent 70%
     );
 
   /* Slow morphing animation */
   animation: cloudDrift 120s ease-in-out infinite;
+
+  /* Smooth transition when switching to founder mode */
+  transition: opacity 0.6s ease-in-out;
 }
 
 /* Cloud drift animation - very slow, subtle movement */
@@ -208,10 +211,37 @@ body {
   }
 }
 
-/* Dark mode: More visible with slightly different animation */
+/* Dark mode: Spectrum colors, always vibrant */
 [data-theme="dark"] .cloud-layer {
   opacity: 0.13; /* Split the difference for dark mode */
   animation: cloudDriftDark 90s ease-in-out infinite;
+
+  /* Spectrum gradient blobs */
+  background:
+    radial-gradient(
+      ellipse 800px 600px at 15% 20%,
+      rgba(220, 38, 38, 1) 0%,
+      rgba(249, 115, 22, 0.8) 30%,
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 700px 700px at 85% 25%,
+      rgba(6, 182, 212, 0.9) 0%,
+      rgba(14, 165, 233, 0.7) 35%,
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 900px 500px at 20% 80%,
+      rgba(147, 51, 234, 0.8) 0%,
+      rgba(236, 72, 153, 0.7) 30%,
+      transparent 65%
+    ),
+    radial-gradient(
+      ellipse 600px 800px at 75% 55%,
+      rgba(245, 158, 11, 0.7) 0%,
+      rgba(132, 204, 22, 0.6) 40%,
+      transparent 70%
+    );
 }
 
 @keyframes cloudDriftDark {
@@ -226,7 +256,7 @@ body {
   }
 }
 
-/* Mobile: Smaller blobs, less movement */
+/* Mobile: Spectrum colors on all themes (mobile always pops!) */
 @media (max-width: 768px) {
   .cloud-layer {
     background:
@@ -250,6 +280,206 @@ body {
       );
     animation-duration: 100s; /* Slightly faster on mobile */
   }
+}
+
+/* ========================================
+   FOUNDER MODE - Light Desktop Transformation
+   ======================================== */
+
+/* Founder Mode: Light desktop clouds switch to spectrum colors */
+[data-mode="founder"]:not([data-theme="dark"]) .cloud-layer {
+  background:
+    radial-gradient(
+      ellipse 800px 600px at 15% 20%,
+      rgba(220, 38, 38, 1) 0%,
+      rgba(249, 115, 22, 0.8) 30%,
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 700px 700px at 85% 25%,
+      rgba(6, 182, 212, 0.9) 0%,
+      rgba(14, 165, 233, 0.7) 35%,
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 900px 500px at 20% 80%,
+      rgba(147, 51, 234, 0.8) 0%,
+      rgba(236, 72, 153, 0.7) 30%,
+      transparent 65%
+    ),
+    radial-gradient(
+      ellipse 600px 800px at 75% 55%,
+      rgba(245, 158, 11, 0.7) 0%,
+      rgba(132, 204, 22, 0.6) 40%,
+      transparent 70%
+    );
+  opacity: 0.12; /* Slightly more visible in founder mode */
+}
+
+/* Founder Mode: Light desktop neural pulse bars switch to spectrum gradient bars */
+[data-mode="founder"]:not([data-theme="dark"]) .pulse-ring-0 {
+  border: none;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 90deg,
+    var(--spectrum-crimson) 90deg,
+    var(--spectrum-orange) 180deg,
+    var(--spectrum-gold) 270deg,
+    transparent 270deg
+  );
+  -webkit-mask-image: radial-gradient(circle at center, transparent 0, transparent 85px, black 85px, black 140px, transparent 140px);
+  mask-image: radial-gradient(circle at center, transparent 0, transparent 85px, black 85px, black 140px, transparent 140px);
+  opacity: 0.95;
+}
+
+[data-mode="founder"]:not([data-theme="dark"]) .pulse-ring-1 {
+  border: none;
+  background: conic-gradient(
+    from 0deg,
+    var(--spectrum-gold) 0deg,
+    var(--spectrum-lime) 90deg,
+    var(--spectrum-cyan) 180deg,
+    transparent 180deg
+  );
+  -webkit-mask-image: radial-gradient(circle at center, transparent 0, transparent 190px, black 190px, black 250px, transparent 250px);
+  mask-image: radial-gradient(circle at center, transparent 0, transparent 190px, black 190px, black 250px, transparent 250px);
+  opacity: 0.9;
+}
+
+[data-mode="founder"]:not([data-theme="dark"]) .pulse-ring-2 {
+  border: none;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 90deg,
+    var(--spectrum-cyan) 90deg,
+    var(--spectrum-sky) 180deg,
+    var(--spectrum-indigo) 270deg,
+    transparent 270deg
+  );
+  -webkit-mask-image: radial-gradient(circle at center, transparent 0, transparent 250px, black 250px, black 300px, transparent 300px);
+  mask-image: radial-gradient(circle at center, transparent 0, transparent 250px, black 250px, black 300px, transparent 300px);
+  opacity: 0.88;
+}
+
+[data-mode="founder"]:not([data-theme="dark"]) .pulse-ring-3 {
+  border: none;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 180deg,
+    var(--spectrum-lime) 180deg,
+    var(--spectrum-cyan) 270deg,
+    var(--spectrum-sky) 360deg
+  );
+  -webkit-mask-image: radial-gradient(circle at center, transparent 0, transparent 130px, black 130px, black 200px, transparent 200px);
+  mask-image: radial-gradient(circle at center, transparent 0, transparent 130px, black 130px, black 200px, transparent 200px);
+  opacity: 0.85;
+}
+
+[data-mode="founder"]:not([data-theme="dark"]) .pulse-ring-4 {
+  border: none;
+  background: conic-gradient(
+    from 0deg,
+    var(--spectrum-indigo) 0deg,
+    var(--spectrum-purple) 90deg,
+    var(--spectrum-magenta) 180deg,
+    transparent 180deg
+  );
+  -webkit-mask-image: radial-gradient(circle at center, transparent 0, transparent 312px, black 312px, black 360px, transparent 360px);
+  mask-image: radial-gradient(circle at center, transparent 0, transparent 312px, black 312px, black 360px, transparent 360px);
+  opacity: 0.82;
+}
+
+[data-mode="founder"]:not([data-theme="dark"]) .pulse-ring-5 {
+  border: none;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 90deg,
+    var(--spectrum-sky) 90deg,
+    var(--spectrum-indigo) 180deg,
+    var(--spectrum-purple) 270deg,
+    transparent 270deg
+  );
+  -webkit-mask-image: radial-gradient(circle at center, transparent 0, transparent 382px, black 382px, black 440px, transparent 440px);
+  mask-image: radial-gradient(circle at center, transparent 0, transparent 382px, black 382px, black 440px, transparent 440px);
+  opacity: 0.78;
+}
+
+[data-mode="founder"]:not([data-theme="dark"]) .pulse-ring-6 {
+  border: none;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 180deg,
+    var(--spectrum-magenta) 180deg,
+    var(--spectrum-pink) 270deg,
+    var(--spectrum-lavender) 360deg
+  );
+  -webkit-mask-image: radial-gradient(circle at center, transparent 0, transparent 468px, black 468px, black 520px, transparent 520px);
+  mask-image: radial-gradient(circle at center, transparent 0, transparent 468px, black 468px, black 520px, transparent 520px);
+  opacity: 0.75;
+}
+
+[data-mode="founder"]:not([data-theme="dark"]) .pulse-ring-7 {
+  border: none;
+  background: conic-gradient(
+    from 0deg,
+    var(--spectrum-purple) 0deg,
+    var(--spectrum-magenta) 90deg,
+    var(--spectrum-pink) 180deg,
+    transparent 180deg
+  );
+  -webkit-mask-image: radial-gradient(circle at center, transparent 0, transparent 554px, black 554px, black 600px, transparent 600px);
+  mask-image: radial-gradient(circle at center, transparent 0, transparent 554px, black 554px, black 600px, transparent 600px);
+  opacity: 0.72;
+}
+
+[data-mode="founder"]:not([data-theme="dark"]) .pulse-ring-8 {
+  border: none;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 90deg,
+    var(--spectrum-pink) 90deg,
+    var(--spectrum-lavender) 180deg,
+    var(--spectrum-crimson) 270deg,
+    transparent 270deg
+  );
+  -webkit-mask-image: radial-gradient(circle at center, transparent 0, transparent 640px, black 640px, black 690px, transparent 690px);
+  mask-image: radial-gradient(circle at center, transparent 0, transparent 640px, black 640px, black 690px, transparent 690px);
+  opacity: 0.68;
+}
+
+[data-mode="founder"]:not([data-theme="dark"]) .pulse-ring-9 {
+  border: none;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 180deg,
+    var(--spectrum-orange) 180deg,
+    var(--spectrum-gold) 270deg,
+    var(--spectrum-lime) 360deg
+  );
+  -webkit-mask-image: radial-gradient(circle at center, transparent 0, transparent 736px, black 736px, black 780px, transparent 780px);
+  mask-image: radial-gradient(circle at center, transparent 0, transparent 736px, black 736px, black 780px, transparent 780px);
+  opacity: 0.65;
+}
+
+[data-mode="founder"]:not([data-theme="dark"]) .pulse-ring-10 {
+  border: none;
+  background: conic-gradient(
+    from 0deg,
+    var(--spectrum-lavender) 0deg,
+    var(--spectrum-crimson) 90deg,
+    var(--spectrum-orange) 180deg,
+    transparent 180deg
+  );
+  -webkit-mask-image: radial-gradient(circle at center, transparent 0, transparent 846px, black 846px, black 870px, transparent 870px);
+  mask-image: radial-gradient(circle at center, transparent 0, transparent 846px, black 846px, black 870px, transparent 870px);
+  opacity: 0.6;
 }
 
 /* ========================================
