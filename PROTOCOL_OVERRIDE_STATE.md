@@ -1,22 +1,19 @@
 # Protocol Override Feature - Current State & Todo List
 
-## ✅ COMPLETED TASKS (6/20)
+## ✅ COMPLETED TASKS (6/21)
 
-### Phase 1: Ambient Cloud Layer - COMPLETE ✅
-1. ✅ Built subtle background cloud layer (CSS gradient blobs)
-2. ✅ Added 3-4 spectrum gradient clouds with slow animations (90-120s)
-3. ✅ Set cloud opacity to 0.10 (light), 0.13 (dark)
-4. ✅ Tested clouds in both light and dark mode
+### Phase 1: Ambient Background Layer - COMPLETE ✅ (REDESIGNED)
+1. ✅ ~~Built subtle background cloud layer~~ **REPLACED WITH FLOATING ORBS**
+2. ✅ Implemented 8 individual floating orbs with diagonal drift animation
+3. ✅ Light mode: Subtle gray orbs (0.6 opacity)
+4. ✅ Dark mode: Vibrant spectrum orbs (red, cyan, purple, gold, etc.)
+5. ✅ Mobile optimization: 6 orbs, smaller sizes, faster animations
+6. ✅ Founder Mode ready: Light mode orbs transform to spectrum colors
 
-### Phase 2: Founder Mode CSS Hooks - PARTIAL ✅
-5. ✅ Added CSS intensity adjustments for Founder Mode
-   - Light desktop clouds: Black/gray → Spectrum colors on `[data-mode="founder"]`
+### Phase 2: Founder Mode CSS Hooks - COMPLETE ✅
+7. ✅ Added CSS intensity adjustments for Founder Mode
+   - Light desktop orbs: Gray → Spectrum colors on `[data-mode="founder"]`
    - Light desktop neural pulse: Black/gray → Gradient bars on `[data-mode="founder"]`
-6. ✅ Fixed cloud animation speed - NOW VISIBLE & MESMERIZING
-   - Light: 120s → 50s (2.4x faster)
-   - Dark: 90s → 40s (2.25x faster)
-   - Mobile: 100s → 45s (2.2x faster)
-   - Motion now clearly visible but subtle
 
 ---
 
@@ -48,22 +45,29 @@
 ## 🎨 VISUAL SYSTEM - HOW IT WORKS
 
 ### Normal Mode (Light Desktop) - "Professional"
-- **Clouds**: Black/gray gradients (subtle, monochrome)
+- **Floating Orbs**: Subtle gray orbs drifting left → right (mesmerizing)
 - **Neural Pulse**: Black/gray bars (current state)
 - **Footer Game of Life**: 8 gen/sec, opacity 0.55
-- **Vibe**: Polished product presentation
+- **Background**: Pure white
+- **Vibe**: Polished, calm, professional
 
 ### Founder Mode (Light Desktop) - "Real Me" 🎉
 **When user clicks 🌀 vortex symbol:**
-- **Clouds**: Transform to full spectrum colors (0.6s transition)
+- **Floating Orbs**: Transform to vibrant spectrum colors (smooth transition)
 - **Neural Pulse**: All 11 rings switch to multi-color gradient bars
 - **Footer Game of Life**: Speed up to 18 gen/sec
-- **Clouds opacity**: 0.10 → 0.12
 - **Vibe**: PERSONALITY EXPLOSION
 
-### Always Colorful
-- **Dark mode**: Spectrum colors (both normal and founder)
-- **Mobile**: Spectrum colors (both normal and founder)
+### Dark Mode - Always Vibrant
+- **Floating Orbs**: Vibrant spectrum colors (red/orange, cyan/blue, purple/pink, gold, lime, etc.)
+- **Background**: Dark (#0a0a0a)
+- **Vibe**: Hypnotic, mesmerizing, AI consciousness aesthetic
+
+### Mobile - Optimized Performance
+- **6 orbs** instead of 8 (performance)
+- **Smaller sizes**: 200-280px vs 300-450px
+- **Faster animations**: 32-40s vs 42-55s
+- **40px blur** vs 60px desktop
 
 ---
 
@@ -98,11 +102,12 @@
 ```
 
 ### Files Modified So Far
-- `index.html`: Added `<div class="cloud-layer"></div>` before header
-- `protocol-memory.css`: Added ~300 lines for cloud layer + founder mode hooks
+- `index.html`: Added `<div class="orb-field">` with 8 orb divs
+- `protocol-memory.css`: Added ~250 lines for floating orbs + founder mode hooks
 
-### Current Animation Speeds
-- **Cloud drift**: ✅ 50s (light), 40s (dark), 45s (mobile) - VISIBLE & MESMERIZING
+### Current Animation Timings
+- **Orb drift**: ✅ 42-55s per cycle (desktop), 32-40s (mobile) - MESMERIZING
+- **Orb delays**: Staggered 0s, 5s, 10s, 15s, 20s, 25s, 30s, 35s
 - **Neural pulse**: Current speeds (various per ring)
 - **Game of Life**: 8 gen/sec → 18 gen/sec in founder mode (not yet implemented)
 
@@ -233,8 +238,8 @@ if (!localStorage.getItem('vortex-tooltip-seen')) {
 
 ## 🔑 KEY FILES TO REFERENCE
 
-- **Main CSS**: `protocol-memory.css` (lines 146-483 = cloud layer + founder mode)
-- **Main HTML**: `index.html` (line 78 = cloud-layer div)
+- **Main CSS**: `protocol-memory.css` (lines 146-483 = floating orbs + founder mode)
+- **Main HTML**: `index.html` (lines 78-87 = orb-field with 8 orbs)
 - **Game of Life**: `game-of-life-footer.js` (will need to add speed control)
 
 ---
@@ -244,11 +249,18 @@ if (!localStorage.getItem('vortex-tooltip-seen')) {
 This feature creates a **dual presentation system**:
 
 1. **Normal Mode**: Professional, polished, "venture-ready" presentation
-2. **Founder Mode**: Real human, unfiltered builder, personality unlocked
+   - Light mode: Subtle gray orbs drifting across pure white
+   - Calm, focused, credible
 
-The visual transformation (monochrome → spectrum explosion) mirrors the content transformation (corporate-speak → real talk).
+2. **Founder Mode**: Real human, unfiltered builder, personality unlocked
+   - Spectrum orbs explode with color
+   - Like watching AI consciousness "think" in real-time
+
+The visual transformation (gray → spectrum explosion) mirrors the content transformation (corporate-speak → real talk).
 
 **Perfect for founders** - shows both sides authentically.
+
+**Visual Metaphor**: Orbs = thoughts/memories drifting through the AI's consciousness. Fits Protocol Memory concept perfectly.
 
 ---
 
@@ -274,7 +286,10 @@ To pick up this work in a new conversation:
 
 ---
 
-**Last Updated**: Cloud animation speed fix session
-**Status**: Cloud layer complete with visible, mesmerizing motion ✅
+**Last Updated**: Floating orbs complete redesign
+**Status**: Phase 1 COMPLETE - Mesmerizing orb system working beautifully ✅
 **Blocker**: None - ready for Phase 2 (vortex toggle)
 **Ready to Continue**: YES ✅
+
+**DESIGN CHANGE**: Replaced broken cloud background system with floating orb objects.
+No more edge gaps, true diagonal motion, perfect light/dark mode support.
