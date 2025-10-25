@@ -144,178 +144,253 @@ body {
 }
 
 /* ========================================
-   AMBIENT CLOUD LAYER - Subtle Morphing Background
+   FLOATING ORBS - Mesmerizing Ambient Background
    ======================================== */
 
-.cloud-layer {
+.orb-field {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100vh;
   z-index: -1;
-  opacity: 0.20; /* Doubled for visibility in light mode */
   pointer-events: none;
-  overflow: hidden; /* Prevent scrollbars during animation */
-
-  /* Light mode desktop: Black/gray gradients (professional, monochrome) */
-  background:
-    /* Blob 1: Dark gray (top-left) */
-    radial-gradient(
-      ellipse 800px 600px at 15% 20%,
-      rgba(40, 40, 40, 1) 0%,
-      rgba(50, 50, 50, 0.8) 30%,
-      transparent 70%
-    ),
-    /* Blob 2: Medium gray (top-right) */
-    radial-gradient(
-      ellipse 700px 700px at 85% 25%,
-      rgba(50, 50, 50, 0.9) 0%,
-      rgba(60, 60, 60, 0.7) 35%,
-      transparent 70%
-    ),
-    /* Blob 3: Dark gray (bottom-left) */
-    radial-gradient(
-      ellipse 900px 500px at 20% 80%,
-      rgba(45, 45, 45, 0.8) 0%,
-      rgba(55, 55, 55, 0.7) 30%,
-      transparent 65%
-    ),
-    /* Blob 4: Medium gray (center-right) */
-    radial-gradient(
-      ellipse 600px 800px at 75% 55%,
-      rgba(50, 50, 50, 0.7) 0%,
-      rgba(60, 60, 60, 0.6) 40%,
-      transparent 70%
-    );
-
-  /* Slow morphing animation - visible but subtle */
-  animation: cloudDrift 50s ease-in-out infinite;
-
-  /* Smooth transition when switching to founder mode */
-  transition: opacity 0.6s ease-in-out;
+  overflow: hidden;
 }
 
-/* Cloud drift animation - amplified for visibility */
-@keyframes cloudDrift {
-  0%, 100% {
-    transform: translate(0, 0) scale(1);
-  }
-  25% {
-    transform: translate(8%, -12%) scale(1.15);
-  }
-  50% {
-    transform: translate(-10%, 8%) scale(0.9);
-  }
-  75% {
-    transform: translate(5%, 10%) scale(1.1);
-  }
+/* Base orb styles */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.6;
+  will-change: transform;
 }
 
-/* Dark mode: Spectrum colors, always vibrant */
-[data-theme="dark"] .cloud-layer {
-  opacity: 0.18; /* Boosted for visibility */
-  animation: cloudDriftDark 40s ease-in-out infinite;
-
-  /* Spectrum gradient blobs */
-  background:
-    radial-gradient(
-      ellipse 800px 600px at 15% 20%,
-      rgba(220, 38, 38, 1) 0%,
-      rgba(249, 115, 22, 0.8) 30%,
-      transparent 70%
-    ),
-    radial-gradient(
-      ellipse 700px 700px at 85% 25%,
-      rgba(6, 182, 212, 0.9) 0%,
-      rgba(14, 165, 233, 0.7) 35%,
-      transparent 70%
-    ),
-    radial-gradient(
-      ellipse 900px 500px at 20% 80%,
-      rgba(147, 51, 234, 0.8) 0%,
-      rgba(236, 72, 153, 0.7) 30%,
-      transparent 65%
-    ),
-    radial-gradient(
-      ellipse 600px 800px at 75% 55%,
-      rgba(245, 158, 11, 0.7) 0%,
-      rgba(132, 204, 22, 0.6) 40%,
-      transparent 70%
-    );
+/* Light mode: Subtle gray orbs on white background */
+.orb-1 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(80, 80, 80, 0.8), transparent 70%);
+  top: 10%;
+  left: -200px;
+  animation: drift1 45s ease-in-out infinite;
 }
 
-@keyframes cloudDriftDark {
-  0%, 100% {
-    transform: translate(0, 0) scale(1) rotate(0deg);
-  }
-  33% {
-    transform: translate(-8%, 10%) scale(1.12) rotate(3deg);
-  }
-  66% {
-    transform: translate(12%, -6%) scale(0.92) rotate(-3deg);
-  }
+.orb-2 {
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(60, 60, 60, 0.7), transparent 70%);
+  top: 50%;
+  left: -150px;
+  animation: drift2 50s ease-in-out infinite 5s;
 }
 
-/* Mobile: Spectrum colors on all themes (mobile always pops!) */
+.orb-3 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(90, 90, 90, 0.75), transparent 70%);
+  top: 70%;
+  left: -100px;
+  animation: drift3 42s ease-in-out infinite 10s;
+}
+
+.orb-4 {
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(70, 70, 70, 0.6), transparent 70%);
+  top: 30%;
+  left: -250px;
+  animation: drift4 48s ease-in-out infinite 15s;
+}
+
+.orb-5 {
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(85, 85, 85, 0.65), transparent 70%);
+  top: 85%;
+  left: -180px;
+  animation: drift5 55s ease-in-out infinite 20s;
+}
+
+.orb-6 {
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(circle, rgba(75, 75, 75, 0.7), transparent 70%);
+  top: 15%;
+  left: -120px;
+  animation: drift6 47s ease-in-out infinite 25s;
+}
+
+.orb-7 {
+  width: 340px;
+  height: 340px;
+  background: radial-gradient(circle, rgba(65, 65, 65, 0.68), transparent 70%);
+  top: 60%;
+  left: -170px;
+  animation: drift7 52s ease-in-out infinite 30s;
+}
+
+.orb-8 {
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, rgba(78, 78, 78, 0.72), transparent 70%);
+  top: 40%;
+  left: -210px;
+  animation: drift8 46s ease-in-out infinite 35s;
+}
+
+/* Diagonal drift animations - left to right, slight upward curve */
+@keyframes drift1 {
+  0% { transform: translate(0, 0); }
+  50% { transform: translate(60vw, -15vh); }
+  100% { transform: translate(120vw, -5vh); }
+}
+
+@keyframes drift2 {
+  0% { transform: translate(0, 0); }
+  50% { transform: translate(65vw, -20vh); }
+  100% { transform: translate(125vw, -8vh); }
+}
+
+@keyframes drift3 {
+  0% { transform: translate(0, 0); }
+  50% { transform: translate(55vw, -25vh); }
+  100% { transform: translate(115vw, -12vh); }
+}
+
+@keyframes drift4 {
+  0% { transform: translate(0, 0); }
+  50% { transform: translate(70vw, -18vh); }
+  100% { transform: translate(130vw, -6vh); }
+}
+
+@keyframes drift5 {
+  0% { transform: translate(0, 0); }
+  50% { transform: translate(58vw, -30vh); }
+  100% { transform: translate(118vw, -15vh); }
+}
+
+@keyframes drift6 {
+  0% { transform: translate(0, 0); }
+  50% { transform: translate(62vw, -22vh); }
+  100% { transform: translate(122vw, -10vh); }
+}
+
+@keyframes drift7 {
+  0% { transform: translate(0, 0); }
+  50% { transform: translate(68vw, -16vh); }
+  100% { transform: translate(128vw, -7vh); }
+}
+
+@keyframes drift8 {
+  0% { transform: translate(0, 0); }
+  50% { transform: translate(64vw, -28vh); }
+  100% { transform: translate(124vw, -14vh); }
+}
+
+/* Dark mode: Vibrant spectrum orbs */
+[data-theme="dark"] .orb-1 {
+  background: radial-gradient(circle, rgba(220, 38, 38, 0.9), rgba(249, 115, 22, 0.5), transparent 70%);
+  opacity: 0.7;
+}
+
+[data-theme="dark"] .orb-2 {
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.85), rgba(14, 165, 233, 0.5), transparent 70%);
+  opacity: 0.65;
+}
+
+[data-theme="dark"] .orb-3 {
+  background: radial-gradient(circle, rgba(147, 51, 234, 0.8), rgba(236, 72, 153, 0.5), transparent 70%);
+  opacity: 0.7;
+}
+
+[data-theme="dark"] .orb-4 {
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.75), rgba(251, 191, 36, 0.5), transparent 70%);
+  opacity: 0.6;
+}
+
+[data-theme="dark"] .orb-5 {
+  background: radial-gradient(circle, rgba(132, 204, 22, 0.8), rgba(163, 230, 53, 0.5), transparent 70%);
+  opacity: 0.68;
+}
+
+[data-theme="dark"] .orb-6 {
+  background: radial-gradient(circle, rgba(236, 72, 153, 0.85), rgba(244, 114, 182, 0.5), transparent 70%);
+  opacity: 0.65;
+}
+
+[data-theme="dark"] .orb-7 {
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.8), rgba(129, 140, 248, 0.5), transparent 70%);
+  opacity: 0.7;
+}
+
+[data-theme="dark"] .orb-8 {
+  background: radial-gradient(circle, rgba(249, 115, 22, 0.75), rgba(251, 146, 60, 0.5), transparent 70%);
+  opacity: 0.62;
+}
+
+/* Mobile: Smaller, fewer orbs, faster animation */
 @media (max-width: 768px) {
-  .cloud-layer {
-    background:
-      radial-gradient(
-        ellipse 500px 400px at 20% 25%,
-        rgba(220, 38, 38, 1) 0%,
-        rgba(249, 115, 22, 0.8) 30%,
-        transparent 70%
-      ),
-      radial-gradient(
-        ellipse 450px 450px at 80% 30%,
-        rgba(6, 182, 212, 0.9) 0%,
-        rgba(14, 165, 233, 0.7) 35%,
-        transparent 70%
-      ),
-      radial-gradient(
-        ellipse 550px 350px at 25% 75%,
-        rgba(147, 51, 234, 0.8) 0%,
-        rgba(236, 72, 153, 0.7) 30%,
-        transparent 65%
-      );
-    animation-duration: 45s; /* Visible motion on mobile */
+  .orb {
+    filter: blur(40px);
   }
+
+  .orb-1 { width: 250px; height: 250px; animation-duration: 35s; }
+  .orb-2 { width: 220px; height: 220px; animation-duration: 38s; }
+  .orb-3 { width: 200px; height: 200px; animation-duration: 32s; }
+  .orb-4 { width: 280px; height: 280px; animation-duration: 36s; }
+  .orb-5 { width: 210px; height: 210px; animation-duration: 40s; }
+  .orb-6 { width: 240px; height: 240px; animation-duration: 34s; }
+
+  /* Hide last 2 orbs on mobile for performance */
+  .orb-7, .orb-8 { display: none; }
+}
+
+/* Founder Mode: Light desktop orbs become spectrum */
+[data-mode="founder"]:not([data-theme="dark"]) .orb-1 {
+  background: radial-gradient(circle, rgba(220, 38, 38, 0.9), rgba(249, 115, 22, 0.5), transparent 70%);
+  opacity: 0.75;
+}
+
+[data-mode="founder"]:not([data-theme="dark"]) .orb-2 {
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.85), rgba(14, 165, 233, 0.5), transparent 70%);
+  opacity: 0.7;
+}
+
+[data-mode="founder"]:not([data-theme="dark"]) .orb-3 {
+  background: radial-gradient(circle, rgba(147, 51, 234, 0.8), rgba(236, 72, 153, 0.5), transparent 70%);
+  opacity: 0.75;
+}
+
+[data-mode="founder"]:not([data-theme="dark"]) .orb-4 {
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.75), rgba(251, 191, 36, 0.5), transparent 70%);
+  opacity: 0.65;
+}
+
+[data-mode="founder"]:not([data-theme="dark"]) .orb-5 {
+  background: radial-gradient(circle, rgba(132, 204, 22, 0.8), rgba(163, 230, 53, 0.5), transparent 70%);
+  opacity: 0.72;
+}
+
+[data-mode="founder"]:not([data-theme="dark"]) .orb-6 {
+  background: radial-gradient(circle, rgba(236, 72, 153, 0.85), rgba(244, 114, 182, 0.5), transparent 70%);
+  opacity: 0.7;
+}
+
+[data-mode="founder"]:not([data-theme="dark"]) .orb-7 {
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.8), rgba(129, 140, 248, 0.5), transparent 70%);
+  opacity: 0.75;
+}
+
+[data-mode="founder"]:not([data-theme="dark"]) .orb-8 {
+  background: radial-gradient(circle, rgba(249, 115, 22, 0.75), rgba(251, 146, 60, 0.5), transparent 70%);
+  opacity: 0.68;
 }
 
 /* ========================================
-   FOUNDER MODE - Light Desktop Transformation
+   FOUNDER MODE - Neural Pulse Transformation
    ======================================== */
-
-/* Founder Mode: Light desktop clouds switch to spectrum colors */
-[data-mode="founder"]:not([data-theme="dark"]) .cloud-layer {
-  background:
-    radial-gradient(
-      ellipse 800px 600px at 15% 20%,
-      rgba(220, 38, 38, 1) 0%,
-      rgba(249, 115, 22, 0.8) 30%,
-      transparent 70%
-    ),
-    radial-gradient(
-      ellipse 700px 700px at 85% 25%,
-      rgba(6, 182, 212, 0.9) 0%,
-      rgba(14, 165, 233, 0.7) 35%,
-      transparent 70%
-    ),
-    radial-gradient(
-      ellipse 900px 500px at 20% 80%,
-      rgba(147, 51, 234, 0.8) 0%,
-      rgba(236, 72, 153, 0.7) 30%,
-      transparent 65%
-    ),
-    radial-gradient(
-      ellipse 600px 800px at 75% 55%,
-      rgba(245, 158, 11, 0.7) 0%,
-      rgba(132, 204, 22, 0.6) 40%,
-      transparent 70%
-    );
-  opacity: 0.22; /* Boosted for founder mode impact */
-}
 
 /* Founder Mode: Light desktop neural pulse bars switch to spectrum gradient bars */
 [data-mode="founder"]:not([data-theme="dark"]) .pulse-ring-0 {
