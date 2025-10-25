@@ -1230,7 +1230,7 @@ body {
   }
 
   .pm-bio {
-    font-size: var(--text-sm);
+    font-size: var(--text-base); /* Match other sections */
   }
 }
 
