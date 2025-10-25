@@ -9,72 +9,76 @@
 
 :root {
   /* Colors - Deep Teal Palette (Protocol Memory brand) */
-  --color-primary: #0F766E; /* Deep teal */
-  --color-primary-light: #14B8A6; /* Teal */
-  --color-primary-dark: #134E4A; /* Darker teal */
+  --color-primary: #0f766e; /* Deep teal */
+  --color-primary-light: #14b8a6; /* Teal */
+  --color-primary-dark: #134e4a; /* Darker teal */
 
   /* Neutrals */
-  --color-bg: #FFFFFF;
-  --color-bg-secondary: #F9FAFB;
-  --color-bg-tertiary: #F3F4F6;
+  --color-bg: #ffffff;
+  --color-bg-secondary: #f9fafb;
+  --color-bg-tertiary: #f3f4f6;
   --color-text: #111827;
-  --color-text-secondary: #6B7280;
-  --color-text-tertiary: #9CA3AF;
-  --color-border: #E5E7EB;
+  --color-text-secondary: #6b7280;
+  --color-text-tertiary: #9ca3af;
+  --color-border: #e5e7eb;
 
   /* Semantic Colors */
-  --color-success: #10B981;
-  --color-warning: #F59E0B;
-  --color-error: #EF4444;
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
 
   /* Priority Badge Colors */
-  --color-urgent: #EF4444;
-  --color-high: #F59E0B;
-  --color-normal: #3B82F6;
-  --color-low: #6B7280;
+  --color-urgent: #ef4444;
+  --color-high: #f59e0b;
+  --color-normal: #3b82f6;
+  --color-low: #6b7280;
 
   /* Typography */
-  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-mono: "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, monospace;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas,
+    monospace;
 
   /* Font Sizes */
-  --text-xs: 0.75rem;     /* 12px */
-  --text-sm: 0.875rem;    /* 14px */
-  --text-base: 1rem;      /* 16px */
-  --text-lg: 1.125rem;    /* 18px */
-  --text-xl: 1.25rem;     /* 20px */
-  --text-2xl: 1.5rem;     /* 24px */
-  --text-3xl: 1.875rem;   /* 30px */
-  --text-4xl: 2.25rem;    /* 36px */
-  --text-5xl: 3rem;       /* 48px */
+  --text-xs: 0.75rem; /* 12px */
+  --text-sm: 0.875rem; /* 14px */
+  --text-base: 1rem; /* 16px */
+  --text-lg: 1.125rem; /* 18px */
+  --text-xl: 1.25rem; /* 20px */
+  --text-2xl: 1.5rem; /* 24px */
+  --text-3xl: 1.875rem; /* 30px */
+  --text-4xl: 2.25rem; /* 36px */
+  --text-5xl: 3rem; /* 48px */
 
   /* Spacing */
-  --space-1: 0.25rem;   /* 4px */
-  --space-2: 0.5rem;    /* 8px */
-  --space-3: 0.75rem;   /* 12px */
-  --space-4: 1rem;      /* 16px */
-  --space-5: 1.25rem;   /* 20px */
-  --space-6: 1.5rem;    /* 24px */
-  --space-8: 2rem;      /* 32px */
-  --space-10: 2.5rem;   /* 40px */
-  --space-12: 3rem;     /* 48px */
-  --space-16: 4rem;     /* 64px */
-  --space-20: 5rem;     /* 80px */
+  --space-1: 0.25rem; /* 4px */
+  --space-2: 0.5rem; /* 8px */
+  --space-3: 0.75rem; /* 12px */
+  --space-4: 1rem; /* 16px */
+  --space-5: 1.25rem; /* 20px */
+  --space-6: 1.5rem; /* 24px */
+  --space-8: 2rem; /* 32px */
+  --space-10: 2.5rem; /* 40px */
+  --space-12: 3rem; /* 48px */
+  --space-16: 4rem; /* 64px */
+  --space-20: 5rem; /* 80px */
 
   /* Border Radius */
-  --radius-sm: 0.25rem;   /* 4px */
-  --radius-md: 0.375rem;  /* 6px */
-  --radius-lg: 0.5rem;    /* 8px */
-  --radius-xl: 0.75rem;   /* 12px */
-  --radius-2xl: 1rem;     /* 16px */
+  --radius-sm: 0.25rem; /* 4px */
+  --radius-md: 0.375rem; /* 6px */
+  --radius-lg: 0.5rem; /* 8px */
+  --radius-xl: 0.75rem; /* 12px */
+  --radius-2xl: 1rem; /* 16px */
   --radius-full: 9999px;
 
   /* Shadows */
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+    0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1),
+    0 8px 10px -6px rgb(0 0 0 / 0.1);
 
   /* Transitions */
   --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -89,6 +93,11 @@
   --z-modal: 1040;
   --z-popover: 1050;
   --z-tooltip: 1060;
+
+  /* Cognitive Pulse Colors - Light Mode */
+  --pulse-teal: rgba(60, 60, 60, 0.1);
+  --pulse-purple: rgba(50, 50, 50, 0.075);
+  --pulse-pink: rgba(40, 40, 40, 0.07);
 }
 
 /* ========================================
@@ -146,9 +155,15 @@ body {
    ======================================== */
 
 .site-header {
+  position: relative; /* ← ADD THIS - Required for absolute positioning */
+  overflow: hidden; /* ← ADD THIS - Keeps rings contained */
   padding: var(--space-20) 0;
   border-bottom: 1px solid var(--color-border);
-  background: linear-gradient(to bottom, var(--color-bg), var(--color-bg-secondary));
+  background: linear-gradient(
+    to bottom,
+    var(--color-bg),
+    var(--color-bg-secondary)
+  );
 }
 
 .header-content {
@@ -178,6 +193,8 @@ body {
   justify-content: center;
   gap: var(--space-6);
   flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
 }
 
 .social-links a {
@@ -269,6 +286,147 @@ body {
 }
 
 /* ========================================
+   NEURAL PULSE ANIMATION
+   ======================================== */
+
+/* Pulse container - sits behind everything */
+.cognitive-pulse {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 1;
+}
+
+/* Individual pulse rings */
+.pulse-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  border-style: solid;
+  transform-origin: center center;
+  mix-blend-mode: screen;
+}
+
+/* Ring 1: Teal - Slow clockwise */
+.pulse-ring-1 {
+  width: 500px;
+  height: 500px;
+  margin: -250px 0 0 -250px;
+  border-width: 60px;
+  border-color: transparent var(--pulse-teal) transparent transparent;
+  animation: rotate-cw 15s linear infinite,
+    pulse-breathe-1 10s ease-in-out infinite;
+  filter: blur(8px);
+}
+
+/* Ring 2: Purple - Slow counter-clockwise */
+.pulse-ring-2 {
+  width: 600px;
+  height: 600px;
+  margin: -300px 0 0 -300px;
+  border-width: 50px;
+  border-color: var(--pulse-purple) transparent transparent transparent;
+  animation: rotate-ccw 18s linear infinite,
+    pulse-breathe-2 12s ease-in-out infinite;
+  filter: blur(10px);
+}
+
+/* Ring 3: Pink - Clockwise, offset phase */
+.pulse-ring-3 {
+  width: 400px;
+  height: 400px;
+  margin: -200px 0 0 -200px;
+  border-width: 70px;
+  border-color: transparent transparent var(--pulse-pink) transparent;
+  animation: rotate-cw 20s linear infinite,
+    pulse-breathe-3 14s ease-in-out infinite;
+  filter: blur(12px);
+  animation-delay: -5s;
+}
+
+/* Rotation keyframes */
+@keyframes rotate-cw {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotate-ccw {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+/* Breathing/pulsing keyframes */
+@keyframes pulse-breathe-1 {
+  0%,
+  100% {
+    transform: rotate(0deg) scale(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: rotate(180deg) scale(1.15);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse-breathe-2 {
+  0%,
+  100% {
+    transform: rotate(360deg) scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: rotate(180deg) scale(0.95);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse-breathe-3 {
+  0%,
+  100% {
+    transform: rotate(0deg) scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: rotate(180deg) scale(1.1);
+    opacity: 1;
+  }
+}
+
+/* Mobile optimization */
+@media (max-width: 768px) {
+  .cognitive-pulse {
+    opacity: 0.6;
+  }
+
+  .pulse-ring-1,
+  .pulse-ring-2,
+  .pulse-ring-3 {
+    animation-duration: 20s, 15s;
+  }
+}
+
+/* Accessibility: Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .pulse-ring {
+    animation: none !important;
+    opacity: 0.3;
+  }
+}
+
+/* ========================================
    SECONDARY NAVIGATION (STICKY)
    ======================================== */
 
@@ -319,7 +477,7 @@ body {
 }
 
 .nav-links a::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -4px;
   left: 50%;
@@ -515,7 +673,11 @@ body {
 /* Fallback for no avatar - gradient background */
 .profile-avatar:empty {
   background-color: var(--color-bg-tertiary);
-  background-image: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  background-image: linear-gradient(
+    135deg,
+    var(--color-primary) 0%,
+    var(--color-primary-dark) 100%
+  );
 }
 
 .about-tagline,
@@ -692,22 +854,22 @@ body {
 }
 
 .pm-priority-urgent {
-  background-color: #FEE2E2;
+  background-color: #fee2e2;
   color: var(--color-urgent);
 }
 
 .pm-priority-high {
-  background-color: #FEF3C7;
+  background-color: #fef3c7;
   color: var(--color-high);
 }
 
 .pm-priority-normal {
-  background-color: #DBEAFE;
+  background-color: #dbeafe;
   color: var(--color-normal);
 }
 
 .pm-priority-low {
-  background-color: #F3F4F6;
+  background-color: #f3f4f6;
   color: var(--color-low);
 }
 
@@ -725,28 +887,28 @@ body {
 }
 
 .pm-status-blocked {
-  background-color: #FEE2E2;
-  color: #DC2626;
+  background-color: #fee2e2;
+  color: #dc2626;
 }
 
 .pm-status-active {
-  background-color: #D1FAE5;
+  background-color: #d1fae5;
   color: #059669;
 }
 
 .pm-status-completed {
-  background-color: #DBEAFE;
-  color: #2563EB;
+  background-color: #dbeafe;
+  color: #2563eb;
 }
 
 .pm-status-paused {
-  background-color: #FEF3C7;
-  color: #D97706;
+  background-color: #fef3c7;
+  color: #d97706;
 }
 
 .pm-status-archived {
-  background-color: #F3F4F6;
-  color: #6B7280;
+  background-color: #f3f4f6;
+  color: #6b7280;
 }
 
 .pm-project-desc {
@@ -936,7 +1098,8 @@ body {
 }
 
 @keyframes pulse {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
   }
   50% {
@@ -1035,13 +1198,21 @@ body {
 }
 
 .pm-state-item:nth-child(1),
-.state-card:nth-child(1) { animation-delay: 0.1s; }
+.state-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
 .pm-state-item:nth-child(2),
-.state-card:nth-child(2) { animation-delay: 0.2s; }
+.state-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
 .pm-state-item:nth-child(3),
-.state-card:nth-child(3) { animation-delay: 0.3s; }
+.state-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
 .pm-state-item:nth-child(4),
-.state-card:nth-child(4) { animation-delay: 0.4s; }
+.state-card:nth-child(4) {
+  animation-delay: 0.4s;
+}
 
 /* Project cards stagger */
 .pm-project-item {
@@ -1049,11 +1220,21 @@ body {
   animation-fill-mode: both;
 }
 
-.pm-project-item:nth-child(1) { animation-delay: 0.1s; }
-.pm-project-item:nth-child(2) { animation-delay: 0.15s; }
-.pm-project-item:nth-child(3) { animation-delay: 0.2s; }
-.pm-project-item:nth-child(4) { animation-delay: 0.25s; }
-.pm-project-item:nth-child(5) { animation-delay: 0.3s; }
+.pm-project-item:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.pm-project-item:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.pm-project-item:nth-child(3) {
+  animation-delay: 0.2s;
+}
+.pm-project-item:nth-child(4) {
+  animation-delay: 0.25s;
+}
+.pm-project-item:nth-child(5) {
+  animation-delay: 0.3s;
+}
 
 /* Expertise cards stagger */
 .pm-expertise-card {
@@ -1061,12 +1242,24 @@ body {
   animation-fill-mode: both;
 }
 
-.pm-expertise-card:nth-child(1) { animation-delay: 0.1s; }
-.pm-expertise-card:nth-child(2) { animation-delay: 0.15s; }
-.pm-expertise-card:nth-child(3) { animation-delay: 0.2s; }
-.pm-expertise-card:nth-child(4) { animation-delay: 0.25s; }
-.pm-expertise-card:nth-child(5) { animation-delay: 0.3s; }
-.pm-expertise-card:nth-child(6) { animation-delay: 0.35s; }
+.pm-expertise-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.pm-expertise-card:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.pm-expertise-card:nth-child(3) {
+  animation-delay: 0.2s;
+}
+.pm-expertise-card:nth-child(4) {
+  animation-delay: 0.25s;
+}
+.pm-expertise-card:nth-child(5) {
+  animation-delay: 0.3s;
+}
+.pm-expertise-card:nth-child(6) {
+  animation-delay: 0.35s;
+}
 
 /* Enhanced hover interactions with 3D transforms */
 .pm-project-item,
@@ -1094,13 +1287,18 @@ body {
 }
 
 .social-links a::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(15, 118, 110, 0.1), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(15, 118, 110, 0.1),
+    transparent
+  );
   transition: left 0.5s ease;
 }
 
@@ -1434,25 +1632,34 @@ body {
 
 [data-theme="dark"] {
   /* Colors */
-  --color-primary: #14B8A6; /* Lighter teal for dark bg */
-  --color-primary-light: #5EEAD4;
-  --color-primary-dark: #0F766E;
-  
+  --color-primary: #14b8a6; /* Lighter teal for dark bg */
+  --color-primary-light: #5eead4;
+  --color-primary-dark: #0f766e;
+
   /* Neutrals */
-  --color-bg: #0F1117;
-  --color-bg-secondary: #1A1D29;
-  --color-bg-tertiary: #25293A;
-  --color-text: #F9FAFB;
-  --color-text-secondary: #D1D5DB;
-  --color-text-tertiary: #9CA3AF;
+  --color-bg: #0f1117;
+  --color-bg-secondary: #1a1d29;
+  --color-bg-tertiary: #25293a;
+  --color-text: #f9fafb;
+  --color-text-secondary: #d1d5db;
+  --color-text-tertiary: #9ca3af;
   --color-border: #374151;
-  
+
   /* Shadows (darker for dark mode) */
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
   --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.4), 0 1px 2px -1px rgb(0 0 0 / 0.4);
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.5), 0 2px 4px -2px rgb(0 0 0 / 0.5);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.6), 0 4px 6px -4px rgb(0 0 0 / 0.6);
-  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.7), 0 8px 10px -6px rgb(0 0 0 / 0.7);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.6),
+    0 4px 6px -4px rgb(0 0 0 / 0.6);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.7),
+    0 8px 10px -6px rgb(0 0 0 / 0.7);
+}
+
+/* Neural Pulse Dark Mode */
+[data-theme="dark"] {
+  --pulse-teal: rgba(34, 211, 238, 0.25);
+  --pulse-purple: rgba(236, 72, 153, 0.25);
+  --pulse-pink: rgba(250, 204, 21, 0.2);
 }
 
 /* Component-specific dark mode styles */
@@ -1471,7 +1678,11 @@ body {
 }
 
 [data-theme="dark"] .site-header {
-  background: linear-gradient(to bottom, var(--color-bg), var(--color-bg-secondary));
+  background: linear-gradient(
+    to bottom,
+    var(--color-bg),
+    var(--color-bg-secondary)
+  );
 }
 
 [data-theme="dark"] .pm-modal-content {
