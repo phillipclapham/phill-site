@@ -168,9 +168,12 @@ body {
    ======================================== */
 
 .site-header {
-  position: relative; /* ← ADD THIS - Required for absolute positioning */
-  overflow: hidden; /* ← ADD THIS - Keeps rings contained */
-  padding: var(--space-20) 0;
+  position: relative; /* Required for absolute positioning */
+  overflow: hidden; /* Keeps rings contained */
+  min-height: 600px; /* Maintain prominence even without avatar */
+  display: flex;
+  align-items: center; /* Vertically center content */
+  padding: var(--space-24) 0 var(--space-20) 0; /* Extra padding for animation */
   border-bottom: 1px solid var(--color-border);
   background: linear-gradient(
     to bottom,
@@ -185,11 +188,12 @@ body {
 }
 
 .site-title {
+  font-family: "Michroma", sans-serif;
   font-size: var(--text-5xl);
-  font-weight: 700;
+  font-weight: 400; /* Michroma is already bold by design */
   color: var(--color-text);
   margin-bottom: var(--space-3);
-  letter-spacing: -0.02em;
+  letter-spacing: 0.02em; /* Slightly wider for technical feel */
 }
 
 .site-subtitle {
@@ -270,7 +274,10 @@ body {
 /* Mobile Header */
 @media (max-width: 768px) {
   .site-header {
-    padding: var(--space-12) 0;
+    min-height: 450px;
+    display: flex;
+    align-items: center;
+    padding: var(--space-16) 0 var(--space-12) 0;
   }
 
   .theme-toggle {
@@ -626,6 +633,101 @@ body {
   }
 }
 
+/* ========================================
+   SPECTRUM CORE - Neural Origin Point
+   ======================================== */
+
+/* The heart/anchor of the neural pulse - Light mode: subtle gray, Dark mode: spectrum colors */
+.spectrum-core {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 90px;
+  height: 90px;
+  margin: -45px 0 0 -45px;
+  border-radius: 50%;
+  /* Light mode desktop: Subtle gray to match bars */
+  background: radial-gradient(
+    circle at center,
+    rgba(50, 50, 50, 0.15) 0%,
+    rgba(50, 50, 50, 0.15) 50%,
+    transparent 100%
+  );
+  filter: blur(10px);
+  animation: core-pulse 10s ease-in-out infinite; /* No color cycling in light mode */
+  z-index: 10; /* Above rings */
+  pointer-events: none;
+}
+
+/* Spectrum color cycling animation - flows through all 11 colors */
+@keyframes spectrum-cycle {
+  0% { background: radial-gradient(circle, var(--spectrum-crimson) 0%, var(--spectrum-crimson) 50%, transparent 100%); }
+  9% { background: radial-gradient(circle, var(--spectrum-orange) 0%, var(--spectrum-orange) 50%, transparent 100%); }
+  18% { background: radial-gradient(circle, var(--spectrum-gold) 0%, var(--spectrum-gold) 50%, transparent 100%); }
+  27% { background: radial-gradient(circle, var(--spectrum-lime) 0%, var(--spectrum-lime) 50%, transparent 100%); }
+  36% { background: radial-gradient(circle, var(--spectrum-cyan) 0%, var(--spectrum-cyan) 50%, transparent 100%); }
+  45% { background: radial-gradient(circle, var(--spectrum-sky) 0%, var(--spectrum-sky) 50%, transparent 100%); }
+  54% { background: radial-gradient(circle, var(--spectrum-indigo) 0%, var(--spectrum-indigo) 50%, transparent 100%); }
+  63% { background: radial-gradient(circle, var(--spectrum-purple) 0%, var(--spectrum-purple) 50%, transparent 100%); }
+  72% { background: radial-gradient(circle, var(--spectrum-magenta) 0%, var(--spectrum-magenta) 50%, transparent 100%); }
+  81% { background: radial-gradient(circle, var(--spectrum-pink) 0%, var(--spectrum-pink) 50%, transparent 100%); }
+  90% { background: radial-gradient(circle, var(--spectrum-lavender) 0%, var(--spectrum-lavender) 50%, transparent 100%); }
+  100% { background: radial-gradient(circle, var(--spectrum-crimson) 0%, var(--spectrum-crimson) 50%, transparent 100%); }
+}
+
+/* Gentle pulse/breathe animation */
+@keyframes core-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.95;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 1;
+  }
+}
+
+/* Dark mode: Boost core visibility and intensity with spectrum colors */
+[data-theme="dark"] .spectrum-core {
+  background: radial-gradient(
+    circle at center,
+    var(--spectrum-crimson) 0%,
+    var(--spectrum-crimson) 50%,
+    transparent 100%
+  );
+  opacity: 1;
+  filter: blur(14px);
+  animation: spectrum-cycle 33s linear infinite, core-pulse 10s ease-in-out infinite;
+}
+
+/* Mobile: Smaller but still prominent with spectrum colors */
+@media (max-width: 768px) {
+  .spectrum-core {
+    width: 55px;
+    height: 55px;
+    margin: -27.5px 0 0 -27.5px;
+    filter: blur(6px);
+    opacity: 0.85;
+    /* Mobile light mode gets colorful spectrum like dark mode */
+    background: radial-gradient(
+      circle at center,
+      var(--spectrum-crimson) 0%,
+      var(--spectrum-crimson) 50%,
+      transparent 100%
+    );
+    animation: spectrum-cycle 33s linear infinite, core-pulse 10s ease-in-out infinite;
+  }
+}
+
+/* Reduced motion: Static core, subtle (respects accessibility preference) */
+@media (prefers-reduced-motion: reduce) {
+  .spectrum-core {
+    animation: none;
+    background: radial-gradient(circle, rgba(50, 50, 50, 0.12) 0%, rgba(50, 50, 50, 0.12) 50%, transparent 100%);
+    opacity: 0.7;
+  }
+}
+
 /* Mobile optimization */
 @media (max-width: 768px) {
   /* Hide largest rings on mobile to prevent clipping (show only rings 0-4) */
@@ -684,30 +786,81 @@ body {
     }
   }
 
-  /* MOBILE LIGHT MODE: Vibrant chromatic spectrum (unique feature!) */
-  /* Desktop light = subtle gray, Mobile light = vibrant colors */
+  /* MOBILE LIGHT MODE: Vibrant GRADIENT BARS (unique feature!) */
+  /* Desktop light = subtle gray, Mobile light = vibrant multi-color gradient bars */
+
   html:not([data-theme="dark"]) .pulse-ring-0 {
-    border-color: transparent transparent transparent var(--spectrum-crimson);
+    border: none;
+    background: conic-gradient(
+      from 0deg,
+      transparent 0deg,
+      transparent 90deg,
+      var(--spectrum-crimson) 90deg,
+      var(--spectrum-orange) 180deg,
+      var(--spectrum-gold) 270deg,
+      transparent 270deg
+    );
+    -webkit-mask-image: radial-gradient(circle at center, transparent 0, transparent 85px, black 85px, black 140px, transparent 140px);
+    mask-image: radial-gradient(circle at center, transparent 0, transparent 85px, black 85px, black 140px, transparent 140px);
     opacity: 0.5;
   }
 
   html:not([data-theme="dark"]) .pulse-ring-1 {
-    border-color: var(--spectrum-orange) transparent transparent transparent;
+    border: none;
+    background: conic-gradient(
+      from 0deg,
+      var(--spectrum-gold) 0deg,
+      var(--spectrum-lime) 90deg,
+      var(--spectrum-cyan) 180deg,
+      transparent 180deg
+    );
+    -webkit-mask-image: radial-gradient(circle at center, transparent 0, transparent 190px, black 190px, black 250px, transparent 250px);
+    mask-image: radial-gradient(circle at center, transparent 0, transparent 190px, black 190px, black 250px, transparent 250px);
     opacity: 0.48;
   }
 
   html:not([data-theme="dark"]) .pulse-ring-2 {
-    border-color: transparent var(--spectrum-gold) transparent transparent;
+    border: none;
+    background: conic-gradient(
+      from 0deg,
+      transparent 0deg,
+      transparent 90deg,
+      var(--spectrum-cyan) 90deg,
+      var(--spectrum-sky) 180deg,
+      var(--spectrum-indigo) 270deg,
+      transparent 270deg
+    );
+    -webkit-mask-image: radial-gradient(circle at center, transparent 0, transparent 250px, black 250px, black 300px, transparent 300px);
+    mask-image: radial-gradient(circle at center, transparent 0, transparent 250px, black 250px, black 300px, transparent 300px);
     opacity: 0.46;
   }
 
   html:not([data-theme="dark"]) .pulse-ring-3 {
-    border-color: transparent transparent var(--spectrum-lime) transparent;
+    border: none;
+    background: conic-gradient(
+      from 0deg,
+      transparent 0deg,
+      transparent 180deg,
+      var(--spectrum-lime) 180deg,
+      var(--spectrum-cyan) 270deg,
+      var(--spectrum-sky) 360deg
+    );
+    -webkit-mask-image: radial-gradient(circle at center, transparent 0, transparent 130px, black 130px, black 200px, transparent 200px);
+    mask-image: radial-gradient(circle at center, transparent 0, transparent 130px, black 130px, black 200px, transparent 200px);
     opacity: 0.44;
   }
 
   html:not([data-theme="dark"]) .pulse-ring-4 {
-    border-color: var(--spectrum-cyan) transparent transparent transparent;
+    border: none;
+    background: conic-gradient(
+      from 0deg,
+      var(--spectrum-indigo) 0deg,
+      var(--spectrum-purple) 90deg,
+      var(--spectrum-magenta) 180deg,
+      transparent 180deg
+    );
+    -webkit-mask-image: radial-gradient(circle at center, transparent 0, transparent 312px, black 312px, black 360px, transparent 360px);
+    mask-image: radial-gradient(circle at center, transparent 0, transparent 312px, black 312px, black 360px, transparent 360px);
     opacity: 0.42;
   }
 }
@@ -944,6 +1097,13 @@ body {
   text-align: center;
 }
 
+/* Profile Avatar Container - Positioned between header and content */
+.profile-avatar-container {
+  display: flex;
+  justify-content: center;
+  margin: var(--space-8) 0;
+}
+
 /* Profile Avatar - Gravatar Integration */
 .profile-avatar {
   width: 128px;
@@ -954,7 +1114,6 @@ body {
   background-repeat: no-repeat;
   background-color: var(--color-bg-tertiary);
   border: 4px solid var(--color-primary);
-  margin: 0 auto var(--space-6);
   transition: transform var(--transition-base);
   box-shadow: var(--shadow-md);
 }
@@ -1047,10 +1206,13 @@ body {
 }
 
 @media (max-width: 768px) {
+  .profile-avatar-container {
+    margin: var(--space-6) 0;
+  }
+
   .profile-avatar {
     width: 96px;
     height: 96px;
-    margin-bottom: var(--space-5);
   }
 
   .about-tagline,
@@ -1949,59 +2111,171 @@ body {
     0 8px 10px -6px rgb(0 0 0 / 0.7);
 }
 
-/* Neural Pulse Dark Mode - CHROMATIC SPECTRUM (Full Rainbow) */
+/* Neural Pulse Dark Mode - GRADIENT BARS (Multi-color gradient WITHIN each rotating bar) */
+/* Each bar is a 1/4 or 1/2 segment with 3-4 colors flowing through it! */
+
 [data-theme="dark"] .pulse-ring-0 {
-  border-color: transparent transparent transparent var(--spectrum-crimson);
+  border: none;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 90deg,
+    var(--spectrum-crimson) 90deg,
+    var(--spectrum-orange) 180deg,
+    var(--spectrum-gold) 270deg,
+    transparent 270deg
+  );
+  -webkit-mask-image: radial-gradient(circle at center, transparent 0, transparent 85px, black 85px, black 140px, transparent 140px);
+  mask-image: radial-gradient(circle at center, transparent 0, transparent 85px, black 85px, black 140px, transparent 140px);
   opacity: 0.95; /* Brightest - hot core */
 }
 
 [data-theme="dark"] .pulse-ring-1 {
-  border-color: var(--spectrum-orange) transparent transparent transparent;
+  border: none;
+  background: conic-gradient(
+    from 0deg,
+    var(--spectrum-gold) 0deg,
+    var(--spectrum-lime) 90deg,
+    var(--spectrum-cyan) 180deg,
+    transparent 180deg
+  );
+  -webkit-mask-image: radial-gradient(circle at center, transparent 0, transparent 190px, black 190px, black 250px, transparent 250px);
+  mask-image: radial-gradient(circle at center, transparent 0, transparent 190px, black 190px, black 250px, transparent 250px);
   opacity: 0.9;
 }
 
 [data-theme="dark"] .pulse-ring-2 {
-  border-color: transparent var(--spectrum-gold) transparent transparent;
+  border: none;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 90deg,
+    var(--spectrum-cyan) 90deg,
+    var(--spectrum-sky) 180deg,
+    var(--spectrum-indigo) 270deg,
+    transparent 270deg
+  );
+  -webkit-mask-image: radial-gradient(circle at center, transparent 0, transparent 250px, black 250px, black 300px, transparent 300px);
+  mask-image: radial-gradient(circle at center, transparent 0, transparent 250px, black 250px, black 300px, transparent 300px);
   opacity: 0.88;
 }
 
 [data-theme="dark"] .pulse-ring-3 {
-  border-color: transparent transparent var(--spectrum-lime) transparent;
+  border: none;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 180deg,
+    var(--spectrum-lime) 180deg,
+    var(--spectrum-cyan) 270deg,
+    var(--spectrum-sky) 360deg
+  );
+  -webkit-mask-image: radial-gradient(circle at center, transparent 0, transparent 130px, black 130px, black 200px, transparent 200px);
+  mask-image: radial-gradient(circle at center, transparent 0, transparent 130px, black 130px, black 200px, transparent 200px);
   opacity: 0.85;
 }
 
 [data-theme="dark"] .pulse-ring-4 {
-  border-color: var(--spectrum-cyan) transparent transparent transparent;
+  border: none;
+  background: conic-gradient(
+    from 0deg,
+    var(--spectrum-indigo) 0deg,
+    var(--spectrum-purple) 90deg,
+    var(--spectrum-magenta) 180deg,
+    transparent 180deg
+  );
+  -webkit-mask-image: radial-gradient(circle at center, transparent 0, transparent 312px, black 312px, black 360px, transparent 360px);
+  mask-image: radial-gradient(circle at center, transparent 0, transparent 312px, black 312px, black 360px, transparent 360px);
   opacity: 0.82;
 }
 
 [data-theme="dark"] .pulse-ring-5 {
-  border-color: transparent var(--spectrum-sky) transparent transparent;
+  border: none;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 90deg,
+    var(--spectrum-sky) 90deg,
+    var(--spectrum-indigo) 180deg,
+    var(--spectrum-purple) 270deg,
+    transparent 270deg
+  );
+  -webkit-mask-image: radial-gradient(circle at center, transparent 0, transparent 382px, black 382px, black 440px, transparent 440px);
+  mask-image: radial-gradient(circle at center, transparent 0, transparent 382px, black 382px, black 440px, transparent 440px);
   opacity: 0.78;
 }
 
 [data-theme="dark"] .pulse-ring-6 {
-  border-color: transparent transparent transparent var(--spectrum-indigo);
+  border: none;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 180deg,
+    var(--spectrum-magenta) 180deg,
+    var(--spectrum-pink) 270deg,
+    var(--spectrum-lavender) 360deg
+  );
+  -webkit-mask-image: radial-gradient(circle at center, transparent 0, transparent 468px, black 468px, black 520px, transparent 520px);
+  mask-image: radial-gradient(circle at center, transparent 0, transparent 468px, black 468px, black 520px, transparent 520px);
   opacity: 0.75;
 }
 
 [data-theme="dark"] .pulse-ring-7 {
-  border-color: var(--spectrum-purple) transparent transparent transparent;
+  border: none;
+  background: conic-gradient(
+    from 0deg,
+    var(--spectrum-purple) 0deg,
+    var(--spectrum-magenta) 90deg,
+    var(--spectrum-pink) 180deg,
+    transparent 180deg
+  );
+  -webkit-mask-image: radial-gradient(circle at center, transparent 0, transparent 554px, black 554px, black 600px, transparent 600px);
+  mask-image: radial-gradient(circle at center, transparent 0, transparent 554px, black 554px, black 600px, transparent 600px);
   opacity: 0.72;
 }
 
 [data-theme="dark"] .pulse-ring-8 {
-  border-color: transparent var(--spectrum-magenta) transparent transparent;
+  border: none;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 90deg,
+    var(--spectrum-pink) 90deg,
+    var(--spectrum-lavender) 180deg,
+    var(--spectrum-crimson) 270deg,
+    transparent 270deg
+  );
+  -webkit-mask-image: radial-gradient(circle at center, transparent 0, transparent 640px, black 640px, black 690px, transparent 690px);
+  mask-image: radial-gradient(circle at center, transparent 0, transparent 640px, black 640px, black 690px, transparent 690px);
   opacity: 0.68;
 }
 
 [data-theme="dark"] .pulse-ring-9 {
-  border-color: transparent transparent var(--spectrum-pink) transparent;
+  border: none;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 180deg,
+    var(--spectrum-orange) 180deg,
+    var(--spectrum-gold) 270deg,
+    var(--spectrum-lime) 360deg
+  );
+  -webkit-mask-image: radial-gradient(circle at center, transparent 0, transparent 736px, black 736px, black 780px, transparent 780px);
+  mask-image: radial-gradient(circle at center, transparent 0, transparent 736px, black 736px, black 780px, transparent 780px);
   opacity: 0.65;
 }
 
 [data-theme="dark"] .pulse-ring-10 {
-  border-color: transparent transparent transparent var(--spectrum-lavender);
+  border: none;
+  background: conic-gradient(
+    from 0deg,
+    var(--spectrum-lavender) 0deg,
+    var(--spectrum-crimson) 90deg,
+    var(--spectrum-orange) 180deg,
+    transparent 180deg
+  );
+  -webkit-mask-image: radial-gradient(circle at center, transparent 0, transparent 846px, black 846px, black 870px, transparent 870px);
+  mask-image: radial-gradient(circle at center, transparent 0, transparent 846px, black 846px, black 870px, transparent 870px);
   opacity: 0.6; /* Softest - gentle perimeter fade */
 }
 
