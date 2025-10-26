@@ -640,7 +640,7 @@ body {
 .site-title {
   font-family: "Michroma", sans-serif;
   font-size: var(--text-5xl);
-  font-weight: 400; /* Michroma is already bold by design */
+  font-weight: 600; /* Boosted to stand out against orbs */
   color: var(--color-text);
   margin-bottom: var(--space-3);
   letter-spacing: 0.02em; /* Slightly wider for technical feel */
@@ -649,7 +649,7 @@ body {
 .site-subtitle {
   font-size: var(--text-xl);
   color: var(--color-text-secondary);
-  font-weight: 400;
+  font-weight: 500; /* Boosted for better visibility */
   max-width: 600px;
   margin: 0 auto;
 }
@@ -671,7 +671,7 @@ body {
   color: var(--color-text-secondary);
   text-decoration: none;
   font-size: var(--text-sm);
-  font-weight: 500;
+  font-weight: 600; /* Boosted for better visibility */
   padding: var(--space-3) var(--space-4);
   border-radius: var(--radius-lg);
   transition: all var(--transition-base);
@@ -2015,6 +2015,7 @@ body {
   gap: var(--space-2);
   font-size: var(--text-sm);
   color: var(--color-text-secondary);
+  font-weight: 600; /* Boosted to stand out against Game of Life */
 }
 
 .pm-dot {
@@ -2043,7 +2044,7 @@ body {
 .pm-indicator a {
   color: var(--color-primary);
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 700; /* Bold for maximum visibility */
 }
 
 .pm-indicator a:hover {
@@ -2054,12 +2055,13 @@ body {
   text-align: center;
   font-size: var(--text-sm);
   color: var(--color-text-secondary);
+  font-weight: 600; /* Boosted to stand out against Game of Life */
 }
 
 .footer-copyright a {
   color: var(--color-primary);
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 700; /* Bold for maximum visibility */
 }
 
 .footer-copyright a:hover {
@@ -2772,6 +2774,27 @@ body {
     var(--color-bg),
     var(--color-bg-secondary)
   );
+}
+
+/* Dark mode: Extra font weight boost for vibrant orb contrast */
+[data-theme="dark"] .site-title {
+  font-weight: 700; /* Extra bold against spectrum orbs */
+}
+
+[data-theme="dark"] .site-subtitle {
+  font-weight: 600; /* Semibold for clarity */
+}
+
+[data-theme="dark"] .social-links a {
+  font-weight: 700; /* Bold for visibility */
+}
+
+[data-theme="dark"] .pm-indicator {
+  font-weight: 700; /* Bold against Game of Life */
+}
+
+[data-theme="dark"] .footer-copyright {
+  font-weight: 700; /* Bold for maximum contrast */
 }
 
 [data-theme="dark"] .pm-modal-content {
