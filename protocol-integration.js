@@ -236,9 +236,26 @@ class ProtocolIntegration {
     // Only show tagline if it's different from philosophy (avoid duplication)
     const showTagline = tagline && tagline !== philosophy;
 
+    // Fetch avatar URL (server-side pre-computed OR client-side generated)
+    let avatarHTML = '';
+    const avatarUrl = this.data?.avatar_url; // Server-side pre-computed (privacy-preserving)
+    const email = this.data?.email; // Fallback: client-side generation
+
+    if (avatarUrl) {
+      // Use pre-computed avatar URL from server (preferred)
+      avatarHTML = `<div class="profile-avatar" style="background-image: url('${avatarUrl}')"></div>`;
+    } else if (email) {
+      // Fallback: Generate avatar URL client-side using Gravatar
+      const generatedUrl = await GravatarHelper.getAvatarUrl(email, 256, 'identicon');
+      if (generatedUrl) {
+        avatarHTML = `<div class="profile-avatar" style="background-image: url('${generatedUrl}')"></div>`;
+      }
+    }
+
     // Build comprehensive about section with semantic hierarchy
-    // Note: Avatar is displayed in header only (via updateHeaderAvatar), not duplicated here
+    // Order: avatar, tagline, role, current work, background, philosophy
     aboutEl.innerHTML = `
+      ${avatarHTML}
       ${showTagline ? `<p class="pm-tagline">${this.escapeHtml(tagline)}</p>` : ''}
       ${role ? `<p class="pm-role"><strong>Role:</strong> ${this.escapeHtml(role)}</p>` : ''}
       ${currentWork ? `<p class="pm-current-work"><strong>Current Work:</strong> ${this.escapeHtml(currentWork)}</p>` : ''}
@@ -266,16 +283,15 @@ class ProtocolIntegration {
     // Priority order for sorting
     const priorityOrder = { urgent: 0, high: 1, normal: 2, low: 3 };
 
-    // Show top 5 seeds by priority
-    const topSeeds = seeds
+    // Sort seeds by priority (no artificial limit - user freedom over nannying)
+    const sortedSeeds = seeds
       .sort((a, b) => {
         return (priorityOrder[a.priority] || 3) - (priorityOrder[b.priority] || 3);
-      })
-      .slice(0, 5);
+      });
 
     projectsEl.innerHTML = `
       <ul class="pm-projects-list">
-        ${topSeeds.map((seed, index) => `
+        ${sortedSeeds.map((seed, index) => `
           <li class="pm-project-item" data-seed-index="${index}">
             <button class="pm-maximize-icon" data-modal-seed="${index}" aria-label="Open in modal">⤢</button>
             <div class="pm-project-header">
@@ -301,7 +317,7 @@ class ProtocolIntegration {
     `;
 
     // Store seeds data for modal
-    this.cachedSeeds = topSeeds;
+    this.cachedSeeds = sortedSeeds;
     // Attach modal handlers for seeds
     this.attachModalHandlers('seed');
   }
