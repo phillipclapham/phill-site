@@ -2618,7 +2618,7 @@ body {
 }
 
 /* ========================================
-   SESSION 2: CARD 3D TILT + CLICK RIPPLES
+   SESSION 2 FIX: CARD 3D TILT + WATER RIPPLES
    ======================================== */
 
 /* Card 3D Tilt - Apple-style subtle tilt on hover */
@@ -2649,46 +2649,34 @@ body {
   overflow: hidden;
 }
 
-/* Click Ripple - Material Design-style spectrum gradient */
-.click-ripple {
+/* Water Ripple - Subtle, transparent, like pebble hitting pond */
+.water-ripple {
   position: absolute;
-  width: 20px;
-  height: 20px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
+  border: 1px solid rgba(100, 100, 100, 0.12); /* Subtle gray, almost invisible */
+  background: none; /* No fill - border only */
   transform: translate(-50%, -50%) scale(0);
-  background: radial-gradient(
-    circle,
-    rgba(14, 165, 233, 0.4) 0%,
-    rgba(147, 51, 234, 0.3) 50%,
-    rgba(236, 72, 153, 0.2) 100%
-  );
-  animation: ripple-expand 1s ease-out forwards;
+  animation: water-ripple-expand 500ms ease-out forwards;
   pointer-events: none;
 }
 
-/* Ripple Expand Animation */
-@keyframes ripple-expand {
+/* Water Ripple Expand Animation - Fast, natural physics */
+@keyframes water-ripple-expand {
   0% {
     transform: translate(-50%, -50%) scale(0);
     opacity: 1;
   }
-  50% {
-    opacity: 0.6;
-  }
   100% {
-    transform: translate(-50%, -50%) scale(15);
+    transform: translate(-50%, -50%) scale(8); /* Smaller than before (was 15x) */
     opacity: 0;
   }
 }
 
-/* Dark mode: Brighter ripples for visibility */
-[data-theme="dark"] .click-ripple {
-  background: radial-gradient(
-    circle,
-    rgba(14, 165, 233, 0.6) 0%,
-    rgba(147, 51, 234, 0.5) 50%,
-    rgba(236, 72, 153, 0.4) 100%
-  );
+/* Dark mode: Subtle white ripples for visibility */
+[data-theme="dark"] .water-ripple {
+  border-color: rgba(255, 255, 255, 0.08); /* Very subtle white */
 }
 
 /* Mobile: Disable tilt transform (gyroscope or no tilt) */
@@ -2698,14 +2686,14 @@ body {
   }
 }
 
-/* Accessibility: Disable tilt for reduced motion */
+/* Accessibility: Disable tilt + ripples for reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .tiltable-card {
     transform: none !important;
     transition: none !important;
   }
 
-  .click-ripple {
+  .water-ripple {
     display: none;
   }
 }

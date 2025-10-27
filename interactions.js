@@ -241,12 +241,13 @@
 
   class Card3DTilt {
     constructor() {
-      // Target cards: project cards, expertise cards, state cards
-      this.cards = document.querySelectorAll('.pm-project-item, .pm-expertise-card, .state-card, .current-state-grid .state-card');
+      // Track initialized cards (use Set to avoid duplicates)
+      this.initializedCards = new Set();
       this.activeCard = null;
       this.currentRotation = { x: 0, y: 0 };
       this.targetRotation = { x: 0, y: 0 };
       this.isAnimating = false;
+      this.observer = null;
 
       // Skip on mobile (will use gyroscope instead) or if reduced motion preferred
       if (CONFIG.prefersReducedMotion) {
@@ -255,7 +256,11 @@
 
       // Desktop: mouse-based tilt
       if (!CONFIG.isMobile) {
-        this.initDesktopTilt();
+        // Initialize any existing cards
+        this.initializeCards();
+
+        // Watch for new cards being added (Protocol Memory loads them async)
+        this.setupMutationObserver();
       } else {
         // Mobile: device orientation tilt (optional)
         this.initMobileTilt();
@@ -263,32 +268,97 @@
     }
 
     /**
-     * Initialize desktop mouse-based tilt
+     * Setup MutationObserver to watch for dynamically-added cards
      */
-    initDesktopTilt() {
-      this.cards.forEach(card => {
-        // Add tiltable class for CSS targeting
-        card.classList.add('tiltable-card');
+    setupMutationObserver() {
+      this.observer = new MutationObserver((mutations) => {
+        // Check if any new card elements were added
+        let foundNewCards = false;
+        for (const mutation of mutations) {
+          if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+            // Check if any added nodes are cards or contain cards
+            mutation.addedNodes.forEach(node => {
+              if (node.nodeType === 1) { // Element node
+                if (this.isCardElement(node) || node.querySelector('.pm-project-item, .pm-expertise-card, .state-card')) {
+                  foundNewCards = true;
+                }
+              }
+            });
+          }
+        }
 
-        // Throttled mousemove for performance
-        const throttledMouseMove = throttle((e) => {
-          this.handleCardMouseMove(card, e);
-        }, CONFIG.tiltUpdateThrottle);
-
-        card.addEventListener('mouseenter', () => {
-          this.activeCard = card;
-        });
-
-        card.addEventListener('mousemove', throttledMouseMove, { passive: true });
-
-        card.addEventListener('mouseleave', () => {
-          this.activeCard = null;
-          this.resetTilt(card);
-        });
+        if (foundNewCards) {
+          this.initializeCards();
+        }
       });
 
-      console.log('[Card3DTilt] Desktop tilt initialized for', this.cards.length, 'cards');
+      // Observe the entire body for added cards
+      this.observer.observe(document.body, {
+        childList: true,
+        subtree: true
+      });
+
+      console.log('[Card3DTilt] MutationObserver watching for dynamic cards');
     }
+
+    /**
+     * Check if an element is a card
+     * @param {Element} element - Element to check
+     * @returns {Boolean}
+     */
+    isCardElement(element) {
+      return element.classList && (
+        element.classList.contains('pm-project-item') ||
+        element.classList.contains('pm-expertise-card') ||
+        element.classList.contains('state-card')
+      );
+    }
+
+    /**
+     * Initialize tilt on all cards (existing + new)
+     */
+    initializeCards() {
+      const cards = document.querySelectorAll('.pm-project-item, .pm-expertise-card, .state-card');
+      let newCount = 0;
+
+      cards.forEach(card => {
+        if (!this.initializedCards.has(card)) {
+          this.initializedCards.add(card);
+          this.attachTiltListeners(card);
+          newCount++;
+        }
+      });
+
+      if (newCount > 0) {
+        console.log('[Card3DTilt] Initialized tilt on', newCount, 'new cards (total:', this.initializedCards.size, ')');
+      }
+    }
+
+    /**
+     * Attach tilt event listeners to a card
+     * @param {HTMLElement} card - The card element
+     */
+    attachTiltListeners(card) {
+      // Add tiltable class for CSS targeting
+      card.classList.add('tiltable-card');
+
+      // Throttled mousemove for performance
+      const throttledMouseMove = throttle((e) => {
+        this.handleCardMouseMove(card, e);
+      }, CONFIG.tiltUpdateThrottle);
+
+      card.addEventListener('mouseenter', () => {
+        this.activeCard = card;
+      });
+
+      card.addEventListener('mousemove', throttledMouseMove, { passive: true });
+
+      card.addEventListener('mouseleave', () => {
+        this.activeCard = null;
+        this.resetTilt(card);
+      });
+    }
+
 
     /**
      * Handle mouse movement over card (calculate tilt)
@@ -384,6 +454,12 @@
         return;
       }
 
+      // Initialize any existing cards
+      this.initializeCards();
+
+      // Watch for new cards being added
+      this.setupMutationObserver();
+
       // Android or older iOS: permission granted automatically
       window.addEventListener('deviceorientation', (e) => {
         this.handleDeviceOrientation(e);
@@ -406,8 +482,8 @@
       const normalizedBeta = Math.max(-1, Math.min(1, beta / 45));
       const normalizedGamma = Math.max(-1, Math.min(1, gamma / 45));
 
-      // Apply subtle tilt to all cards (ambient effect)
-      this.cards.forEach(card => {
+      // Apply subtle tilt to all tracked cards (ambient effect)
+      this.initializedCards.forEach(card => {
         const tiltX = normalizedBeta * CONFIG.tiltMaxDegrees * 0.5; // 50% of max
         const tiltY = normalizedGamma * CONFIG.tiltMaxDegrees * 0.5;
 
@@ -417,10 +493,10 @@
   }
 
   /* ========================================
-     CLICK RIPPLES - SESSION 2
+     WATER RIPPLES - SESSION 2 FIX
      ======================================== */
 
-  class ClickRipples {
+  class WaterRipples {
     constructor() {
       this.activeRipples = [];
       this.rippleContainer = null;
@@ -434,7 +510,7 @@
     }
 
     /**
-     * Initialize click ripple system
+     * Initialize water ripple system
      */
     init() {
       // Create ripple container (appended to body)
@@ -444,58 +520,66 @@
       document.body.appendChild(this.rippleContainer);
 
       // Listen for clicks on interactive elements
-      const clickTargets = document.querySelectorAll('a, button, .pm-project-item, .pm-expertise-card, .state-card, .current-state-grid .state-card');
+      // Use event delegation on document for efficiency
+      document.addEventListener('click', (e) => {
+        // Only create ripples for clickable elements
+        const target = e.target.closest('a, button, .pm-project-item, .pm-expertise-card, .state-card');
+        if (target) {
+          this.createWaterRipple(e.clientX, e.clientY);
+        }
+      }, { passive: true });
 
-      clickTargets.forEach(element => {
-        element.addEventListener('click', (e) => {
-          this.createRipple(e.clientX, e.clientY);
-        }, { passive: true });
-      });
-
-      console.log('[ClickRipples] Ripple system initialized for', clickTargets.length, 'elements');
+      console.log('[WaterRipples] Subtle water ripple system initialized');
     }
 
     /**
-     * Create ripple at click coordinates
+     * Create water ripple at click coordinates (3 concentric rings)
      * @param {Number} x - Click X coordinate
      * @param {Number} y - Click Y coordinate
      */
-    createRipple(x, y) {
-      // Remove oldest ripple if at max concurrent limit
-      if (this.activeRipples.length >= CONFIG.rippleMaxConcurrent) {
-        const oldestRipple = this.activeRipples.shift();
-        if (oldestRipple && oldestRipple.element.parentNode) {
-          oldestRipple.element.remove();
-        }
+    createWaterRipple(x, y) {
+      // Create 3 concentric rings with staggered timing (like water ripples)
+      for (let i = 0; i < 3; i++) {
+        const ring = document.createElement('div');
+        ring.className = 'water-ripple';
+        ring.style.left = `${x}px`;
+        ring.style.top = `${y}px`;
+        ring.style.animationDelay = `${i * 80}ms`; // Stagger: 0ms, 80ms, 160ms
+
+        // Add to container
+        this.rippleContainer.appendChild(ring);
+
+        // Track active ripple
+        const rippleData = {
+          element: ring,
+          timestamp: Date.now()
+        };
+        this.activeRipples.push(rippleData);
+
+        // Auto-remove after animation completes
+        const duration = 500 + (i * 80); // 500ms, 580ms, 660ms
+        setTimeout(() => {
+          if (ring.parentNode) {
+            ring.remove();
+          }
+          // Remove from tracking array
+          const index = this.activeRipples.indexOf(rippleData);
+          if (index > -1) {
+            this.activeRipples.splice(index, 1);
+          }
+        }, duration);
       }
 
-      // Create ripple element
-      const ripple = document.createElement('div');
-      ripple.className = 'click-ripple';
-      ripple.style.left = `${x}px`;
-      ripple.style.top = `${y}px`;
-
-      // Add to container
-      this.rippleContainer.appendChild(ripple);
-
-      // Track active ripple
-      const rippleData = {
-        element: ripple,
-        timestamp: Date.now()
-      };
-      this.activeRipples.push(rippleData);
-
-      // Auto-remove after animation completes
-      setTimeout(() => {
-        if (ripple.parentNode) {
-          ripple.remove();
-        }
-        // Remove from tracking array
-        const index = this.activeRipples.indexOf(rippleData);
-        if (index > -1) {
-          this.activeRipples.splice(index, 1);
-        }
-      }, CONFIG.rippleDuration);
+      // Limit total concurrent ripples (cleanup oldest if needed)
+      if (this.activeRipples.length > CONFIG.rippleMaxConcurrent * 3) {
+        // Remove oldest ripples
+        const toRemove = this.activeRipples.splice(0, 3);
+        toRemove.forEach(rippleData => {
+          if (rippleData.element.parentNode) {
+            rippleData.element.remove();
+          }
+        });
+      }
     }
   }
 
@@ -528,13 +612,13 @@
       console.log('[Interactions] Link underline animations initialized');
     }
 
-    // Initialize Card 3D Tilt (Session 2) - works on desktop + mobile
+    // Initialize Card 3D Tilt (Session 2 FIX) - works on desktop + mobile
     const cardTilt = new Card3DTilt();
     console.log('[Interactions] Card 3D tilt initialized');
 
-    // Initialize Click Ripples (Session 2) - works on desktop + mobile
-    const clickRipples = new ClickRipples();
-    console.log('[Interactions] Click ripples initialized');
+    // Initialize Water Ripples (Session 2 FIX) - works on desktop + mobile
+    const waterRipples = new WaterRipples();
+    console.log('[Interactions] Water ripples initialized');
 
     // Expose for debugging (optional)
     if (window.pmIntegration) {
@@ -542,7 +626,7 @@
         neuralGlow,
         linkAnimations,
         cardTilt,
-        clickRipples,
+        waterRipples,
         config: CONFIG
       };
     }
