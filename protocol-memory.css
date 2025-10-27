@@ -2660,7 +2660,7 @@ body {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  border: 1.5px solid rgba(100, 100, 100, 0.25); /* Subtle but visible gray */
+  border: 1.5px solid rgba(100, 100, 100, 0.22); /* Refined: slightly more subtle */
   background: none; /* No fill - border only */
   transform: translate(-50%, -50%) scale(0);
   animation: water-ripple-expand 500ms ease-out forwards;
@@ -2681,7 +2681,7 @@ body {
 
 /* Dark mode: Subtle white ripples for visibility */
 [data-theme="dark"] .water-ripple {
-  border-color: rgba(255, 255, 255, 0.18); /* Subtle but visible white */
+  border-color: rgba(255, 255, 255, 0.15); /* Refined: slightly more subtle */
 }
 
 /* Mobile: Disable tilt transform (gyroscope or no tilt) */

@@ -27,7 +27,7 @@
     glowUpdateThrottle: 16,     // Throttle mousemove to 60fps (16ms)
 
     // Card 3D Tilt (Session 2)
-    tiltMaxDegrees: 10,         // Maximum tilt angle (±10 degrees)
+    tiltMaxDegrees: 5,          // Maximum tilt angle (±5 degrees, organic feel)
     tiltSmoothness: 0.1,        // Lerp factor (0.1 = smooth, 0.5 = snappy)
     tiltUpdateThrottle: 16,     // Throttle mousemove to 60fps (16ms)
 
@@ -310,7 +310,8 @@
       return element.classList && (
         element.classList.contains('pm-project-item') ||
         element.classList.contains('pm-expertise-card') ||
-        element.classList.contains('state-card')
+        element.classList.contains('state-card') ||
+        element.classList.contains('pm-state-item') // Current State cards
       );
     }
 
@@ -318,7 +319,8 @@
      * Initialize tilt on all cards (existing + new)
      */
     initializeCards() {
-      const cards = document.querySelectorAll('.pm-project-item, .pm-expertise-card, .state-card');
+      // Include .pm-state-item for Current State section
+      const cards = document.querySelectorAll('.pm-project-item, .pm-expertise-card, .state-card, .pm-state-item');
       let newCount = 0;
 
       cards.forEach(card => {
@@ -530,7 +532,7 @@
       // Use event delegation on document for efficiency
       document.addEventListener('click', (e) => {
         // Only create ripples for clickable elements
-        const target = e.target.closest('a, button, .pm-project-item, .pm-expertise-card, .state-card');
+        const target = e.target.closest('a, button, .pm-project-item, .pm-expertise-card, .state-card, .pm-state-item');
         if (target) {
           this.createWaterRipple(e.clientX, e.clientY);
         }
