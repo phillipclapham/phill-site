@@ -1432,7 +1432,10 @@ body {
 
 @media (max-width: 768px) {
   .profile-avatar-container {
-    margin: var(--space-6) 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: var(--space-6) 0 var(--space-8) 0; /* Extra bottom margin for mobile spacing */
   }
 
   .profile-avatar {
