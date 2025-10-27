@@ -111,6 +111,14 @@
   --spectrum-magenta: rgba(236, 72, 153, 0.22);    /* Ring 8: Magenta/Hot Pink - Vibrant outer */
   --spectrum-pink: rgba(244, 114, 182, 0.2);       /* Ring 9: Pink/Rose - Soft perimeter */
   --spectrum-lavender: rgba(196, 181, 253, 0.18);  /* Ring 10: Lavender - Gentle fade */
+
+  /* Interactions - Session 1 */
+  --glow-intensity: 0; /* Dynamic value updated by interactions.js (0-1 range) */
+  --spectrum-gradient: linear-gradient(90deg,
+    var(--color-primary-light),
+    rgba(147, 51, 234, 0.8),
+    rgba(236, 72, 153, 0.8)
+  ); /* Teal → Purple → Magenta gradient for link underlines */
 }
 
 /* ========================================
@@ -543,6 +551,11 @@ body {
   pointer-events: none;
   z-index: 0;
   opacity: 1;
+  /* Session 1: Neural pulse hover glow (distance-based intensity) */
+  filter: drop-shadow(0 0 calc(var(--glow-intensity) * 40px) rgba(14, 165, 233, 0.4))
+          drop-shadow(0 0 calc(var(--glow-intensity) * 60px) rgba(147, 51, 234, 0.3));
+  transition: filter 100ms ease-out;
+  will-change: filter; /* GPU acceleration hint */
 }
 
 /* Individual pulse rings */
@@ -1155,8 +1168,10 @@ body {
   transform: translateX(-50%) scaleX(0);
   width: 80%;
   height: 2px;
-  background-color: var(--color-primary);
+  /* Session 1: Spectrum gradient underline (center-out animation) */
+  background: var(--spectrum-gradient);
   transition: transform var(--transition-base);
+  transform-origin: center;
 }
 
 .nav-links a:hover::after {
@@ -2017,6 +2032,24 @@ body {
 
 .social-links a:hover::before {
   left: 100%;
+}
+
+/* Session 1: Spectrum gradient underline for social links */
+.social-links a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 80%;
+  height: 2px;
+  background: var(--spectrum-gradient);
+  transition: transform var(--transition-base);
+  transform-origin: center;
+}
+
+.social-links a:hover::after {
+  transform: translateX(-50%) scaleX(1);
 }
 
 /* Loading skeleton animations */
