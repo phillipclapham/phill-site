@@ -144,9 +144,10 @@ body {
 }
 
 /* ========================================
-   FLOATING ORBS - Mesmerizing Ambient Background
+   BACKGROUND - Multi-colored Neural Map + Noise Glitch (Thematic Restraint)
    ======================================== */
 
+/* Light mode: Sparse multi-colored neural network - Protocol Memory substrate */
 .orb-field {
   position: fixed;
   top: 0;
@@ -155,272 +156,45 @@ body {
   height: 100vh;
   z-index: -1;
   pointer-events: none;
-  overflow: hidden;
+  background: #fafafa;
+  transition: background 0.8s ease-in-out;
 }
 
-/* Base orb styles - Ambient consciousness field */
-.orb {
+/* Dark mode: Balanced gradient (split between subtle and vibrant) */
+[data-theme="dark"] .orb-field {
+  background: linear-gradient(160deg,
+    rgb(12, 32, 36) 0%,     /* Balanced teal-black */
+    rgb(29, 15, 42) 40%,    /* Balanced purple-black */
+    rgb(38, 13, 30) 70%,    /* Balanced magenta-black */
+    rgb(13, 35, 25) 100%    /* Balanced green-black */
+  );
+}
+
+/* Dark mode: Noise displacement glitch overlay (organic warping) */
+[data-theme="dark"] .orb-field::before {
+  content: '';
   position: absolute;
-  border-radius: 50%;
-  filter: blur(120px); /* Dreamy soft focus */
-  opacity: 0.35; /* Whisper-subtle in light mode */
-  will-change: transform;
-  transition: background 0.8s ease-in-out, opacity 0.8s ease-in-out; /* Smooth founder mode shift */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><filter id="displace"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="3" result="noise"/><feDisplacementMap in="SourceGraphic" in2="noise" scale="8" xChannelSelector="R" yChannelSelector="G"/></filter><rect width="100%" height="100%" filter="url(%23displace)" fill="rgba(255,255,255,0.03)"/></svg>');
+  background-size: 400px 400px;
+  background-repeat: repeat;
+  mix-blend-mode: overlay;
+  opacity: 1;
+  filter: none;
+  pointer-events: none;
 }
 
-/* Light mode: Whisper-subtle gray orbs - 360° ambient field */
-.orb-1 {
-  width: 850px;
-  height: 850px;
-  background: radial-gradient(circle, rgba(45, 45, 45, 0.8), transparent 50%);
-  top: -425px;
-  left: 10%;
-  z-index: -1; /* Front layer */
-  animation: drift1 32s linear infinite; /* Constant drift */
+/* Founder mode (light): Warm spectrum hint - consciousness substrate */
+[data-mode="founder"]:not([data-theme="dark"]) .orb-field {
+  background: linear-gradient(180deg,
+    #fdfbff 0%,   /* Whisper of purple-white */
+    #fffcf9 100%  /* Whisper of orange-warm */
+  );
 }
 
-.orb-2 {
-  width: 920px;
-  height: 920px;
-  background: radial-gradient(circle, rgba(65, 65, 65, 0.7), transparent 50%);
-  top: 50%;
-  left: calc(100% + 100px);
-  z-index: -2; /* Middle layer */
-  animation: drift2 42s ease-in-out infinite 7s; /* Smooth acceleration */
-}
-
-.orb-3 {
-  width: 780px;
-  height: 780px;
-  background: radial-gradient(circle, rgba(85, 85, 85, 0.75), transparent 50%);
-  top: calc(100% + 50px);
-  left: 50%;
-  z-index: -3; /* Back layer */
-  animation: drift3 36s cubic-bezier(0.4, 0.0, 0.6, 1) infinite 14s; /* Organic feel */
-}
-
-.orb-4 {
-  width: 1000px;
-  height: 1000px;
-  background: radial-gradient(circle, rgba(55, 55, 55, 0.6), transparent 50%);
-  top: 40%;
-  left: -500px;
-  z-index: -1; /* Front layer */
-  animation: drift4 46s linear infinite 21s; /* Constant drift */
-}
-
-.orb-5 {
-  width: 840px;
-  height: 840px;
-  background: radial-gradient(circle, rgba(75, 75, 75, 0.65), transparent 50%);
-  top: -420px;
-  right: 15%;
-  z-index: -2; /* Middle layer */
-  animation: drift5 34s cubic-bezier(0.4, 0.0, 0.6, 1) infinite 28s; /* Organic feel */
-}
-
-.orb-6 {
-  width: 900px;
-  height: 900px;
-  background: radial-gradient(circle, rgba(95, 95, 95, 0.7), transparent 50%);
-  top: calc(100% + 80px);
-  left: 10%;
-  z-index: -3; /* Back layer */
-  animation: drift6 40s ease-in-out infinite 35s; /* Smooth acceleration */
-}
-
-.orb-7 {
-  width: 820px;
-  height: 820px;
-  background: radial-gradient(circle, rgba(40, 40, 40, 0.68), transparent 50%);
-  top: calc(100% + 60px);
-  right: 20%;
-  z-index: -1; /* Front layer */
-  animation: drift7 38s linear infinite 42s; /* Constant drift */
-}
-
-.orb-8 {
-  width: 960px;
-  height: 960px;
-  background: radial-gradient(circle, rgba(100, 100, 100, 0.72), transparent 50%);
-  top: 15%;
-  left: -480px;
-  z-index: -2; /* Middle layer */
-  animation: drift8 44s cubic-bezier(0.4, 0.0, 0.6, 1) infinite 49s; /* Organic feel */
-}
-
-/* 360° Multidirectional drift - Ambient consciousness field */
-
-/* Orb 1: Top-left → Bottom-right diagonal (linear - constant drift) */
-@keyframes drift1 {
-  0% { transform: translate3d(0, 0, 0) scale(1); }
-  50% { transform: translate3d(50vw, 65vh, 0) scale(1.1); }
-  100% { transform: translate3d(120vw, 150vh, 0) scale(0.95); }
-}
-
-/* Orb 2: Right-center → Left-top diagonal (ease-in-out - smooth) */
-@keyframes drift2 {
-  0% { transform: translate3d(0, 0, 0) scale(1); }
-  50% { transform: translate3d(-70vw, -35vh, 0) scale(1.15); }
-  100% { transform: translate3d(-160vw, -80vh, 0) scale(1); }
-}
-
-/* Orb 3: Bottom-center → Top-right diagonal (organic bezier) */
-@keyframes drift3 {
-  0% { transform: translate3d(0, 0, 0) scale(1); }
-  50% { transform: translate3d(40vw, -75vh, 0) scale(1.05); }
-  100% { transform: translate3d(100vw, -170vh, 0) scale(0.9); }
-}
-
-/* Orb 4: Left-middle → Right-bottom diagonal (linear - constant drift) */
-@keyframes drift4 {
-  0% { transform: translate3d(0, 0, 0) scale(1); }
-  50% { transform: translate3d(80vw, 40vh, 0) scale(1.2); }
-  100% { transform: translate3d(180vw, 90vh, 0) scale(1.05); }
-}
-
-/* Orb 5: Top-right → Bottom-left diagonal (organic bezier) */
-@keyframes drift5 {
-  0% { transform: translate3d(0, 0, 0) scale(1); }
-  50% { transform: translate3d(-55vw, 65vh, 0) scale(1.1); }
-  100% { transform: translate3d(-130vw, 150vh, 0) scale(0.95); }
-}
-
-/* Orb 6: Bottom-left → Top-center diagonal (ease-in-out - smooth) */
-@keyframes drift6 {
-  0% { transform: translate3d(0, 0, 0) scale(1); }
-  50% { transform: translate3d(35vw, -75vh, 0) scale(1.08); }
-  100% { transform: translate3d(80vw, -170vh, 0) scale(1); }
-}
-
-/* Orb 7: Bottom-right → Left-center curve (linear - constant drift) */
-@keyframes drift7 {
-  0% { transform: translate3d(0, 0, 0) scale(1); }
-  50% { transform: translate3d(-65vw, -30vh, 0) scale(1.12); }
-  100% { transform: translate3d(-150vw, -70vh, 0) scale(0.95); }
-}
-
-/* Orb 8: Left-top → Right-middle curve (organic bezier) */
-@keyframes drift8 {
-  0% { transform: translate3d(0, 0, 0) scale(1); }
-  50% { transform: translate3d(75vw, 25vh, 0) scale(1.15); }
-  100% { transform: translate3d(170vw, 55vh, 0) scale(1); }
-}
-
-/* Dark mode: Vibrant spectrum orbs - Softer edges for color mixing */
-[data-theme="dark"] .orb-1 {
-  background: radial-gradient(circle, rgba(220, 38, 38, 0.9), rgba(249, 115, 22, 0.5), transparent 50%);
-  opacity: 0.6;
-}
-
-[data-theme="dark"] .orb-2 {
-  background: radial-gradient(circle, rgba(6, 182, 212, 0.85), rgba(14, 165, 233, 0.5), transparent 50%);
-  opacity: 0.55;
-}
-
-[data-theme="dark"] .orb-3 {
-  background: radial-gradient(circle, rgba(147, 51, 234, 0.8), rgba(236, 72, 153, 0.5), transparent 50%);
-  opacity: 0.6;
-}
-
-[data-theme="dark"] .orb-4 {
-  background: radial-gradient(circle, rgba(245, 158, 11, 0.75), rgba(251, 191, 36, 0.5), transparent 50%);
-  opacity: 0.5;
-}
-
-[data-theme="dark"] .orb-5 {
-  background: radial-gradient(circle, rgba(132, 204, 22, 0.8), rgba(163, 230, 53, 0.5), transparent 50%);
-  opacity: 0.58;
-}
-
-[data-theme="dark"] .orb-6 {
-  background: radial-gradient(circle, rgba(236, 72, 153, 0.85), rgba(244, 114, 182, 0.5), transparent 50%);
-  opacity: 0.55;
-}
-
-[data-theme="dark"] .orb-7 {
-  background: radial-gradient(circle, rgba(99, 102, 241, 0.8), rgba(129, 140, 248, 0.5), transparent 50%);
-  opacity: 0.6;
-}
-
-[data-theme="dark"] .orb-8 {
-  background: radial-gradient(circle, rgba(249, 115, 22, 0.75), rgba(251, 146, 60, 0.5), transparent 50%);
-  opacity: 0.52;
-}
-
-/* Accessibility: Respect user motion preferences */
-@media (prefers-reduced-motion: reduce) {
-  .orb {
-    animation-duration: 200s !important; /* Slow to near-static for motion sensitivity */
-    animation-timing-function: linear !important;
-  }
-
-  /* Option: Completely pause animations for severe motion sensitivity */
-  @media (prefers-reduced-motion: reduce) and (prefers-contrast: more) {
-    .orb {
-      animation: none !important;
-      transform: translate3d(20vw, 20vh, 0) !important; /* Static position visible on screen */
-    }
-  }
-}
-
-/* Mobile: Optimized but still impactful */
-@media (max-width: 768px) {
-  .orb {
-    filter: blur(80px); /* Still dreamy, but optimized */
-  }
-
-  .orb-1 { width: 500px; height: 500px; animation-duration: 28s; }
-  .orb-2 { width: 550px; height: 550px; animation-duration: 30s; }
-  .orb-3 { width: 450px; height: 450px; animation-duration: 26s; }
-  .orb-4 { width: 600px; height: 600px; animation-duration: 29s; }
-  .orb-5 { width: 480px; height: 480px; animation-duration: 32s; }
-  .orb-6 { width: 520px; height: 520px; animation-duration: 27s; }
-
-  /* Hide last 2 orbs on mobile for performance */
-  .orb-7, .orb-8 { display: none; }
-}
-
-/* Founder Mode: Light desktop orbs become spectrum - Softer edges */
-[data-mode="founder"]:not([data-theme="dark"]) .orb-1 {
-  background: radial-gradient(circle, rgba(220, 38, 38, 0.9), rgba(249, 115, 22, 0.5), transparent 50%);
-  opacity: 0.65;
-}
-
-[data-mode="founder"]:not([data-theme="dark"]) .orb-2 {
-  background: radial-gradient(circle, rgba(6, 182, 212, 0.85), rgba(14, 165, 233, 0.5), transparent 50%);
-  opacity: 0.6;
-}
-
-[data-mode="founder"]:not([data-theme="dark"]) .orb-3 {
-  background: radial-gradient(circle, rgba(147, 51, 234, 0.8), rgba(236, 72, 153, 0.5), transparent 50%);
-  opacity: 0.65;
-}
-
-[data-mode="founder"]:not([data-theme="dark"]) .orb-4 {
-  background: radial-gradient(circle, rgba(245, 158, 11, 0.75), rgba(251, 191, 36, 0.5), transparent 50%);
-  opacity: 0.55;
-}
-
-[data-mode="founder"]:not([data-theme="dark"]) .orb-5 {
-  background: radial-gradient(circle, rgba(132, 204, 22, 0.8), rgba(163, 230, 53, 0.5), transparent 50%);
-  opacity: 0.62;
-}
-
-[data-mode="founder"]:not([data-theme="dark"]) .orb-6 {
-  background: radial-gradient(circle, rgba(236, 72, 153, 0.85), rgba(244, 114, 182, 0.5), transparent 50%);
-  opacity: 0.6;
-}
-
-[data-mode="founder"]:not([data-theme="dark"]) .orb-7 {
-  background: radial-gradient(circle, rgba(99, 102, 241, 0.8), rgba(129, 140, 248, 0.5), transparent 50%);
-  opacity: 0.65;
-}
-
-[data-mode="founder"]:not([data-theme="dark"]) .orb-8 {
-  background: radial-gradient(circle, rgba(249, 115, 22, 0.75), rgba(251, 146, 60, 0.5), transparent 50%);
-  opacity: 0.58;
-}
 
 /* ========================================
    FOUNDER MODE - Neural Pulse Transformation
@@ -870,56 +644,56 @@ body {
   animation-delay: -10s;
 }
 
-/* Ring 7: Teal Far Outer - Clockwise, extended expansion */
+/* Ring 7: Teal Far Outer - STATIC (performance optimization) */
 .pulse-ring-7 {
   width: 1200px;
   height: 1200px;
   margin: -600px 0 0 -600px;
   border-width: 46px;
   border-color: var(--pulse-teal) transparent transparent transparent;
-  animation: rotate-cw 30s linear infinite,
-    pulse-breathe-7 21s ease-in-out infinite;
+  animation: pulse-breathe-7 21s ease-in-out infinite; /* Breathe only, no rotation */
   filter: blur(20px);
   animation-delay: -3s;
+  opacity: 0.7; /* Slightly reduced as static ambient glow */
 }
 
-/* Ring 8: Purple Far Outer - Counter-clockwise, further expansion */
+/* Ring 8: Purple Far Outer - STATIC (performance optimization) */
 .pulse-ring-8 {
   width: 1380px;
   height: 1380px;
   margin: -690px 0 0 -690px;
   border-width: 50px;
   border-color: transparent var(--pulse-purple) transparent transparent;
-  animation: rotate-ccw 33s linear infinite,
-    pulse-breathe-8 23s ease-in-out infinite;
+  animation: pulse-breathe-8 23s ease-in-out infinite; /* Breathe only, no rotation */
   filter: blur(22px);
   animation-delay: -12s;
+  opacity: 0.65; /* Slightly reduced as static ambient glow */
 }
 
-/* Ring 9: Pink Near Perimeter - Clockwise, approaching edge */
+/* Ring 9: Pink Near Perimeter - STATIC (performance optimization) */
 .pulse-ring-9 {
   width: 1560px;
   height: 1560px;
   margin: -780px 0 0 -780px;
   border-width: 44px;
   border-color: transparent transparent var(--pulse-pink) transparent;
-  animation: rotate-cw 36s linear infinite,
-    pulse-breathe-9 25s ease-in-out infinite;
+  animation: pulse-breathe-9 25s ease-in-out infinite; /* Breathe only, no rotation */
   filter: blur(24px);
   animation-delay: -8s;
+  opacity: 0.6; /* Slightly reduced as static ambient glow */
 }
 
-/* Ring 10: Teal Maximum Fill - Counter-clockwise, full header coverage */
+/* Ring 10: Teal Maximum Fill - STATIC (performance optimization) */
 .pulse-ring-10 {
   width: 1740px;
   height: 1740px;
   margin: -870px 0 0 -870px;
   border-width: 48px;
   border-color: transparent transparent transparent var(--pulse-teal);
-  animation: rotate-ccw 40s linear infinite,
-    pulse-breathe-10 27s ease-in-out infinite;
+  animation: pulse-breathe-10 27s ease-in-out infinite; /* Breathe only, no rotation */
   filter: blur(26px);
   animation-delay: -15s;
+  opacity: 0.55; /* Slightly reduced as static ambient glow */
 }
 
 /* Rotation keyframes */
@@ -1981,8 +1755,14 @@ body {
   position: relative;
   border-top: 1px solid var(--color-border);
   padding: var(--space-16) 0 var(--space-12) 0;
-  /* background-color: var(--color-bg-secondary); */ /* Removed to let clouds show through */
+  /* background-color: var(--color-bg-secondary); */ /* Removed for light mode */
   overflow: hidden;
+}
+
+/* Dark mode footer: Solid background for Game of Life contrast */
+[data-theme="dark"] .site-footer {
+  background-color: rgba(10, 10, 15, 0.95);
+  backdrop-filter: blur(10px);
 }
 
 /* Game of Life Canvas - Living substrate */
