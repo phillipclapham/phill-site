@@ -265,6 +265,9 @@
         // Mobile: device orientation tilt (optional)
         this.initMobileTilt();
       }
+
+      // Listen for Founder Mode changes (Session 3)
+      this.setupFounderModeListener();
     }
 
     /**
@@ -299,6 +302,23 @@
       });
 
       console.log('[Card3DTilt] MutationObserver watching for dynamic cards');
+    }
+
+    /**
+     * Setup listener for Founder Mode changes (Session 3)
+     * Adjusts tilt range when Founder Mode is toggled
+     */
+    setupFounderModeListener() {
+      window.addEventListener('founderModeChange', (event) => {
+        const isActive = event.detail.active;
+
+        // Adjust tilt range based on Founder Mode state
+        // Normal mode: ±5 degrees (organic)
+        // Founder mode: ±7 degrees (enhanced, but not jarring)
+        CONFIG.tiltMaxDegrees = isActive ? 7 : 5;
+
+        console.log(`[Card3DTilt] Founder Mode ${isActive ? 'activated' : 'deactivated'}: tilt range set to ±${CONFIG.tiltMaxDegrees}°`);
+      });
     }
 
     /**

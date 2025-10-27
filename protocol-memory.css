@@ -2702,3 +2702,124 @@ body {
     display: none;
   }
 }
+
+/* ========================================
+   SESSION 3: FOUNDER MODE VISUAL TOGGLE
+   ======================================== */
+
+/* Toggle Icon - Subtle easter egg in footer */
+.founder-mode-toggle {
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-4);
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 20px;
+  opacity: 0.3;
+  transition: opacity 200ms ease-out, transform 200ms ease-out;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.founder-mode-toggle:hover {
+  opacity: 0.6;
+  transform: scale(1.15);
+}
+
+.founder-mode-toggle.active {
+  opacity: 0.8;
+}
+
+.founder-mode-toggle:active {
+  transform: scale(1.05);
+}
+
+/* Toggle spin animation on click */
+@keyframes founder-toggle-spin {
+  from {
+    transform: rotate(0deg) scale(1.15);
+  }
+  to {
+    transform: rotate(360deg) scale(1.15);
+  }
+}
+
+/* Spectrum Click Orbs - Only active in Founder Mode */
+.founder-click-orb {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: radial-gradient(circle,
+    rgba(14, 165, 233, 0.6),
+    rgba(147, 51, 234, 0.5),
+    rgba(236, 72, 153, 0.4)
+  );
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0);
+  animation: founder-orb-expand 600ms ease-out forwards;
+  z-index: 9999;
+}
+
+/* Click Orb Expand Animation - Faster than water ripples */
+@keyframes founder-orb-expand {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(8);
+    opacity: 0;
+  }
+}
+
+/* Dark mode: Slightly brighter orbs for visibility */
+[data-theme="dark"] .founder-click-orb {
+  background: radial-gradient(circle,
+    rgba(14, 165, 233, 0.7),
+    rgba(147, 51, 234, 0.6),
+    rgba(236, 72, 153, 0.5)
+  );
+}
+
+/* Enhanced Card Animations - Founder Mode Only */
+[data-mode="founder"] .tiltable-card {
+  /* Increase tilt range from 5deg to 7deg */
+  --tilt-max: 7deg;
+}
+
+[data-mode="founder"] .tiltable-card:hover {
+  /* Add spectrum glow on hover */
+  box-shadow:
+    0 10px 30px -5px rgba(14, 165, 233, 0.25),
+    0 20px 50px -10px rgba(147, 51, 234, 0.15),
+    0 30px 70px -15px rgba(236, 72, 153, 0.1);
+  /* Slightly faster animation */
+  transition: transform 150ms ease-out, box-shadow 150ms ease-out;
+}
+
+[data-theme="dark"][data-mode="founder"] .tiltable-card:hover {
+  /* Enhanced spectrum glow in dark mode */
+  box-shadow:
+    0 10px 30px -5px rgba(14, 165, 233, 0.35),
+    0 20px 50px -10px rgba(147, 51, 234, 0.25),
+    0 30px 70px -15px rgba(236, 72, 153, 0.15);
+}
+
+/* Accessibility: Disable founder mode effects for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .founder-click-orb {
+    display: none;
+  }
+
+  [data-mode="founder"] .tiltable-card:hover {
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    transition: none;
+  }
+}
