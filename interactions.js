@@ -419,11 +419,14 @@
     }
 
     /**
-     * Apply tilt transform to card
+     * Apply tilt transform to card (using CSS custom properties)
      * @param {HTMLElement} card - The card element
      */
     applyTilt(card) {
-      card.style.transform = `perspective(1000px) rotateX(${this.currentRotation.x}deg) rotateY(${this.currentRotation.y}deg) translateZ(0)`;
+      // Use CSS custom properties instead of inline transform
+      // This avoids conflicts with existing hover transforms
+      card.style.setProperty('--tilt-x', `${this.currentRotation.x}deg`);
+      card.style.setProperty('--tilt-y', `${this.currentRotation.y}deg`);
     }
 
     /**
@@ -433,7 +436,9 @@
     resetTilt(card) {
       this.targetRotation = { x: 0, y: 0 };
       this.currentRotation = { x: 0, y: 0 };
-      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0)';
+      // Reset CSS custom properties to 0
+      card.style.setProperty('--tilt-x', '0deg');
+      card.style.setProperty('--tilt-y', '0deg');
     }
 
     /**
@@ -487,7 +492,9 @@
         const tiltX = normalizedBeta * CONFIG.tiltMaxDegrees * 0.5; // 50% of max
         const tiltY = normalizedGamma * CONFIG.tiltMaxDegrees * 0.5;
 
-        card.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateZ(0)`;
+        // Use CSS custom properties (same as desktop)
+        card.style.setProperty('--tilt-x', `${tiltX}deg`);
+        card.style.setProperty('--tilt-y', `${tiltY}deg`);
       });
     }
   }

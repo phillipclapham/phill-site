@@ -2623,7 +2623,12 @@ body {
 
 /* Card 3D Tilt - Apple-style subtle tilt on hover */
 .tiltable-card {
+  --tilt-x: 0deg;
+  --tilt-y: 0deg;
   transform-style: preserve-3d;
+  /* Use CSS variables for tilt - JavaScript updates these */
+  /* !important to override conflicting hover transforms from .pm-project-item, etc. */
+  transform: perspective(1000px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) translateZ(0) !important;
   transition: transform 200ms ease-out, box-shadow 200ms ease-out;
   will-change: transform;
 }
@@ -2655,7 +2660,7 @@ body {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  border: 1px solid rgba(100, 100, 100, 0.12); /* Subtle gray, almost invisible */
+  border: 1.5px solid rgba(100, 100, 100, 0.25); /* Subtle but visible gray */
   background: none; /* No fill - border only */
   transform: translate(-50%, -50%) scale(0);
   animation: water-ripple-expand 500ms ease-out forwards;
@@ -2676,7 +2681,7 @@ body {
 
 /* Dark mode: Subtle white ripples for visibility */
 [data-theme="dark"] .water-ripple {
-  border-color: rgba(255, 255, 255, 0.08); /* Very subtle white */
+  border-color: rgba(255, 255, 255, 0.18); /* Subtle but visible white */
 }
 
 /* Mobile: Disable tilt transform (gyroscope or no tilt) */
