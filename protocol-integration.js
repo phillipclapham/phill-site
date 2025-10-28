@@ -110,11 +110,6 @@ class ProtocolIntegration {
       this.updateExpertise(this.data.contexts);
       this.updateLastUpdatedIndicator();
 
-      // Refresh fade-in observer for newly loaded content
-      if (window.refreshFadeInObserver) {
-        window.refreshFadeInObserver();
-      }
-
     } catch (error) {
       this.log('⚠️ Protocol Memory: Using static fallback', error.message);
       // Graceful fallback - site continues with static content
@@ -153,7 +148,7 @@ class ProtocolIntegration {
           ? ` <small>(${this.formatRelativeTime(energy.updated_at)})</small>`
           : '';
         energyHTML = `
-          <div class="pm-state-item" data-fade-in="card">
+          <div class="pm-state-item">
             <span class="pm-label">Energy</span>
             <span class="pm-value">${this.escapeHtml(energy.display)}${timestampText}</span>
           </div>
@@ -165,7 +160,7 @@ class ProtocolIntegration {
     const secondaryItems = [energyHTML];
     if (location) {
       secondaryItems.push(`
-        <div class="pm-state-item" data-fade-in="card">
+        <div class="pm-state-item">
           <span class="pm-label">Location</span>
           <span class="pm-value">${this.escapeHtml(location)}</span>
         </div>
@@ -173,7 +168,7 @@ class ProtocolIntegration {
     }
     if (availability) {
       secondaryItems.push(`
-        <div class="pm-state-item" data-fade-in="card">
+        <div class="pm-state-item">
           <span class="pm-label">Availability</span>
           <span class="pm-value">${this.escapeHtml(availability)}</span>
         </div>
@@ -183,7 +178,7 @@ class ProtocolIntegration {
     stateEl.innerHTML = `
       <div class="pm-state-grid">
         ${focus ? `
-          <div class="pm-state-item pm-state-focus" data-fade-in="card">
+          <div class="pm-state-item pm-state-focus">
             <span class="pm-label">Current Focus</span>
             <span class="pm-value">${this.escapeHtml(focus)}</span>
           </div>
@@ -305,7 +300,7 @@ class ProtocolIntegration {
     projectsEl.innerHTML = `
       <ul class="pm-projects-list">
         ${sortedSeeds.map((seed, index) => `
-          <li class="pm-project-item" data-seed-index="${index}" data-fade-in="card">
+          <li class="pm-project-item" data-seed-index="${index}">
             <button class="pm-maximize-icon" data-modal-seed="${index}" aria-label="Open in modal">⤢</button>
             <div class="pm-project-header">
               <span class="pm-project-title">${this.escapeHtml(seed.text || seed.title || 'Untitled')}</span>
@@ -362,7 +357,7 @@ class ProtocolIntegration {
             : context.content;
 
           return `
-            <div class="pm-expertise-card" data-card-index="${index}" data-fade-in="card">
+            <div class="pm-expertise-card" data-card-index="${index}">
               <button class="pm-maximize-icon" data-modal-context="${index}" aria-label="Open in modal">⤢</button>
               <h3 class="pm-expertise-name">${this.escapeHtml(context.name)}</h3>
               ${context.type ? `<p class="pm-expertise-type">${this.escapeHtml(context.type)}</p>` : ''}
