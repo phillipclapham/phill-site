@@ -548,14 +548,10 @@
       this.rippleContainer.setAttribute('aria-hidden', 'true');
       document.body.appendChild(this.rippleContainer);
 
-      // Listen for clicks on interactive elements
-      // Use event delegation on document for efficiency
+      // Listen for clicks anywhere on the page
+      // User feedback: wants ripples everywhere, not just specific elements
       document.addEventListener('click', (e) => {
-        // Only create ripples for clickable elements
-        const target = e.target.closest('a, button, .pm-project-item, .pm-expertise-card, .state-card, .pm-state-item');
-        if (target) {
-          this.createWaterRipple(e.clientX, e.clientY);
-        }
+        this.createWaterRipple(e.clientX, e.clientY);
       }, { passive: true });
 
       console.log('[WaterRipples] Subtle water ripple system initialized');

@@ -174,13 +174,14 @@ class FounderModeEffects {
 
   /**
    * Setup global click listener for spectrum orbs
-   * Only creates orbs when Founder Mode is active
+   * Only creates orbs when Founder Mode is active AND in dark mode
    */
   setupClickEffects() {
     document.addEventListener('click', (e) => {
-      // Only create orbs if Founder Mode is active
-      // Orbs coexist with water ripples (both can be visible)
-      if (this.state.active) {
+      // Only create orbs if Founder Mode is active AND in dark mode
+      // Light mode uses water ripples only (user preference)
+      const isDarkMode = document.documentElement.getAttribute('data-theme') === 'dark';
+      if (this.state.active && isDarkMode) {
         this.createSpectrumOrb(e.clientX, e.clientY);
       }
     });
