@@ -1242,7 +1242,7 @@ body {
 
 .state-card {
   background: var(--color-bg);
-  border: 1px solid var(--color-border);
+  border: 2px solid var(--color-border);
   border-radius: var(--radius-xl);
   padding: var(--space-5);
   display: flex;
@@ -1291,7 +1291,7 @@ body {
 
 .pm-state-item {
   background: var(--color-bg);
-  border: 1px solid var(--color-border);
+  border: 2px solid var(--color-border);
   border-radius: var(--radius-xl);
   padding: var(--space-5);
   display: flex;
@@ -1505,7 +1505,7 @@ body {
   flex: 1 1 280px; /* grow, shrink, basis */
   max-width: 400px; /* prevent items from getting too wide */
   background: var(--color-bg);
-  border: 1px solid var(--color-border);
+  border: 2px solid var(--color-border);
   border-radius: var(--radius-xl);
   padding: var(--space-6);
   transition: all var(--transition-base);
@@ -1664,7 +1664,7 @@ body {
   flex: 1 1 280px; /* grow, shrink, basis */
   max-width: 450px; /* prevent items from getting too wide */
   background: var(--color-bg);
-  border: 1px solid var(--color-border);
+  border: 2px solid var(--color-border);
   border-radius: var(--radius-xl);
   padding: var(--space-6);
   transition: all var(--transition-base);
@@ -2904,8 +2904,6 @@ body {
 [data-mode="founder"] .tiltable-card:hover {
   /* Animated spectrum gradient border */
   position: relative;
-  border-width: 2px;
-  border-style: solid;
   border-image: linear-gradient(
     90deg,
     rgba(14, 165, 233, 0.8),
