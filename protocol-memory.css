@@ -2682,10 +2682,11 @@ body {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
 
-/* Dark mode: Enhanced shadow + subtle cyan glow (always-on sophistication) */
+/* Dark mode: Enhanced shadow + teal glow matching border (electric effect) */
+/* EXPERIMENTAL: Using border hover color (#14b8a6 = teal) for cohesion - may revert */
 [data-theme="dark"] .tiltable-card:hover {
   box-shadow:
-    0 10px 30px -5px rgba(14, 165, 233, 0.3),
+    0 10px 30px -5px rgba(20, 184, 166, 0.5),
     0 20px 40px rgba(0, 0, 0, 0.4);
 }
 
