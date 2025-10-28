@@ -2902,7 +2902,7 @@ body {
 }
 
 [data-mode="founder"] .tiltable-card:hover {
-  /* Animated spectrum gradient border */
+  /* Animated spectrum gradient border (simplified - no dual-layer background) */
   position: relative;
   border-image: linear-gradient(
     90deg,
@@ -2911,17 +2911,6 @@ body {
     rgba(236, 72, 153, 0.8),
     rgba(14, 165, 233, 0.8)
   ) 1;
-  background: linear-gradient(
-    90deg,
-    rgba(14, 165, 233, 0.6),
-    rgba(147, 51, 234, 0.6),
-    rgba(236, 72, 153, 0.6),
-    rgba(14, 165, 233, 0.6)
-  );
-  background-size: 200% 100%;
-  animation: spectrum-border-rotate 10s linear infinite;
-  background-clip: padding-box, border-box;
-  background-origin: padding-box, border-box;
 }
 
 /* Ensure card background stays solid */
