@@ -24,6 +24,13 @@ class GameOfLifeFooter {
     this.fadeAlpha = 1.0;
     this.isRestarting = false;
 
+    // Session 4: Interaction state
+    this.manuallyPaused = false;
+    this.hoverX = -1;
+    this.hoverY = -1;
+    this.pauseIconVisible = false;
+    this.pauseIconFadeTimeout = null;
+
     // Timing
     this.fps = 8; // 8 generations per second
     this.frameInterval = 1000 / this.fps;
@@ -48,8 +55,14 @@ class GameOfLifeFooter {
     this.setupResizeHandler();
     this.setupThemeObserver();
 
+    // Session 4: Setup interactions
+    this.setupInteractionListeners();
+
     // Start
     this.start();
+
+    // Session 4: Expose for console access
+    window.golInstance = this;
   }
 
   /**
@@ -344,6 +357,7 @@ class GameOfLifeFooter {
 
   /**
    * Render the grid
+   * Session 4: Added hover glow effect
    */
   render() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -364,13 +378,30 @@ class GameOfLifeFooter {
             cellColor = isDark ? 'rgba(255, 255, 255, 0.8)' : 'rgba(100, 100, 100, 0.5)';
           }
 
+          // Session 4: Hover glow effect
+          let glowIntensity = this.cellGlow;
+          if (this.hoverX >= 0 && this.hoverY >= 0) {
+            const cellCenterX = x * this.cellSize + this.cellSize / 2;
+            const cellCenterY = y * this.cellSize + this.cellSize / 2;
+            const distance = Math.sqrt(
+              Math.pow(cellCenterX - this.hoverX, 2) +
+              Math.pow(cellCenterY - this.hoverY, 2)
+            );
+            const maxDistance = 50;
+
+            if (distance < maxDistance) {
+              const hoverGlow = (1 - distance / maxDistance) * 8;
+              glowIntensity = Math.max(glowIntensity, hoverGlow);
+            }
+          }
+
           // Draw alive cell
           this.ctx.fillStyle = cellColor;
 
-          // Add subtle glow in dark mode
-          if (this.cellGlow > 0) {
+          // Add glow (base + hover)
+          if (glowIntensity > 0) {
             this.ctx.shadowColor = cellColor;
-            this.ctx.shadowBlur = this.cellGlow;
+            this.ctx.shadowBlur = glowIntensity;
           }
 
           this.ctx.fillRect(
@@ -383,6 +414,11 @@ class GameOfLifeFooter {
           this.ctx.shadowBlur = 0;
         }
       }
+    }
+
+    // Session 4: Render pause icon if visible
+    if (this.pauseIconVisible) {
+      this.renderPauseIcon();
     }
 
     this.ctx.globalAlpha = 1.0;
@@ -428,8 +464,10 @@ class GameOfLifeFooter {
 
   /**
    * Start the simulation
+   * Session 4: Respect manual pause state
    */
   start() {
+    if (this.manuallyPaused) return; // Don't start if manually paused
     this.running = true;
     this.lastFrameTime = performance.now();
     requestAnimationFrame(this.animate.bind(this));
@@ -484,6 +522,194 @@ class GameOfLifeFooter {
       attributes: true,
       attributeFilter: ['data-theme']
     });
+  }
+
+  /* ========================================
+     SESSION 4: INTERACTION FEATURES
+     ======================================== */
+
+  /**
+   * Setup interaction listeners: hover, click, keyboard
+   */
+  setupInteractionListeners() {
+    // Detect mobile devices (skip hover on touch)
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+    // Hover glow (desktop only)
+    if (!isMobile) {
+      this.canvas.addEventListener('mousemove', this.handleCanvasHover.bind(this));
+      this.canvas.addEventListener('mouseleave', () => {
+        this.hoverX = -1;
+        this.hoverY = -1;
+      });
+    }
+
+    // Click to pause/play or edit cells
+    this.canvas.addEventListener('click', this.handleCanvasClick.bind(this));
+
+    // Keyboard controls (spacebar to pause/play)
+    document.addEventListener('keydown', this.handleKeyboard.bind(this));
+
+    // Add accessibility attributes
+    this.canvas.setAttribute('role', 'region');
+    this.canvas.setAttribute('aria-label', 'Game of Life simulation, press space to pause');
+    this.canvas.setAttribute('tabindex', '0');
+  }
+
+  /**
+   * Handle canvas hover - track mouse position for glow effect
+   */
+  handleCanvasHover(event) {
+    const rect = this.canvas.getBoundingClientRect();
+    this.hoverX = event.clientX - rect.left;
+    this.hoverY = event.clientY - rect.top;
+  }
+
+  /**
+   * Handle canvas click - pause/play or edit cells
+   */
+  handleCanvasClick(event) {
+    if (this.manuallyPaused) {
+      // When paused, clicking edits cells
+      const rect = this.canvas.getBoundingClientRect();
+      const x = event.clientX - rect.left;
+      const y = event.clientY - rect.top;
+      const cell = this.getCellFromMouse(x, y);
+
+      if (cell) {
+        this.toggleCell(cell.x, cell.y);
+      }
+    } else {
+      // When playing, clicking pauses
+      this.togglePause();
+    }
+  }
+
+  /**
+   * Handle keyboard controls
+   */
+  handleKeyboard(event) {
+    // Only respond if canvas is in viewport and we're focused on the page
+    if (!this.running && !this.manuallyPaused) return;
+
+    if (event.code === 'Space') {
+      event.preventDefault();
+      this.togglePause();
+    } else if (event.code === 'Escape' && this.manuallyPaused) {
+      event.preventDefault();
+      this.togglePause();
+    }
+  }
+
+  /**
+   * Toggle pause/play state
+   */
+  togglePause() {
+    this.manuallyPaused = !this.manuallyPaused;
+
+    if (this.manuallyPaused) {
+      // Pause the simulation
+      this.stop();
+      this.showPauseIcon(true);
+    } else {
+      // Resume the simulation
+      this.start();
+      this.showPauseIcon(false);
+
+      // Auto-hide icon after 1.5s
+      if (this.pauseIconFadeTimeout) {
+        clearTimeout(this.pauseIconFadeTimeout);
+      }
+      this.pauseIconFadeTimeout = setTimeout(() => {
+        this.pauseIconVisible = false;
+      }, 1500);
+    }
+  }
+
+  /**
+   * Show/hide pause icon
+   */
+  showPauseIcon(visible) {
+    this.pauseIconVisible = visible;
+
+    if (this.pauseIconFadeTimeout) {
+      clearTimeout(this.pauseIconFadeTimeout);
+      this.pauseIconFadeTimeout = null;
+    }
+  }
+
+  /**
+   * Render pause/play icon overlay
+   */
+  renderPauseIcon() {
+    const centerX = this.canvas.width / 2;
+    const centerY = this.canvas.height / 2;
+    const iconSize = 24;
+
+    // Background circle
+    this.ctx.fillStyle = 'rgba(10, 10, 15, 0.8)';
+    this.ctx.beginPath();
+    this.ctx.arc(centerX, centerY, iconSize, 0, Math.PI * 2);
+    this.ctx.fill();
+
+    // Teal glow
+    this.ctx.shadowColor = '#14B8A6';
+    this.ctx.shadowBlur = 15;
+
+    // Icon (pause or play)
+    this.ctx.fillStyle = '#14B8A6';
+    if (this.manuallyPaused) {
+      // Play icon (triangle)
+      this.ctx.beginPath();
+      this.ctx.moveTo(centerX - 6, centerY - 10);
+      this.ctx.lineTo(centerX - 6, centerY + 10);
+      this.ctx.lineTo(centerX + 10, centerY);
+      this.ctx.closePath();
+      this.ctx.fill();
+    } else {
+      // Pause icon (two bars)
+      this.ctx.fillRect(centerX - 8, centerY - 10, 5, 20);
+      this.ctx.fillRect(centerX + 3, centerY - 10, 5, 20);
+    }
+
+    this.ctx.shadowBlur = 0;
+  }
+
+  /**
+   * Get grid cell from mouse coordinates
+   */
+  getCellFromMouse(x, y) {
+    const gridX = Math.floor(x / this.cellSize);
+    const gridY = Math.floor(y / this.cellSize);
+
+    if (gridX >= 0 && gridX < this.cols && gridY >= 0 && gridY < this.rows) {
+      return { x: gridX, y: gridY };
+    }
+
+    return null;
+  }
+
+  /**
+   * Toggle cell alive/dead state
+   */
+  toggleCell(x, y) {
+    this.grid[y][x] = this.grid[y][x] ? 0 : 1;
+
+    // If cell is now alive, assign random color
+    if (this.grid[y][x]) {
+      this.colorGrid[y][x] = Math.floor(Math.random() * this.spectrumColors.length);
+    }
+
+    // Immediate render to show change
+    this.render();
+  }
+
+  /**
+   * Set FPS (speed) of simulation
+   */
+  setFPS(fps) {
+    this.fps = fps;
+    this.frameInterval = 1000 / this.fps;
   }
 }
 
