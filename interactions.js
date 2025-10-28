@@ -609,6 +609,165 @@
   }
 
   /* ========================================
+     SCROLL-BASED FADE-IN (Session 5)
+     ======================================== */
+
+  class FadeInOnScroll {
+    constructor() {
+      this.observedElements = new Set();
+
+      // Configuration
+      this.config = {
+        // Different thresholds for different element types
+        threshold: 0.15,
+        rootMargin: '-50px 0px',
+        // Animation timings (set via CSS, tracked here for reference)
+        timings: {
+          heading: 400,    // Section headings
+          card: 500,       // Cards
+          content: 350     // Content paragraphs
+        },
+        staggerDelay: 50   // Delay between sequential cards (ms)
+      };
+
+      // Create IntersectionObserver
+      this.observer = new IntersectionObserver(
+        this.handleIntersection.bind(this),
+        {
+          threshold: this.config.threshold,
+          rootMargin: this.config.rootMargin
+        }
+      );
+
+      this.init();
+    }
+
+    init() {
+      // Find all elements that should fade in
+      // Elements can have data-fade-in attribute with type: "heading", "card", or "content"
+      const elementsToObserve = document.querySelectorAll('[data-fade-in]');
+
+      if (elementsToObserve.length === 0) {
+        console.log('[FadeIn] No elements found with data-fade-in attribute');
+        return;
+      }
+
+      // Group cards by container for staggering
+      const cardContainers = {};
+
+      elementsToObserve.forEach(element => {
+        const fadeType = element.getAttribute('data-fade-in');
+
+        // If it's a card, track its container for staggering
+        if (fadeType === 'card') {
+          const container = element.parentElement;
+          const containerId = container.id || container.className;
+
+          if (!cardContainers[containerId]) {
+            cardContainers[containerId] = [];
+          }
+          cardContainers[containerId].push(element);
+        }
+
+        // Add initial hidden state
+        element.classList.add('fade-in-hidden');
+
+        // Observe the element
+        this.observer.observe(element);
+        this.observedElements.add(element);
+      });
+
+      // Apply stagger delays to cards within the same container
+      Object.values(cardContainers).forEach(cards => {
+        cards.forEach((card, index) => {
+          if (index > 0) {
+            const delay = index * this.config.staggerDelay;
+            card.style.setProperty('--fade-delay', `${delay}ms`);
+          }
+        });
+      });
+
+      console.log(`[FadeIn] Observing ${elementsToObserve.length} elements for scroll-based fade-in`);
+    }
+
+    handleIntersection(entries) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const element = entry.target;
+          const fadeType = element.getAttribute('data-fade-in');
+
+          // Add the appropriate animation class
+          element.classList.add('fade-in-visible');
+          element.classList.add(`fade-in-${fadeType}`);
+
+          // Stop observing this element (once per element)
+          this.observer.unobserve(element);
+          this.observedElements.delete(element);
+        }
+      });
+    }
+
+    /**
+     * Re-scan for new elements (called after dynamic content loads)
+     */
+    refresh() {
+      // Find NEW elements that aren't already observed
+      const allElements = document.querySelectorAll('[data-fade-in]');
+
+      allElements.forEach(element => {
+        // Skip if already observed
+        if (this.observedElements.has(element)) return;
+
+        // Skip if already visible
+        if (element.classList.contains('fade-in-visible')) return;
+
+        // Add hidden state
+        element.classList.add('fade-in-hidden');
+
+        // Observe
+        this.observer.observe(element);
+        this.observedElements.add(element);
+      });
+
+      // Re-apply stagger delays
+      const cardContainers = {};
+      document.querySelectorAll('[data-fade-in="card"]').forEach(card => {
+        if (this.observedElements.has(card)) {
+          const container = card.parentElement;
+          const containerId = container.id || container.className;
+
+          if (!cardContainers[containerId]) {
+            cardContainers[containerId] = [];
+          }
+          cardContainers[containerId].push(card);
+        }
+      });
+
+      Object.values(cardContainers).forEach(cards => {
+        cards.forEach((card, index) => {
+          if (index > 0) {
+            const delay = index * this.config.staggerDelay;
+            card.style.setProperty('--fade-delay', `${delay}ms`);
+          }
+        });
+      });
+
+      if (allElements.length > this.observedElements.size) {
+        console.log(`[FadeIn] Refreshed: now observing ${this.observedElements.size} elements`);
+      }
+    }
+
+    destroy() {
+      // Clean up observer
+      this.observedElements.forEach(element => {
+        this.observer.unobserve(element);
+      });
+      this.observedElements.clear();
+      this.observer.disconnect();
+    }
+  }
+
+  /* ========================================
      INITIALIZATION
      ======================================== */
 
@@ -645,6 +804,14 @@
     const waterRipples = new WaterRipples();
     console.log('[Interactions] Water ripples initialized');
 
+    // Initialize Scroll-based Fade-in (Session 5)
+    // Works everywhere, respects prefers-reduced-motion via CSS
+    let fadeInScroll = null;
+    if (!CONFIG.prefersReducedMotion) {
+      fadeInScroll = new FadeInOnScroll();
+      console.log('[Interactions] Scroll-based fade-in initialized');
+    }
+
     // Expose for debugging (optional)
     if (window.pmIntegration) {
       window.pmIntegration.interactions = {
@@ -652,9 +819,17 @@
         linkAnimations,
         cardTilt,
         waterRipples,
+        fadeInScroll,
         config: CONFIG
       };
     }
+
+    // Expose global refresh function for Protocol Memory to call after loading content
+    window.refreshFadeInObserver = function() {
+      if (fadeInScroll) {
+        fadeInScroll.refresh();
+      }
+    };
   }
 
   /* ========================================

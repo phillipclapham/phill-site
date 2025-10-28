@@ -8,12 +8,47 @@
  * - FounderModeState: State management + event dispatching + localStorage persistence
  * - FounderModeToggle: UI toggle icon (🌀) integrated into footer
  * - FounderModeEffects: Visual effects (spectrum click orbs)
+ * - HapticFeedback: Tactile feedback for interactions (Session 5, Feature #8)
  *
  * Design Philosophy:
  * - Discoverable easter egg (no tooltips, subtle icon)
  * - Maintains sophistication in both modes
  * - Event-driven for future content transformation support
  */
+
+/**
+ * Haptic Feedback Utility (Session 5, Feature #8)
+ * Progressive enhancement - provides tactile feedback on supported devices
+ */
+class HapticFeedback {
+  constructor() {
+    this.isSupported = 'vibrate' in navigator;
+  }
+
+  /**
+   * Trigger haptic feedback
+   * @param {number} duration - Duration in milliseconds
+   */
+  trigger(duration = 20) {
+    if (this.isSupported && navigator.vibrate) {
+      try {
+        navigator.vibrate(duration);
+      } catch (e) {
+        // Silent fail - haptic feedback is a progressive enhancement
+        console.debug('[Haptic] Vibration failed (expected on some devices):', e.message);
+      }
+    }
+  }
+
+  /**
+   * Predefined haptic patterns
+   */
+  patterns = {
+    toggle: 30,   // Founder Mode toggle
+    click: 20,    // Card clicks
+    subtle: 10    // Very subtle interactions
+  }
+}
 
 /**
  * State Manager
@@ -91,8 +126,9 @@ class FounderModeState {
  * Creates and manages the 🌀 icon in footer
  */
 class FounderModeToggle {
-  constructor(state) {
+  constructor(state, haptic = null) {
     this.state = state;
+    this.haptic = haptic;
     this.icon = null;
     this.createToggleIcon();
   }
@@ -137,6 +173,11 @@ class FounderModeToggle {
     this.state.toggle();
     this.updateIconState();
     this.playToggleAnimation();
+
+    // Haptic feedback (Feature #8 - Session 5)
+    if (this.haptic) {
+      this.haptic.trigger(this.haptic.patterns.toggle);
+    }
   }
 
   /**
@@ -167,9 +208,11 @@ class FounderModeToggle {
  * Spectrum click orbs (active only in Founder Mode)
  */
 class FounderModeEffects {
-  constructor(state) {
+  constructor(state, haptic = null) {
     this.state = state;
+    this.haptic = haptic;
     this.setupClickEffects();
+    this.setupCardHaptics();
   }
 
   /**
@@ -183,6 +226,24 @@ class FounderModeEffects {
       const isDarkMode = document.documentElement.getAttribute('data-theme') === 'dark';
       if (this.state.active && isDarkMode) {
         this.createSpectrumOrb(e.clientX, e.clientY);
+      }
+    });
+  }
+
+  /**
+   * Setup haptic feedback for card clicks (Feature #8 - Session 5)
+   * Only triggers when Founder Mode is active
+   */
+  setupCardHaptics() {
+    document.addEventListener('click', (e) => {
+      // Only trigger haptics if Founder Mode is active
+      if (!this.state.active || !this.haptic) return;
+
+      // Check if click target is a card or inside a card
+      const card = e.target.closest('.tiltable-card, .state-card, .pm-state-item, .pm-project-item, .pm-expertise-card');
+
+      if (card) {
+        this.haptic.trigger(this.haptic.patterns.click);
       }
     });
   }
@@ -214,16 +275,23 @@ document.addEventListener('DOMContentLoaded', () => {
   // Create state manager
   const founderModeState = new FounderModeState();
 
-  // Create UI toggle
-  const founderModeToggle = new FounderModeToggle(founderModeState);
+  // Create haptic feedback utility (Feature #8 - Session 5)
+  const hapticFeedback = new HapticFeedback();
+  if (hapticFeedback.isSupported) {
+    console.log('✨ Haptic feedback enabled (Founder Mode only)');
+  }
 
-  // Create visual effects
-  const founderModeEffects = new FounderModeEffects(founderModeState);
+  // Create UI toggle (with haptic feedback)
+  const founderModeToggle = new FounderModeToggle(founderModeState, hapticFeedback);
+
+  // Create visual effects (with haptic feedback)
+  const founderModeEffects = new FounderModeEffects(founderModeState, hapticFeedback);
 
   // Expose to window for console access (debugging + future expansion)
   window.founderMode = {
     state: founderModeState,
     toggle: () => founderModeState.toggle(),
+    haptic: hapticFeedback,
     // Future expansion: content transformation methods will go here
   };
 
