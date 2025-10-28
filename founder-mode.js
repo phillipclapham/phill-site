@@ -222,12 +222,12 @@ class CursorTrail {
     this.mouseY = 0;
     this.animationFrame = null;
 
-    // Spectrum colors (teal → purple → magenta)
+    // Spectrum colors (teal → purple → magenta) - Subtle opacity
     this.colors = [
-      'rgba(14, 165, 233, 0.8)',   // Cyan
-      'rgba(20, 184, 166, 0.8)',   // Teal
-      'rgba(147, 51, 234, 0.8)',   // Purple
-      'rgba(236, 72, 153, 0.8)'    // Magenta/Pink
+      'rgba(14, 165, 233, 0.4)',   // Cyan
+      'rgba(20, 184, 166, 0.4)',   // Teal
+      'rgba(147, 51, 234, 0.4)',   // Purple
+      'rgba(236, 72, 153, 0.4)'    // Magenta/Pink
     ];
 
     this.init();
@@ -245,7 +245,7 @@ class CursorTrail {
     this.canvas.style.width = '100%';
     this.canvas.style.height = '100%';
     this.canvas.style.pointerEvents = 'none';
-    this.canvas.style.zIndex = '9998'; // Below click orbs (9999)
+    this.canvas.style.zIndex = '1'; // Just above background, below all content
     this.canvas.style.display = 'none'; // Hidden by default
     document.body.appendChild(this.canvas);
 
@@ -321,8 +321,8 @@ class CursorTrail {
     particle.vx = (Math.random() - 0.5) * 2;
     particle.vy = Math.random() * 2 + 1; // Slight downward velocity (gravity)
     particle.life = 0;
-    particle.maxLife = Math.random() * 300 + 500; // 500-800ms
-    particle.size = Math.random() * 4 + 3; // 3-7px
+    particle.maxLife = Math.random() * 400 + 600; // 600-1000ms (slower fade)
+    particle.size = Math.random() * 2 + 2; // 2-4px (more subtle)
     particle.color = this.colors[Math.floor(Math.random() * this.colors.length)];
 
     this.particles.push(particle);
@@ -360,7 +360,7 @@ class CursorTrail {
       const opacity = 1 - (p.life / p.maxLife); // Fade out
       const size = p.size * opacity; // Shrink as fading
 
-      this.ctx.fillStyle = p.color.replace('0.8)', `${opacity * 0.8})`);
+      this.ctx.fillStyle = p.color.replace('0.4)', `${opacity * 0.4})`);
       this.ctx.beginPath();
       this.ctx.arc(p.x, p.y, size, 0, Math.PI * 2);
       this.ctx.fill();
@@ -373,8 +373,8 @@ class CursorTrail {
   animate() {
     if (!this.isActive) return;
 
-    // Spawn new particles (3-5 per frame based on randomness)
-    const spawnCount = Math.random() > 0.5 ? 3 : 4;
+    // Spawn new particles (1-2 per frame for subtlety)
+    const spawnCount = Math.random() > 0.6 ? 2 : 1;
     for (let i = 0; i < spawnCount; i++) {
       this.spawnParticle();
     }
