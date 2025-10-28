@@ -207,6 +207,214 @@ class FounderModeEffects {
 }
 
 /**
+ * Cursor Trail - Spectrum Particles (Session 3B)
+ * Playful particle trail that follows mouse movement
+ */
+class CursorTrail {
+  constructor(state) {
+    this.state = state;
+    this.canvas = null;
+    this.ctx = null;
+    this.particles = [];
+    this.particlePool = [];
+    this.isActive = false;
+    this.mouseX = 0;
+    this.mouseY = 0;
+    this.animationFrame = null;
+
+    // Spectrum colors (teal → purple → magenta)
+    this.colors = [
+      'rgba(14, 165, 233, 0.8)',   // Cyan
+      'rgba(20, 184, 166, 0.8)',   // Teal
+      'rgba(147, 51, 234, 0.8)',   // Purple
+      'rgba(236, 72, 153, 0.8)'    // Magenta/Pink
+    ];
+
+    this.init();
+  }
+
+  /**
+   * Initialize canvas and particle pool
+   */
+  init() {
+    // Create full-screen canvas
+    this.canvas = document.createElement('canvas');
+    this.canvas.style.position = 'fixed';
+    this.canvas.style.top = '0';
+    this.canvas.style.left = '0';
+    this.canvas.style.width = '100%';
+    this.canvas.style.height = '100%';
+    this.canvas.style.pointerEvents = 'none';
+    this.canvas.style.zIndex = '9998'; // Below click orbs (9999)
+    this.canvas.style.display = 'none'; // Hidden by default
+    document.body.appendChild(this.canvas);
+
+    this.ctx = this.canvas.getContext('2d');
+    this.resizeCanvas();
+
+    // Pre-allocate particle pool (object pooling for performance)
+    for (let i = 0; i < 100; i++) {
+      this.particlePool.push(this.createParticle());
+    }
+
+    // Track mouse position
+    document.addEventListener('mousemove', (e) => {
+      this.mouseX = e.clientX;
+      this.mouseY = e.clientY;
+    }, { passive: true });
+
+    // Handle window resize
+    window.addEventListener('resize', () => this.resizeCanvas(), { passive: true });
+
+    // Listen for Founder Mode changes
+    window.addEventListener('founderModeChange', (event) => {
+      if (event.detail.active) {
+        this.start();
+      } else {
+        this.stop();
+      }
+    });
+
+    // Start if already in Founder Mode
+    if (this.state.active) {
+      this.start();
+    }
+  }
+
+  /**
+   * Resize canvas to match window
+   */
+  resizeCanvas() {
+    this.canvas.width = window.innerWidth;
+    this.canvas.height = window.innerHeight;
+  }
+
+  /**
+   * Create a particle object
+   */
+  createParticle() {
+    return {
+      x: 0,
+      y: 0,
+      vx: 0,
+      vy: 0,
+      life: 0,
+      maxLife: 0,
+      size: 0,
+      color: '',
+      active: false
+    };
+  }
+
+  /**
+   * Spawn a new particle at mouse position
+   */
+  spawnParticle() {
+    // Get particle from pool
+    let particle = this.particlePool.find(p => !p.active);
+    if (!particle) return; // Pool exhausted
+
+    // Initialize particle
+    particle.active = true;
+    particle.x = this.mouseX;
+    particle.y = this.mouseY;
+    particle.vx = (Math.random() - 0.5) * 2;
+    particle.vy = Math.random() * 2 + 1; // Slight downward velocity (gravity)
+    particle.life = 0;
+    particle.maxLife = Math.random() * 300 + 500; // 500-800ms
+    particle.size = Math.random() * 4 + 3; // 3-7px
+    particle.color = this.colors[Math.floor(Math.random() * this.colors.length)];
+
+    this.particles.push(particle);
+  }
+
+  /**
+   * Update all particles
+   */
+  updateParticles() {
+    for (let i = this.particles.length - 1; i >= 0; i--) {
+      const p = this.particles[i];
+
+      p.life += 16; // ~60fps
+      p.x += p.vx;
+      p.y += p.vy;
+      p.vy += 0.05; // Gravity
+
+      // Remove dead particles
+      if (p.life >= p.maxLife) {
+        p.active = false;
+        this.particles.splice(i, 1);
+      }
+    }
+  }
+
+  /**
+   * Render all particles
+   */
+  renderParticles() {
+    // Clear canvas
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+    // Draw particles
+    for (const p of this.particles) {
+      const opacity = 1 - (p.life / p.maxLife); // Fade out
+      const size = p.size * opacity; // Shrink as fading
+
+      this.ctx.fillStyle = p.color.replace('0.8)', `${opacity * 0.8})`);
+      this.ctx.beginPath();
+      this.ctx.arc(p.x, p.y, size, 0, Math.PI * 2);
+      this.ctx.fill();
+    }
+  }
+
+  /**
+   * Animation loop
+   */
+  animate() {
+    if (!this.isActive) return;
+
+    // Spawn new particles (3-5 per frame based on randomness)
+    const spawnCount = Math.random() > 0.5 ? 3 : 4;
+    for (let i = 0; i < spawnCount; i++) {
+      this.spawnParticle();
+    }
+
+    this.updateParticles();
+    this.renderParticles();
+
+    this.animationFrame = requestAnimationFrame(() => this.animate());
+  }
+
+  /**
+   * Start cursor trail
+   */
+  start() {
+    if (this.isActive) return;
+    this.isActive = true;
+    this.canvas.style.display = 'block';
+    this.animate();
+    console.log('[CursorTrail] Started');
+  }
+
+  /**
+   * Stop cursor trail
+   */
+  stop() {
+    if (!this.isActive) return;
+    this.isActive = false;
+    this.canvas.style.display = 'none';
+    if (this.animationFrame) {
+      cancelAnimationFrame(this.animationFrame);
+      this.animationFrame = null;
+    }
+    // Clear all particles
+    this.particles.forEach(p => p.active = false);
+    this.particles = [];
+    console.log('[CursorTrail] Stopped');
+  }
+}
+
+/**
  * Initialize Founder Mode system on page load
  */
 document.addEventListener('DOMContentLoaded', () => {
@@ -218,6 +426,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Create visual effects
   const founderModeEffects = new FounderModeEffects(founderModeState);
+
+  // Create cursor trail (Session 3B)
+  const cursorTrail = new CursorTrail(founderModeState);
 
   // Expose to window for console access (debugging + future expansion)
   window.founderMode = {

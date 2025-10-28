@@ -93,6 +93,25 @@ class GameOfLifeFooter {
       ];
       this.cellGlow = 0; // No glow in light mode
     }
+
+    // Session 3B: Founder Mode support
+    this.founderModeActive = false;
+    this.setupFounderModeListener();
+  }
+
+  /**
+   * Session 3B: Listen for Founder Mode changes
+   */
+  setupFounderModeListener() {
+    window.addEventListener('founderModeChange', (event) => {
+      this.founderModeActive = event.detail.active;
+      console.log(`[GameOfLife] Founder Mode ${this.founderModeActive ? 'activated' : 'deactivated'}: cells ${this.founderModeActive ? 'colorful' : 'monochrome'}`);
+    });
+
+    // Check if already in Founder Mode
+    if (document.documentElement.getAttribute('data-mode') === 'founder') {
+      this.founderModeActive = true;
+    }
   }
 
   /**
@@ -333,11 +352,19 @@ class GameOfLifeFooter {
     for (let y = 0; y < this.rows; y++) {
       for (let x = 0; x < this.cols; x++) {
         if (this.grid[y][x]) {
-          // Get cell's assigned spectrum color
-          const colorIndex = this.colorGrid[y][x];
-          const cellColor = this.spectrumColors[colorIndex];
+          // Session 3B: Use spectrum colors in Founder Mode, monochrome in professional mode
+          let cellColor;
+          if (this.founderModeActive) {
+            // Founder Mode: Colorful spectrum
+            const colorIndex = this.colorGrid[y][x];
+            cellColor = this.spectrumColors[colorIndex];
+          } else {
+            // Professional Mode: Monochrome (matches current theme)
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            cellColor = isDark ? 'rgba(255, 255, 255, 0.8)' : 'rgba(100, 100, 100, 0.5)';
+          }
 
-          // Draw alive cell with its spectrum color
+          // Draw alive cell
           this.ctx.fillStyle = cellColor;
 
           // Add subtle glow in dark mode

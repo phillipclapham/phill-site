@@ -2854,6 +2854,114 @@ body {
     0 20px 40px rgba(0, 0, 0, 0.5);
 }
 
+/* SESSION 3B: Enhanced Animations - Snappier & Bouncier (Founder Mode) */
+
+/* Links: Bouncy scale effect */
+[data-mode="founder"] a {
+  transition: transform 150ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+[data-mode="founder"] a:hover {
+  transform: scale(1.02);
+}
+
+[data-mode="founder"] a:active {
+  transform: scale(0.98);
+}
+
+/* Buttons: Spring physics bounce */
+[data-mode="founder"] button,
+[data-mode="founder"] .pm-maximize-icon,
+[data-mode="founder"] .founder-mode-toggle {
+  transition: transform 200ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+[data-mode="founder"] button:active,
+[data-mode="founder"] .pm-maximize-icon:active,
+[data-mode="founder"] .founder-mode-toggle:active {
+  transform: scale(0.95);
+}
+
+/* Cards: Faster, snappier transitions */
+[data-mode="founder"] .tiltable-card {
+  transition: transform 120ms cubic-bezier(0.34, 1.2, 0.64, 1),
+              box-shadow 120ms ease-out !important;
+}
+
+/* SESSION 3B: Animated Gradient Borders on Cards (Founder Mode) */
+@keyframes spectrum-border-rotate {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+[data-mode="founder"] .tiltable-card:hover {
+  /* Animated spectrum gradient border */
+  position: relative;
+  border-width: 2px;
+  border-style: solid;
+  border-image: linear-gradient(
+    90deg,
+    rgba(14, 165, 233, 0.8),
+    rgba(147, 51, 234, 0.8),
+    rgba(236, 72, 153, 0.8),
+    rgba(14, 165, 233, 0.8)
+  ) 1;
+  background: linear-gradient(
+    90deg,
+    rgba(14, 165, 233, 0.6),
+    rgba(147, 51, 234, 0.6),
+    rgba(236, 72, 153, 0.6),
+    rgba(14, 165, 233, 0.6)
+  );
+  background-size: 200% 100%;
+  animation: spectrum-border-rotate 10s linear infinite;
+  background-clip: padding-box, border-box;
+  background-origin: padding-box, border-box;
+}
+
+/* Ensure card background stays solid */
+[data-mode="founder"] .tiltable-card:hover::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--color-bg);
+  z-index: -1;
+  border-radius: inherit;
+}
+
+[data-theme="dark"][data-mode="founder"] .tiltable-card:hover::before {
+  background: var(--color-bg-secondary);
+}
+
+/* SESSION 3B: Background Enhancements (Founder Mode) */
+
+/* Dark mode: More vibrant gradient ("electric" feel) */
+[data-theme="dark"][data-mode="founder"] .orb-field {
+  background: linear-gradient(160deg,
+    rgb(15, 45, 50) 0%,     /* Brighter teal-black */
+    rgb(40, 20, 55) 40%,    /* Brighter purple-black */
+    rgb(50, 18, 40) 70%,    /* Brighter magenta-black */
+    rgb(18, 48, 32) 100%    /* Brighter green-black */
+  );
+}
+
+/* Light mode: Subtle spectrum gradient (vs pure white) */
+[data-mode="founder"] .orb-field {
+  background: linear-gradient(160deg,
+    rgb(250, 252, 253) 0%,     /* Subtle cyan tint */
+    rgb(252, 250, 254) 40%,    /* Subtle purple tint */
+    rgb(254, 250, 252) 70%,    /* Subtle magenta tint */
+    rgb(250, 254, 252) 100%    /* Subtle green tint */
+  );
+}
+
 /* Accessibility: Disable founder mode effects for reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .founder-click-orb {

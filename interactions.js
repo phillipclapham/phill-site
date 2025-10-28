@@ -314,8 +314,8 @@
 
         // Adjust tilt range based on Founder Mode state
         // Normal mode: ±5 degrees (organic)
-        // Founder mode: ±7 degrees (enhanced, but not jarring)
-        CONFIG.tiltMaxDegrees = isActive ? 7 : 5;
+        // Founder mode: ±8 degrees (playful & energetic - Session 3B)
+        CONFIG.tiltMaxDegrees = isActive ? 8 : 5;
 
         console.log(`[Card3DTilt] Founder Mode ${isActive ? 'activated' : 'deactivated'}: tilt range set to ±${CONFIG.tiltMaxDegrees}°`);
       });
