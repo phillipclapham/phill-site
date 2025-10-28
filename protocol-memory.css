@@ -2268,6 +2268,29 @@ body {
   animation: slideInUp 0.3s ease-out;
 }
 
+/* Modal Accent Bar - Professional Mode (subtle cyan) */
+.pm-modal-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: rgba(14, 165, 233, 0.3);
+  border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
+  z-index: 1;
+}
+
+/* Modal Accent Bar - Founder Mode (full spectrum) */
+[data-mode="founder"] .pm-modal-content::before {
+  height: 4px;
+  background: linear-gradient(90deg,
+    rgba(14, 165, 233, 0.8),
+    rgba(147, 51, 234, 0.8),
+    rgba(236, 72, 153, 0.8)
+  );
+}
+
 .pm-modal-close {
   position: absolute;
   top: var(--space-4);
@@ -2316,23 +2339,35 @@ body {
   margin-bottom: var(--space-2);
 }
 
-/* Maximize Icon on Cards */
+/* Maximize Icon on Cards - Glass effect with depth */
 .pm-maximize-icon {
   position: absolute;
-  background: var(--color-bg);
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px);
   border: 1px solid var(--color-border);
   width: 32px;
   height: 32px;
   border-radius: var(--radius-md);
   cursor: pointer;
   opacity: 0;
-  transition: all var(--transition-base);
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--color-text-secondary);
   font-size: var(--text-sm);
   z-index: var(--z-dropdown);
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.08),
+    0 1px 2px rgba(0, 0, 0, 0.12);
+}
+
+/* Dark mode: Glass effect adjustment */
+[data-theme="dark"] .pm-maximize-icon {
+  background: rgba(0, 0, 0, 0.5);
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.3),
+    0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 /* Seed cards - maximize icon bottom-right */
@@ -2351,6 +2386,16 @@ body {
   background-color: var(--color-primary);
   border-color: var(--color-primary);
   color: var(--color-bg);
+  transform: scale(1.1) translateY(-2px);
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.15),
+    0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="dark"] .pm-maximize-icon:hover {
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.5),
+    0 2px 4px rgba(0, 0, 0, 0.7);
 }
 
 .pm-project-item:hover .pm-maximize-icon,
@@ -2640,7 +2685,7 @@ body {
 /* Dark mode: Enhanced shadow + subtle cyan glow (always-on sophistication) */
 [data-theme="dark"] .tiltable-card:hover {
   box-shadow:
-    0 10px 30px -5px rgba(14, 165, 233, 0.15),
+    0 10px 30px -5px rgba(14, 165, 233, 0.3),
     0 20px 40px rgba(0, 0, 0, 0.4);
 }
 
@@ -2789,21 +2834,23 @@ body {
 }
 
 [data-mode="founder"] .tiltable-card:hover {
-  /* Add spectrum glow on hover */
+  /* Add spectrum glow on hover (all 3 colors visible + black grounding) */
   box-shadow:
-    0 10px 30px -5px rgba(14, 165, 233, 0.25),
-    0 20px 50px -10px rgba(147, 51, 234, 0.15),
-    0 30px 70px -15px rgba(236, 72, 153, 0.1);
+    0 8px 25px -5px rgba(14, 165, 233, 0.4),
+    0 12px 35px -5px rgba(147, 51, 234, 0.3),
+    0 16px 45px -5px rgba(236, 72, 153, 0.25),
+    0 20px 40px rgba(0, 0, 0, 0.15);
   /* Slightly faster animation */
   transition: transform 150ms ease-out, box-shadow 150ms ease-out;
 }
 
 [data-theme="dark"][data-mode="founder"] .tiltable-card:hover {
-  /* Enhanced spectrum glow in dark mode */
+  /* Enhanced spectrum glow in dark mode (brighter colors + deeper shadow) */
   box-shadow:
-    0 10px 30px -5px rgba(14, 165, 233, 0.35),
-    0 20px 50px -10px rgba(147, 51, 234, 0.25),
-    0 30px 70px -15px rgba(236, 72, 153, 0.15);
+    0 8px 25px -5px rgba(14, 165, 233, 0.5),
+    0 12px 35px -5px rgba(147, 51, 234, 0.4),
+    0 16px 45px -5px rgba(236, 72, 153, 0.3),
+    0 20px 40px rgba(0, 0, 0, 0.5);
 }
 
 /* Accessibility: Disable founder mode effects for reduced motion */
