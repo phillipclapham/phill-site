@@ -111,14 +111,6 @@
   --spectrum-magenta: rgba(236, 72, 153, 0.22);    /* Ring 8: Magenta/Hot Pink - Vibrant outer */
   --spectrum-pink: rgba(244, 114, 182, 0.2);       /* Ring 9: Pink/Rose - Soft perimeter */
   --spectrum-lavender: rgba(196, 181, 253, 0.18);  /* Ring 10: Lavender - Gentle fade */
-
-  /* Interactions - Session 1 */
-  --glow-intensity: 0; /* Dynamic value updated by interactions.js (0-1 range) */
-  --spectrum-gradient: linear-gradient(90deg,
-    var(--color-primary-light),
-    rgba(147, 51, 234, 0.8),
-    rgba(236, 72, 153, 0.8)
-  ); /* Teal → Purple → Magenta gradient for link underlines */
 }
 
 /* ========================================
@@ -551,11 +543,6 @@ body {
   pointer-events: none;
   z-index: 0;
   opacity: 1;
-  /* Session 1: Neural pulse hover glow (distance-based intensity) */
-  filter: drop-shadow(0 0 calc(var(--glow-intensity) * 40px) rgba(14, 165, 233, 0.4))
-          drop-shadow(0 0 calc(var(--glow-intensity) * 60px) rgba(147, 51, 234, 0.3));
-  transition: filter 100ms ease-out;
-  will-change: filter; /* GPU acceleration hint */
 }
 
 /* Individual pulse rings */
@@ -1121,7 +1108,6 @@ body {
   background-color: var(--color-bg);
   border-bottom: 1px solid var(--color-border);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-  -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
   background-color: rgba(255, 255, 255, 0.95);
 }
@@ -1169,10 +1155,8 @@ body {
   transform: translateX(-50%) scaleX(0);
   width: 80%;
   height: 2px;
-  /* Session 1: Spectrum gradient underline (center-out animation) */
-  background: var(--spectrum-gradient);
+  background-color: var(--color-primary);
   transition: transform var(--transition-base);
-  transform-origin: center;
 }
 
 .nav-links a:hover::after {
@@ -1243,7 +1227,7 @@ body {
 
 .state-card {
   background: var(--color-bg);
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-xl);
   padding: var(--space-5);
   display: flex;
@@ -1292,7 +1276,7 @@ body {
 
 .pm-state-item {
   background: var(--color-bg);
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-xl);
   padding: var(--space-5);
   display: flex;
@@ -1506,7 +1490,7 @@ body {
   flex: 1 1 280px; /* grow, shrink, basis */
   max-width: 400px; /* prevent items from getting too wide */
   background: var(--color-bg);
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-xl);
   padding: var(--space-6);
   transition: all var(--transition-base);
@@ -1665,7 +1649,7 @@ body {
   flex: 1 1 280px; /* grow, shrink, basis */
   max-width: 450px; /* prevent items from getting too wide */
   background: var(--color-bg);
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-xl);
   padding: var(--space-6);
   transition: all var(--transition-base);
@@ -1781,7 +1765,6 @@ body {
 /* Dark mode footer: Solid background for Game of Life contrast */
 [data-theme="dark"] .site-footer {
   background-color: rgba(10, 10, 15, 0.95);
-  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
 }
 
@@ -2036,24 +2019,6 @@ body {
   left: 100%;
 }
 
-/* Session 1: Spectrum gradient underline for social links */
-.social-links a::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%) scaleX(0);
-  width: 80%;
-  height: 2px;
-  background: var(--spectrum-gradient);
-  transition: transform var(--transition-base);
-  transform-origin: center;
-}
-
-.social-links a:hover::after {
-  transform: translateX(-50%) scaleX(1);
-}
-
 /* Loading skeleton animations */
 @keyframes shimmer {
   0% {
@@ -2254,7 +2219,6 @@ body {
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.5);
-  -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
 }
 
@@ -2269,29 +2233,6 @@ body {
   box-shadow: var(--shadow-xl);
   overflow-y: auto;
   animation: slideInUp 0.3s ease-out;
-}
-
-/* Modal Accent Bar - Professional Mode (subtle cyan) */
-.pm-modal-content::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: rgba(14, 165, 233, 0.3);
-  border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
-  z-index: 1;
-}
-
-/* Modal Accent Bar - Founder Mode (full spectrum) */
-[data-mode="founder"] .pm-modal-content::before {
-  height: 4px;
-  background: linear-gradient(90deg,
-    rgba(14, 165, 233, 0.8),
-    rgba(147, 51, 234, 0.8),
-    rgba(236, 72, 153, 0.8)
-  );
 }
 
 .pm-modal-close {
@@ -2342,36 +2283,23 @@ body {
   margin-bottom: var(--space-2);
 }
 
-/* Maximize Icon on Cards - Glass effect with depth */
+/* Maximize Icon on Cards */
 .pm-maximize-icon {
   position: absolute;
-  background: rgba(255, 255, 255, 0.8);
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
+  background: var(--color-bg);
   border: 1px solid var(--color-border);
   width: 32px;
   height: 32px;
   border-radius: var(--radius-md);
   cursor: pointer;
   opacity: 0;
-  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all var(--transition-base);
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--color-text-secondary);
   font-size: var(--text-sm);
   z-index: var(--z-dropdown);
-  box-shadow:
-    0 2px 8px rgba(0, 0, 0, 0.08),
-    0 1px 2px rgba(0, 0, 0, 0.12);
-}
-
-/* Dark mode: Glass effect adjustment */
-[data-theme="dark"] .pm-maximize-icon {
-  background: rgba(0, 0, 0, 0.5);
-  box-shadow:
-    0 2px 8px rgba(0, 0, 0, 0.3),
-    0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 /* Seed cards - maximize icon bottom-right */
@@ -2390,16 +2318,6 @@ body {
   background-color: var(--color-primary);
   border-color: var(--color-primary);
   color: var(--color-bg);
-  transform: scale(1.1) translateY(-2px);
-  box-shadow:
-    0 4px 16px rgba(0, 0, 0, 0.15),
-    0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-[data-theme="dark"] .pm-maximize-icon:hover {
-  box-shadow:
-    0 4px 16px rgba(0, 0, 0, 0.5),
-    0 2px 4px rgba(0, 0, 0, 0.7);
 }
 
 .pm-project-item:hover .pm-maximize-icon,
@@ -2667,300 +2585,23 @@ body {
 }
 
 /* ========================================
-   SESSION 2 FIX: CARD 3D TILT + WATER RIPPLES
+   SECTION VISIBILITY CONTROL (v1.1.0)
+   Hide parent sections when content is hidden
    ======================================== */
 
-/* Card 3D Tilt - Apple-style subtle tilt on hover */
-.tiltable-card {
-  --tilt-x: 0deg;
-  --tilt-y: 0deg;
-  transform-style: preserve-3d;
-  /* Use CSS variables for tilt - JavaScript updates these */
-  /* !important to override conflicting hover transforms from .pm-project-item, etc. */
-  transform: perspective(1000px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) translateZ(0) !important;
-  transition: transform 200ms ease-out, box-shadow 200ms ease-out;
-  will-change: transform;
+/**
+ * When Protocol Memory marks a section container as hidden,
+ * this rule hides the entire parent section element.
+ * Uses :has() selector (Chrome 105+, Safari 15.4+, Firefox 121+)
+ */
+section:has(.pm-section-hidden) {
+  display: none;
 }
 
-.tiltable-card:hover {
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-}
-
-/* Dark mode: Enhanced shadow + teal glow matching border (electric effect) */
-/* EXPERIMENTAL: Using border hover color (#14b8a6 = teal) for cohesion - may revert */
-[data-theme="dark"] .tiltable-card:hover {
-  box-shadow:
-    0 10px 30px -5px rgba(20, 184, 166, 0.5),
-    0 20px 40px rgba(0, 0, 0, 0.4);
-}
-
-/* Ripple Container - Fixed overlay for ripples */
-.ripple-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  pointer-events: none;
-  z-index: var(--z-popover);
-  overflow: hidden;
-}
-
-/* Water Ripple - Subtle, transparent, like pebble hitting pond */
-.water-ripple {
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  border: 1.5px solid rgba(100, 100, 100, 0.22); /* Refined: slightly more subtle */
-  background: none; /* No fill - border only */
-  transform: translate(-50%, -50%) scale(0);
-  animation: water-ripple-expand 500ms ease-out forwards;
-  pointer-events: none;
-}
-
-/* Water Ripple Expand Animation - Fast, natural physics */
-@keyframes water-ripple-expand {
-  0% {
-    transform: translate(-50%, -50%) scale(0);
-    opacity: 1;
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(8); /* Smaller than before (was 15x) */
-    opacity: 0;
-  }
-}
-
-/* Dark mode: Subtle white ripples for visibility */
-[data-theme="dark"] .water-ripple {
-  border-color: rgba(255, 255, 255, 0.15); /* Refined: slightly more subtle */
-}
-
-/* Mobile: Disable tilt transform (gyroscope or no tilt) */
-@media (max-width: 768px) {
-  .tiltable-card {
-    transform-style: flat;
-  }
-}
-
-/* Accessibility: Disable tilt + ripples for reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  .tiltable-card {
-    transform: none !important;
-    transition: none !important;
-  }
-
-  .water-ripple {
-    display: none;
-  }
-}
-
-/* ========================================
-   SESSION 3: FOUNDER MODE VISUAL TOGGLE
-   ======================================== */
-
-/* Toggle Icon - Subtle easter egg in footer */
-.founder-mode-toggle {
-  position: absolute;
-  bottom: var(--space-4);
-  right: var(--space-4);
-  width: 36px;
-  height: 36px;
-  padding: 0;
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  font-size: 20px;
-  opacity: 0.3;
-  transition: opacity 200ms ease-out, transform 200ms ease-out;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.founder-mode-toggle:hover {
-  opacity: 0.6;
-  transform: scale(1.15);
-}
-
-.founder-mode-toggle.active {
-  opacity: 0.8;
-}
-
-.founder-mode-toggle:active {
-  transform: scale(1.05);
-}
-
-/* Toggle spin animation on click */
-@keyframes founder-toggle-spin {
-  from {
-    transform: rotate(0deg) scale(1.15);
-  }
-  to {
-    transform: rotate(360deg) scale(1.15);
-  }
-}
-
-/* Spectrum Click Orbs - Only active in Founder Mode + Dark Mode */
-.founder-click-orb {
-  position: fixed;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  /* Subtle like water ripples - reduced opacity significantly */
-  background: radial-gradient(circle,
-    rgba(14, 165, 233, 0.18),
-    rgba(147, 51, 234, 0.15),
-    rgba(236, 72, 153, 0.12)
-  );
-  pointer-events: none;
-  transform: translate(-50%, -50%) scale(0);
-  animation: founder-orb-expand 600ms ease-out forwards;
-  z-index: 9999;
-}
-
-/* Click Orb Expand Animation - Faster than water ripples */
-@keyframes founder-orb-expand {
-  0% {
-    transform: translate(-50%, -50%) scale(0);
-    opacity: 1;
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(8);
-    opacity: 0;
-  }
-}
-
-/* Enhanced Card Animations - Founder Mode Only */
-[data-mode="founder"] .tiltable-card {
-  /* Increase tilt range from 5deg to 7deg */
-  --tilt-max: 7deg;
-}
-
-[data-mode="founder"] .tiltable-card:hover {
-  /* Add spectrum glow on hover (all 3 colors visible + black grounding) */
-  box-shadow:
-    0 8px 25px -5px rgba(14, 165, 233, 0.4),
-    0 12px 35px -5px rgba(147, 51, 234, 0.3),
-    0 16px 45px -5px rgba(236, 72, 153, 0.25),
-    0 20px 40px rgba(0, 0, 0, 0.15);
-  /* Slightly faster animation */
-  transition: transform 150ms ease-out, box-shadow 150ms ease-out;
-}
-
-[data-theme="dark"][data-mode="founder"] .tiltable-card:hover {
-  /* Enhanced spectrum glow in dark mode (brighter colors + deeper shadow) */
-  box-shadow:
-    0 8px 25px -5px rgba(14, 165, 233, 0.5),
-    0 12px 35px -5px rgba(147, 51, 234, 0.4),
-    0 16px 45px -5px rgba(236, 72, 153, 0.3),
-    0 20px 40px rgba(0, 0, 0, 0.5);
-}
-
-/* SESSION 3B: Enhanced Animations - Snappier & Bouncier (Founder Mode) */
-
-/* Links: Bouncy scale effect */
-[data-mode="founder"] a {
-  transition: transform 150ms cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-[data-mode="founder"] a:hover {
-  transform: scale(1.02);
-}
-
-[data-mode="founder"] a:active {
-  transform: scale(0.98);
-}
-
-/* Buttons: Spring physics bounce */
-[data-mode="founder"] button,
-[data-mode="founder"] .pm-maximize-icon,
-[data-mode="founder"] .founder-mode-toggle {
-  transition: transform 200ms cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-[data-mode="founder"] button:active,
-[data-mode="founder"] .pm-maximize-icon:active,
-[data-mode="founder"] .founder-mode-toggle:active {
-  transform: scale(0.95);
-}
-
-/* Cards: Faster, snappier transitions */
-[data-mode="founder"] .tiltable-card {
-  transition: transform 120ms cubic-bezier(0.34, 1.2, 0.64, 1),
-              box-shadow 120ms ease-out !important;
-}
-
-/* SESSION 3B: Animated Gradient Borders on Cards (Founder Mode) */
-@keyframes spectrum-border-rotate {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-[data-mode="founder"] .tiltable-card:hover {
-  /* Animated spectrum gradient border (simplified - no dual-layer background) */
-  position: relative;
-  border-image: linear-gradient(
-    90deg,
-    rgba(14, 165, 233, 0.8),
-    rgba(147, 51, 234, 0.8),
-    rgba(236, 72, 153, 0.8),
-    rgba(14, 165, 233, 0.8)
-  ) 1;
-}
-
-/* Ensure card background stays solid */
-[data-mode="founder"] .tiltable-card:hover::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: var(--color-bg);
-  z-index: -1;
-  border-radius: inherit;
-}
-
-[data-theme="dark"][data-mode="founder"] .tiltable-card:hover::before {
-  background: var(--color-bg-secondary);
-}
-
-/* SESSION 3B: Background Enhancements (Founder Mode) */
-
-/* Dark mode: More vibrant gradient ("electric" feel) */
-[data-theme="dark"][data-mode="founder"] .orb-field {
-  background: linear-gradient(160deg,
-    rgb(15, 45, 50) 0%,     /* Brighter teal-black */
-    rgb(40, 20, 55) 40%,    /* Brighter purple-black */
-    rgb(50, 18, 40) 70%,    /* Brighter magenta-black */
-    rgb(18, 48, 32) 100%    /* Brighter green-black */
-  );
-}
-
-/* Light mode: Subtle spectrum gradient (vs pure white) */
-[data-mode="founder"] .orb-field {
-  background: linear-gradient(160deg,
-    rgb(250, 252, 253) 0%,     /* Subtle cyan tint */
-    rgb(252, 250, 254) 40%,    /* Subtle purple tint */
-    rgb(254, 250, 252) 70%,    /* Subtle magenta tint */
-    rgb(250, 254, 252) 100%    /* Subtle green tint */
-  );
-}
-
-/* Accessibility: Disable founder mode effects for reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  .founder-click-orb {
-    display: none;
-  }
-
-  [data-mode="founder"] .tiltable-card:hover {
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-    transition: none;
-  }
+/**
+ * Fallback: Direct hiding of the container itself
+ * For older browsers that don't support :has()
+ */
+.pm-section-hidden {
+  display: none;
 }
