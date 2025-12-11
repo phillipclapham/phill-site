@@ -1,0 +1,343 @@
+/**
+ * Site Overrides - phillipclapham.com
+ *
+ * Custom styles specific to this site that OVERRIDE the Protocol Memory
+ * integration library defaults. This file is loaded AFTER protocol-memory.css
+ * to ensure custom styles take precedence.
+ *
+ * WHY THIS FILE EXISTS:
+ * The Protocol Memory integration library includes its own CSS (protocol-memory.css).
+ * When the library updates, that CSS file gets replaced. By keeping site-specific
+ * customizations in this separate file, we prevent losing custom styles on updates.
+ *
+ * WHAT'S IN HERE:
+ * - Card 3D tilt effects (interactions.js)
+ * - Water ripple click effects (interactions.js)
+ * - Founder Mode toggle and effects (founder-mode.js)
+ * - Any future site-specific styling
+ *
+ * RULE: Never put site-specific styles in protocol-memory.css
+ *       Always add them here instead.
+ *
+ * Last updated: Dec 11, 2025
+ */
+
+/* ========================================
+   CARD 3D TILT - interactions.js
+   ======================================== */
+
+.tiltable-card {
+  --tilt-x: 0deg;
+  --tilt-y: 0deg;
+  transform-style: preserve-3d;
+  /* Use CSS variables for tilt - JavaScript updates these */
+  /* !important to override conflicting hover transforms from .pm-project-item, etc. */
+  transform: perspective(1000px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) translateZ(0) !important;
+  transition: transform 200ms ease-out, box-shadow 200ms ease-out;
+  will-change: transform;
+}
+
+.tiltable-card:hover {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Dark mode: Enhanced shadow + teal glow matching border (electric effect) */
+[data-theme="dark"] .tiltable-card:hover {
+  box-shadow:
+    0 10px 30px -5px rgba(20, 184, 166, 0.5),
+    0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Mobile: Disable tilt transform (gyroscope or no tilt) */
+@media (max-width: 768px) {
+  .tiltable-card {
+    transform-style: flat;
+  }
+}
+
+/* Accessibility: Disable tilt for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .tiltable-card {
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* ========================================
+   WATER RIPPLES - interactions.js
+   ======================================== */
+
+/* Ripple Container - Fixed overlay for ripples */
+.ripple-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: var(--z-popover);
+  overflow: hidden;
+}
+
+/* Water Ripple - Subtle, transparent, like pebble hitting pond */
+.water-ripple {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(100, 100, 100, 0.22);
+  background: none; /* No fill - border only */
+  transform: translate(-50%, -50%) scale(0);
+  animation: water-ripple-expand 500ms ease-out forwards;
+  pointer-events: none;
+}
+
+/* Water Ripple Expand Animation - Fast, natural physics */
+@keyframes water-ripple-expand {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(8);
+    opacity: 0;
+  }
+}
+
+/* Dark mode: Subtle white ripples for visibility */
+[data-theme="dark"] .water-ripple {
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Accessibility: Disable ripples for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .water-ripple {
+    display: none;
+  }
+}
+
+/* ========================================
+   FOUNDER MODE TOGGLE - founder-mode.js
+   ======================================== */
+
+/* Toggle Icon - Subtle easter egg in footer */
+.founder-mode-toggle {
+  position: absolute;
+  bottom: var(--space-4);
+  right: var(--space-4);
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 20px;
+  opacity: 0.3;
+  transition: opacity 200ms ease-out, transform 200ms ease-out;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.founder-mode-toggle:hover {
+  opacity: 0.6;
+  transform: scale(1.15);
+}
+
+.founder-mode-toggle.active {
+  opacity: 0.8;
+}
+
+.founder-mode-toggle:active {
+  transform: scale(1.05);
+}
+
+/* Toggle spin animation on click */
+@keyframes founder-toggle-spin {
+  from {
+    transform: rotate(0deg) scale(1.15);
+  }
+  to {
+    transform: rotate(360deg) scale(1.15);
+  }
+}
+
+/* ========================================
+   FOUNDER MODE CLICK ORBS - founder-mode.js
+   ======================================== */
+
+/* Spectrum Click Orbs - Only active in Founder Mode + Dark Mode */
+.founder-click-orb {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  /* Subtle like water ripples - reduced opacity significantly */
+  background: radial-gradient(circle,
+    rgba(14, 165, 233, 0.18),
+    rgba(147, 51, 234, 0.15),
+    rgba(236, 72, 153, 0.12)
+  );
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0);
+  animation: founder-orb-expand 600ms ease-out forwards;
+  z-index: 9999;
+}
+
+/* Click Orb Expand Animation - Faster than water ripples */
+@keyframes founder-orb-expand {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(8);
+    opacity: 0;
+  }
+}
+
+/* Accessibility: Disable founder orbs for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .founder-click-orb {
+    display: none;
+  }
+}
+
+/* ========================================
+   FOUNDER MODE CARD ENHANCEMENTS
+   ======================================== */
+
+/* Enhanced Card Animations - Founder Mode Only */
+[data-mode="founder"] .tiltable-card {
+  /* Increase tilt range from 5deg to 7deg */
+  --tilt-max: 7deg;
+}
+
+[data-mode="founder"] .tiltable-card:hover {
+  /* Add spectrum glow on hover (all 3 colors visible + black grounding) */
+  box-shadow:
+    0 8px 25px -5px rgba(14, 165, 233, 0.4),
+    0 12px 35px -5px rgba(147, 51, 234, 0.3),
+    0 16px 45px -5px rgba(236, 72, 153, 0.25),
+    0 20px 40px rgba(0, 0, 0, 0.15);
+  /* Slightly faster animation */
+  transition: transform 150ms ease-out, box-shadow 150ms ease-out;
+}
+
+[data-theme="dark"][data-mode="founder"] .tiltable-card:hover {
+  /* Enhanced spectrum glow in dark mode (brighter colors + deeper shadow) */
+  box-shadow:
+    0 8px 25px -5px rgba(14, 165, 233, 0.5),
+    0 12px 35px -5px rgba(147, 51, 234, 0.4),
+    0 16px 45px -5px rgba(236, 72, 153, 0.3),
+    0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* SESSION 3B: Enhanced Animations - Snappier & Bouncier (Founder Mode) */
+
+/* Links: Bouncy scale effect */
+[data-mode="founder"] a {
+  transition: transform 150ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+[data-mode="founder"] a:hover {
+  transform: scale(1.02);
+}
+
+[data-mode="founder"] a:active {
+  transform: scale(0.98);
+}
+
+/* Buttons: Spring physics bounce */
+[data-mode="founder"] button,
+[data-mode="founder"] .pm-maximize-icon,
+[data-mode="founder"] .founder-mode-toggle {
+  transition: transform 200ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+[data-mode="founder"] button:active,
+[data-mode="founder"] .pm-maximize-icon:active,
+[data-mode="founder"] .founder-mode-toggle:active {
+  transform: scale(0.95);
+}
+
+/* Cards: Faster, snappier transitions */
+[data-mode="founder"] .tiltable-card {
+  transition: transform 120ms cubic-bezier(0.34, 1.2, 0.64, 1),
+              box-shadow 120ms ease-out !important;
+}
+
+/* ========================================
+   FOUNDER MODE ANIMATED BORDERS
+   ======================================== */
+
+@keyframes spectrum-border-rotate {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+[data-mode="founder"] .tiltable-card:hover {
+  /* Animated spectrum gradient border */
+  position: relative;
+  border-image: linear-gradient(
+    90deg,
+    rgba(14, 165, 233, 0.8),
+    rgba(147, 51, 234, 0.8),
+    rgba(236, 72, 153, 0.8),
+    rgba(14, 165, 233, 0.8)
+  ) 1;
+}
+
+/* Ensure card background stays solid */
+[data-mode="founder"] .tiltable-card:hover::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--color-bg);
+  z-index: -1;
+  border-radius: inherit;
+}
+
+[data-theme="dark"][data-mode="founder"] .tiltable-card:hover::before {
+  background: var(--color-bg-secondary);
+}
+
+/* ========================================
+   FOUNDER MODE BACKGROUND ENHANCEMENTS
+   ======================================== */
+
+/* Dark mode: More vibrant gradient ("electric" feel) */
+[data-theme="dark"][data-mode="founder"] .orb-field {
+  background: linear-gradient(160deg,
+    rgb(15, 45, 50) 0%,     /* Brighter teal-black */
+    rgb(40, 20, 55) 40%,    /* Brighter purple-black */
+    rgb(50, 18, 40) 70%,    /* Brighter magenta-black */
+    rgb(18, 48, 32) 100%    /* Brighter green-black */
+  );
+}
+
+/* Light mode: Subtle spectrum gradient (vs pure white) */
+[data-mode="founder"] .orb-field {
+  background: linear-gradient(160deg,
+    rgb(250, 252, 253) 0%,     /* Subtle cyan tint */
+    rgb(252, 250, 254) 40%,    /* Subtle purple tint */
+    rgb(254, 250, 252) 70%,    /* Subtle magenta tint */
+    rgb(250, 254, 252) 100%    /* Subtle green tint */
+  );
+}
+
+/* Accessibility: Disable founder mode visual effects for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  [data-mode="founder"] .tiltable-card:hover {
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    transition: none;
+  }
+}
