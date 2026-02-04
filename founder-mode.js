@@ -1,7 +1,10 @@
 /**
- * Founder Mode - Visual Toggle System
+ * Founder Mode - Visual Toggle System (INVERTED)
  *
- * Event-driven architecture for toggling between professional and personal
+ * Default: Founder Mode ON (enhanced state)
+ * Toggle: Turns it DOWN to "professional" mode (normie mode)
+ *
+ * Event-driven architecture for toggling between personal (founder) and professional
  * visual aesthetics. Built for future expansion to include content transformation.
  *
  * Architecture:
@@ -13,15 +16,18 @@
  * - Discoverable easter egg (no tooltips, subtle icon)
  * - Maintains sophistication in both modes
  * - Event-driven for future content transformation support
+ * - Subverts expectations: toggle turns things DOWN, not up
  */
 
 /**
  * State Manager
  * Handles mode toggling, persistence, and event dispatching
+ * INVERTED: Default to founder mode (enhanced), toggle turns it OFF
  */
 class FounderModeState {
   constructor() {
-    this._active = false;
+    // INVERTED: Default to TRUE (founder mode ON)
+    this._active = true;
     this.EVENT_NAME = 'founderModeChange';
     this.STORAGE_KEY = 'founder-mode';
     this.loadFromStorage();
@@ -66,16 +72,20 @@ class FounderModeState {
 
   /**
    * Load persisted mode from localStorage
-   * Restore on page load for continuity
+   * INVERTED: Only turn OFF if explicitly saved as 'false'
+   * Default (no saved preference) = founder mode ON
    */
   loadFromStorage() {
     const stored = localStorage.getItem(this.STORAGE_KEY);
-    if (stored === 'true') {
-      this._active = true;
+    // INVERTED: Only turn OFF if explicitly saved as false
+    if (stored === 'false') {
+      this._active = false;
       this.applyMode();
       // Dispatch event asynchronously so listeners are ready
       setTimeout(() => this.dispatchChange(), 0);
     }
+    // Default (stored === null or 'true') keeps founder mode ON
+    // (already set in constructor and HTML)
   }
 
   /**
@@ -227,5 +237,5 @@ document.addEventListener('DOMContentLoaded', () => {
     // Future expansion: content transformation methods will go here
   };
 
-  console.log('🌀 Founder Mode initialized (hint: check the footer)');
+  console.log('🌀 Founder Mode initialized (default: ON - toggle to turn DOWN)');
 });

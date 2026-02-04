@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark" data-mode="founder">
   <head>
     <meta charset="UTF-8" />
     <meta
@@ -8,7 +8,7 @@
     />
     <meta
       name="description"
-      content="Phillip Clapham - Building the missing layer between humans and AI. Powered by Protocol Memory."
+      content="Phillip Clapham - Mad scientist, poet, political voice, builder. The rayguns work."
     />
     <meta name="theme-color" content="#0F766E" />
 
@@ -17,46 +17,49 @@
     <meta property="og:url" content="https://phillipclapham.com" />
     <meta
       property="og:title"
-      content="Phillip Clapham | Protocol Memory Showcase"
+      content="Phillip Clapham | The rayguns work."
     />
     <meta
       property="og:description"
-      content="Building the missing layer between humans and AI. This entire site is powered by Protocol Memory."
+      content="Mad scientist, poet, political voice, builder. Making impossible possible since 1996."
     />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta
       name="twitter:title"
-      content="Phillip Clapham | Protocol Memory Showcase"
+      content="Phillip Clapham | The rayguns work."
     />
     <meta
       name="twitter:description"
-      content="Building the missing layer between humans and AI. Powered by Protocol Memory."
+      content="Mad scientist, poet, political voice, builder. Making impossible possible since 1996."
     />
 
     <!-- Performance & Compatibility -->
     <meta name="format-detection" content="telephone=no" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-    <title>Phillip Clapham | Protocol Memory Showcase</title>
+    <title>Phillip Clapham | The rayguns work.</title>
 
     <!-- Theme: Prevent FOUC (Flash of Unstyled Content) -->
     <script>
-      // Immediately apply saved theme before page renders
-      // Smart default: Respect user's explicit choice OR system preference
+      // Immediately apply saved theme/mode before page renders
+      // Default: dark mode + founder mode (enhanced state)
       (function () {
         const savedTheme = localStorage.getItem("theme-preference");
-        const systemPrefersDark = window.matchMedia(
-          "(prefers-color-scheme: dark)"
-        ).matches;
+        const savedMode = localStorage.getItem("founder-mode");
 
-        // Apply dark mode if:
-        // 1. User explicitly saved "dark", OR
-        // 2. No saved preference AND system prefers dark
-        if (savedTheme === "dark" || (!savedTheme && systemPrefersDark)) {
-          document.documentElement.setAttribute("data-theme", "dark");
+        // Theme: Default to dark, respect explicit light choice
+        if (savedTheme === "light") {
+          document.documentElement.removeAttribute("data-theme");
         }
+        // data-theme="dark" is already set in HTML as default
+
+        // Mode: Default to founder (enhanced), respect explicit professional choice
+        if (savedMode === "false") {
+          document.documentElement.setAttribute("data-mode", "professional");
+        }
+        // data-mode="founder" is already set in HTML as default
       })();
     </script>
 
@@ -73,9 +76,6 @@
 
     <!-- Plausible Analytics -->
     <script defer data-domain="phillipclapham.com" src="https://plausible.io/js/script.outbound-links.js"></script>
-
-    <!-- Preload critical resources -->
-    <link rel="preconnect" href="https://urfuxifxphtqsrkuoifn.supabase.co" />
   </head>
   <body>
     <!-- Background - Ultra-minimal gradient (professional restraint) -->
@@ -102,9 +102,7 @@
       <div class="container">
         <div class="header-content">
           <h1 class="site-title">Phillip Clapham</h1>
-          <p class="site-subtitle" id="pm-role">
-            Building the missing layer between humans and AI
-          </p>
+          <p class="site-subtitle">The rayguns work.</p>
         </div>
 
         <!-- Social Links -->
@@ -171,10 +169,10 @@
     <nav class="secondary-nav">
       <div class="container">
         <ul class="nav-links">
-          <li><a href="#current-state">Current State</a></li>
           <li><a href="#about">About</a></li>
-          <li><a href="#active-notes">Active Notes</a></li>
-          <li><a href="#expertise">Expertise</a></li>
+          <li><a href="#lab">The Lab</a></li>
+          <li><a href="#writing">Writing</a></li>
+          <li><a href="#connect">Connect</a></li>
         </ul>
 
         <!-- Theme Toggle -->
@@ -184,65 +182,139 @@
           aria-label="Toggle dark mode"
           title="Toggle dark mode"
         >
-          <span class="theme-icon">🌙</span>
+          <span class="theme-icon">☀️</span>
         </button>
       </div>
     </nav>
 
-    <!-- Current State Section -->
-    <section id="current-state" class="section current-state-section">
-      <div class="container">
-        <h2 class="section-title">Current State</h2>
-
-        <div id="pm-current-state" class="current-state-grid">
-          <!-- Populated dynamically by Protocol Memory -->
-          <div class="state-card">
-            <span class="state-label">Loading...</span>
-            <span class="state-value">Connecting to Protocol Memory</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- About Section -->
+    <!-- About Section (Quick Identity) -->
     <section id="about" class="section about-section">
       <div class="container">
         <h2 class="section-title">About</h2>
-        <div id="pm-about" class="about-content">
-          <!-- Populated dynamically by Protocol Memory -->
+        <div class="about-content">
           <p class="about-tagline">
-            Building the missing layer between humans and AI.
+            Mad scientist. Poet. Political voice. Builder.
           </p>
-          <p class="about-role">Senior Solutions Architect at Pressable</p>
+          <p class="about-role">
+            Senior Solutions Architect at <a href="https://pressable.com" target="_blank" rel="noopener">Pressable</a> &bull;
+            Founder at <a href="https://claphamdigital.com" target="_blank" rel="noopener">Clapham Digital</a>
+          </p>
           <p class="about-description">
-            Making impossible possible since 1996.
+            I build rayguns. Tools for thinking, systems for cognitive resistance,
+            frameworks for human-AI partnership. Some are software. Some are ideas.
+            All of them work.
+          </p>
+          <p class="about-cta">
+            <a href="about.html">Read the full story &rarr;</a>
           </p>
         </div>
       </div>
     </section>
 
-    <!-- Active Notes Section -->
-    <section id="active-notes" class="section projects-section">
+    <!-- Lab Preview Section -->
+    <section id="lab" class="section projects-section">
       <div class="container">
-        <h2 class="section-title">Active Notes</h2>
-        <div id="pm-projects" class="projects-grid">
-          <!-- Populated dynamically by Protocol Memory -->
-          <div class="empty-state">
-            <p>Loading active notes from Protocol Memory...</p>
+        <h2 class="section-title">The Lab</h2>
+        <p class="section-intro">Where the rayguns are built and tested.</p>
+
+        <div class="projects-grid">
+          <!-- RAYGUN OS -->
+          <div class="project-card tiltable-card">
+            <h3 class="project-title">RAYGUN OS</h3>
+            <p class="project-desc">
+              Cognitive resistance operating system. Tools and frameworks for maintaining
+              frame sovereignty in an age of manufactured reality.
+            </p>
+            <a href="https://raygunos.com" target="_blank" rel="noopener" class="project-link">
+              raygunos.com &rarr;
+            </a>
+          </div>
+
+          <!-- Third Mind -->
+          <div class="project-card tiltable-card">
+            <h3 class="project-title">Third Mind</h3>
+            <p class="project-desc">
+              Human-AI partnership framework. Not AI as tool or AI as threat&mdash;AI as
+              collaborator in a genuine cognitive partnership.
+            </p>
+            <a href="lab.html#third-mind" class="project-link">
+              Learn more &rarr;
+            </a>
+          </div>
+
+          <!-- Clapham Digital -->
+          <div class="project-card tiltable-card">
+            <h3 class="project-title">Clapham Digital</h3>
+            <p class="project-desc">
+              Casino training apps that actually work. Video Poker Edge and Blackjack Edge
+              teach math-optimal play through deliberate practice, not memorization.
+            </p>
+            <a href="https://claphamdigital.com" target="_blank" rel="noopener" class="project-link">
+              claphamdigital.com &rarr;
+            </a>
           </div>
         </div>
+
+        <p class="section-cta">
+          <a href="lab.html">Explore all experiments &rarr;</a>
+        </p>
       </div>
     </section>
 
-    <!-- Expertise & Insights Section -->
-    <section id="expertise" class="section expertise-section">
+    <!-- Writing Preview Section -->
+    <section id="writing" class="section writing-section">
       <div class="container">
-        <h2 class="section-title">Expertise & Insights</h2>
-        <div id="pm-expertise" class="expertise-grid">
-          <!-- Populated dynamically by Protocol Memory -->
-          <div class="empty-state">
-            <p>Loading expertise areas from Protocol Memory...</p>
+        <h2 class="section-title">Writing</h2>
+        <p class="section-intro">Ideas, political voice, cognitive liberation.</p>
+
+        <div class="writing-preview">
+          <div class="writing-item">
+            <h3>Nemo Operans</h3>
+            <p>
+              Essays on cognitive liberation at personal and societal scale.
+              Third Mind partnership, political resistance, frame sovereignty.
+            </p>
+            <a href="https://nemooperans.com" target="_blank" rel="noopener">
+              nemooperans.com &rarr;
+            </a>
           </div>
+        </div>
+
+        <p class="section-cta">
+          <a href="writing.html">All writing &rarr;</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- Connect Section -->
+    <section id="connect" class="section connect-section">
+      <div class="container">
+        <h2 class="section-title">Connect</h2>
+        <div class="connect-links">
+          <a href="mailto:me@phillipclapham.com" class="connect-item">
+            <span class="connect-label">Email</span>
+            <span class="connect-value">me@phillipclapham.com</span>
+          </a>
+          <a href="https://linkedin.com/in/phillipclapham" target="_blank" rel="noopener" class="connect-item">
+            <span class="connect-label">LinkedIn</span>
+            <span class="connect-value">phillipclapham</span>
+          </a>
+          <a href="https://github.com/phillipclapham" target="_blank" rel="noopener" class="connect-item">
+            <span class="connect-label">GitHub</span>
+            <span class="connect-value">phillipclapham</span>
+          </a>
+          <a href="https://nemooperans.com" target="_blank" rel="noopener" class="connect-item">
+            <span class="connect-label">Essays</span>
+            <span class="connect-value">nemooperans.com</span>
+          </a>
+          <a href="https://raygunos.com" target="_blank" rel="noopener" class="connect-item">
+            <span class="connect-label">RAYGUN OS</span>
+            <span class="connect-value">raygunos.com</span>
+          </a>
+          <a href="https://claphamdigital.com" target="_blank" rel="noopener" class="connect-item">
+            <span class="connect-label">Apps</span>
+            <span class="connect-value">claphamdigital.com</span>
+          </a>
         </div>
       </div>
     </section>
@@ -253,57 +325,23 @@
       <canvas id="life-canvas" class="life-canvas"></canvas>
 
       <div class="container">
-        <div id="pm-last-updated" class="footer-indicator">
-          <span class="pm-indicator">
-            <span class="pm-dot"></span>
-            Connecting to Protocol Memory...
-          </span>
-        </div>
+        <p class="footer-tagline">Making impossible possible since 1996.</p>
         <p class="footer-copyright">
-          &copy; 2025 Phillip Clapham |
-          <a href="https://protocolmemory.com" target="_blank" rel="noopener"
-            >Powered by Protocol Memory</a
-          >
+          &copy; 2026 Phillip Clapham
         </p>
       </div>
     </footer>
 
-    <!-- Modal for card content -->
-    <div id="pm-modal" class="pm-modal" style="display: none">
-      <div class="pm-modal-backdrop"></div>
-      <div class="pm-modal-content">
-        <button class="pm-modal-close" aria-label="Close modal">&times;</button>
-        <div class="pm-modal-body">
-          <!-- Content injected by JavaScript -->
-        </div>
-      </div>
-    </div>
-
-    <!-- Protocol Memory Integration -->
-    <script src="protocol-integration.js"></script>
-    <script>
-      // Initialize Protocol Memory integration
-      document.addEventListener("DOMContentLoaded", () => {
-        const integration = new ProtocolIntegration("phill", {
-          debug: true, // Enable debug logging during development
-        });
-        integration.init();
-
-        // Expose for debugging
-        window.pmIntegration = integration;
-      });
-    </script>
-
     <!-- Game of Life Footer -->
     <script src="game-of-life-footer.js"></script>
 
-    <!-- Interactions: Hover effects, neural pulse glow (Session 1) -->
+    <!-- Interactions: Hover effects, neural pulse glow -->
     <script src="interactions.js"></script>
 
-    <!-- Founder Mode: Visual toggle system (Session 3) -->
+    <!-- Founder Mode: Visual toggle system (inverted - ON by default) -->
     <script src="founder-mode.js"></script>
 
-    <!-- Console Features: Hidden commands & ASCII art (Session 4) -->
+    <!-- Console Features: Hidden commands & ASCII art -->
     <script src="console-features.js"></script>
 
     <!-- Theme Toggle Handler -->

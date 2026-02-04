@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-mode="founder">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <meta
+      name="description"
+      content="The Lab - Where the rayguns are built and tested. RAYGUN OS, Third Mind, Clapham Digital, and more experiments."
+    />
+    <meta name="theme-color" content="#0F766E" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://phillipclapham.com/lab" />
+    <meta property="og:title" content="The Lab | Phillip Clapham" />
+    <meta
+      property="og:description"
+      content="Where the rayguns are built and tested. Active experiments and deployed rayguns."
+    />
+
+    <title>The Lab | Phillip Clapham</title>
+
+    <!-- Theme: Prevent FOUC -->
+    <script>
+      (function () {
+        const savedTheme = localStorage.getItem("theme-preference");
+        const savedMode = localStorage.getItem("founder-mode");
+        if (savedTheme === "light") {
+          document.documentElement.removeAttribute("data-theme");
+        }
+        if (savedMode === "false") {
+          document.documentElement.setAttribute("data-mode", "professional");
+        }
+      })();
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Michroma&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="protocol-memory.css" />
+    <link rel="stylesheet" href="site-overrides.css" />
+
+    <!-- Plausible Analytics -->
+    <script defer data-domain="phillipclapham.com" src="https://plausible.io/js/script.outbound-links.js"></script>
+  </head>
+  <body>
+    <!-- Background -->
+    <div class="orb-field"></div>
+
+    <!-- Header -->
+    <header class="page-header">
+      <div class="container">
+        <nav class="page-nav">
+          <a href="index.html" class="nav-logo">Phillip Clapham</a>
+          <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="lab.html" class="active">Lab</a></li>
+            <li><a href="writing.html">Writing</a></li>
+            <li><a href="connect.html">Connect</a></li>
+          </ul>
+          <button
+            id="theme-toggle"
+            class="theme-toggle"
+            aria-label="Toggle dark mode"
+          >
+            <span class="theme-icon">☀️</span>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="lab-page">
+      <!-- Hero -->
+      <section class="lab-hero">
+        <div class="container">
+          <h1 class="page-title">The Lab</h1>
+          <p class="page-subtitle">
+            Where the rayguns are built and tested.
+          </p>
+        </div>
+      </section>
+
+      <!-- Active Rayguns -->
+      <section class="lab-section" id="active">
+        <div class="container">
+          <div class="section-marker">Active Rayguns</div>
+          <p class="section-intro">Current experiments. Works in progress. Things I'm actively building.</p>
+
+          <div class="raygun-grid">
+            <!-- RAYGUN OS -->
+            <article class="raygun-card tiltable-card" id="raygun-os">
+              <div class="raygun-status active">Active</div>
+              <h2 class="raygun-title">RAYGUN OS</h2>
+              <p class="raygun-tagline">Cognitive resistance operating system</p>
+              <div class="raygun-description">
+                <p>
+                  Tools and frameworks for maintaining frame sovereignty in an age of manufactured reality.
+                  A complete system for experimenting with attention, curiosity, and cognitive flexibility.
+                </p>
+                <p>
+                  RAYGUN treats your attention as something to experiment with, not something to force.
+                  The framework emerged from 45 years of accidental experiments&mdash;what actually works
+                  when your brain runs on fascination instead of discipline.
+                </p>
+              </div>
+              <a href="https://raygunos.com" target="_blank" rel="noopener" class="raygun-link">
+                raygunos.com &rarr;
+              </a>
+            </article>
+
+            <!-- Third Mind -->
+            <article class="raygun-card tiltable-card" id="third-mind">
+              <div class="raygun-status active">Active</div>
+              <h2 class="raygun-title">Third Mind</h2>
+              <p class="raygun-tagline">Human-AI partnership framework</p>
+              <div class="raygun-description">
+                <p>
+                  Not AI as tool. Not AI as threat. AI as genuine cognitive collaborator.
+                </p>
+                <p>
+                  The Third Mind emerges from the space between human and AI&mdash;neither alone could produce
+                  what the partnership creates. This isn't about AI doing tasks FOR you. It's about
+                  building cognitive infrastructure TOGETHER.
+                </p>
+                <p>
+                  The moat isn't the technology. The moat is {willingness &times; capacity &ge; genius threshold}.
+                  Most people won't do this. Those who do... discover something remarkable.
+                </p>
+              </div>
+              <span class="raygun-link-note">Framework documented in context files (not public)</span>
+            </article>
+
+            <!-- Clapham Digital -->
+            <article class="raygun-card tiltable-card" id="clapham-digital">
+              <div class="raygun-status active">Active</div>
+              <h2 class="raygun-title">Clapham Digital</h2>
+              <p class="raygun-tagline">Casino training apps that actually work</p>
+              <div class="raygun-description">
+                <p>
+                  Video Poker Edge and Blackjack Edge teach math-optimal play through deliberate practice,
+                  not memorization. Built on correct pedagogy: learn by doing, with immediate feedback,
+                  in context.
+                </p>
+                <p>
+                  Most casino training apps get the math right but the learning wrong.
+                  These apps flip that: make the learning experience so good that the math
+                  becomes intuitive.
+                </p>
+              </div>
+              <a href="https://claphamdigital.com" target="_blank" rel="noopener" class="raygun-link">
+                claphamdigital.com &rarr;
+              </a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Deployed Rayguns -->
+      <section class="lab-section" id="deployed">
+        <div class="container">
+          <div class="section-marker">Deployed Rayguns</div>
+          <p class="section-intro">Shipped experiments. Things that are out in the world.</p>
+
+          <div class="raygun-grid">
+            <!-- FlowScript -->
+            <article class="raygun-card tiltable-card">
+              <div class="raygun-status deployed">Deployed</div>
+              <h2 class="raygun-title">FlowScript</h2>
+              <p class="raygun-tagline">Topographical notation for cognitive state</p>
+              <div class="raygun-description">
+                <p>
+                  A compact notation for encoding cognitive patterns, state, and relationships.
+                  High-bandwidth communication between human and AI, optimized for context density.
+                </p>
+                <p>
+                  FlowScript isn't documentation&mdash;it's thinking externalized in a form AI can
+                  natively understand. The encoding IS the thinking, a forcing function for clarity.
+                </p>
+              </div>
+              <span class="raygun-link-note">Lives in flow system (private infrastructure)</span>
+            </article>
+
+            <!-- Neuroweaver -->
+            <article class="raygun-card tiltable-card">
+              <div class="raygun-status deployed">Deployed</div>
+              <h2 class="raygun-title">Neuroweaver</h2>
+              <p class="raygun-tagline">Meta-recursive experiential fiction</p>
+              <div class="raygun-description">
+                <p>
+                  Reality hacking through consciousness exploration. Narrative as technology,
+                  fiction as framework for experiencing different modes of being.
+                </p>
+              </div>
+              <div class="raygun-links">
+                <a href="https://neuroweaverlab.com" target="_blank" rel="noopener" class="raygun-link">
+                  neuroweaverlab.com &rarr;
+                </a>
+                <a href="https://github.com/phillipclapham/neuroweaver" target="_blank" rel="noopener" class="raygun-link">
+                  GitHub &rarr;
+                </a>
+              </div>
+            </article>
+
+            <!-- Nemo Operans -->
+            <article class="raygun-card tiltable-card">
+              <div class="raygun-status deployed">Deployed</div>
+              <h2 class="raygun-title">Nemo Operans</h2>
+              <p class="raygun-tagline">Essays on cognitive liberation</p>
+              <div class="raygun-description">
+                <p>
+                  Thought leadership publication for cognitive liberation at personal scale (AI partnership)
+                  and societal scale (political resistance). Latin for "Nobody Operating"&mdash;connecting
+                  to flow state, Third Mind emergence, and non-attachment to the doer.
+                </p>
+              </div>
+              <a href="https://nemooperans.com" target="_blank" rel="noopener" class="raygun-link">
+                nemooperans.com &rarr;
+              </a>
+            </article>
+
+            <!-- Mire & Moonlight -->
+            <article class="raygun-card tiltable-card">
+              <div class="raygun-status deployed">Deployed</div>
+              <h2 class="raygun-title">Mire & Moonlight</h2>
+              <p class="raygun-tagline">Poetry collection</p>
+              <div class="raygun-description">
+                <p>
+                  Wu wei distilled into language. Poetry exploring constraint, flow, impermanence,
+                  and the spaces between things.
+                </p>
+              </div>
+              <a href="https://github.com/phillipclapham/mire-and-moonlight" target="_blank" rel="noopener" class="raygun-link">
+                Full collection on GitHub &rarr;
+              </a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- The Graveyard -->
+      <section class="lab-section graveyard-section" id="graveyard">
+        <div class="container">
+          <div class="section-marker">The Graveyard</div>
+          <p class="section-intro">Experiments that didn't survive. Failure is data.</p>
+
+          <div class="graveyard-list">
+            <article class="graveyard-item">
+              <h3 class="graveyard-title">Protocol Memory</h3>
+              <p class="graveyard-desc">
+                Cognitive infrastructure platform for human-AI partnership. Built as a product,
+                discovered it was actually private infrastructure. The framework worked;
+                the product framing didn't. Lessons learned: some rayguns are moats, not products.
+              </p>
+              <span class="graveyard-status">Archived &bull; Lessons integrated into Third Mind</span>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="lab-cta-section">
+        <div class="container">
+          <h2>Want to collaborate?</h2>
+          <p>I'm always interested in conversations with people building interesting things.</p>
+          <div class="cta-links">
+            <a href="connect.html" class="btn-primary">Get in touch</a>
+            <a href="about.html" class="btn-secondary">Read the full story</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <canvas id="life-canvas" class="life-canvas"></canvas>
+      <div class="container">
+        <p class="footer-tagline">Making impossible possible since 1996.</p>
+        <p class="footer-copyright">&copy; 2026 Phillip Clapham</p>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="game-of-life-footer.js"></script>
+    <script src="interactions.js"></script>
+    <script src="founder-mode.js"></script>
+    <script src="console-features.js"></script>
+
+    <!-- Theme Toggle -->
+    <script>
+      (function () {
+        const STORAGE_KEY = "theme-preference";
+        const themeToggle = document.getElementById("theme-toggle");
+        const themeIcon = themeToggle.querySelector(".theme-icon");
+
+        function getCurrentTheme() {
+          return document.documentElement.getAttribute("data-theme") || "light";
+        }
+
+        function updateThemeIcon() {
+          const currentTheme = getCurrentTheme();
+          themeIcon.textContent = currentTheme === "dark" ? "☀️" : "🌙";
+        }
+
+        function toggleTheme() {
+          const currentTheme = getCurrentTheme();
+          const newTheme = currentTheme === "dark" ? "light" : "dark";
+          if (newTheme === "dark") {
+            document.documentElement.setAttribute("data-theme", "dark");
+          } else {
+            document.documentElement.removeAttribute("data-theme");
+          }
+          localStorage.setItem(STORAGE_KEY, newTheme);
+          updateThemeIcon();
+        }
+
+        updateThemeIcon();
+        themeToggle.addEventListener("click", toggleTheme);
+      })();
+    </script>
+  </body>
+</html>
