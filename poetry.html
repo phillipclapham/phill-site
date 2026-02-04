@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-mode="founder">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <meta
+      name="description"
+      content="Mire & Moonlight - Poetry by Phillip Clapham. Wu wei distilled into language."
+    />
+    <meta name="theme-color" content="#0F766E" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://phillipclapham.com/poetry" />
+    <meta property="og:title" content="Poetry | Phillip Clapham" />
+    <meta
+      property="og:description"
+      content="Mire & Moonlight - Wu wei distilled into language."
+    />
+
+    <title>Poetry | Phillip Clapham</title>
+
+    <!-- Theme: Prevent FOUC -->
+    <script>
+      (function () {
+        const savedTheme = localStorage.getItem("theme-preference");
+        const savedMode = localStorage.getItem("founder-mode");
+        if (savedTheme === "light") {
+          document.documentElement.removeAttribute("data-theme");
+        }
+        if (savedMode === "false") {
+          document.documentElement.setAttribute("data-mode", "professional");
+        }
+      })();
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Michroma&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="protocol-memory.css" />
+    <link rel="stylesheet" href="site-overrides.css" />
+
+    <!-- Plausible Analytics -->
+    <script defer data-domain="phillipclapham.com" src="https://plausible.io/js/script.outbound-links.js"></script>
+  </head>
+  <body>
+    <!-- Background -->
+    <div class="orb-field"></div>
+
+    <!-- Header -->
+    <header class="page-header">
+      <div class="container">
+        <nav class="page-nav">
+          <a href="index.html" class="nav-logo">Phillip Clapham</a>
+          <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="lab.html">Lab</a></li>
+            <li><a href="writing.html">Writing</a></li>
+            <li><a href="poetry.html" class="active">Poetry</a></li>
+            <li><a href="connect.html">Connect</a></li>
+          </ul>
+          <button
+            id="theme-toggle"
+            class="theme-toggle"
+            aria-label="Toggle dark mode"
+          >
+            <span class="theme-icon">☀️</span>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="poetry-page">
+      <!-- Hero -->
+      <section class="poetry-hero">
+        <div class="container">
+          <h1 class="page-title">Mire & Moonlight</h1>
+          <p class="page-subtitle">
+            <em>some flowers only blossom in mire and moonlight</em>
+          </p>
+          <p class="poetry-intro">
+            Wu wei distilled into language. Poems written from radical presence&mdash;not
+            about enlightenment, but from what remains after the self dissolves.
+          </p>
+        </div>
+      </section>
+
+      <!-- Selected Poems -->
+      <section class="poetry-section">
+        <div class="container container--poetry">
+
+          <!-- Poem 0 -->
+          <article class="poem">
+            <h2 class="poem-number">0</h2>
+            <div class="poem-body">
+              <p>unnamed<br>unborn</p>
+              <p>sit stand move<br>effort ceases</p>
+              <p>no narrator no witness<br>no method no goal</p>
+              <p>raw perception</p>
+              <p>life lives itself<br>"I" appears — let it</p>
+              <p>just this</p>
+              <p class="poem-coda">無為</p>
+            </div>
+          </article>
+
+          <!-- Poem vi -->
+          <article class="poem">
+            <h2 class="poem-number">vi</h2>
+            <div class="poem-body">
+              <p>beside a green pond<br>ripples remind me</p>
+              <p>nowhere but now</p>
+            </div>
+          </article>
+
+          <!-- Poem iii -->
+          <article class="poem">
+            <h2 class="poem-number">iii</h2>
+            <div class="poem-body">
+              <p>this body is a flute<br>warm wind breathes<br>through hollow bones</p>
+              <p>sea of bamboo<br>sways in the breeze</p>
+              <p>the song of no place</p>
+            </div>
+          </article>
+
+          <!-- Poem xviii -->
+          <article class="poem">
+            <h2 class="poem-number">xviii</h2>
+            <div class="poem-body">
+              <p>falling snow<br>bends tree</p>
+              <p>river frozen<br>morning silence</p>
+              <p>no flowers<br>no fruit<br>perfect harvest</p>
+            </div>
+          </article>
+
+          <!-- Poem xxx (Title Poem) -->
+          <article class="poem poem--title">
+            <h2 class="poem-number">xxx</h2>
+            <div class="poem-body">
+              <p>dark graveyard<br>the earth here is mud<br>soaked by yesterday's rain</p>
+              <p>my feet sink as I walk</p>
+              <p>yet the stars<br>are the only light I need<br>to dance on my grave</p>
+              <p>some flowers<br>only blossom in mire<br>and moonlight</p>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- Collection Info -->
+      <section class="poetry-collection-section">
+        <div class="container">
+          <div class="collection-info">
+            <h2>The Full Collection</h2>
+            <p>
+              <strong>Mire & Moonlight</strong> is a curated collection of 34 poems
+              exploring presence, constraint, and dissolution. Released freely under
+              Creative Commons because poetry, like methodology, should flow without gatekeepers.
+            </p>
+            <p class="collection-principles">
+              <strong>Core principles:</strong> Radical presence. Extreme compression.
+              Trust the image. White space as text. Endings that dissolve.
+            </p>
+            <a href="https://github.com/phillipclapham/mire-and-moonlight" target="_blank" rel="noopener" class="btn-primary">
+              Read the full collection on GitHub
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="poetry-cta-section">
+        <div class="container">
+          <p class="poetry-cta-text">
+            The poetry and the infrastructure come from the same place: a brain that runs
+            on fascination, not discipline.
+          </p>
+          <div class="cta-links">
+            <a href="about.html" class="btn-secondary">Read the full story</a>
+            <a href="lab.html" class="btn-secondary">See what I'm building</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <canvas id="life-canvas" class="life-canvas"></canvas>
+      <div class="container">
+        <p class="footer-tagline">Making impossible possible since 1996.</p>
+        <p class="footer-copyright">&copy; 2026 Phillip Clapham</p>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="game-of-life-footer.js"></script>
+    <script src="interactions.js"></script>
+    <script src="founder-mode.js"></script>
+    <script src="console-features.js"></script>
+
+    <!-- Theme Toggle -->
+    <script>
+      (function () {
+        const STORAGE_KEY = "theme-preference";
+        const themeToggle = document.getElementById("theme-toggle");
+        const themeIcon = themeToggle.querySelector(".theme-icon");
+
+        function getCurrentTheme() {
+          return document.documentElement.getAttribute("data-theme") || "light";
+        }
+
+        function updateThemeIcon() {
+          const currentTheme = getCurrentTheme();
+          themeIcon.textContent = currentTheme === "dark" ? "☀️" : "🌙";
+        }
+
+        function toggleTheme() {
+          const currentTheme = getCurrentTheme();
+          const newTheme = currentTheme === "dark" ? "light" : "dark";
+          if (newTheme === "dark") {
+            document.documentElement.setAttribute("data-theme", "dark");
+          } else {
+            document.documentElement.removeAttribute("data-theme");
+          }
+          localStorage.setItem(STORAGE_KEY, newTheme);
+          updateThemeIcon();
+        }
+
+        updateThemeIcon();
+        themeToggle.addEventListener("click", toggleTheme);
+      })();
+    </script>
+  </body>
+</html>

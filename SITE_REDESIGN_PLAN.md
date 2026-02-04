@@ -334,15 +334,17 @@ The home page should provide the most important info upfront so no clicks needed
 - ✅ Card layout for each raygun (with status badges, taglines, descriptions, links)
 - ✅ Added CSS for Lab page
 
-### Phase 5: Writing Page
-- Select/write featured pieces
-- Nemo Operans integration
-- Links to external content
+### Phase 5: Writing Page ✅ COMPLETE (Feb 4, 2026)
+- ✅ Selected 3 featured excerpts (AI, Political, Personal/Philosophical)
+- ✅ Nemo Operans section with full essay list
+- ✅ Links to nemooperans.com (primary) and Substack (funnel)
+- ✅ Page structure: Hero, Featured Excerpts, Nemo Operans, CTA
 
-### Phase 6: Poetry Page
-- Select ~5 pieces from Mire & Moonlight
-- Clean poetry display
-- Link to full collection
+### Phase 6: Poetry Page ✅ COMPLETE (Feb 4, 2026)
+- ✅ Selected 5 poems: 0, vi, iii, xviii, xxx (title poem)
+- ✅ Clean poetry display with breathing room
+- ✅ Collection info section with GitHub link
+- ✅ Updated nav on all pages to include Poetry
 
 ### Phase 7: Connect Page
 - All links organized
@@ -437,14 +439,65 @@ The home page should provide the most important info upfront so no clicks needed
 - All PM API calls removed
 - Site is now fully static HTML
 
-**Remaining:**
+**Remaining after Session 1:**
 - Phase 5: Writing Page
-- Phase 6: Poetry Page (need to read collection and propose selections)
+- Phase 6: Poetry Page
+- Phase 7: Connect Page
+- Phase 8: Polish
+
+---
+
+### Session 2 (Feb 4, 2026)
+**Completed:** Phase 5 (Writing Page)
+
+**What was built:**
+- `writing.html` - Full Writing page with:
+  - Hero section
+  - 3 featured excerpt cards (AI, Political, Personal/Philosophical)
+  - Nemo Operans section with full essay list
+  - Links to nemooperans.com (primary) + Substack (funnel)
+  - CTA section
+- `site-overrides.css` - Added Writing page styles (~180 lines)
+
+**Featured excerpts:**
+1. "Nobody Operating" (AI/Technical) - Hook about AI memory illusion
+2. "The Architecture of Capture" (Political) - Thesis about incomplete fascism frame
+3. "The 45-Year Experiment" (Personal) - Fascination as choice, not feeling
+
+**Design decision:** Skipped topics grid - excerpts show range, nemooperans.com is content hub
+
+**Remaining after Session 2:**
+- Phase 6: Poetry Page
+- Phase 7: Connect Page
+- Phase 8: Polish
+
+---
+
+### Session 2 continued (Feb 4, 2026)
+**Also completed:** Phase 6 (Poetry Page)
+
+**What was built:**
+- `poetry.html` - Full Poetry page with:
+  - Hero with collection title and tagline
+  - 5 selected poems with clean typography
+  - Collection info section with GitHub link
+  - CTA section
+- `site-overrides.css` - Added Poetry page styles (~150 lines)
+- Updated nav on all existing pages to include Poetry link
+
+**Selected poems:**
+1. 0 (unnamed unborn) - Opening, wu wei distilled
+2. vi (beside a green pond) - Extreme compression, 3 lines
+3. iii (this body is a flute) - Body as instrument
+4. xviii (falling snow) - Paradox, perfect harvest
+5. xxx (dark graveyard) - Title poem origin
+
+**Remaining:**
 - Phase 7: Connect Page
 - Phase 8: Polish (mobile testing, cross-page nav refinement, easter eggs)
 
 **Next session opener:**
 ```
-Continue phillipclapham.com redesign - Phase 5 (Writing Page).
+Continue phillipclapham.com redesign - Phase 7 (Connect Page).
 Plan at ~/Documents/phill-site/SITE_REDESIGN_PLAN.md
 ```
