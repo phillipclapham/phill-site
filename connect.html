@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-mode="founder">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <meta
+      name="description"
+      content="Connect with Phillip Clapham - Email, social links, and projects."
+    />
+    <meta name="theme-color" content="#0F766E" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://phillipclapham.com/connect" />
+    <meta property="og:title" content="Connect | Phillip Clapham" />
+    <meta
+      property="og:description"
+      content="All the ways to find and reach Phillip Clapham."
+    />
+
+    <title>Connect | Phillip Clapham</title>
+
+    <!-- Theme: Prevent FOUC -->
+    <script>
+      (function () {
+        const savedTheme = localStorage.getItem("theme-preference");
+        const savedMode = localStorage.getItem("founder-mode");
+        if (savedTheme === "light") {
+          document.documentElement.removeAttribute("data-theme");
+        }
+        if (savedMode === "false") {
+          document.documentElement.setAttribute("data-mode", "professional");
+        }
+      })();
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Michroma&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="protocol-memory.css" />
+    <link rel="stylesheet" href="site-overrides.css" />
+
+    <!-- Plausible Analytics -->
+    <script defer data-domain="phillipclapham.com" src="https://plausible.io/js/script.outbound-links.js"></script>
+  </head>
+  <body>
+    <!-- Background -->
+    <div class="orb-field"></div>
+
+    <!-- Header -->
+    <header class="page-header">
+      <div class="container">
+        <nav class="page-nav">
+          <a href="index.html" class="nav-logo">Phillip Clapham</a>
+          <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="lab.html">Lab</a></li>
+            <li><a href="writing.html">Writing</a></li>
+            <li><a href="poetry.html">Poetry</a></li>
+            <li><a href="connect.html" class="active">Connect</a></li>
+          </ul>
+          <button
+            id="theme-toggle"
+            class="theme-toggle"
+            aria-label="Toggle dark mode"
+          >
+            <span class="theme-icon">☀️</span>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="connect-page">
+      <!-- Hero -->
+      <section class="connect-hero">
+        <div class="container">
+          <h1 class="page-title">Connect</h1>
+          <p class="page-subtitle">
+            I'm always interested in interesting conversations.
+          </p>
+        </div>
+      </section>
+
+      <!-- Say Hello -->
+      <section class="connect-section">
+        <div class="container">
+          <p class="section-marker">Say Hello</p>
+          <div class="connect-grid connect-grid--single">
+            <a href="mailto:me@phillipclapham.com" class="connect-card connect-card--primary tiltable-card">
+              <span class="connect-card-label">Email</span>
+              <span class="connect-card-value">me@phillipclapham.com</span>
+              <span class="connect-card-desc">The best way to reach me directly.</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Find Me -->
+      <section class="connect-section">
+        <div class="container">
+          <p class="section-marker">Find Me</p>
+          <div class="connect-grid">
+            <a href="https://www.linkedin.com/in/phillipclapham" target="_blank" rel="noopener" class="connect-card tiltable-card">
+              <span class="connect-card-label">LinkedIn</span>
+              <span class="connect-card-value">phillipclapham</span>
+              <span class="connect-card-desc">Professional network & career history.</span>
+            </a>
+            <a href="https://github.com/phillipclapham" target="_blank" rel="noopener" class="connect-card tiltable-card">
+              <span class="connect-card-label">GitHub</span>
+              <span class="connect-card-value">phillipclapham</span>
+              <span class="connect-card-desc">Code, experiments, and open source.</span>
+            </a>
+            <a href="https://www.instagram.com/phillc42" target="_blank" rel="noopener" class="connect-card tiltable-card">
+              <span class="connect-card-label">Instagram</span>
+              <span class="connect-card-value">@phillc42</span>
+              <span class="connect-card-desc">Occasional life fragments.</span>
+            </a>
+            <a href="https://www.threads.net/@phillc42" target="_blank" rel="noopener" class="connect-card tiltable-card">
+              <span class="connect-card-label">Threads</span>
+              <span class="connect-card-value">@phillc42</span>
+              <span class="connect-card-desc">Shorter thoughts, real-time.</span>
+            </a>
+            <a href="https://bsky.app/profile/nemooperans.bsky.social" target="_blank" rel="noopener" class="connect-card tiltable-card">
+              <span class="connect-card-label">BlueSky</span>
+              <span class="connect-card-value">@nemooperans</span>
+              <span class="connect-card-desc">The political voice, decentralized.</span>
+            </a>
+            <a href="https://www.facebook.com/phillip.clapham/" target="_blank" rel="noopener" class="connect-card tiltable-card">
+              <span class="connect-card-label">Facebook</span>
+              <span class="connect-card-value">phillip.clapham</span>
+              <span class="connect-card-desc">The legacy platform. Still there.</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- See The Work -->
+      <section class="connect-section">
+        <div class="container">
+          <p class="section-marker">See The Work</p>
+          <div class="connect-grid">
+            <a href="https://raygunos.com" target="_blank" rel="noopener" class="connect-card tiltable-card">
+              <span class="connect-card-label">RAYGUN OS</span>
+              <span class="connect-card-value">raygunos.com</span>
+              <span class="connect-card-desc">Cognitive resistance toolkit for the current moment.</span>
+            </a>
+            <div class="connect-card connect-card--compound tiltable-card">
+              <span class="connect-card-label">Nemo Operans</span>
+              <a href="https://nemooperans.com" target="_blank" rel="noopener" class="connect-card-value connect-card-link">nemooperans.com</a>
+              <span class="connect-card-desc">Political writing and cognitive resistance essays.</span>
+              <a href="https://nemooperans.substack.com" target="_blank" rel="noopener" class="connect-card-secondary">Subscribe via Substack &rarr;</a>
+            </div>
+            <a href="https://claphamdigital.com" target="_blank" rel="noopener" class="connect-card tiltable-card">
+              <span class="connect-card-label">Clapham Digital</span>
+              <span class="connect-card-value">claphamdigital.com</span>
+              <span class="connect-card-desc">Casino training apps that teach math-optimal play.</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="connect-cta-section">
+        <div class="container">
+          <p class="connect-cta-text">
+            The rayguns work. Come see for yourself.
+          </p>
+          <div class="cta-links">
+            <a href="lab.html" class="btn-secondary">Explore the lab</a>
+            <a href="about.html" class="btn-secondary">Read the full story</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <canvas id="life-canvas" class="life-canvas"></canvas>
+      <div class="container">
+        <p class="footer-tagline">Making impossible possible since 1996.</p>
+        <p class="footer-copyright">&copy; 2026 Phillip Clapham</p>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="game-of-life-footer.js"></script>
+    <script src="interactions.js"></script>
+    <script src="founder-mode.js"></script>
+    <script src="console-features.js"></script>
+
+    <!-- Theme Toggle -->
+    <script>
+      (function () {
+        const STORAGE_KEY = "theme-preference";
+        const themeToggle = document.getElementById("theme-toggle");
+        const themeIcon = themeToggle.querySelector(".theme-icon");
+
+        function getCurrentTheme() {
+          return document.documentElement.getAttribute("data-theme") || "light";
+        }
+
+        function updateThemeIcon() {
+          const currentTheme = getCurrentTheme();
+          themeIcon.textContent = currentTheme === "dark" ? "☀️" : "🌙";
+        }
+
+        function toggleTheme() {
+          const currentTheme = getCurrentTheme();
+          const newTheme = currentTheme === "dark" ? "light" : "dark";
+          if (newTheme === "dark") {
+            document.documentElement.setAttribute("data-theme", "dark");
+          } else {
+            document.documentElement.removeAttribute("data-theme");
+          }
+          localStorage.setItem(STORAGE_KEY, newTheme);
+          updateThemeIcon();
+        }
+
+        updateThemeIcon();
+        themeToggle.addEventListener("click", toggleTheme);
+      })();
+    </script>
+  </body>
+</html>

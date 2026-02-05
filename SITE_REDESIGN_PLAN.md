@@ -346,9 +346,10 @@ The home page should provide the most important info upfront so no clicks needed
 - ✅ Collection info section with GitHub link
 - ✅ Updated nav on all pages to include Poetry
 
-### Phase 7: Connect Page
-- All links organized
-- Visual presentation
+### Phase 7: Connect Page ✅ COMPLETE (Feb 4, 2026)
+- ✅ All links organized (Email, Social x6, Projects x3)
+- ✅ Visual presentation with grouped sections
+- ✅ Nemo Operans with Substack as secondary action
 
 ### Phase 8: Polish
 - Cross-page navigation
@@ -496,8 +497,43 @@ The home page should provide the most important info upfront so no clicks needed
 - Phase 7: Connect Page
 - Phase 8: Polish (mobile testing, cross-page nav refinement, easter eggs)
 
+---
+
+### Session 3 (Feb 4, 2026)
+**Completed:** Phase 7 (Connect Page)
+
+**What was built:**
+- `connect.html` - Full Connect page with:
+  - Hero section
+  - "Say Hello" section with prominent email card
+  - "Find Me" section with 6 social links (LinkedIn, GitHub, Instagram, Threads, BlueSky, Facebook)
+  - "See The Work" section with 3 project links (RAYGUN OS, Nemo Operans + Substack, Clapham Digital)
+  - CTA section
+- `site-overrides.css` - Added Connect page styles (~120 lines)
+
+**Design decisions:**
+- Grouped links into 3 sections with section markers
+- Email card slightly larger/prominent as primary contact
+- Nemo Operans as compound card with main link + Substack subscribe as secondary action
+- Each card has label + value + brief description
+
+**Links included:**
+- Email: me@phillipclapham.com
+- LinkedIn: phillipclapham
+- GitHub: phillipclapham
+- Instagram: @phillc42
+- Threads: @phillc42
+- BlueSky: @nemooperans
+- Facebook: phillip.clapham
+- RAYGUN OS: raygunos.com
+- Nemo Operans: nemooperans.com (+ Substack subscribe)
+- Clapham Digital: claphamdigital.com
+
+**Remaining:**
+- Phase 8: Polish (mobile testing, cross-page nav refinement, easter eggs, final QA)
+
 **Next session opener:**
 ```
-Continue phillipclapham.com redesign - Phase 7 (Connect Page).
+Continue phillipclapham.com redesign - Phase 8 (Polish).
 Plan at ~/Documents/phill-site/SITE_REDESIGN_PLAN.md
 ```
