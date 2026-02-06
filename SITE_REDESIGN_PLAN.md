@@ -351,11 +351,11 @@ The home page should provide the most important info upfront so no clicks needed
 - ✅ Visual presentation with grouped sections
 - ✅ Nemo Operans with Substack as secondary action
 
-### Phase 8: Polish
-- Cross-page navigation
-- Mobile responsiveness check
-- Easter egg expansion (optional)
-- Final QA
+### Phase 8: Polish ✅ COMPLETE (Feb 5, 2026)
+- ✅ Cross-page navigation (removed redundant Home link, logo serves as home)
+- ✅ Mobile responsiveness (tested at 400px, tightened nav spacing for single-row fit)
+- ✅ Easter egg rebrand (pm → pc namespace, Protocol Memory references removed, v3.0.0)
+- ✅ Final QA (all pages verified at mobile and desktop widths)
 
 ---
 
@@ -386,13 +386,13 @@ The home page should provide the most important info upfront so no clicks needed
 ## Success Criteria
 
 - [x] Site loads with no PM API dependency ✅ (Phase 1)
-- [ ] All pages accessible and functional (need about, lab, writing, poetry, connect pages)
+- [x] All pages accessible and functional ✅ (Phases 2-7)
 - [x] Dark mode default, inverted Founder toggle works ✅ (Phase 1)
-- [ ] Content accurately represents unified Phill identity (need full About, Lab content)
+- [x] Content accurately represents unified Phill identity ✅ (Phases 3-7)
 - [x] "The rayguns work" hook creates scroll motivation ✅ (Phase 1)
-- [ ] Professional contacts not alienated (need review)
-- [ ] "His people" recognize a kindred spirit (need review)
-- [ ] Mobile responsive (need testing)
+- [ ] Professional contacts not alienated (Phill to review)
+- [ ] "His people" recognize a kindred spirit (Phill to review)
+- [x] Mobile responsive ✅ (Phase 8)
 - [x] All existing cool features preserved ✅ (Phase 1)
 
 ---
@@ -529,11 +529,23 @@ The home page should provide the most important info upfront so no clicks needed
 - Nemo Operans: nemooperans.com (+ Substack subscribe)
 - Clapham Digital: claphamdigital.com
 
-**Remaining:**
+**Remaining after Session 3:**
 - Phase 8: Polish (mobile testing, cross-page nav refinement, easter eggs, final QA)
 
-**Next session opener:**
-```
-Continue phillipclapham.com redesign - Phase 8 (Polish).
-Plan at ~/Documents/phill-site/SITE_REDESIGN_PLAN.md
-```
+---
+
+### Session 4 (Feb 5, 2026)
+**Completed:** Phase 8 (Polish) - REDESIGN COMPLETE
+
+**What was done:**
+- Mobile responsiveness tested at 400px width across all 6 pages
+- Removed redundant "Home" nav link from subpages (logo links to index)
+- Tightened mobile nav spacing (text-xs font, reduced gaps) for single-row fit
+- Changed "The Lab" to "Lab" in index nav for cross-page consistency
+- Rebranded console easter eggs: `pm` → `pc` namespace, v3.0.0
+- Removed all Protocol Memory references from console-features.js
+- Updated welcome banner: "PHILLIP CLAPHAM / The rayguns work."
+- Updated version info: "Built with: Claude Code + curiosity"
+
+**Site redesign: ALL 8 PHASES COMPLETE.**
+Remaining: Phill's subjective review (tone/audience fit).
