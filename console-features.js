@@ -1,5 +1,5 @@
 /**
- * Console Features - Session 4: Hidden Commands & Easter Eggs
+ * Console Features - Hidden Commands & Easter Eggs
  *
  * Design Philosophy: "Make the quiet parts louder"
  * - Console is a delightful discovery for curious developers
@@ -8,7 +8,7 @@
  *
  * Features:
  * - ASCII art welcome message (shown once per session)
- * - window.pm namespace with hidden commands
+ * - window.pc namespace with hidden commands
  * - Performance stats (FPS, animation count, memory)
  * - Philosophy quotes library
  * - Founder Mode toggle exposure
@@ -23,8 +23,8 @@
      ======================================== */
 
   const CONFIG = {
-    version: '2.0.0',
-    sessionKey: 'pm-console-shown',
+    version: '3.0.0',
+    sessionKey: 'pc-console-shown',
     welcomeShown: false,
   };
 
@@ -52,14 +52,14 @@
     }
 
     console.log('%c╔═══════════════════════════════════════╗', styles.title);
-    console.log('%c║   PROTOCOL MEMORY                     ║', styles.title);
-    console.log('%c║   Personal Site v' + CONFIG.version + '                 ║', styles.title);
+    console.log('%c║   PHILLIP CLAPHAM                     ║', styles.title);
+    console.log('%c║   The rayguns work. v' + CONFIG.version + '            ║', styles.title);
     console.log('%c╚═══════════════════════════════════════╝', styles.title);
     console.log('');
     console.log('%cCurious developer detected! 👋', styles.subtitle);
-    console.log('%cThis site is built with Protocol Memory - continuity for AI agents.', styles.text);
+    console.log('%cWelcome to the lab. Poke around.', styles.text);
     console.log('');
-    console.log('%cTry typing: %cpm.help()', styles.text, styles.command);
+    console.log('%cTry typing: %cpc.help()', styles.text, styles.command);
     console.log('');
 
     // Mark as shown
@@ -159,35 +159,35 @@
   perfMonitor.start();
 
   /* ========================================
-     WINDOW.PM NAMESPACE
+     WINDOW.PC NAMESPACE
      ======================================== */
 
   /**
-   * Main namespace for Protocol Memory console commands
+   * Main namespace for console commands
    */
-  const pm = {
+  const pc = {
     /**
      * Show all available commands
      */
     help() {
       console.log('');
       console.log('%c╔═══════════════════════════════════════╗', styles.title);
-      console.log('%c║   PROTOCOL MEMORY COMMANDS            ║', styles.title);
+      console.log('%c║   CONSOLE COMMANDS                    ║', styles.title);
       console.log('%c╚═══════════════════════════════════════╝', styles.title);
       console.log('');
-      console.log('%cpm.help()      %c→ Show this help message', styles.command, styles.text);
-      console.log('%cpm.founder()   %c→ Toggle Founder Mode', styles.command, styles.text);
-      console.log('%cpm.quote()     %c→ Random philosophy quote', styles.command, styles.text);
-      console.log('%cpm.stats()     %c→ Performance statistics', styles.command, styles.text);
-      console.log('%cpm.version()   %c→ Show version info', styles.command, styles.text);
+      console.log('%cpc.help()      %c→ Show this help message', styles.command, styles.text);
+      console.log('%cpc.founder()   %c→ Toggle Founder Mode', styles.command, styles.text);
+      console.log('%cpc.quote()     %c→ Random philosophy quote', styles.command, styles.text);
+      console.log('%cpc.stats()     %c→ Performance statistics', styles.command, styles.text);
+      console.log('%cpc.version()   %c→ Show version info', styles.command, styles.text);
       console.log('');
       console.log('%c╔═══════════════════════════════════════╗', styles.accent);
       console.log('%c║   GAME OF LIFE CONTROLS               ║', styles.accent);
       console.log('%c╚═══════════════════════════════════════╝', styles.accent);
       console.log('');
-      console.log('%cpm.gol.pause()   %c→ Pause/play simulation', styles.command, styles.text);
-      console.log('%cpm.gol.reset()   %c→ Reset to new pattern', styles.command, styles.text);
-      console.log('%cpm.gol.speed(n)  %c→ Set FPS (1-30)', styles.command, styles.text);
+      console.log('%cpc.gol.pause()   %c→ Pause/play simulation', styles.command, styles.text);
+      console.log('%cpc.gol.reset()   %c→ Reset to new pattern', styles.command, styles.text);
+      console.log('%cpc.gol.speed(n)  %c→ Set FPS (1-30)', styles.command, styles.text);
       console.log('');
       console.log('%cTip: You can also click the footer to pause, and edit cells when paused!', styles.dim);
       console.log('%cKeyboard: Press SPACE to pause/play the simulation.', styles.dim);
@@ -264,9 +264,9 @@
      */
     version() {
       console.log('');
-      console.log('%cProtocol Memory Personal Site', styles.subtitle);
+      console.log('%cphillipclapham.com', styles.subtitle);
       console.log('%cVersion: %c' + CONFIG.version, styles.text, styles.command);
-      console.log('%cBuilt with: %cProtocol Memory + Claude Code', styles.text, styles.command);
+      console.log('%cBuilt with: %cClaude Code + curiosity', styles.text, styles.command);
       console.log('');
       return CONFIG.version;
     },
@@ -338,12 +338,12 @@
      ======================================== */
 
   // Check for namespace collision
-  if (window.pm) {
-    console.warn('[Protocol Memory] window.pm namespace already exists! Commands may not work correctly.');
+  if (window.pc) {
+    console.warn('[phillipclapham.com] window.pc namespace already exists! Commands may not work correctly.');
   }
 
   // Expose namespace
-  window.pm = pm;
+  window.pc = pc;
 
   // Show welcome message on page load
   if (document.readyState === 'loading') {
@@ -353,8 +353,8 @@
   }
 
   // Debug log (only if enabled)
-  if (window.pmIntegration?.debug) {
-    console.log('[Console Features] Initialized - Try pm.help()');
+  if (localStorage.getItem('pc-debug') === 'true') {
+    console.log('[Console Features] Initialized - Try pc.help()');
   }
 
 })();
