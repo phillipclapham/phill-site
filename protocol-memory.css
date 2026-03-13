@@ -9,9 +9,9 @@
 
 :root {
   /* Colors - Deep Teal Palette (Protocol Memory brand) */
-  --color-primary: #0f766e; /* Deep teal */
-  --color-primary-light: #14b8a6; /* Teal */
-  --color-primary-dark: #134e4a; /* Darker teal */
+  --color-primary: #d97706; /* Amber */
+  --color-primary-light: #f59e0b; /* Gold */
+  --color-primary-dark: #92400e; /* Dark amber */
 
   /* Neutrals */
   --color-bg: #ffffff;
@@ -163,7 +163,7 @@ body {
 /* Dark mode: Balanced gradient (split between subtle and vibrant) */
 [data-theme="dark"] .orb-field {
   background: linear-gradient(160deg,
-    rgb(12, 32, 36) 0%,     /* Balanced teal-black */
+    rgb(18, 16, 12) 0%,     /* Warm dark */
     rgb(29, 15, 42) 40%,    /* Balanced purple-black */
     rgb(38, 13, 30) 70%,    /* Balanced magenta-black */
     rgb(13, 35, 25) 100%    /* Balanced green-black */
@@ -2325,9 +2325,9 @@ body {
 
 [data-theme="dark"] {
   /* Colors */
-  --color-primary: #14b8a6; /* Lighter teal for dark bg */
-  --color-primary-light: #5eead4;
-  --color-primary-dark: #0f766e;
+  --color-primary: #f59e0b; /* Gold for dark bg */
+  --color-primary-light: #fbbf24;
+  --color-primary-dark: #d97706;
 
   /* Neutrals */
   --color-bg: #0f1117;
