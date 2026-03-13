@@ -2325,9 +2325,9 @@ body {
 
 [data-theme="dark"] {
   /* Colors */
-  --color-primary: #93A8FF; /* Soft periwinkle for dark bg */
-  --color-primary-light: #B8C8FF;
-  --color-primary-dark: #6B82E6;
+  --color-primary: #7B93FF; /* Periwinkle for dark bg */
+  --color-primary-light: #99ADFF;
+  --color-primary-dark: #5A72E6;
 
   /* Neutrals */
   --color-bg: #0f1117;
