@@ -513,6 +513,10 @@
 }
 
 /* Footer Updates */
+.site-footer .container {
+  text-align: center;
+}
+
 .footer-tagline {
   font-size: var(--text-lg);
   color: var(--color-text-secondary);
