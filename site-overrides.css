@@ -585,7 +585,7 @@
 }
 
 .nav-logo {
-  font-family: "Michroma", sans-serif;
+  font-family: var(--font-display);
   font-size: var(--text-lg);
   font-weight: 600;
   color: var(--color-text);
@@ -634,7 +634,7 @@
 }
 
 .page-title {
-  font-family: "Michroma", sans-serif;
+  font-family: var(--font-display);
   font-size: var(--text-4xl);
   font-weight: 600;
   color: var(--color-text);
@@ -659,7 +659,7 @@
 }
 
 .section-marker {
-  font-family: "Michroma", sans-serif;
+  font-family: var(--font-display);
   font-size: var(--text-sm);
   font-weight: 600;
   color: var(--color-primary);
@@ -1232,7 +1232,7 @@
 }
 
 .nemo-title {
-  font-family: "Michroma", sans-serif;
+  font-family: var(--font-display);
   font-size: var(--text-3xl);
   font-weight: 600;
   color: var(--color-text);
@@ -1362,7 +1362,7 @@
 }
 
 .poetry-hero .page-title {
-  font-family: "Michroma", sans-serif;
+  font-family: var(--font-display);
   font-size: var(--text-4xl);
   font-weight: 600;
   color: var(--color-text);
@@ -1405,7 +1405,7 @@
 }
 
 .poem-number {
-  font-family: "Michroma", sans-serif;
+  font-family: var(--font-display);
   font-size: var(--text-sm);
   font-weight: 600;
   color: var(--color-primary);

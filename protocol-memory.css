@@ -33,8 +33,9 @@
   --color-low: #6b7280;
 
   /* Typography */
-  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Space Grotesk", "Inter", -apple-system, sans-serif;
   --font-mono: "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas,
     monospace;
 
@@ -411,12 +412,12 @@ body {
 }
 
 .site-title {
-  font-family: "Michroma", sans-serif;
+  font-family: var(--font-display);
   font-size: var(--text-5xl);
-  font-weight: 600; /* Boosted to stand out against orbs */
+  font-weight: 700;
   color: var(--color-text);
   margin-bottom: var(--space-3);
-  letter-spacing: 0.02em; /* Slightly wider for technical feel */
+  letter-spacing: -0.02em; /* Tight tracking for modern feel */
 }
 
 .site-subtitle {
