@@ -1,68 +1,44 @@
 # phillipclapham.com
 
-**Live Protocol Memory Showcase** - Personal website powered by [Protocol Memory](https://github.com/phillipclapham/protocol-memory) integration library.
+Personal website for [Phillip Clapham](https://phillipclapham.com) — harness engineer, author of *A Structural Theory of Harnesses*, Senior Solutions Architect at Pressable, founder of Clapham Digital LLC.
 
 ## What This Is
 
-This site serves as the reference implementation and live showcase of Protocol Memory's site integration capabilities. It demonstrates how any Protocol Memory user can power their personal website with real-time data from their Protocol Memory public profile.
+The unified identity hub: harness engineering, AI agent infrastructure, technical writing, poetry, and political analysis. Single-page architecture with deeper pages for About, Lab, Writing, Poetry, and Connect.
 
-**Live Site:** [phillipclapham.com](https://phillipclapham.com)
-
-## How It Works
-
-- **Dynamic Content**: Site content auto-updates from Protocol Memory public profile
-- **Zero Backend**: Pure client-side integration using `protocol-integration.js`
-- **Auto-Refresh**: Fresh data every 5 minutes
-- **Graceful Fallback**: Falls back to static HTML when API unavailable
+**Live site:** [phillipclapham.com](https://phillipclapham.com)
 
 ## Architecture
 
-This repo is a **deployment artifact** managed by the [protocol-memory](https://github.com/phillipclapham/protocol-memory) project:
+- **Static HTML.** No build system. Each page is its own file.
+- **Single shared stylesheet** (`protocol-memory.css` + `site-overrides.css`).
+- **Hosted on GitHub Pages.** CNAME configured.
+- **Plausible Analytics** for traffic (privacy-respecting, no cookies).
 
-- **Source Library**: `/js/protocol-integration.js` in protocol-memory repo
-- **Documentation**: All project docs in protocol-memory repo
-- **Development**: All changes tracked in protocol-memory project memory
+## Pages
 
-## For Developers
+- `index.html` — Home (hero + About preview + Work grid + Writing preview + Connect)
+- `about.html` — Origin-style memoir (How I Got Here / Professional Work / Constraint-Driven Design / Engineering Philosophy / What I'm Building Now)
+- `lab.html` — All projects (active + deployed + archived)
+- `writing.html` — Featured essays + Nemo Operans publication
+- `poetry.html` — Selected poems from *Mire & Moonlight*
+- `connect.html` — All ways to find and reach me
 
-Interested in powering your site with Protocol Memory?
+## Visual Identity
 
-### Quick Start
+- **Dark mode default** with light toggle (FOUC prevention inline)
+- **Founder Mode** default-on with toggle to dial it down (inverted from typical "professional first" portfolios)
+- **Cognitive pulse animation** on home (neural origin / Spectrum Core)
+- **Game of Life footer** (emergence from simple rules)
+- **3D card tilt + water ripple** subtle interaction effects
+- **Console easter eggs** — open DevTools
 
-**Via CDN** (Recommended):
-```html
-<!-- Protocol Memory Integration Library -->
-<script src="https://cdn.jsdelivr.net/gh/phillipclapham/protocol-memory-integration@1.0.0/protocol-integration.js"></script>
+## Tech
 
-<!-- Optional: Protocol Memory CSS Styles -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/phillipclapham/protocol-memory-integration@1.0.0/protocol-memory.css">
+- HTML5 + CSS3 + vanilla JavaScript (no frameworks)
+- Google Fonts: Inter, Michroma, Space Grotesk
+- Plausible Analytics
 
-<script>
-  // Initialize with your Protocol Memory username
-  const integration = new ProtocolIntegration('your-username');
-  integration.init();
-</script>
-```
+## License
 
-**Or Self-Host**:
-1. Download from [GitHub Releases](https://github.com/phillipclapham/protocol-memory-integration/releases)
-2. Include in your HTML
-3. Initialize with your username
-
-### Documentation
-
-- **[Integration Guide](https://github.com/phillipclapham/protocol-memory-integration/blob/main/README.md)** - Complete usage docs
-- **[Library Hosting](https://github.com/phillipclapham/protocol-memory-integration/blob/main/LIBRARY_HOSTING.md)** - Distribution & versioning
-
-### Features
-
-- Auto-refresh every 5 minutes
-- Gravatar profile pictures
-- Current state, about, projects, expertise
-- Graceful fallback to static content
-- Zero dependencies
-
----
-
-**Project Management:** This repo is managed from [protocol-memory](https://github.com/phillipclapham/protocol-memory)
-**Protocol Memory:** Building the missing layer between humans and AI
+Content is © Phillip Clapham. Source code published for reference only.
