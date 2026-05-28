@@ -355,6 +355,16 @@
   margin-bottom: var(--space-4);
 }
 
+.about-tagline a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.about-tagline a:hover {
+  color: var(--color-primary-light);
+  text-decoration: underline;
+}
+
 .about-role {
   font-size: var(--text-lg);
   color: var(--color-text-secondary);
