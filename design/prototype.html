@@ -25,6 +25,7 @@
         font-size: var(--t-base);
         line-height: var(--leading-body);
         -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
       }
       .wrap {
         max-width: var(--container);
@@ -38,7 +39,7 @@
         grid-template-columns: 1.05fr 0.95fr;
         gap: var(--s-16);
         align-items: center;
-        padding: var(--s-24) 0;
+        padding: var(--s-24) 0 var(--s-16);
       }
       .eyebrow {
         font-family: var(--font-mono);
@@ -56,136 +57,118 @@
         line-height: 0.92;
         letter-spacing: -0.03em;
         margin: 0 0 var(--s-8);
-        color: var(--text);
       }
-      .claim {
+      .claim-line {
         font-size: var(--t-md);
         line-height: 1.45;
         max-width: 30ch;
         margin: 0 0 var(--s-6);
-        color: var(--text);
       }
-      .claim em {
+      .claim-line em {
         font-style: normal;
         color: var(--accent);
       }
       .sub {
         color: var(--text-dim);
         max-width: 42ch;
-        margin: 0 0 var(--s-8);
+        margin: 0;
         font-size: var(--t-base);
       }
 
       /* ============ SIGNATURE: the arrangement ============ */
       .arrangement {
-        position: relative;
-        aspect-ratio: 1;
         width: 100%;
-        max-width: 30rem;
+        max-width: 32rem;
         margin-inline: auto;
-        display: grid;
-        place-items: center;
+        display: block;
+        overflow: visible;
       }
-      .ring {
-        position: absolute;
-        border-radius: 50%;
-        border: 1px solid var(--rule);
-        inset: 0;
+      .ring-line {
+        fill: none;
+        stroke-width: 1;
       }
-      .ring--1 {
-        inset: 4%;
-        border-color: rgba(201, 169, 97, 0.4);
+      .tick-ring {
+        fill: none;
+        stroke-width: 4;
+        stroke-dasharray: 1 11;
+        transform-origin: 220px 220px;
       }
-      .ring--2 {
-        inset: 15%;
-        border-color: rgba(201, 169, 97, 0.3);
+      .tick-ring--slow {
+        animation: rotate 90s linear infinite;
       }
-      .ring--3 {
-        inset: 26%;
-        border-color: rgba(74, 138, 120, 0.42);
+      .tick-ring--rev {
+        animation: rotate 130s linear infinite reverse;
       }
-      .ring--4 {
-        inset: 36%;
-        border-color: rgba(74, 138, 120, 0.32);
-      }
-      .ring--spin {
-        border-style: dashed;
-        border-color: rgba(201, 169, 97, 0.24);
-        animation: spin 64s linear infinite;
-      }
-      .ring--spin-alt {
-        border-style: dashed;
-        border-color: rgba(74, 138, 120, 0.22);
-        animation: spin 92s linear infinite reverse;
-      }
-      @keyframes spin {
+      @keyframes rotate {
         to {
           transform: rotate(360deg);
         }
       }
-      .generator {
-        position: relative;
-        width: 15%;
-        aspect-ratio: 1;
-        display: grid;
-        place-items: center;
-        background: var(--bg-inset);
-        border: 1px solid var(--accent);
-        color: var(--accent);
-        font-family: var(--font-mono);
-        font-size: 0.6rem;
-        letter-spacing: 0.14em;
-        text-align: center;
-        z-index: 2;
+      /* The original cognitive pulse, kept — but now it MEANS something:
+         signal leaving the generator and travelling out through each
+         governing layer of the harness. */
+      .pulse {
+        fill: none;
+        stroke: var(--gold-bright);
+        stroke-width: 1.25;
+        animation: emanate 7s cubic-bezier(0.16, 0.7, 0.35, 1) infinite;
       }
-      .ring-label {
-        position: absolute;
+      .pulse--2 {
+        animation-delay: 2.33s;
+      }
+      .pulse--3 {
+        animation-delay: 4.66s;
+      }
+      @keyframes emanate {
+        0% {
+          r: 26px;
+          opacity: 0;
+        }
+        12% {
+          opacity: 0.62;
+        }
+        100% {
+          r: 196px;
+          opacity: 0;
+        }
+      }
+      .axis {
+        stroke: var(--rule);
+        stroke-width: 1;
+        stroke-dasharray: 2 5;
+      }
+      .lyr-label {
+        paint-order: stroke fill;
+        stroke: #100e0b;
+        stroke-width: 3.5px;
+        stroke-linejoin: round;
         font-family: var(--font-mono);
-        font-size: 0.625rem;
-        letter-spacing: 0.14em;
+        font-size: 10px;
+        letter-spacing: 0.16em;
+        text-anchor: middle;
         text-transform: uppercase;
-        color: var(--text-faint);
-        background: var(--bg);
-        padding: 0 var(--s-2);
-        z-index: 3;
-        white-space: nowrap;
       }
-      /* Each label sits exactly on its own ring's top edge, so the stack
-         reads as descending layers rather than floating text. Percentages
-         mirror the .ring--N insets precisely. */
-      .ring-label {
-        left: 50%;
+      .core-shape {
+        fill: var(--bg-inset);
+        stroke: var(--gold-bright);
+        stroke-width: 1.25;
       }
-      .rl-1 {
-        top: 4%;
-        transform: translate(-50%, -50%);
-        color: var(--accent);
-      }
-      .rl-2 {
-        top: 15%;
-        transform: translate(-50%, -50%);
-        color: var(--gold-deep);
-      }
-      .rl-3 {
-        top: 26%;
-        transform: translate(-50%, -50%);
-        color: var(--patina-bright);
-      }
-      .rl-4 {
-        top: 36%;
-        transform: translate(-50%, -50%);
-        color: var(--patina-deep);
+      .core-label {
+        font-family: var(--font-mono);
+        font-size: 10px;
+        letter-spacing: 0.18em;
+        text-anchor: middle;
+        fill: var(--gold-bright);
       }
       .arr-caption {
-        margin-top: var(--s-6);
+        margin-top: var(--s-4);
         font-family: var(--font-mono);
         font-size: var(--t-xs);
         color: var(--text-faint);
         text-align: center;
-        line-height: 1.6;
       }
 
-      /* ============ SEAM (kintsugi join) ============ */
+      /* ============ SEAM ============ */
       .seam {
         height: 1px;
         border: 0;
@@ -198,18 +181,16 @@
           var(--accent) 82%,
           transparent
         );
-        opacity: 0.55;
+        opacity: 0.5;
       }
 
-      /* ============ LEDGER: claim | receipt ============ */
+      /* ============ LEDGER ============ */
       .ledger {
-        padding: var(--s-24) 0;
+        padding: var(--s-24) 0 var(--s-16);
       }
       .ledger-head {
         display: flex;
         justify-content: space-between;
-        align-items: baseline;
-        gap: var(--s-6);
         margin-bottom: var(--s-12);
         font-family: var(--font-mono);
         font-size: var(--t-xs);
@@ -261,9 +242,6 @@
         text-decoration: none;
         border-bottom: 1px solid var(--gold-deep);
       }
-      .receipt a:hover {
-        color: var(--gold-bright);
-      }
       .receipt-tag {
         display: block;
         font-size: 0.625rem;
@@ -273,18 +251,144 @@
         margin-bottom: var(--s-2);
       }
 
+      /* ============ WORK CARDS — tilt + seam reveal ============ */
+      .work {
+        padding: var(--s-16) 0 var(--s-24);
+      }
+      .work-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+        gap: var(--s-6);
+        margin-top: var(--s-8);
+        perspective: 1100px;
+      }
+      .card {
+        position: relative;
+        padding: var(--s-8);
+        background: var(--bg-raised);
+        border: 1px solid var(--rule);
+        overflow: hidden;
+        transform-style: preserve-3d;
+        transition: transform 0.34s var(--ease), border-color 0.34s var(--ease);
+        will-change: transform;
+      }
+      /* Kintsugi: the seam only appears where the break is repaired — it
+         lights along the top edge on hover, then retreats. */
+      .card::before {
+        content: "";
+        position: absolute;
+        inset: 0 auto auto 0;
+        height: 1px;
+        width: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--gold-bright),
+          transparent
+        );
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.5s var(--ease);
+      }
+      .card:hover,
+      .card:focus-within {
+        border-color: rgba(201, 169, 97, 0.45);
+      }
+      .card:hover::before,
+      .card:focus-within::before {
+        transform: scaleX(1);
+      }
+      .card h3 {
+        font-family: var(--font-display);
+        font-variation-settings: "wdth" 92;
+        font-weight: 600;
+        font-size: var(--t-md);
+        margin: 0 0 var(--s-3);
+        letter-spacing: -0.01em;
+      }
+      .card p {
+        margin: 0 0 var(--s-4);
+        font-size: var(--t-sm);
+        color: var(--text-dim);
+      }
+      .card .meta {
+        font-family: var(--font-mono);
+        font-size: var(--t-xs);
+        color: var(--patina-bright);
+        margin: 0;
+      }
+      .ripple {
+        position: absolute;
+        border-radius: 50%;
+        pointer-events: none;
+        transform: translate(-50%, -50%) scale(0);
+        background: radial-gradient(
+          circle,
+          rgba(227, 199, 126, 0.34) 0%,
+          rgba(227, 199, 126, 0) 68%
+        );
+        animation: ripple 0.75s var(--ease) forwards;
+      }
+      @keyframes ripple {
+        to {
+          transform: translate(-50%, -50%) scale(1);
+          opacity: 0;
+        }
+      }
+
+      .section-title {
+        font-family: var(--font-display);
+        font-variation-settings: "wdth" 86;
+        font-weight: 700;
+        font-size: var(--t-xl);
+        letter-spacing: -0.02em;
+        margin: 0;
+      }
+      .section-sub {
+        font-family: var(--font-mono);
+        font-size: var(--t-xs);
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--text-faint);
+        margin: var(--s-2) 0 0;
+      }
+
+      /* ============ FOOTER: Game of Life ============ */
+      .site-footer {
+        position: relative;
+        margin-top: var(--s-16);
+        border-top: 1px solid var(--rule);
+        overflow: hidden;
+      }
+      #life {
+        display: block;
+        width: 100%;
+        height: 190px;
+      }
+      .footer-bar {
+        position: absolute;
+        inset: auto 0 0 0;
+        display: flex;
+        justify-content: space-between;
+        padding: var(--s-6);
+        font-family: var(--font-mono);
+        font-size: var(--t-xs);
+        color: var(--text-faint);
+        background: linear-gradient(transparent, var(--bg) 62%);
+      }
+
       .note {
         max-width: var(--measure);
         color: var(--text-dim);
         font-size: var(--t-sm);
-        padding: var(--s-8) 0 var(--s-24);
+        padding: var(--s-8) 0 var(--s-16);
       }
       .note strong {
         color: var(--text);
       }
 
       a:focus-visible,
-      .generator:focus-visible {
+      .card:focus-visible {
         outline: 2px solid var(--gold-bright);
         outline-offset: 3px;
       }
@@ -293,21 +397,24 @@
         .hero {
           grid-template-columns: 1fr;
           gap: var(--s-12);
-          min-height: auto;
           padding: var(--s-16) 0;
         }
         .row {
           grid-template-columns: 1fr;
           gap: var(--s-6);
         }
-        .arrangement {
-          max-width: 22rem;
-        }
       }
       @media (prefers-reduced-motion: reduce) {
-        .ring--spin,
-        .ring--spin-alt {
+        .tick-ring--slow,
+        .tick-ring--rev,
+        .pulse {
           animation: none;
+        }
+        .pulse {
+          opacity: 0.18;
+        }
+        .card {
+          transition: none;
         }
       }
     </style>
@@ -318,7 +425,7 @@
         <div>
           <p class="eyebrow">Harness engineering</p>
           <h1 class="wordmark">Phillip<br />Clapham</h1>
-          <p class="claim">
+          <p class="claim-line">
             I named the discipline, then shipped the <em>proof</em>.
           </p>
           <p class="sub">
@@ -329,21 +436,95 @@
         </div>
 
         <div>
-          <div class="arrangement">
-            <div class="ring ring--spin"></div>
-            <div class="ring ring--1"></div>
-            <div class="ring ring--2 ring--spin-alt"></div>
-            <div class="ring ring--3"></div>
-            <div class="ring ring--4"></div>
-            <span class="ring-label rl-1">Governance</span>
-            <span class="ring-label rl-2">Invariants</span>
-            <span class="ring-label rl-3">Verification</span>
-            <span class="ring-label rl-4">Memory</span>
-            <div class="generator">MODEL</div>
-          </div>
-          <p class="arr-caption">
-            the harness — what surrounds the generator
-          </p>
+          <svg
+            class="arrangement"
+            viewBox="0 0 440 440"
+            role="img"
+            aria-label="Diagram: a small model at the centre, surrounded by four governing layers — memory, verification, invariants, governance."
+          >
+            <defs>
+              <radialGradient id="coreGlow">
+                <stop offset="0%" stop-color="#e3c77e" stop-opacity="0.34" />
+                <stop offset="100%" stop-color="#e3c77e" stop-opacity="0" />
+              </radialGradient>
+            </defs>
+
+            <circle cx="220" cy="220" r="120" fill="url(#coreGlow)" />
+
+            <!-- graduated tick rings: instrument, not ornament -->
+            <circle
+              class="tick-ring tick-ring--slow"
+              cx="220"
+              cy="220"
+              r="205"
+              stroke="rgba(201,169,97,0.30)"
+            />
+            <circle
+              class="tick-ring tick-ring--rev"
+              cx="220"
+              cy="220"
+              r="133"
+              stroke="rgba(74,138,120,0.30)"
+            />
+
+            <!-- the four governing layers -->
+            <circle
+              class="ring-line"
+              cx="220"
+              cy="220"
+              r="190"
+              stroke="rgba(201,169,97,0.55)"
+            />
+            <circle
+              class="ring-line"
+              cx="220"
+              cy="220"
+              r="152"
+              stroke="rgba(201,169,97,0.36)"
+            />
+            <circle
+              class="ring-line"
+              cx="220"
+              cy="220"
+              r="114"
+              stroke="rgba(74,138,120,0.52)"
+            />
+            <circle
+              class="ring-line"
+              cx="220"
+              cy="220"
+              r="76"
+              stroke="rgba(74,138,120,0.36)"
+            />
+
+            <circle class="pulse" cx="220" cy="220" r="26" />
+            <circle class="pulse pulse--2" cx="220" cy="220" r="26" />
+            <circle class="pulse pulse--3" cx="220" cy="220" r="26" />
+
+            <!-- label knockouts break each ring where the label sits -->
+            <text class="lyr-label" x="220" y="34" fill="#c9a961">
+              Governance
+            </text>
+            <text class="lyr-label" x="220" y="72" fill="#8a713a">
+              Invariants
+            </text>
+            <text class="lyr-label" x="220" y="110" fill="#6bb39d">
+              Verification
+            </text>
+            <text class="lyr-label" x="220" y="148" fill="#4a8a78">Memory</text>
+
+            <!-- the generator: drawn small on purpose -->
+            <rect
+              class="core-shape"
+              x="204"
+              y="204"
+              width="32"
+              height="32"
+              transform="rotate(45 220 220)"
+            />
+            <text class="core-label" x="220" y="266">MODEL</text>
+          </svg>
+          <p class="arr-caption">the harness — what surrounds the generator</p>
         </div>
       </section>
     </div>
@@ -353,8 +534,7 @@
     <div class="wrap">
       <section class="ledger">
         <div class="ledger-head">
-          <span>Claim</span>
-          <span>Receipt</span>
+          <span>Claim</span><span>Receipt</span>
         </div>
 
         <div class="row">
@@ -378,8 +558,8 @@
           <div>
             <p class="row-claim">Govern, don't trust.</p>
             <p class="row-note">
-              An immune system spanning four cognitive layers, and a hash-chained
-              audit trail. The principle, in code.
+              An immune system spanning four cognitive layers, and a
+              hash-chained audit trail. The principle, in code.
             </p>
           </div>
           <p class="receipt">
@@ -395,8 +575,8 @@
           <div>
             <p class="row-claim">Ship the seed, not the fossil.</p>
             <p class="row-note">
-              A practice transfers as a living starter or not at all. Memory that
-              stays yours: on your machine, in a store you can read.
+              A practice transfers as a living starter or not at all. Memory
+              that stays yours: on your machine, in a store you can read.
             </p>
           </div>
           <p class="receipt">
@@ -408,14 +588,144 @@
         </div>
       </section>
 
+      <section class="work">
+        <h2 class="section-title">Work</h2>
+        <p class="section-sub">Systems, running</p>
+        <div class="work-grid" id="grid">
+          <article class="card" tabindex="0">
+            <h3>Levain</h3>
+            <p>
+              Portable cognitive-partnership kit. Ship the seed that grows a
+              practice, not the grown practice — which transfers as a fossil.
+            </p>
+            <p class="meta">v0.3.13 · Apache-2.0</p>
+          </article>
+          <article class="card" tabindex="0">
+            <h3>anneal-memory</h3>
+            <p>
+              Four cognitive layers, an immune system spanning all four, and a
+              hash-chained audit trail. Govern-not-trust, in code.
+            </p>
+            <p class="meta">v0.9.6 · 1,642 tests · MIT</p>
+          </article>
+          <article class="card" tabindex="0">
+            <h3>permit-leads</h3>
+            <p>
+              Columbus construction intelligence. Hail-to-roofing demand
+              forecasting over public permit and parcel data.
+            </p>
+            <p class="meta">148 leads · live</p>
+          </article>
+        </div>
+      </section>
+
       <p class="note">
         <strong>The layout is the argument.</strong> Every claim on the left is
         structurally required to carry its verification on the right. If a claim
-        can't produce a receipt, it doesn't get made. That's govern-not-trust
-        enforced by the grid instead of asserted in a paragraph — and it's the
-        fix for a site that currently describes six systems and shows none of
-        them.
+        can't produce a receipt, it doesn't get made — govern-not-trust enforced
+        by the grid instead of asserted in a paragraph. Click a card for the
+        ripple; hover for the kintsugi seam; the footer below runs Conway's Life.
       </p>
     </div>
+
+    <footer class="site-footer">
+      <canvas id="life"></canvas>
+      <div class="footer-bar">
+        <span>Building things that work since 1996.</span>
+        <span>© 2026 Phillip Clapham</span>
+      </div>
+    </footer>
+
+    <script>
+      const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      /* ---- Card tilt: subtle, physical, never gimmicky ---- */
+      document.querySelectorAll(".card").forEach((card) => {
+        if (reduced) return;
+        card.addEventListener("mousemove", (e) => {
+          const r = card.getBoundingClientRect();
+          const px = (e.clientX - r.left) / r.width - 0.5;
+          const py = (e.clientY - r.top) / r.height - 0.5;
+          card.style.transform = `rotateY(${px * 7}deg) rotateX(${
+            -py * 7
+          }deg) translateZ(6px)`;
+        });
+        card.addEventListener("mouseleave", () => {
+          card.style.transform = "";
+        });
+        card.addEventListener("click", (e) => {
+          const r = card.getBoundingClientRect();
+          const span = document.createElement("span");
+          span.className = "ripple";
+          const size = Math.max(r.width, r.height) * 2.1;
+          span.style.width = span.style.height = size + "px";
+          span.style.left = e.clientX - r.left + "px";
+          span.style.top = e.clientY - r.top + "px";
+          card.appendChild(span);
+          setTimeout(() => span.remove(), 800);
+        });
+      });
+
+      /* ---- Conway's Life: emergence from simple rules, in the estate palette ---- */
+      (function life() {
+        const cv = document.getElementById("life");
+        const ctx = cv.getContext("2d");
+        const CELL = 7;
+        let cols, rows, grid, age;
+
+        function seed() {
+          const dpr = window.devicePixelRatio || 1;
+          cv.width = cv.offsetWidth * dpr;
+          cv.height = cv.offsetHeight * dpr;
+          ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+          cols = Math.ceil(cv.offsetWidth / CELL);
+          rows = Math.ceil(cv.offsetHeight / CELL);
+          grid = new Uint8Array(cols * rows);
+          age = new Uint8Array(cols * rows);
+          for (let i = 0; i < grid.length; i++) grid[i] = Math.random() < 0.3 ? 1 : 0;
+        }
+
+        function step() {
+          const next = new Uint8Array(cols * rows);
+          for (let y = 0; y < rows; y++) {
+            for (let x = 0; x < cols; x++) {
+              let n = 0;
+              for (let dy = -1; dy <= 1; dy++)
+                for (let dx = -1; dx <= 1; dx++) {
+                  if (!dx && !dy) continue;
+                  const nx = (x + dx + cols) % cols;
+                  const ny = (y + dy + rows) % rows;
+                  n += grid[ny * cols + nx];
+                }
+              const i = y * cols + x;
+              next[i] = grid[i] ? (n === 2 || n === 3 ? 1 : 0) : n === 3 ? 1 : 0;
+              age[i] = next[i] ? Math.min(age[i] + 1, 9) : 0;
+            }
+          }
+          grid = next;
+        }
+
+        function draw() {
+          ctx.clearRect(0, 0, cv.offsetWidth, cv.offsetHeight);
+          for (let y = 0; y < rows; y++) {
+            for (let x = 0; x < cols; x++) {
+              const i = y * cols + x;
+              if (!grid[i]) continue;
+              // Newborn cells flare gold; settled cells cool to patina.
+              const fresh = age[i] < 2;
+              ctx.fillStyle = fresh
+                ? "rgba(227,199,126,0.5)"
+                : "rgba(74,138,120," + (0.34 - age[i] * 0.022) + ")";
+              ctx.fillRect(x * CELL, y * CELL, CELL - 1.5, CELL - 1.5);
+            }
+          }
+        }
+
+        seed();
+        draw();
+        if (!reduced) setInterval(() => { step(); draw(); }, 190);
+        window.addEventListener("resize", () => { seed(); draw(); });
+      })();
+    </script>
   </body>
 </html>
