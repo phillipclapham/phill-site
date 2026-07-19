@@ -201,121 +201,62 @@ a {
   border-color: var(--accent);
 }
 
-/* ============ THE LIVING FIELD ============
-   The original was never a contained circle — it was an ambient field of
-   enormous blurred arcs (280px to 1740px inside a ~600px header), so you
-   only ever saw FRAGMENTS, overlapping, with screen-blend mixing the
-   colours where they crossed. Containing it into a tidy widget turned it
-   into a dartboard. This restores the geometry: oversized, partial arcs,
-   heavy blur, bands that overlap rather than sit in neat lanes.
-   The labels annotate it; they don't imprison it. */
+/* ============ THE ORBITING FIELD ============
+   The original was never made of rings. Each element was ONE SIDE of a
+   border on a circle — a 90-degree arc, a short curved line — and ten of
+   them orbited at different radii, angles and speeds. Building annuli
+   (conic gradients masked into closed bands) and then blurring them
+   heavily smears any arc back into a solid ring, which is what went wrong
+   three times running. These are genuine arc segments: stroke-dasharray
+   on an SVG circle, 36-68 degrees of curve and nothing more. */
 .pulse-field {
   position: relative;
-  opacity: 0.85;
-  aspect-ratio: 1;
   width: 100%;
-  max-width: 32rem;
-  isolation: isolate;
+  max-width: 40rem;
+  aspect-ratio: 1;
+  overflow: visible;
+  opacity: 0.95;
+}
+.orbit-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   overflow: visible;
 }
-.pring {
-  position: absolute;
-  border-radius: 50%;
+.arc {
+  fill: none;
+  stroke-linecap: round;
   mix-blend-mode: screen;
-  will-change: transform;
-  transform-origin: center;
-  top: 50%;
-  left: 50%;
+  transform-box: view-box;
+  transform-origin: 500px 500px;
+  filter: blur(var(--blur)) drop-shadow(0 0 18px var(--glow))
+    drop-shadow(0 0 42px var(--glow));
+  animation: orbit var(--dur) linear infinite;
 }
-@keyframes spin-cw { to { transform: translate(-50%, -50%) rotate(360deg); } }
-@keyframes spin-ccw { to { transform: translate(-50%, -50%) rotate(-360deg); } }
-@keyframes breathe-scale {
-  0%, 100% { opacity: 0.95; }
-  50% { opacity: 0.55; }
+.arc.ccw {
+  animation-direction: reverse;
 }
-
-/* Each ring is a thick, mostly-transparent arc. Sizes run well past the
-   container so the outer ones bleed off-frame, exactly like the original. */
-.pr-0 {
-  width: 30%; height: 30%;
-  transform: translate(-50%, -50%);
-  background: conic-gradient(from 0deg, transparent 0deg, rgba(220,38,38,0.85) 60deg, rgba(249,115,22,0.75) 160deg, transparent 250deg);
-  -webkit-mask-image: radial-gradient(circle closest-side at center, transparent 32%, #000 58%, #000 100%);
-  mask-image: radial-gradient(circle closest-side at center, transparent 32%, #000 58%, #000 100%);
-  filter: blur(16px);
-  animation: spin-ccw 22s linear infinite, breathe-scale 16s ease-in-out infinite;
-}
-.pr-1 {
-  width: 50%; height: 50%;
-  transform: translate(-50%, -50%);
-  background: conic-gradient(from 40deg, rgba(245,158,11,0.7) 0deg, rgba(132,204,22,0.6) 120deg, transparent 230deg, transparent 340deg);
-  -webkit-mask-image: radial-gradient(circle closest-side at center, transparent 52%, #000 74%, #000 100%);
-  mask-image: radial-gradient(circle closest-side at center, transparent 52%, #000 74%, #000 100%);
-  filter: blur(22px);
-  animation: spin-cw 15s linear infinite, breathe-scale 10s ease-in-out infinite;
-}
-.pr-3 {
-  width: 72%; height: 72%;
-  transform: translate(-50%, -50%);
-  background: conic-gradient(from 210deg, transparent 0deg, rgba(132,204,22,0.55) 110deg, rgba(6,182,212,0.5) 220deg, transparent 330deg);
-  -webkit-mask-image: radial-gradient(circle closest-side at center, transparent 58%, #000 78%, #000 100%);
-  mask-image: radial-gradient(circle closest-side at center, transparent 58%, #000 78%, #000 100%);
-  filter: blur(26px);
-  animation: spin-cw 20s linear infinite, breathe-scale 14s ease-in-out infinite;
-  animation-delay: -5s;
-}
-.pr-2 {
-  width: 92%; height: 92%;
-  transform: translate(-50%, -50%);
-  background: conic-gradient(from 120deg, transparent 0deg, rgba(6,182,212,0.55) 80deg, rgba(14,165,233,0.5) 180deg, transparent 280deg);
-  -webkit-mask-image: radial-gradient(circle closest-side at center, transparent 62%, #000 80%, #000 100%);
-  mask-image: radial-gradient(circle closest-side at center, transparent 62%, #000 80%, #000 100%);
-  filter: blur(30px);
-  animation: spin-ccw 18s linear infinite, breathe-scale 12s ease-in-out infinite;
-}
-.pr-4 {
-  width: 110%; height: 110%;
-  transform: translate(-50%, -50%);
-  background: conic-gradient(from 300deg, rgba(79,70,229,0.5) 0deg, rgba(147,51,234,0.45) 100deg, transparent 210deg, transparent 350deg);
-  -webkit-mask-image: radial-gradient(circle closest-side at center, transparent 66%, #000 82%, #000 100%);
-  mask-image: radial-gradient(circle closest-side at center, transparent 66%, #000 82%, #000 100%);
-  filter: blur(34px);
-  animation: spin-ccw 16s linear infinite, breathe-scale 13s ease-in-out infinite;
-  animation-delay: -2s;
-}
-.pr-5 {
-  width: 168%; height: 168%;
-  transform: translate(-50%, -50%);
-  background: conic-gradient(from 20deg, transparent 0deg, rgba(236,72,153,0.45) 90deg, rgba(196,181,253,0.4) 200deg, transparent 310deg);
-  -webkit-mask-image: radial-gradient(circle closest-side at center, transparent 70%, #000 84%, #000 100%);
-  mask-image: radial-gradient(circle closest-side at center, transparent 70%, #000 84%, #000 100%);
-  filter: blur(40px);
-  animation: spin-cw 25s linear infinite, breathe-scale 17s ease-in-out infinite;
-  animation-delay: -7s;
-}
-.pr-6 {
-  width: 242%; height: 242%;
-  transform: translate(-50%, -50%);
-  background: conic-gradient(from 160deg, rgba(196,181,253,0.34) 0deg, transparent 130deg, rgba(244,114,182,0.3) 260deg, transparent 350deg);
-  -webkit-mask-image: radial-gradient(circle closest-side at center, transparent 74%, #000 86%, #000 100%);
-  mask-image: radial-gradient(circle closest-side at center, transparent 74%, #000 86%, #000 100%);
-  filter: blur(46px);
-  animation: breathe-scale 21s ease-in-out infinite;
-  animation-delay: -3s;
-  opacity: 0.75;
+@keyframes orbit {
+  from { transform: rotate(var(--a)); }
+  to { transform: rotate(calc(var(--a) + 360deg)); }
 }
 .core {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 22%;
+  width: 15%;
   aspect-ratio: 1;
   transform: translate(-50%, -50%);
   border-radius: 50%;
-  background: radial-gradient(circle at center, rgba(255,242,214,0.95) 0%, rgba(249,180,60,0.6) 38%, rgba(220,38,38,0.25) 62%, transparent 78%);
-  filter: blur(14px);
-  animation: breathe-scale 10s ease-in-out infinite;
+  background: radial-gradient(circle at center, rgba(255,244,220,0.95) 0%, rgba(249,180,60,0.55) 40%, rgba(220,38,38,0.2) 66%, transparent 80%);
+  filter: blur(12px);
+  animation: corepulse 10s ease-in-out infinite;
   z-index: 4;
+}
+@keyframes corepulse {
+  0%, 100% { opacity: 0.95; }
+  50% { opacity: 0.6; }
 }
 
 .lyr {
@@ -340,12 +281,12 @@ a {
   height: 7px;
   background: rgba(239, 231, 216, 0.4);
 }
-.lyr-gov { top: 2%; left: 50%; }
-.lyr-inv { top: 10%; left: 50%; }
-.lyr-ver { top: 19%; left: 50%; }
-.lyr-mem { top: 29%; left: 50%; }
+.lyr-gov { top: 6.5%; left: 50%; }
+.lyr-inv { top: 12.5%; left: 50%; }
+.lyr-ver { top: 23.5%; left: 50%; }
+.lyr-mem { top: 33.5%; left: 50%; }
 .lyr-core {
-  top: 62%;
+  top: 57%;
   left: 50%;
   color: var(--gold-bright);
 }
@@ -713,7 +654,6 @@ button:focus-visible,
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .pring,
   .core {
     animation: none;
   }
@@ -727,12 +667,12 @@ button:focus-visible,
    pastel and leaves the labels illegible (light text + dark halo on a light
    field). `multiply` is the correct dual: it darkens, so the same arcs read
    as saturated ink on paper. Labels invert to dark-on-light to match. */
-:root:not([data-theme="dark"]) .pring {
+:root:not([data-theme="dark"]) .arc {
   mix-blend-mode: multiply;
 }
 :root:not([data-theme="dark"]) .core {
   mix-blend-mode: multiply;
-  background: radial-gradient(circle at center, rgba(180, 90, 20, 0.85) 0%, rgba(245, 158, 11, 0.55) 45%, transparent 72%);
+  background: radial-gradient(circle at center, rgba(180,90,20,0.8) 0%, rgba(245,158,11,0.5) 42%, transparent 74%);
 }
 :root:not([data-theme="dark"]) .lyr {
   color: #241d13;
