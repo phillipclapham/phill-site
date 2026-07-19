@@ -13,51 +13,45 @@
   const principleData = {
     'memory': {
       title: 'Memory',
-      subtitle: 'State that survives the session',
-      detail: 'A generator with no persistence starts every conversation as a stranger. Memory is the first governing layer: episodes compress into continuity, associations form between them, and what persists is a perspective rather than a transcript. Without it, nothing downstream can compound.',
-      connects: ['verification', 'invariants', 'anneal']
+      subtitle: 'The temporal loop \u00b7 \u00a77.1',
+      detail: 'The loop that connects the generator to its own past \u2014 the mechanism by which experience from earlier moments remains available to shape behaviour in later moments. Closed by anneal-memory: episodic store plus compressed continuity.',
+      connects: ['identity', 'immune', 'affective']
     },
-    'verification': {
-      title: 'Verification',
-      subtitle: 'Grounding beats recall',
-      detail: 'Memory without grounding is amplification infrastructure — it makes whatever is in there louder, true or not. Verification is the layer that checks a claim against a source before it is allowed to count. A failed read must surface as unknown, never as a false all-clear.',
-      connects: ['memory', 'invariants', 'governance']
+    'identity': {
+      title: 'Identity',
+      subtitle: 'The persistence loop \u00b7 \u00a77.2',
+      detail: 'A derived property: what emerges when memory plus selection operates over time. The generator contacts its own prior commitments, and those commitments shape current behaviour. Declared identity does not accrue; this does.',
+      connects: ['memory', 'orchestration', 'immune']
     },
-    'invariants': {
-      title: 'Invariants',
-      subtitle: 'Structure beats discipline',
-      detail: 'Discipline drifts, then gets bypassed. An invariant refuses. The guard has to be structurally unskippable rather than a contract you promise to honour — fail closed, not fail quiet. This is why the immune system spans all four layers instead of sitting beside them.',
-      connects: ['verification', 'governance', 'levain']
+    'deliberation': {
+      title: 'Deliberation',
+      subtitle: 'The alternative-sampling loop \u00b7 \u00a77.3',
+      detail: 'The loop that lets a generator consider its own candidate outputs before committing to one. Explicitly NOT closed by anneal \u2014 \u00a79.3 assigns it to the agent runtime, a layer above memory.',
+      connects: ['affective', 'orchestration', 'immune']
     },
-    'governance': {
-      title: 'Governance',
-      subtitle: 'Govern, don\'t trust',
-      detail: 'As agents get more capable, the edge stops being raw capability and becomes oversight. Nothing reaches long-term memory except through a path you govern; every governed change is recorded; the audit trail is hash-chained so tampering is evident. Built into the architecture, not bolted on after.',
-      connects: ['invariants', 'verification', 'paper']
+    'affective': {
+      title: 'Affective state tracking',
+      subtitle: 'The valence loop \u00b7 \u00a77.4',
+      detail: 'The loop connecting the generator to the emotional weight of its own experience \u2014 what tells the system which parts of experience matter and which can be ignored. In anneal it rides the association layer as intensity, modulating link strength.',
+      connects: ['memory', 'deliberation']
     },
-    'anneal': {
-      title: 'anneal-memory',
-      subtitle: 'The constructive proof',
-      detail: 'Four cognitive layers — episodic store, continuity file, Hebbian association, affective state — with an immune system spanning all four and a hash-chained JSONL audit trail. It exists so the paper\'s section 9 is demonstrable rather than asserted. v0.9.6, 1,642 tests, zero dependencies, MIT.',
-      connects: ['memory', 'invariants', 'levain']
+    'social': {
+      title: 'Social competence',
+      subtitle: 'The other-minds loop \u00b7 \u00a77.5',
+      detail: 'The loop that lets a generator contact the predicted responses of other minds. Explicitly NOT closed by anneal \u2014 \u00a79.3 places it in multi-agent coordination infrastructure above the memory layer.',
+      connects: ['orchestration', 'deliberation']
     },
-    'levain': {
-      title: 'Levain',
-      subtitle: 'Ship the seed, not the fossil',
-      detail: 'A practice transfers as a living starter or not at all. Hand someone the grown practice and they receive a fossil: correct in shape, dead in function. Levain ships the seed — methodology core, harness adapters, scripted onboarding — built on anneal-memory as a layer-1 dependency.',
-      connects: ['anneal', 'governance', 'thesis']
+    'immune': {
+      title: 'Immune response',
+      subtitle: 'The grounding loop \u00b7 \u00a77.6',
+      detail: 'The loop that protects the generator from its own confabulation. It has two structurally distinct subtypes: INTERNAL consistency grounding, which forces claims to stay consistent with the system\'s own episodic record \u2014 closed by anneal \u2014 and EXTERNAL grounding, which forces them to stay consistent with reality outside the system entirely. External grounding needs tool use and reality-contact channels. It is not closed here.',
+      connects: ['memory', 'identity', 'deliberation']
     },
-    'paper': {
-      title: 'A Structural Theory of Harnesses',
-      subtitle: 'The discipline, named',
-      detail: 'Generalized intelligence lives in the arrangement around the generator, not inside the model. The first complete theoretical account of harness engineering as a named field: convergent biological and frontier-AI evidence, and a mechanism catalog of six harness properties. The work was already there; the paper named it.',
-      connects: ['governance', 'memory', 'thesis']
-    },
-    'thesis': {
-      title: 'The augmentation thesis',
-      subtitle: 'Fuse above the threshold',
-      detail: 'Above a task-complexity threshold — judgment, taste, strategy over context outside the model\'s purview — replacing human labour with AI costs more AND produces worse results than fusing human and machine through a harness. Below it, substitution proceeds. Harness design is the architectural primitive of that era.',
-      connects: ['paper', 'levain']
+    'orchestration': {
+      title: 'Orchestration policy',
+      subtitle: 'The meta-loop \u00b7 \u00a77.7',
+      detail: 'The seventh property, and one of the most load-bearing. Not a feedback loop in the same sense \u2014 it is the meta-loop deciding which lower-level loop\'s output gets written to shared state when they conflict. Most production failures are composition failures between correctly-built loops.',
+      connects: ['identity', 'deliberation', 'social']
     }
   };
 

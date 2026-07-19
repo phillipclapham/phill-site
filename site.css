@@ -1038,7 +1038,7 @@ hr.seam.reveal.shown {
   position: relative;
   width: fit-content;
   max-width: 100%;
-  padding-bottom: var(--s-3);
+  margin-bottom: var(--s-6);
 }
 .scribble-underline {
   position: absolute;
@@ -1087,6 +1087,7 @@ hr.seam.reveal.shown {
 }
 .principle-card {
   position: relative;
+  overflow: hidden;
   background: var(--bg-raised);
   border: 1px solid var(--rule);
   padding: var(--s-8) var(--s-6) var(--s-6);
@@ -1112,6 +1113,13 @@ hr.seam.reveal.shown {
   transform: translateX(-50%);
   font-size: 0.85rem;
   filter: saturate(0.75);
+}
+.card-pin,
+.principle-title,
+.principle-subtitle,
+.principle-detail {
+  position: relative;
+  z-index: 1;
 }
 .principle-title {
   font-family: var(--font-display);
@@ -1141,7 +1149,7 @@ hr.seam.reveal.shown {
 .principle-card::before {
   content: "";
   position: absolute;
-  inset: -6px;
+  inset: 0;
   background: radial-gradient(
     ellipse at 50% 0%,
     rgba(227, 199, 126, 0.85) 0%,
@@ -1151,7 +1159,7 @@ hr.seam.reveal.shown {
   opacity: 0;
   filter: blur(18px);
   transition: opacity 0.5s var(--ease);
-  z-index: -1;
+  z-index: 0;
   pointer-events: none;
 }
 .principle-card:hover,

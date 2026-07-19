@@ -208,61 +208,64 @@
       <div class="wrap">
         <section class="section" id="map" aria-label="The harness, mapped">
           <h2 class="section-title">The harness, mapped</h2>
-          <p class="section-sub">Pull a thread &mdash; every piece connects</p>
+          <p class="section-sub">Seven loops &middot; four closed &middot; three open</p>
           <p class="map-lede">
-            The arrangement around the generator isn&rsquo;t a stack of
-            independent parts; it&rsquo;s a topology. Each layer holds because
-            the others do. Click any card to see what it connects to.
+            <em>&ldquo;Each property is a loop, and a harness is what you get
+            when the loops close.&rdquo;</em> &mdash; &sect;7. These are the seven
+            named in the paper&rsquo;s mechanism catalog, and which of them are
+            actually closed by shipped code. Three are not. Click any loop to
+            see what it composes with.
           </p>
           <div class="principle-board">
             <svg class="principle-connections" aria-hidden="true"></svg>
-            <div class="principle-card" id="principle-memory" data-connects="verification,invariants,anneal" tabindex="0">
+            <div class="principle-card" id="principle-memory" data-connects="identity,immune,affective" tabindex="0">
               <div class="card-pin" aria-hidden="true">&#128204;</div>
+              <span class="status status--live">Closed &middot; anneal</span>
               <h3 class="principle-title">Memory</h3>
-              <p class="principle-subtitle">State that survives the session</p>
-              <p class="principle-detail">A generator with no persistence starts every conversation as a stranger. Episodes compress into continuity; what persists is a perspective, not a transcript.</p>
+              <p class="principle-subtitle">The temporal loop &middot; &sect;7.1</p>
+              <p class="principle-detail">Connects the generator to its own past &mdash; experience from earlier moments staying available to shape later behaviour.</p>
             </div>
-            <div class="principle-card" id="principle-verification" data-connects="memory,invariants,governance" tabindex="0">
+            <div class="principle-card" id="principle-identity" data-connects="memory,orchestration,immune" tabindex="0">
               <div class="card-pin" aria-hidden="true">&#128204;</div>
-              <h3 class="principle-title">Verification</h3>
-              <p class="principle-subtitle">Grounding beats recall</p>
-              <p class="principle-detail">Memory without grounding is amplification infrastructure. A failed read must surface as <em>unknown</em>, never as a false all-clear.</p>
+              <span class="status status--live">Closed &middot; anneal</span>
+              <h3 class="principle-title">Identity</h3>
+              <p class="principle-subtitle">The persistence loop &middot; &sect;7.2</p>
+              <p class="principle-detail">Derived: what emerges when memory plus selection operates over time. The generator contacts its own prior commitments.</p>
             </div>
-            <div class="principle-card" id="principle-invariants" data-connects="verification,governance,levain" tabindex="0">
+            <div class="principle-card" id="principle-affective" data-connects="memory,deliberation" tabindex="0">
               <div class="card-pin" aria-hidden="true">&#128204;</div>
-              <h3 class="principle-title">Invariants</h3>
-              <p class="principle-subtitle">Structure beats discipline</p>
-              <p class="principle-detail">Discipline drifts, then gets bypassed. An invariant refuses. Fail closed, not fail quiet.</p>
+              <span class="status status--live">Closed &middot; anneal</span>
+              <h3 class="principle-title">Affective state tracking</h3>
+              <p class="principle-subtitle">The valence loop &middot; &sect;7.4</p>
+              <p class="principle-detail">What tells the system which parts of experience matter and which can be ignored. Rides the association layer as intensity.</p>
             </div>
-            <div class="principle-card" id="principle-governance" data-connects="invariants,verification,paper" tabindex="0">
+            <div class="principle-card" id="principle-immune" data-connects="memory,identity,deliberation" tabindex="0">
               <div class="card-pin" aria-hidden="true">&#128204;</div>
-              <h3 class="principle-title">Governance</h3>
-              <p class="principle-subtitle">Govern, don&rsquo;t trust</p>
-              <p class="principle-detail">Nothing reaches long-term memory except through a path you govern. Every governed change is recorded, on a hash-chained trail.</p>
+              <span class="status status--maint">Half closed</span>
+              <h3 class="principle-title">Immune response</h3>
+              <p class="principle-subtitle">The grounding loop &middot; &sect;7.6</p>
+              <p class="principle-detail">Protects the generator from its own confabulation. Two subtypes: internal consistency grounding is closed here; external grounding is not.</p>
             </div>
-            <div class="principle-card" id="principle-anneal" data-connects="memory,invariants,levain" tabindex="0">
+            <div class="principle-card" id="principle-deliberation" data-connects="affective,orchestration,immune" tabindex="0">
               <div class="card-pin" aria-hidden="true">&#128204;</div>
-              <h3 class="principle-title">anneal-memory</h3>
-              <p class="principle-subtitle">The constructive proof</p>
-              <p class="principle-detail">Four cognitive layers with an immune system spanning all four. Exists so the paper&rsquo;s &sect;9 is demonstrable rather than asserted.</p>
+              <span class="status status--">Open</span>
+              <h3 class="principle-title">Deliberation</h3>
+              <p class="principle-subtitle">The alternative-sampling loop &middot; &sect;7.3</p>
+              <p class="principle-detail">Lets a generator weigh its own candidate outputs before committing. &sect;9.3 assigns it to the agent runtime, above memory.</p>
             </div>
-            <div class="principle-card" id="principle-levain" data-connects="anneal,governance,thesis" tabindex="0">
+            <div class="principle-card" id="principle-social" data-connects="orchestration,deliberation" tabindex="0">
               <div class="card-pin" aria-hidden="true">&#128204;</div>
-              <h3 class="principle-title">Levain</h3>
-              <p class="principle-subtitle">Ship the seed, not the fossil</p>
-              <p class="principle-detail">Hand someone the grown practice and they receive a fossil: correct in shape, dead in function. Ship the seed instead.</p>
+              <span class="status status--">Open</span>
+              <h3 class="principle-title">Social competence</h3>
+              <p class="principle-subtitle">The other-minds loop &middot; &sect;7.5</p>
+              <p class="principle-detail">Lets a generator contact the predicted responses of other minds. &sect;9.3 places it in multi-agent coordination, above memory.</p>
             </div>
-            <div class="principle-card" id="principle-paper" data-connects="governance,memory,thesis" tabindex="0">
+            <div class="principle-card" id="principle-orchestration" data-connects="identity,deliberation,social" tabindex="0">
               <div class="card-pin" aria-hidden="true">&#128204;</div>
-              <h3 class="principle-title">A Structural Theory of Harnesses</h3>
-              <p class="principle-subtitle">The discipline, named</p>
-              <p class="principle-detail">Generalized intelligence lives in the arrangement around the generator, not inside the model.</p>
-            </div>
-            <div class="principle-card" id="principle-thesis" data-connects="paper,levain" tabindex="0">
-              <div class="card-pin" aria-hidden="true">&#128204;</div>
-              <h3 class="principle-title">The augmentation thesis</h3>
-              <p class="principle-subtitle">Fuse above the threshold</p>
-              <p class="principle-detail">Above a complexity threshold, replacing human labour costs more <em>and</em> works worse than fusing through a harness.</p>
+              <span class="status status--">Open</span>
+              <h3 class="principle-title">Orchestration policy</h3>
+              <p class="principle-subtitle">The meta-loop &middot; &sect;7.7</p>
+              <p class="principle-detail">Decides which loop&rsquo;s output wins when they conflict. Most production failures are composition failures between correctly-built loops.</p>
             </div>
           </div>
         </section>
