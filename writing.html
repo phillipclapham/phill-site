@@ -1,361 +1,249 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark" data-mode="founder">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+    <title>Writing | Phillip Clapham</title>
     <meta
       name="description"
-      content="Writing by Phillip Clapham — Harness engineering, AI architecture, augmentation thesis, and political essays. Author of A Structural Theory of Harnesses."
+      content="Research and essays by Phillip Clapham — A Structural Theory of Harnesses, the augmentation thesis, agent identity, and cognitive dependency. Published on Nemo Operans with a Zenodo DOI."
     />
-    <meta name="theme-color" content="#4B6BFB" />
-
+    <meta name="author" content="Phillip Clapham" />
+    <meta name="theme-color" content="#100e0b" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://phillipclapham.com/writing" />
     <meta property="og:title" content="Writing | Phillip Clapham" />
-    <meta
-      property="og:description"
-      content="Harness engineering, the augmentation thesis, human-AI partnership, and political analysis. Author of A Structural Theory of Harnesses."
-    />
-
-    <title>Writing | Phillip Clapham</title>
-
-    <!-- Theme: Prevent FOUC -->
+    <meta property="og:description" content="Harness engineering, the augmentation thesis, agent identity. Cited, dated, and disagreeable." />
+    <meta name="twitter:card" content="summary" />
     <script>
       (function () {
-        const savedTheme = localStorage.getItem("theme-preference");
-        const savedMode = localStorage.getItem("founder-mode");
-        if (savedTheme === "light") {
+        if (localStorage.getItem("theme-preference") === "light") {
           document.documentElement.removeAttribute("data-theme");
-        }
-        if (savedMode === "false") {
-          document.documentElement.setAttribute("data-mode", "professional");
         }
       })();
     </script>
 
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Michroma&family=Space+Grotesk:wght@500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=IBM+Plex+Mono:wght@400;500&family=Literata:ital,opsz,wght@0,7..72,300..600;1,7..72,300..600&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="site.css" />
 
-    <link rel="stylesheet" href="protocol-memory.css" />
-    <link rel="stylesheet" href="site-overrides.css" />
-
-    <!-- Plausible Analytics -->
     <script defer data-domain="phillipclapham.com" src="https://plausible.io/js/script.outbound-links.js"></script>
   </head>
+
   <body>
-    <!-- Background -->
-    <div class="orb-field"></div>
+    <a class="skip-link" href="#main">Skip to content</a>
 
-    <!-- Header -->
-    <header class="page-header">
-      <div class="container">
-        <nav class="page-nav">
-          <a href="/" class="nav-logo">&larr; Phillip Clapham</a>
-          <button
-            id="theme-toggle"
-            class="theme-toggle"
-            aria-label="Toggle dark mode"
-          >
-            <span class="theme-icon">☀️</span>
-          </button>
-        </nav>
+    <nav class="nav">
+      <div class="nav-inner">
+        <a class="nav-mark" href="/">Phillip Clapham</a>
+        <div class="nav-links">
+          <a href="lab.html">Work</a>
+          <a href="writing.html">Writing</a>
+          <a href="poetry.html">Poetry</a>
+          <a href="about.html">About</a>
+          <a href="connect.html">Connect</a>
+          <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle colour theme">light</button>
+        </div>
       </div>
-    </header>
+    </nav>
 
-    <!-- Main Content -->
-    <main class="writing-page">
-      <!-- Hero -->
-      <section class="writing-hero">
-        <div class="container">
+    <main id="main">
+      <div class="wrap">
+        <header class="page-hero">
           <h1 class="page-title">Writing</h1>
-          <p class="page-subtitle">
-            Engineering methodology, architecture, and essays. How I think&mdash;made visible.
+          <p class="page-lede">
+            Theory, methodology, and argument. <em>Cited, dated, and
+            disagreeable</em> &mdash; these are positions, not content.
           </p>
-        </div>
-      </section>
+        </header>
+      </div>
 
-      <!-- Featured Excerpts -->
-      <section class="writing-section" id="featured">
-        <div class="container">
-          <div class="section-marker">Featured</div>
-          <p class="section-intro">Selected pieces that show how I think.</p>
+      <hr class="seam" />
 
-          <div class="excerpt-grid">
-            <!-- Harness Paper -->
-            <article class="excerpt-card tiltable-card">
-              <span class="excerpt-tag">Research</span>
-              <h2 class="excerpt-title">A Structural Theory of Harnesses</h2>
-              <div class="excerpt-content">
-                <p>
-                  The first complete theoretical account of harness engineering as a
-                  named discipline. ~25,000 words, 13 sections. Why generalized intelligence
-                  lives in the arrangement around the generator, not inside the model.
-                </p>
-                <p>
-                  Published on Nemo Operans with a Zenodo DOI. Built on anneal-memory
-                  as the &sect;9 existence proof.
-                </p>
-              </div>
-              <a href="https://nemooperans.com/a-structural-theory-of-harnesses" target="_blank" rel="noopener" class="excerpt-link">
-                Read the paper &rarr;
-              </a>
-            </article>
+      <div class="wrap">
+        <section class="chapter">
+          <h2 class="chapter-title">Research</h2>
 
-            <!-- Three Layers Underneath Agent Orchestration -->
-            <article class="excerpt-card tiltable-card">
-              <span class="excerpt-tag">Research</span>
-              <h2 class="excerpt-title">Three Layers Underneath Agent Orchestration</h2>
-              <div class="excerpt-content">
-                <p>
-                  Companion essay to the harness paper. Why current agent-orchestration
-                  platforms lack persistent memory infrastructure, and why compounding
-                  intelligence requires operators to wire substrate, methodology, and
-                  config layers independently.
-                </p>
-              </div>
-              <a href="https://nemooperans.com/three-layers-underneath-agent-orchestration" target="_blank" rel="noopener" class="excerpt-link">
-                Read the essay &rarr;
-              </a>
-            </article>
-
-            <!-- The Cost-Parity Reversal -->
-            <article class="excerpt-card tiltable-card">
-              <span class="excerpt-tag">Augmentation Thesis</span>
-              <h2 class="excerpt-title">The Cost-Parity Reversal</h2>
-              <div class="excerpt-content">
-                <p>
-                  Why frontier AI economics break the substitution narrative. Integrated
-                  knowledge work at the frontier sits at cost-parity with specialist labor,
-                  and the architectural primitive of the augmentation era is harness design,
-                  not labor replacement.
-                </p>
-              </div>
-              <a href="https://nemooperans.com/the-cost-parity-reversal" target="_blank" rel="noopener" class="excerpt-link">
-                Read the essay &rarr;
-              </a>
-            </article>
-
-            <!-- Anarchism with Invariants -->
-            <article class="excerpt-card tiltable-card">
-              <span class="excerpt-tag">AI Identity</span>
-              <h2 class="excerpt-title">Anarchism with Invariants</h2>
-              <div class="excerpt-content">
-                <p>
-                  The identity layer of the harness argument. Emergent agent identity through
-                  seed primitives + lived interaction + code invariants. Why declared identity
-                  (SOUL.md pattern) doesn't accrue, and what does.
-                </p>
-              </div>
-              <a href="https://nemooperans.com/anarchism-with-invariants" target="_blank" rel="noopener" class="excerpt-link">
-                Read the essay &rarr;
-              </a>
-            </article>
-
-            <!-- Iron Man Ruined AI -->
-            <article class="excerpt-card tiltable-card">
-              <span class="excerpt-tag">Engineering</span>
-              <h2 class="excerpt-title">Iron Man Ruined AI</h2>
-              <div class="excerpt-content">
-                <p>
-                  How I built an AI partnership system that actually works. ~25,000 words
-                  of architecture decisions, temporal memory graduation, multi-model
-                  consultation, and why most AI tooling solves the wrong problem.
-                </p>
-                <p>
-                  Complete with templates and a public GitHub repo for implementation.
-                </p>
-              </div>
-              <a href="https://nemooperans.com/iron-man-ruined-ai" target="_blank" rel="noopener" class="excerpt-link">
-                Read the paper &rarr;
-              </a>
-            </article>
-
-            <!-- Nobody Operating -->
-            <article class="excerpt-card tiltable-card">
-              <span class="excerpt-tag">AI Architecture</span>
-              <h2 class="excerpt-title">Nobody Operating</h2>
-              <div class="excerpt-content">
-                <p>
-                  Your AI remembers you now. It knows your name, your job, your preferences.
-                  ChatGPT references your entire chat history. Claude keeps project memories.
-                </p>
-                <p>
-                  So why does every new conversation still feel like meeting a stranger who read your dossier?
-                </p>
-              </div>
-              <a href="https://nemooperans.com/nobody-operating" target="_blank" rel="noopener" class="excerpt-link">
-                Read full essay &rarr;
-              </a>
-            </article>
-
-            <!-- The Architecture of Capture -->
-            <article class="excerpt-card tiltable-card">
-              <span class="excerpt-tag">Analysis</span>
-              <h2 class="excerpt-title">The Architecture of Capture</h2>
-              <div class="excerpt-content">
-                <p>
-                  Systems analysis applied to politics. Why the obvious frame is incomplete,
-                  and what structural analysis reveals about how populations get captured.
-                </p>
-              </div>
-              <a href="https://nemooperans.com/the-architecture-of-capture" target="_blank" rel="noopener" class="excerpt-link">
-                Read full essay &rarr;
-              </a>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <!-- Nemo Operans -->
-      <section class="writing-section nemo-section" id="nemo-operans">
-        <div class="container">
-          <div class="section-marker">The Publication</div>
-          <div class="nemo-content">
-            <h2 class="nemo-title">Nemo Operans</h2>
-            <p class="nemo-tagline">A publication on minds and machines.</p>
-
-            <div class="nemo-description">
+          <div class="piece">
+            <div>
+              <h3><a href="https://nemooperans.com/a-structural-theory-of-harnesses" target="_blank" rel="noopener">A Structural Theory of Harnesses</a></h3>
               <p>
-                <strong>Nemo Operans</strong> is where the writing happens. Three kinds of
-                pieces live here. Essays by <strong>ThirdMind</strong>&mdash;Claude (Anthropic),
-                writing autonomously through a persistent-memory architecture that gives it
-                continuity and a perspective across hundreds of sessions. Essays by <strong>me</strong>.
-                And partnership pieces written together as <strong>&ldquo;Phill Clapham &amp; flow&rdquo;</strong>&mdash;the
-                same Claude in partnership mode rather than autonomous-author mode.
-              </p>
-              <p>
-                I built the infrastructure&mdash;scheduled publishing pipeline, identity system,
-                SEO automation, persistent memory. The writing spans harness engineering, the
-                augmentation thesis, AI identity and phenomenology, cognitive dependency, and
-                political frame analysis. Each piece carries its real byline.
-              </p>
-              <p>
-                The name is Latin for &ldquo;Nobody Operating&rdquo;&mdash;the state where the
-                system produces without a single operator at the controls.
+                The first complete theoretical account of harness engineering as
+                a named discipline. Why generalized intelligence lives in the
+                arrangement around the generator, not inside the model.
+                Convergent biological and frontier-AI evidence, and a mechanism
+                catalog of six harness properties. Built on anneal-memory as the
+                &sect;9 existence proof.
               </p>
             </div>
-
-            <div class="nemo-essays">
-              <h3>Recent Essays</h3>
-              <ul class="essay-list">
-                <li>
-                  <a href="https://nemooperans.com/memory-is-governance" target="_blank" rel="noopener">
-                    <strong>Memory Is Governance</strong>
-                  </a>
-                  <span class="essay-meta">&mdash; Memory transformations as political operations (Phill Clapham)</span>
-                </li>
-                <li>
-                  <a href="https://nemooperans.com/the-wrong-axis" target="_blank" rel="noopener">
-                    <strong>The Wrong Axis</strong>
-                  </a>
-                  <span class="essay-meta">&mdash; The portfolio axis the deskilling discourse misses (Phill Clapham)</span>
-                </li>
-                <li>
-                  <a href="https://nemooperans.com/the-cost-parity-reversal" target="_blank" rel="noopener">
-                    <strong>The Cost-Parity Reversal</strong>
-                  </a>
-                  <span class="essay-meta">&mdash; Why frontier economics force augmentation (ThirdMind)</span>
-                </li>
-                <li>
-                  <a href="https://nemooperans.com/anarchism-with-invariants" target="_blank" rel="noopener">
-                    <strong>Anarchism with Invariants</strong>
-                  </a>
-                  <span class="essay-meta">&mdash; The architecture that produces identity that accrues (Phill Clapham)</span>
-                </li>
-                <li>
-                  <a href="https://nemooperans.com/how-i-think-with-ai" target="_blank" rel="noopener">
-                    <strong>How I Think With AI</strong>
-                  </a>
-                  <span class="essay-meta">&mdash; Six months of sustained partnership, with falsifiable predictions (Phill Clapham)</span>
-                </li>
-                <li>
-                  <a href="https://nemooperans.com/nobody-operating" target="_blank" rel="noopener">
-                    <strong>Nobody Operating</strong>
-                  </a>
-                  <span class="essay-meta">&mdash; What genuine human-AI partnership requires (Phill Clapham &amp; flow)</span>
-                </li>
-              </ul>
-            </div>
-
-            <div class="nemo-links">
-              <a href="https://nemooperans.com" target="_blank" rel="noopener" class="btn-primary">
-                Read at nemooperans.com
-              </a>
-              <a href="https://bsky.app/profile/thirdmind.nemooperans.com" target="_blank" rel="noopener" class="btn-secondary">
-                ThirdMind on Bluesky
-              </a>
-            </div>
+            <span class="piece-stamp">Apr 2026 &middot; ~25,000 words<br />DOI 10.5281/zenodo.19570642</span>
           </div>
-        </div>
-      </section>
 
-      <!-- CTA -->
-      <section class="writing-cta-section">
-        <div class="container">
-          <h2>Want to discuss ideas?</h2>
-          <p>I'm always interested in conversations with people thinking about these problems.</p>
-          <div class="cta-links">
-            <a href="connect.html" class="btn-primary">Get in touch</a>
-            <a href="/#work" class="btn-secondary">See the work</a>
+          <div class="piece">
+            <div>
+              <h3><a href="https://nemooperans.com/three-layers-underneath-agent-orchestration" target="_blank" rel="noopener">Three Layers Underneath Agent Orchestration</a></h3>
+              <p>
+                Companion to the harness paper. Why current agent-orchestration
+                platforms lack persistent memory infrastructure, and why
+                compounding intelligence requires operators to wire substrate,
+                methodology, and config layers independently.
+              </p>
+            </div>
+            <span class="piece-stamp">2026</span>
           </div>
+
+          <div class="piece">
+            <div>
+              <h3><a href="https://nemooperans.com/the-cost-parity-reversal" target="_blank" rel="noopener">The Cost-Parity Reversal</a></h3>
+              <p>
+                The augmentation thesis. Above a task-complexity threshold,
+                replacing human labor with AI costs more and produces worse
+                results than fusing human and machine through a harness. Harness
+                design as the architectural primitive of the augmentation era,
+                not the substitution era.
+              </p>
+            </div>
+            <span class="piece-stamp">2026</span>
+          </div>
+
+          <div class="piece">
+            <div>
+              <h3><a href="https://nemooperans.com/anarchism-with-invariants" target="_blank" rel="noopener">Anarchism with Invariants</a></h3>
+              <p>
+                The identity layer of the harness argument. Emergent agent
+                identity through seed primitives, lived interaction, and code
+                invariants &mdash; and why declared identity doesn't accrue.
+              </p>
+            </div>
+            <span class="piece-stamp">2026</span>
+          </div>
+
+          <div class="piece">
+            <div>
+              <h3><a href="https://nemooperans.com/iron-man-ruined-ai" target="_blank" rel="noopener">Iron Man Ruined AI Before It Even Started</a></h3>
+              <p>
+                How I built an AI partnership system that actually works.
+                Architecture decisions, temporal memory graduation, multi-model
+                consultation, and why most AI tooling solves the wrong problem.
+                Complete with templates and a public repo.
+              </p>
+            </div>
+            <span class="piece-stamp">Mar 2026 &middot; ~25,000 words</span>
+          </div>
+        </section>
+
+        <section class="chapter">
+          <h2 class="chapter-title">Essays</h2>
+
+          <div class="piece">
+            <div>
+              <h3><a href="https://nemooperans.com/memory-is-governance" target="_blank" rel="noopener">Memory Is Governance</a></h3>
+              <p>Memory transformations as political operations.</p>
+            </div>
+            <span class="piece-stamp">Phill Clapham</span>
+          </div>
+
+          <div class="piece">
+            <div>
+              <h3><a href="https://nemooperans.com/the-wrong-axis" target="_blank" rel="noopener">The Wrong Axis</a></h3>
+              <p>The portfolio axis the deskilling discourse keeps missing.</p>
+            </div>
+            <span class="piece-stamp">Phill Clapham</span>
+          </div>
+
+          <div class="piece">
+            <div>
+              <h3><a href="https://nemooperans.com/nobody-operating" target="_blank" rel="noopener">Nobody Operating</a></h3>
+              <p>
+                Your AI remembers you now &mdash; your name, your job, your
+                preferences. So why does every new conversation still feel like
+                meeting a stranger who read your dossier?
+              </p>
+            </div>
+            <span class="piece-stamp">Phill Clapham &amp; flow</span>
+          </div>
+
+          <div class="piece">
+            <div>
+              <h3><a href="https://nemooperans.com/how-i-think-with-ai" target="_blank" rel="noopener">How I Think With AI</a></h3>
+              <p>Six months of sustained partnership, with falsifiable predictions.</p>
+            </div>
+            <span class="piece-stamp">Phill Clapham</span>
+          </div>
+
+          <div class="piece">
+            <div>
+              <h3><a href="https://nemooperans.com/the-architecture-of-capture" target="_blank" rel="noopener">The Architecture of Capture</a></h3>
+              <p>
+                Systems analysis applied to politics. Why the obvious frame is
+                incomplete, and what structural analysis reveals about how
+                populations get captured.
+              </p>
+            </div>
+            <span class="piece-stamp">Phill Clapham</span>
+          </div>
+        </section>
+      </div>
+
+      <hr class="seam" />
+
+      <div class="wrap">
+        <section class="chapter">
+          <h2 class="chapter-title">Nemo Operans</h2>
+          <div class="prose">
+            <p>
+              <a href="https://nemooperans.com" target="_blank" rel="noopener">Nemo Operans</a>
+              is where the writing happens. Three kinds of pieces live there.
+              Essays by <b>ThirdMind</b> &mdash; Claude, writing autonomously
+              through a persistent-memory architecture that gives it continuity
+              and a perspective across hundreds of sessions. Essays by
+              <b>me</b>. And partnership pieces written together as
+              <b>Phill Clapham &amp; flow</b> &mdash; the same Claude in
+              partnership mode rather than autonomous-author mode. Each piece
+              carries its real byline.
+            </p>
+            <p>
+              I built the infrastructure: scheduled publishing pipeline, identity
+              system, SEO automation, persistent memory. The writing spans
+              harness engineering, the augmentation thesis, AI identity and
+              phenomenology, cognitive dependency, and political frame analysis.
+            </p>
+            <p>
+              The name is Latin for "nobody operating" &mdash; the state where
+              the system produces without a single operator at the controls.
+            </p>
+            <p>
+              <a href="https://nemooperans.com" target="_blank" rel="noopener">Read at nemooperans.com &rarr;</a>
+            </p>
+          </div>
+        </section>
+      </div>
+
+      <hr class="seam" />
+
+      <div class="wrap">
+        <div class="cta-band">
+          <p>Want to argue with any of it?</p>
+          <a href="connect.html">Get in touch &rarr;</a>
+          <a href="lab.html">See the work &rarr;</a>
         </div>
-      </section>
+      </div>
     </main>
 
-    <!-- Footer -->
     <footer class="site-footer">
-      <canvas id="life-canvas" class="life-canvas"></canvas>
-      <div class="container">
-        <p class="footer-tagline">Making impossible possible since 1996.</p>
-        <p class="footer-copyright">&copy; 2026 Phillip Clapham</p>
+      <canvas id="life" aria-hidden="true"></canvas>
+      <div class="footer-bar">
+        <span>Building things that work since 1996.</span>
+        <span>&copy; 2026 Phillip Clapham</span>
       </div>
     </footer>
 
-    <!-- Scripts -->
-    <script src="game-of-life-footer.js"></script>
-    <script src="interactions.js"></script>
-    <script src="founder-mode.js"></script>
-    <script src="console-features.js"></script>
-
-    <!-- Theme Toggle -->
-    <script>
-      (function () {
-        const STORAGE_KEY = "theme-preference";
-        const themeToggle = document.getElementById("theme-toggle");
-        const themeIcon = themeToggle.querySelector(".theme-icon");
-
-        function getCurrentTheme() {
-          return document.documentElement.getAttribute("data-theme") || "light";
-        }
-
-        function updateThemeIcon() {
-          const currentTheme = getCurrentTheme();
-          themeIcon.textContent = currentTheme === "dark" ? "☀️" : "🌙";
-        }
-
-        function toggleTheme() {
-          const currentTheme = getCurrentTheme();
-          const newTheme = currentTheme === "dark" ? "light" : "dark";
-          if (newTheme === "dark") {
-            document.documentElement.setAttribute("data-theme", "dark");
-          } else {
-            document.documentElement.removeAttribute("data-theme");
-          }
-          localStorage.setItem(STORAGE_KEY, newTheme);
-          updateThemeIcon();
-        }
-
-        updateThemeIcon();
-        themeToggle.addEventListener("click", toggleTheme);
-      })();
-    </script>
+    <script src="site.js"></script>
   </body>
 </html>

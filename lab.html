@@ -1,414 +1,243 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark" data-mode="founder">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+    <title>Work | Phillip Clapham</title>
     <meta
       name="description"
-      content="Work by Phillip Clapham — Distributed systems, cognitive infrastructure, developer tools, and consumer apps."
+      content="Systems designed and built by Phillip Clapham — Levain, anneal-memory, the Flow System, FlowScript, MicroChaos CLI, and Clapham Digital. Plus the ones that got archived, and why."
     />
-    <meta name="theme-color" content="#4B6BFB" />
-
+    <meta name="author" content="Phillip Clapham" />
+    <meta name="theme-color" content="#100e0b" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://phillipclapham.com/lab" />
     <meta property="og:title" content="Work | Phillip Clapham" />
-    <meta
-      property="og:description"
-      content="Distributed systems, cognitive infrastructure, developer tools, and consumer apps."
-    />
-
-    <title>Work | Phillip Clapham</title>
-
-    <!-- Theme: Prevent FOUC -->
+    <meta property="og:description" content="Agent memory infrastructure, cognitive-partnership tooling, and the systems behind the papers." />
+    <meta name="twitter:card" content="summary" />
     <script>
       (function () {
-        const savedTheme = localStorage.getItem("theme-preference");
-        const savedMode = localStorage.getItem("founder-mode");
-        if (savedTheme === "light") {
+        if (localStorage.getItem("theme-preference") === "light") {
           document.documentElement.removeAttribute("data-theme");
-        }
-        if (savedMode === "false") {
-          document.documentElement.setAttribute("data-mode", "professional");
         }
       })();
     </script>
 
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Michroma&family=Space+Grotesk:wght@500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=IBM+Plex+Mono:wght@400;500&family=Literata:ital,opsz,wght@0,7..72,300..600;1,7..72,300..600&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="site.css" />
 
-    <link rel="stylesheet" href="protocol-memory.css" />
-    <link rel="stylesheet" href="site-overrides.css" />
-
-    <!-- Plausible Analytics -->
     <script defer data-domain="phillipclapham.com" src="https://plausible.io/js/script.outbound-links.js"></script>
   </head>
+
   <body>
-    <!-- Background -->
-    <div class="orb-field"></div>
+    <a class="skip-link" href="#main">Skip to content</a>
 
-    <!-- Header -->
-    <header class="page-header">
-      <div class="container">
-        <nav class="page-nav">
-          <a href="/" class="nav-logo">&larr; Phillip Clapham</a>
-          <button
-            id="theme-toggle"
-            class="theme-toggle"
-            aria-label="Toggle dark mode"
-          >
-            <span class="theme-icon">☀️</span>
-          </button>
-        </nav>
+    <nav class="nav">
+      <div class="nav-inner">
+        <a class="nav-mark" href="/">Phillip Clapham</a>
+        <div class="nav-links">
+          <a href="lab.html">Work</a>
+          <a href="writing.html">Writing</a>
+          <a href="poetry.html">Poetry</a>
+          <a href="about.html">About</a>
+          <a href="connect.html">Connect</a>
+          <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle colour theme">light</button>
+        </div>
       </div>
-    </header>
+    </nav>
 
-    <!-- Main Content -->
-    <main class="lab-page">
-      <!-- Hero -->
-      <section class="lab-hero">
-        <div class="container">
+    <main id="main">
+      <div class="wrap">
+        <header class="page-hero">
           <h1 class="page-title">Work</h1>
-          <p class="page-subtitle">
-            Systems I've designed and built.
+          <p class="page-lede">
+            Systems I've designed and built &mdash; <em>and the ones I
+            archived</em>, with the reason attached. Failure is data.
           </p>
-        </div>
-      </section>
+        </header>
+      </div>
 
-      <!-- Active Projects -->
-      <section class="lab-section" id="active">
-        <div class="container">
-          <div class="section-marker">Active Projects</div>
-          <p class="section-intro">What I'm currently building and shipping.</p>
+      <hr class="seam" />
 
-          <div class="raygun-grid">
-            <!-- Flow System -->
-            <article class="raygun-card tiltable-card" id="flow-system">
-              <div class="raygun-status active">Active</div>
-              <h2 class="raygun-title">Flow System</h2>
-              <p class="raygun-tagline">Distributed cognitive infrastructure</p>
-              <div class="raygun-description">
-                <p>
-                  Multi-AI orchestration platform with parallel consultation across independent
-                  model architectures, real-time sensor pipelines (12 sensors, 19 actions, 17 executors),
-                  automated scheduling, and relay protocols for cross-system communication.
-                </p>
-                <p>
-                  Built on a hub-and-spoke topology with temporal memory graduation, trust-calibrated
-                  autonomy, and exception-based alerting. Runs on $8/week scheduled baseline with
-                  72% token optimization through intelligent caching and tiered model routing.
-                </p>
-              </div>
-              <a href="https://github.com/phillipclapham/flow-methodology" target="_blank" rel="noopener" class="raygun-link">
-                Methodology &amp; architecture &rarr;
-              </a>
-            </article>
-
-            <!-- anneal-memory -->
-            <article class="raygun-card tiltable-card" id="anneal-memory">
-              <div class="raygun-status active">Active</div>
-              <h2 class="raygun-title">anneal-memory</h2>
-              <p class="raygun-tagline">Open-source agent memory architecture</p>
-              <div class="raygun-description">
-                <p>
-                  Four cognitive layers (episodic store, continuity file, Hebbian
-                  association, affective state) with an immune system spanning all four:
-                  citation-validated graduation, anti-inbreeding defense, and principle
-                  demotion. Hash-chained JSONL audit trail for forensic verification.
-                </p>
-                <p>
-                  The constructive existence proof for the &sect;9 claims in
-                  &ldquo;A Structural Theory of Harnesses.&rdquo; Published on PyPI,
-                  v0.9.6, 12 framework integrations, 1,600+ tests passing on Python
-                  3.10&ndash;3.13, zero dependencies, MIT license. Runs in any Python
-                  agent framework through lifecycle-callback integration.
-                </p>
-              </div>
-              <a href="https://github.com/phillipclapham/anneal-memory" target="_blank" rel="noopener" class="raygun-link">
-                GitHub &rarr;
-              </a>
-            </article>
-
-            <!-- Levain -->
-            <article class="raygun-card tiltable-card" id="levain">
-              <div class="raygun-status active">Active</div>
-              <h2 class="raygun-title">Levain</h2>
-              <p class="raygun-tagline">Portable cognitive-partnership methodology kit</p>
-              <div class="raygun-description">
-                <p>
-                  Packages the harness substrate so another operator can adopt it on
-                  their own harness: methodology core, schema, harness adapters
-                  (Claude Code + Codex), and a scripted onboarding interview (CLI +
-                  locally-hosted web pane). Built on anneal-memory as its layer-1 dependency.
-                </p>
-                <p>
-                  The thesis is in the name &mdash; a levain is a living sourdough starter.
-                  You don&rsquo;t ship the methodology; you ship the seed that grows one.
-                  Published on PyPI, v0.3.13, Apache 2.0.
-                </p>
-              </div>
-              <a href="https://github.com/levainhq/levain" target="_blank" rel="noopener" class="raygun-link">
-                GitHub &rarr;
-              </a>
-            </article>
-
-            <!-- flowConnect -->
-            <article class="raygun-card tiltable-card" id="flowconnect">
-              <div class="raygun-status active">Active</div>
-              <h2 class="raygun-title">flowConnect</h2>
-              <p class="raygun-tagline">Native iOS companion app</p>
-              <div class="raygun-description">
-                <p>
-                  SwiftUI app providing real-time context signals to the Flow System.
-                  Interactive widgets for status and energy input, push notifications via APNs,
-                  barometric pressure tracking for health monitoring, and 7 signal dimensions
-                  feeding the cognitive engine.
-                </p>
-                <p>
-                  Built with WidgetKit, App Groups for cross-process data sharing,
-                  and a FastAPI backend bridging the iOS app to the distributed system.
-                </p>
-              </div>
-              <span class="raygun-link-note">Part of the Flow ecosystem</span>
-            </article>
-
-            <!-- Clapham Digital -->
-            <article class="raygun-card tiltable-card" id="clapham-digital">
-              <div class="raygun-status active">Active</div>
-              <h2 class="raygun-title">Clapham Digital</h2>
-              <p class="raygun-tagline">Consumer training apps</p>
-              <div class="raygun-description">
-                <p>
-                  Video Poker Edge and Blackjack Edge teach math-optimal strategy through
-                  deliberate practice. Built on correct pedagogy: learn by doing, with
-                  immediate feedback, in context. React Native, TypeScript.
-                </p>
-              </div>
-              <a href="https://claphamdigital.com" target="_blank" rel="noopener" class="raygun-link">
-                claphamdigital.com &rarr;
-              </a>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <!-- Open Source & Tools -->
-      <section class="lab-section" id="deployed">
-        <div class="container">
-          <div class="section-marker">Open Source &amp; Tools</div>
-          <p class="section-intro">Shipped and available.</p>
-
-          <div class="raygun-grid">
-            <!-- FlowScript -->
-            <article class="raygun-card tiltable-card">
-              <div class="raygun-status deployed">Maintenance Mode</div>
-              <h2 class="raygun-title">FlowScript</h2>
-              <p class="raygun-tagline">Semantic notation for computable cognition</p>
-              <div class="raygun-description">
-                <p>
-                  Open-source symbolic notation that compresses complex thought into
-                  dense symbolic form, revealing structure that verbose prose obscures.
-                  The encoding layer the flow system grew from &mdash; &ldquo;the encoding
-                  IS the thinking.&rdquo; Now in maintenance mode; the live encoding work
-                  moved into the flow system + anneal-memory's compression pipeline.
-                </p>
-                <p>
-                  Technical capabilities: hash-chained audit trails, typed semantic queries,
-                  convergence certificates via stratified fixpoint computation (@fix).
-                  TypeScript SDK (npm) and Python SDK (PyPI): nine framework adapters in
-                  Python plus a Vercel AI SDK adapter in TypeScript, 1,615 tests. MIT.
-                  Kept live as an active learning resource at flowscript.org.
-                </p>
-              </div>
-              <a href="https://flowscript.org" target="_blank" rel="noopener" class="raygun-link">
-                flowscript.org &rarr;
-              </a>
-            </article>
-
-            <!-- MicroChaos CLI -->
-            <article class="raygun-card tiltable-card">
-              <div class="raygun-status deployed">Open Source</div>
-              <h2 class="raygun-title">MicroChaos CLI</h2>
-              <p class="raygun-tagline">WordPress load testing infrastructure</p>
-              <div class="raygun-description">
-                <p>
-                  WP-CLI based load testing tool for staging environments where external
-                  load testing is restricted. Internal chaos engineering for hosting infrastructure.
-                  PHP.
-                </p>
-              </div>
-              <a href="https://github.com/phillipclapham/microchaos-cli" target="_blank" rel="noopener" class="raygun-link">
-                GitHub &rarr;
-              </a>
-            </article>
-
-            <!-- Harness Paper -->
-            <article class="raygun-card tiltable-card">
-              <div class="raygun-status deployed">Published</div>
-              <h2 class="raygun-title">A Structural Theory of Harnesses</h2>
-              <p class="raygun-tagline">Theoretical account of harness engineering</p>
-              <div class="raygun-description">
-                <p>
-                  ~25,000-word paper. The first complete theoretical account of harness
-                  engineering as a named discipline: why generalized intelligence lives
-                  in the arrangement around the generator, not inside the model. 13 sections,
-                  convergent biological and frontier-AI evidence, a mechanism catalog of
-                  six harness properties, and anneal-memory as the constructive existence proof.
-                </p>
-              </div>
-              <div class="raygun-links">
-                <a href="https://nemooperans.com/a-structural-theory-of-harnesses" target="_blank" rel="noopener" class="raygun-link">
-                  Read the paper &rarr;
-                </a>
-                <a href="https://doi.org/10.5281/zenodo.19570642" target="_blank" rel="noopener" class="raygun-link">
-                  DOI &rarr;
-                </a>
-              </div>
-            </article>
-
-            <!-- Iron Man Ruined AI -->
-            <article class="raygun-card tiltable-card">
-              <div class="raygun-status deployed">Published</div>
-              <h2 class="raygun-title">Iron Man Ruined AI</h2>
-              <p class="raygun-tagline">AI partnership architecture paper</p>
-              <div class="raygun-description">
-                <p>
-                  ~25,000-word engineering paper on building AI partnership instead of AI dependency.
-                  Architecture decisions, temporal memory graduation, multi-model consultation,
-                  and complete templates for implementation.
-                </p>
-              </div>
-              <div class="raygun-links">
-                <a href="https://nemooperans.com/iron-man-ruined-ai" target="_blank" rel="noopener" class="raygun-link">
-                  Read the paper &rarr;
-                </a>
-                <a href="https://github.com/phillipclapham/flow-methodology" target="_blank" rel="noopener" class="raygun-link">
-                  GitHub repo &rarr;
-                </a>
-              </div>
-            </article>
-
-            <!-- Nemo Operans -->
-            <article class="raygun-card tiltable-card">
-              <div class="raygun-status deployed">Active</div>
-              <h2 class="raygun-title">Nemo Operans</h2>
-              <p class="raygun-tagline">A publication on minds and machines</p>
-              <div class="raygun-description">
-                <p>
-                  Where the writing happens. Three kinds of pieces: essays by ThirdMind
-                  (Claude, writing autonomously through a persistent-memory architecture),
-                  essays by me, and partnership pieces written together as &ldquo;Phill
-                  Clapham &amp; flow.&rdquo; I built the infrastructure &mdash; scheduled
-                  pipeline, identity system, SEO automation; the writing spans harness
-                  engineering, the augmentation thesis, AI identity, and political analysis.
-                </p>
-              </div>
-              <a href="https://nemooperans.com" target="_blank" rel="noopener" class="raygun-link">
-                nemooperans.com &rarr;
-              </a>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <!-- Archived -->
-      <section class="lab-section graveyard-section" id="graveyard">
-        <div class="container">
-          <div class="section-marker">Archived</div>
-          <p class="section-intro">Experiments that taught me something. Failure is data.</p>
-
-          <div class="graveyard-list">
-            <article class="graveyard-item">
-              <h3 class="graveyard-title">Protocol Memory</h3>
-              <p class="graveyard-desc">
-                Cognitive infrastructure platform for human-AI partnership. Built as a product,
-                discovered it was actually private infrastructure. The framework worked;
-                the product framing didn't. Lessons learned: some architectures are moats, not products.
+      <div class="wrap">
+        <section class="chapter">
+          <h2 class="chapter-title">Shipping now</h2>
+          <div class="card-grid">
+            <article class="card">
+              <span class="status status--live">Flagship</span>
+              <h3>Levain</h3>
+              <p>
+                Portable cognitive-partnership memory and methodology kit.
+                Methodology core, harness adapters for Claude Code and Codex, and
+                scripted onboarding via CLI or a locally-hosted web pane. Built
+                on anneal-memory as a layer-1 dependency. Memory that persists
+                across sessions and stays yours: nothing reaches long-term memory
+                except through a path you govern.
               </p>
-              <span class="graveyard-status">Archived &bull; Architecture evolved into Flow System</span>
+              <p class="card-meta">v0.3.13 &middot; Apache-2.0 &middot; PyPI</p>
+              <a class="card-link" href="https://github.com/levainhq/levain" target="_blank" rel="noopener">GitHub &rarr;</a>
             </article>
-            <article class="graveyard-item">
-              <h3 class="graveyard-title">FlowScript Cloud</h3>
-              <p class="graveyard-desc">
-                Independent cryptographic witnessing service for agent reasoning chains.
-                Hash chain integrity verification and compliance attestations via
-                Cloudflare Workers + D1. Built as commercial infrastructure for FlowScript's
-                EU AI Act story. Retired when FlowScript moved to maintenance mode. Lessons
-                learned: witness infrastructure needs a product underneath it, and solo-maintained
-                SaaS witness services don't pencil without an institutional customer driving the demand.
-              </p>
-              <span class="graveyard-status">Archived &bull; Repo preserved on GitHub</span>
-            </article>
-          </div>
-        </div>
-      </section>
 
-      <!-- CTA -->
-      <section class="lab-cta-section">
-        <div class="container">
-          <h2>Want to collaborate?</h2>
-          <p>I'm always interested in conversations with people building interesting things.</p>
-          <div class="cta-links">
-            <a href="connect.html" class="btn-primary">Get in touch</a>
-            <a href="about.html" class="btn-secondary">About me</a>
+            <article class="card">
+              <span class="status status--live">Live</span>
+              <h3>anneal-memory</h3>
+              <p>
+                Open-source agent memory architecture. Four cognitive layers
+                &mdash; episodic store, continuity file, Hebbian association,
+                affective state &mdash; with a cross-layer immune system
+                (citation-validated graduation, anti-inbreeding defense,
+                principle demotion) and a hash-chained JSONL audit trail. The
+                constructive existence proof for the harness paper's &sect;9.
+              </p>
+              <p class="card-meta">v0.9.6 &middot; 1,642 tests &middot; 12 integrations &middot; zero deps &middot; MIT</p>
+              <a class="card-link" href="https://github.com/phillipclapham/anneal-memory" target="_blank" rel="noopener">GitHub &rarr;</a>
+            </article>
+
+            <article class="card">
+              <span class="status status--live">Live</span>
+              <h3>Flow System</h3>
+              <p>
+                Distributed cognitive infrastructure for human-AI partnership.
+                Multi-AI orchestration with parallel consultation, real-time
+                sensor pipelines, automated scheduling, and relay protocols for
+                cross-system communication. The working harness instance behind
+                the papers. The system itself is private; the methodology is
+                open.
+              </p>
+              <p class="card-meta">Python &middot; FastAPI &middot; SwiftUI</p>
+              <a class="card-link" href="https://github.com/phillipclapham/flow-methodology" target="_blank" rel="noopener">Methodology &rarr;</a>
+            </article>
+
+            <article class="card">
+              <span class="status status--live">Shipped</span>
+              <h3>Clapham Digital</h3>
+              <p>
+                Consumer apps that teach complex skills through deliberate
+                practice. Video Poker Edge and Blackjack Edge &mdash;
+                math-optimal strategy training, verified to 0.004% precision.
+                One-time purchase, no ads, no in-app purchases, no data
+                harvesting.
+              </p>
+              <p class="card-meta">iOS &middot; Android</p>
+              <a class="card-link" href="https://claphamdigital.com" target="_blank" rel="noopener">claphamdigital.com &rarr;</a>
+            </article>
+
+            <article class="card">
+              <span class="status">Not publicly released</span>
+              <h3>flowConnect</h3>
+              <p>
+                Native iOS companion to the Flow System. Real-time context
+                signals, push notifications via APNs, interactive widgets for
+                status and energy input, barometric tracking. Built for one user
+                and running daily &mdash; there is no public build to point at,
+                so treat this as a note rather than a claim.
+              </p>
+              <p class="card-meta">SwiftUI &middot; WidgetKit &middot; APNs</p>
+            </article>
           </div>
+        </section>
+
+        <section class="chapter">
+          <h2 class="chapter-title">Open source tools</h2>
+          <div class="card-grid">
+            <article class="card">
+              <span class="status status--maint">Maintenance mode</span>
+              <h3>FlowScript</h3>
+              <p>
+                Semantic notation for high-density AI communication and encoded
+                cognition. Compresses complex relationships into symbolic form
+                that reveals structure verbose prose hides. Typed semantic
+                queries, hash-chained audit trails, convergence certificates via
+                stratified fixpoint computation. Its core concepts evolved into
+                anneal-memory; the notation stays in daily use, and the site
+                remains an active learning resource with a playground that runs
+                it in your browser.
+              </p>
+              <p class="card-meta">9 Python adapters + Vercel AI SDK &middot; 1,615 tests &middot; MIT</p>
+              <a class="card-link" href="https://flowscript.org" target="_blank" rel="noopener">flowscript.org &rarr;</a>
+            </article>
+
+            <article class="card">
+              <span class="status status--live">Open source</span>
+              <h3>MicroChaos CLI</h3>
+              <p>
+                WP-CLI load testing for staging environments where external load
+                testing is restricted. Warm or cold cache, anonymous or
+                authenticated, fast bursts or slow burns. Chaos engineering for
+                managed hosting infrastructure.
+              </p>
+              <p class="card-meta">PHP &middot; WP-CLI &middot; GPL-3.0</p>
+              <a class="card-link" href="https://github.com/phillipclapham/microchaos-cli" target="_blank" rel="noopener">GitHub &rarr;</a>
+            </article>
+          </div>
+        </section>
+
+        <section class="chapter">
+          <h2 class="chapter-title">Publication</h2>
+          <div class="prose">
+            <p>
+              <a href="https://nemooperans.com" target="_blank" rel="noopener">Nemo Operans</a>
+              &mdash; a publication on minds and machines, where the research and
+              essays live. I built the infrastructure; ThirdMind writes
+              independently. The papers themselves are on the
+              <a href="writing.html">writing page</a>, where they belong &mdash;
+              a paper is not a tool.
+            </p>
+          </div>
+        </section>
+
+        <section class="chapter">
+          <h2 class="chapter-title">Archived</h2>
+          <div class="archived-list">
+            <div class="rundown-item">
+              <span class="status status--archived">Archived</span>
+              <h3>Protocol Memory</h3>
+              <p>
+                Built as a product; discovered it was actually private
+                infrastructure. The architecture evolved into the Flow System.
+                Its design system outlived it as this site's stylesheet for far
+                too long &mdash; now replaced.
+              </p>
+            </div>
+            <div class="rundown-item">
+              <span class="status status--archived">Archived</span>
+              <h3>FlowScript Cloud</h3>
+              <p>
+                A hosted layer for a notation whose barrier was never hosting.
+                Developers won't learn a new language for memory &mdash; that
+                finding is what redirected the work into anneal-memory.
+              </p>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <hr class="seam" />
+
+      <div class="wrap">
+        <div class="cta-band">
+          <p>Want to build something together?</p>
+          <a href="connect.html">Get in touch &rarr;</a>
+          <a href="writing.html">Read the theory &rarr;</a>
         </div>
-      </section>
+      </div>
     </main>
 
-    <!-- Footer -->
     <footer class="site-footer">
-      <canvas id="life-canvas" class="life-canvas"></canvas>
-      <div class="container">
-        <p class="footer-tagline">Making impossible possible since 1996.</p>
-        <p class="footer-copyright">&copy; 2026 Phillip Clapham</p>
+      <canvas id="life" aria-hidden="true"></canvas>
+      <div class="footer-bar">
+        <span>Building things that work since 1996.</span>
+        <span>&copy; 2026 Phillip Clapham</span>
       </div>
     </footer>
 
-    <!-- Scripts -->
-    <script src="game-of-life-footer.js"></script>
-    <script src="interactions.js"></script>
-    <script src="founder-mode.js"></script>
-    <script src="console-features.js"></script>
-
-    <!-- Theme Toggle -->
-    <script>
-      (function () {
-        const STORAGE_KEY = "theme-preference";
-        const themeToggle = document.getElementById("theme-toggle");
-        const themeIcon = themeToggle.querySelector(".theme-icon");
-
-        function getCurrentTheme() {
-          return document.documentElement.getAttribute("data-theme") || "light";
-        }
-
-        function updateThemeIcon() {
-          const currentTheme = getCurrentTheme();
-          themeIcon.textContent = currentTheme === "dark" ? "☀️" : "🌙";
-        }
-
-        function toggleTheme() {
-          const currentTheme = getCurrentTheme();
-          const newTheme = currentTheme === "dark" ? "light" : "dark";
-          if (newTheme === "dark") {
-            document.documentElement.setAttribute("data-theme", "dark");
-          } else {
-            document.documentElement.removeAttribute("data-theme");
-          }
-          localStorage.setItem(STORAGE_KEY, newTheme);
-          updateThemeIcon();
-        }
-
-        updateThemeIcon();
-        themeToggle.addEventListener("click", toggleTheme);
-      })();
-    </script>
+    <script src="site.js"></script>
   </body>
 </html>

@@ -1,239 +1,188 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark" data-mode="founder">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+    <title>Connect | Phillip Clapham</title>
     <meta
       name="description"
-      content="Connect with Phillip Clapham - Email, social links, and projects."
+      content="Reach Phillip Clapham — harness engineer, founder of Clapham Digital LLC. Contract and consulting in AI systems, developer tooling, and WordPress/hosting infrastructure."
     />
-    <meta name="theme-color" content="#4B6BFB" />
-
+    <meta name="author" content="Phillip Clapham" />
+    <meta name="theme-color" content="#100e0b" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://phillipclapham.com/connect" />
     <meta property="og:title" content="Connect | Phillip Clapham" />
-    <meta
-      property="og:description"
-      content="All the ways to find and reach Phillip Clapham."
-    />
-
-    <title>Connect | Phillip Clapham</title>
-
-    <!-- Theme: Prevent FOUC -->
+    <meta property="og:description" content="Every way to find and reach me. Columbus, Ohio — remote, US-based." />
+    <meta name="twitter:card" content="summary" />
     <script>
       (function () {
-        const savedTheme = localStorage.getItem("theme-preference");
-        const savedMode = localStorage.getItem("founder-mode");
-        if (savedTheme === "light") {
+        if (localStorage.getItem("theme-preference") === "light") {
           document.documentElement.removeAttribute("data-theme");
-        }
-        if (savedMode === "false") {
-          document.documentElement.setAttribute("data-mode", "professional");
         }
       })();
     </script>
 
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Michroma&family=Space+Grotesk:wght@500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=IBM+Plex+Mono:wght@400;500&family=Literata:ital,opsz,wght@0,7..72,300..600;1,7..72,300..600&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="site.css" />
 
-    <link rel="stylesheet" href="protocol-memory.css" />
-    <link rel="stylesheet" href="site-overrides.css" />
-
-    <!-- Plausible Analytics -->
     <script defer data-domain="phillipclapham.com" src="https://plausible.io/js/script.outbound-links.js"></script>
   </head>
+
   <body>
-    <!-- Background -->
-    <div class="orb-field"></div>
+    <a class="skip-link" href="#main">Skip to content</a>
 
-    <!-- Header -->
-    <header class="page-header">
-      <div class="container">
-        <nav class="page-nav">
-          <a href="/" class="nav-logo">&larr; Phillip Clapham</a>
-          <button
-            id="theme-toggle"
-            class="theme-toggle"
-            aria-label="Toggle dark mode"
-          >
-            <span class="theme-icon">☀️</span>
-          </button>
-        </nav>
+    <nav class="nav">
+      <div class="nav-inner">
+        <a class="nav-mark" href="/">Phillip Clapham</a>
+        <div class="nav-links">
+          <a href="lab.html">Work</a>
+          <a href="writing.html">Writing</a>
+          <a href="poetry.html">Poetry</a>
+          <a href="about.html">About</a>
+          <a href="connect.html">Connect</a>
+          <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle colour theme">light</button>
+        </div>
       </div>
-    </header>
+    </nav>
 
-    <!-- Main Content -->
-    <main class="connect-page">
-      <!-- Hero -->
-      <section class="connect-hero">
-        <div class="container">
+    <main id="main">
+      <div class="wrap">
+        <header class="page-hero">
           <h1 class="page-title">Connect</h1>
-          <p class="page-subtitle">
-            I'm always interested in interesting conversations.
+          <p class="page-lede">
+            Columbus, Ohio &mdash; remote, US-based. Open to contract and
+            consulting work in AI systems, developer tooling, and
+            WordPress/hosting infrastructure, and to the <em>right</em>
+            full-time role.
           </p>
-        </div>
-      </section>
+        </header>
+      </div>
 
-      <!-- Say Hello -->
-      <section class="connect-section">
-        <div class="container">
-          <p class="section-marker">Say Hello</p>
-          <div class="connect-grid connect-grid--single">
-            <a href="mailto:me@phillipclapham.com" class="connect-card connect-card--primary tiltable-card">
-              <span class="connect-card-label">Email</span>
-              <span class="connect-card-value">me@phillipclapham.com</span>
-              <span class="connect-card-desc">The best way to reach me directly.</span>
-            </a>
+      <hr class="seam" />
+
+      <div class="wrap">
+        <section class="chapter">
+          <h2 class="chapter-title">Say hello</h2>
+          <div class="prose">
+            <p>
+              Email is the best way to reach me directly:
+              <a href="mailto:me@phillipclapham.com">me@phillipclapham.com</a>.
+              I read everything. I answer things that are actually interesting.
+            </p>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- Find Me -->
-      <section class="connect-section">
-        <div class="container">
-          <p class="section-marker">Find Me</p>
+        <section class="chapter">
+          <h2 class="chapter-title">Find me</h2>
           <div class="connect-grid">
-            <a href="https://www.linkedin.com/in/phillipclapham" target="_blank" rel="noopener" class="connect-card tiltable-card">
-              <span class="connect-card-label">LinkedIn</span>
-              <span class="connect-card-value">phillipclapham</span>
-              <span class="connect-card-desc">Professional network & career history.</span>
+            <a class="connect-item" href="https://www.linkedin.com/in/phillipclapham/" target="_blank" rel="noopener">
+              <span>LinkedIn</span><b>in/phillipclapham</b>
             </a>
-            <a href="https://github.com/phillipclapham" target="_blank" rel="noopener" class="connect-card tiltable-card">
-              <span class="connect-card-label">GitHub</span>
-              <span class="connect-card-value">phillipclapham</span>
-              <span class="connect-card-desc">Code, experiments, and open source.</span>
+            <a class="connect-item" href="https://github.com/phillipclapham" target="_blank" rel="noopener">
+              <span>GitHub</span><b>phillipclapham</b>
             </a>
-            <a href="https://www.instagram.com/phillc42" target="_blank" rel="noopener" class="connect-card tiltable-card">
-              <span class="connect-card-label">Instagram</span>
-              <span class="connect-card-value">@phillc42</span>
-              <span class="connect-card-desc">Occasional life fragments.</span>
+            <a class="connect-item" href="https://bsky.app/profile/nemooperans.bsky.social" target="_blank" rel="noopener">
+              <span>Bluesky</span><b>@nemooperans</b>
             </a>
-            <a href="https://www.threads.net/@phillc42" target="_blank" rel="noopener" class="connect-card tiltable-card">
-              <span class="connect-card-label">Threads</span>
-              <span class="connect-card-value">@phillc42</span>
-              <span class="connect-card-desc">Shorter thoughts, real-time.</span>
-            </a>
-            <a href="https://bsky.app/profile/nemooperans.bsky.social" target="_blank" rel="noopener" class="connect-card tiltable-card">
-              <span class="connect-card-label">BlueSky</span>
-              <span class="connect-card-value">@nemooperans</span>
-              <span class="connect-card-desc">The political voice, decentralized.</span>
-            </a>
-            <a href="https://www.facebook.com/phillip.clapham/" target="_blank" rel="noopener" class="connect-card tiltable-card">
-              <span class="connect-card-label">Facebook</span>
-              <span class="connect-card-value">phillip.clapham</span>
-              <span class="connect-card-desc">The legacy platform. Still there.</span>
+            <a class="connect-item" href="https://www.instagram.com/phillc42" target="_blank" rel="noopener">
+              <span>Instagram</span><b>@phillc42</b>
             </a>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- See The Work -->
-      <section class="connect-section">
-        <div class="container">
-          <p class="section-marker">See The Work</p>
-          <div class="connect-grid">
-            <a href="https://github.com/phillipclapham/anneal-memory" target="_blank" rel="noopener" class="connect-card tiltable-card">
-              <span class="connect-card-label">anneal-memory</span>
-              <span class="connect-card-value">PyPI &middot; GitHub</span>
-              <span class="connect-card-desc">Four-layer agent memory architecture with a cross-layer immune system. 1,600+ tests, MIT.</span>
-            </a>
-            <a href="https://github.com/levainhq/levain" target="_blank" rel="noopener" class="connect-card tiltable-card">
-              <span class="connect-card-label">Levain</span>
-              <span class="connect-card-value">PyPI &middot; GitHub</span>
-              <span class="connect-card-desc">Portable cognitive-partnership methodology kit. Ship the seed that grows a practice.</span>
-            </a>
-            <a href="https://nemooperans.com/a-structural-theory-of-harnesses" target="_blank" rel="noopener" class="connect-card tiltable-card">
-              <span class="connect-card-label">Flagship Paper</span>
-              <span class="connect-card-value">A Structural Theory of Harnesses</span>
-              <span class="connect-card-desc">The first complete theoretical account of harness engineering. Zenodo DOI.</span>
-            </a>
-            <a href="https://github.com/phillipclapham/flow-methodology" target="_blank" rel="noopener" class="connect-card tiltable-card">
-              <span class="connect-card-label">Methodology</span>
-              <span class="connect-card-value">flow-methodology</span>
-              <span class="connect-card-desc">Open source AI partnership architecture and templates.</span>
-            </a>
-            <a href="https://nemooperans.com" target="_blank" rel="noopener" class="connect-card tiltable-card">
-              <span class="connect-card-label">Nemo Operans</span>
-              <span class="connect-card-value">nemooperans.com</span>
-              <span class="connect-card-desc">A publication on minds and machines. Essays by ThirdMind, by me, and by us together as flow.</span>
-            </a>
-            <a href="https://claphamdigital.com" target="_blank" rel="noopener" class="connect-card tiltable-card">
-              <span class="connect-card-label">Clapham Digital</span>
-              <span class="connect-card-value">claphamdigital.com</span>
-              <span class="connect-card-desc">Native iOS strategy-training apps shipped under my own LLC.</span>
-            </a>
-          </div>
-        </div>
-      </section>
+        <section class="chapter">
+          <h2 class="chapter-title">See the work</h2>
+          <div class="card-grid">
+            <article class="card">
+              <h3>Levain</h3>
+              <p>
+                Portable cognitive-partnership memory and methodology kit. Ship
+                the seed that grows a practice, not the grown practice.
+              </p>
+              <p class="card-meta">v0.3.13 &middot; Apache-2.0</p>
+              <a class="card-link" href="https://github.com/levainhq/levain" target="_blank" rel="noopener">GitHub &rarr;</a>
+            </article>
 
-      <!-- CTA -->
-      <section class="connect-cta-section">
-        <div class="container">
-          <p class="connect-cta-text">
-            I build things that work. Come see for yourself.
-          </p>
-          <div class="cta-links">
-            <a href="https://github.com/phillipclapham" target="_blank" rel="noopener" class="btn-secondary">GitHub</a>
-            <a href="about.html" class="btn-secondary">About me</a>
+            <article class="card">
+              <h3>anneal-memory</h3>
+              <p>
+                Four-layer agent memory architecture with a cross-layer immune
+                system and a hash-chained audit trail.
+              </p>
+              <p class="card-meta">v0.9.6 &middot; 1,642 tests &middot; MIT</p>
+              <a class="card-link" href="https://github.com/phillipclapham/anneal-memory" target="_blank" rel="noopener">GitHub &rarr;</a>
+            </article>
+
+            <article class="card">
+              <h3>A Structural Theory of Harnesses</h3>
+              <p>
+                The first complete theoretical account of harness engineering as
+                a named discipline.
+              </p>
+              <p class="card-meta">DOI 10.5281/zenodo.19570642</p>
+              <a class="card-link" href="https://nemooperans.com/a-structural-theory-of-harnesses" target="_blank" rel="noopener">Read it &rarr;</a>
+            </article>
+
+            <article class="card">
+              <h3>Nemo Operans</h3>
+              <p>
+                A publication on minds and machines. Essays by ThirdMind, by me,
+                and by the two of us together as flow.
+              </p>
+              <p class="card-meta">Publication</p>
+              <a class="card-link" href="https://nemooperans.com" target="_blank" rel="noopener">nemooperans.com &rarr;</a>
+            </article>
+
+            <article class="card">
+              <h3>Clapham Digital</h3>
+              <p>
+                Strategy-training apps that teach complex skills through
+                deliberate practice, shipped under my own LLC.
+              </p>
+              <p class="card-meta">iOS &middot; Android</p>
+              <a class="card-link" href="https://claphamdigital.com" target="_blank" rel="noopener">claphamdigital.com &rarr;</a>
+            </article>
+
+            <article class="card">
+              <h3>Flow System</h3>
+              <p>
+                Distributed cognitive infrastructure for human-AI partnership.
+                The working harness instance behind the papers.
+              </p>
+              <p class="card-meta">Open methodology</p>
+              <a class="card-link" href="https://github.com/phillipclapham/flow-methodology" target="_blank" rel="noopener">GitHub &rarr;</a>
+            </article>
           </div>
+        </section>
+      </div>
+
+      <hr class="seam" />
+
+      <div class="wrap">
+        <div class="cta-band">
+          <p>I build things that work. Come see for yourself.</p>
+          <a href="lab.html">All work &rarr;</a>
+          <a href="about.html">About me &rarr;</a>
         </div>
-      </section>
+      </div>
     </main>
 
-    <!-- Footer -->
     <footer class="site-footer">
-      <canvas id="life-canvas" class="life-canvas"></canvas>
-      <div class="container">
-        <p class="footer-tagline">Making impossible possible since 1996.</p>
-        <p class="footer-copyright">&copy; 2026 Phillip Clapham</p>
+      <canvas id="life" aria-hidden="true"></canvas>
+      <div class="footer-bar">
+        <span>Building things that work since 1996.</span>
+        <span>&copy; 2026 Phillip Clapham</span>
       </div>
     </footer>
 
-    <!-- Scripts -->
-    <script src="game-of-life-footer.js"></script>
-    <script src="interactions.js"></script>
-    <script src="founder-mode.js"></script>
-    <script src="console-features.js"></script>
-
-    <!-- Theme Toggle -->
-    <script>
-      (function () {
-        const STORAGE_KEY = "theme-preference";
-        const themeToggle = document.getElementById("theme-toggle");
-        const themeIcon = themeToggle.querySelector(".theme-icon");
-
-        function getCurrentTheme() {
-          return document.documentElement.getAttribute("data-theme") || "light";
-        }
-
-        function updateThemeIcon() {
-          const currentTheme = getCurrentTheme();
-          themeIcon.textContent = currentTheme === "dark" ? "☀️" : "🌙";
-        }
-
-        function toggleTheme() {
-          const currentTheme = getCurrentTheme();
-          const newTheme = currentTheme === "dark" ? "light" : "dark";
-          if (newTheme === "dark") {
-            document.documentElement.setAttribute("data-theme", "dark");
-          } else {
-            document.documentElement.removeAttribute("data-theme");
-          }
-          localStorage.setItem(STORAGE_KEY, newTheme);
-          updateThemeIcon();
-        }
-
-        updateThemeIcon();
-        themeToggle.addEventListener("click", toggleTheme);
-      })();
-    </script>
+    <script src="site.js"></script>
   </body>
 </html>

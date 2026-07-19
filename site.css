@@ -693,3 +693,242 @@ button:focus-visible,
 :root:not([data-theme="dark"]) .lyr-core {
   color: #7a4a10;
 }
+
+/* ============ INTERIOR PAGES ============ */
+.page-hero {
+  padding: var(--s-24) 0 var(--s-12);
+}
+.page-title {
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" 82, "opsz" 96;
+  font-weight: 700;
+  font-size: clamp(2.2rem, 5.2vw, var(--t-3xl));
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  margin: 0 0 var(--s-4);
+}
+.page-lede {
+  font-size: var(--t-md);
+  line-height: 1.45;
+  color: var(--text);
+  max-width: 48ch;
+  margin: 0;
+}
+.page-lede em {
+  font-style: normal;
+  color: var(--accent);
+}
+
+/* Prose. Left-aligned with a real measure — centred body copy is a
+   readability problem and a taste tell. */
+.prose {
+  max-width: var(--measure);
+}
+.prose p {
+  margin: 0 0 var(--s-6);
+}
+.prose p:last-child {
+  margin-bottom: 0;
+}
+.prose a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid var(--gold-deep);
+}
+.prose a:hover {
+  color: var(--gold-bright);
+}
+
+/* Sections are joined by kintsugi seams, not 01/02/03 numbering — the
+   numbering implied a sequence the content does not have. */
+.chapter {
+  padding: var(--s-16) 0;
+  border-top: 1px solid var(--rule);
+}
+.chapter:first-of-type {
+  border-top: 0;
+}
+.chapter-title {
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" 88;
+  font-weight: 700;
+  font-size: var(--t-lg);
+  letter-spacing: -0.02em;
+  margin: 0 0 var(--s-8);
+}
+
+.pull-quote {
+  margin: var(--s-8) 0;
+  padding-left: var(--s-6);
+  border-left: 2px solid var(--accent);
+  font-size: var(--t-md);
+  line-height: 1.45;
+  color: var(--text);
+  font-style: italic;
+  max-width: 46ch;
+}
+
+.principles {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--s-6);
+  max-width: var(--measure);
+}
+.principles li {
+  border-top: 1px solid var(--rule);
+  padding-top: var(--s-4);
+}
+.principles b {
+  display: block;
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" 92;
+  font-weight: 600;
+  font-size: var(--t-base);
+  margin-bottom: var(--s-2);
+  color: var(--text);
+}
+.principles span {
+  color: var(--text-dim);
+  font-size: var(--t-sm);
+}
+
+/* Definition-style list for "what I'm building" / project rundowns. */
+.rundown {
+  display: grid;
+  gap: var(--s-8);
+}
+.rundown-item {
+  border-top: 1px solid var(--rule);
+  padding-top: var(--s-6);
+}
+.rundown-item h3 {
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" 92;
+  font-weight: 600;
+  font-size: var(--t-md);
+  margin: 0 0 var(--s-2);
+}
+.rundown-item h3 a {
+  color: var(--text);
+  text-decoration: none;
+}
+.rundown-item h3 a:hover {
+  color: var(--accent);
+}
+.rundown-item p {
+  margin: 0 0 var(--s-3);
+  color: var(--text-dim);
+  font-size: var(--t-sm);
+  max-width: var(--measure);
+}
+.rundown-meta {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  color: var(--patina-bright);
+}
+
+.cta-band {
+  padding: var(--s-16) 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-6);
+  align-items: baseline;
+}
+.cta-band p {
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" 88;
+  font-weight: 600;
+  font-size: var(--t-lg);
+  letter-spacing: -0.02em;
+  margin: 0;
+  flex: 1 1 18rem;
+}
+.cta-band a {
+  font-family: var(--font-mono);
+  font-size: var(--t-sm);
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid var(--gold-deep);
+}
+
+/* ============ POEMS ============
+   Radical compression, so the type gets air and the white space is
+   allowed to do its work as text. */
+.poem {
+  padding: var(--s-12) 0;
+  border-top: 1px solid var(--rule);
+  display: grid;
+  grid-template-columns: 4rem 1fr;
+  gap: var(--s-8);
+  align-items: start;
+}
+.poem-num {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  padding-top: 0.4rem;
+}
+.poem-body {
+  font-size: var(--t-md);
+  line-height: 1.75;
+  white-space: pre-line;
+  margin: 0;
+  max-width: 34ch;
+  color: var(--text);
+}
+.poem-seal {
+  font-size: var(--t-lg);
+  color: var(--accent);
+  margin-top: var(--s-4);
+}
+@media (max-width: 700px) {
+  .poem {
+    grid-template-columns: 1fr;
+    gap: var(--s-3);
+  }
+}
+
+/* ============ STATUS MARKERS ============
+   Honest states, including "not publicly released" — a card with no
+   verifiable artifact should say so rather than claim Active and link
+   nowhere. */
+.status {
+  display: inline-block;
+  align-self: flex-start;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 2px var(--s-2);
+  border: 1px solid var(--rule);
+  color: var(--text-faint);
+  margin-bottom: var(--s-3);
+}
+.status--live {
+  color: var(--patina-bright);
+  border-color: var(--patina-deep);
+}
+.status--maint {
+  color: var(--gold);
+  border-color: var(--gold-deep);
+}
+.status--archived {
+  color: var(--text-faint);
+}
+.archived-list {
+  display: grid;
+  gap: var(--s-6);
+  max-width: var(--measure);
+}
+.archived-list .rundown-item p {
+  color: var(--text-faint);
+}
+
+/* Intro prose sitting between a page hero and a seam needs its own
+   breathing room, or the last line collides with the rule. */
+.page-intro {
+  padding-bottom: var(--s-16);
+}

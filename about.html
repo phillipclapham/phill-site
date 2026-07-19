@@ -1,367 +1,266 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark" data-mode="founder">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-    />
-    <meta
-      name="description"
-      content="About Phillip Clapham — Harness engineer. Author of A Structural Theory of Harnesses. Founder of Clapham Digital LLC, building governed human-AI systems in public and shipping open-source AI agent infrastructure."
-    />
-    <meta name="theme-color" content="#4B6BFB" />
-
-    <!-- Open Graph / Social Sharing -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://phillipclapham.com/about" />
-    <meta
-      property="og:title"
-      content="About | Phillip Clapham"
-    />
-    <meta
-      property="og:description"
-      content="Harness engineer. Author of A Structural Theory of Harnesses. Founder of Clapham Digital LLC. Building governed human-AI systems in public."
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 
     <title>About | Phillip Clapham</title>
+    <meta
+      name="description"
+      content="Phillip Clapham — harness engineer, founder of Clapham Digital LLC, author of A Structural Theory of Harnesses. Thirty years of learning by building, and the systems that came out of it."
+    />
+    <meta name="author" content="Phillip Clapham" />
+    <meta name="theme-color" content="#100e0b" />
 
-    <!-- Theme: Prevent FOUC -->
+    <meta property="og:type" content="profile" />
+    <meta property="og:url" content="https://phillipclapham.com/about" />
+    <meta property="og:title" content="About | Phillip Clapham" />
+    <meta
+      property="og:description"
+      content="Harness engineer. Author of A Structural Theory of Harnesses. I build the systems humans and machines work through, and I build them to be governed, not trusted."
+    />
+    <meta name="twitter:card" content="summary" />
+
     <script>
       (function () {
-        const savedTheme = localStorage.getItem("theme-preference");
-        const savedMode = localStorage.getItem("founder-mode");
-        if (savedTheme === "light") {
+        if (localStorage.getItem("theme-preference") === "light") {
           document.documentElement.removeAttribute("data-theme");
-        }
-        if (savedMode === "false") {
-          document.documentElement.setAttribute("data-mode", "professional");
         }
       })();
     </script>
 
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Michroma&family=Space+Grotesk:wght@500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=IBM+Plex+Mono:wght@400;500&family=Literata:ital,opsz,wght@0,7..72,300..600;1,7..72,300..600&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="site.css" />
 
-    <link rel="stylesheet" href="protocol-memory.css" />
-    <link rel="stylesheet" href="site-overrides.css" />
-
-    <!-- Plausible Analytics -->
     <script defer data-domain="phillipclapham.com" src="https://plausible.io/js/script.outbound-links.js"></script>
   </head>
+
   <body>
-    <!-- Background -->
-    <div class="orb-field"></div>
+    <a class="skip-link" href="#main">Skip to content</a>
 
-    <!-- Header -->
-    <header class="page-header">
-      <div class="container">
-        <nav class="page-nav">
-          <a href="/" class="nav-logo">&larr; Phillip Clapham</a>
-          <button
-            id="theme-toggle"
-            class="theme-toggle"
-            aria-label="Toggle dark mode"
-          >
-            <span class="theme-icon">☀️</span>
-          </button>
-        </nav>
+    <nav class="nav">
+      <div class="nav-inner">
+        <a class="nav-mark" href="/">Phillip Clapham</a>
+        <div class="nav-links">
+          <a href="lab.html">Work</a>
+          <a href="writing.html">Writing</a>
+          <a href="poetry.html">Poetry</a>
+          <a href="about.html">About</a>
+          <a href="connect.html">Connect</a>
+          <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle colour theme">light</button>
+        </div>
       </div>
-    </header>
+    </nav>
 
-    <!-- Main Content -->
-    <main class="about-page">
-      <!-- Hero -->
-      <section class="about-hero">
-        <div class="container">
+    <main id="main">
+      <div class="wrap">
+        <header class="page-hero">
           <h1 class="page-title">About</h1>
-          <p class="page-subtitle">
-            Self-taught engineer. Systems architect. Author of A Structural Theory of Harnesses.
+          <p class="page-lede">
+            Harness engineer. Author of <em>A Structural Theory of Harnesses</em>.
+            Founder of Clapham Digital LLC. Based in Columbus, Ohio.
           </p>
-        </div>
-      </section>
+        </header>
+      </div>
 
-      <!-- Quick Version -->
-      <section class="about-section">
-        <div class="container">
-          <div class="section-marker">The Short Version</div>
-          <div class="about-quick">
+      <hr class="seam" />
+
+      <div class="wrap">
+        <section class="chapter">
+          <h2 class="chapter-title">The short version</h2>
+          <div class="prose">
             <p>
-              <strong>Phillip Clapham</strong> is a harness engineer and founder of
-              <a href="https://claphamdigital.com" target="_blank" rel="noopener">Clapham Digital LLC</a>,
-              author of
-              <a href="https://nemooperans.com/a-structural-theory-of-harnesses" target="_blank" rel="noopener"><em>A Structural Theory of Harnesses</em></a>.
-              Based in Columbus, Ohio. I build the systems humans and machines work
-              through &mdash; and I build them to be governed, not trusted.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- How I Got Here -->
-      <section class="about-section">
-        <div class="container">
-          <div class="section-marker">01</div>
-          <h2 class="section-heading">How I Got Here</h2>
-
-          <div class="narrative-content">
-            <p>
-              I'm self-taught. No CS degree. I learned to build things by building things&mdash;taking
-              systems apart, figuring out how they work, putting them back together better.
-            </p>
-
-            <p>
-              That pattern hasn't changed in 30 years. I still learn by building.
-              The tools got more interesting, but the approach is the same: start from
-              first principles, question inherited assumptions, build from fundamentals.
-            </p>
-
-            <blockquote class="pull-quote">
-              "I wasn't failing at discipline. I was succeeding at something else."
-            </blockquote>
-
-            <p>
-              Pattern recognition, systems thinking, first principles analysis&mdash;my brain
-              is wired for architecture. Finding the shape of a problem before writing a line of code.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- The Professional Work -->
-      <section class="about-section">
-        <div class="container">
-          <div class="section-marker">02</div>
-          <h2 class="section-heading">The Professional Work</h2>
-
-          <div class="narrative-content">
-            <p>
-              At <a href="https://pressable.com" target="_blank" rel="noopener">Pressable</a>,
-              I worked on WordPress hosting infrastructure at scale&mdash;performance architecture,
-              complex technical problem-solving, team enablement. I built internal tools,
-              designed systems that handled real load, and helped teams ship better work.
-              Fortune 500 infrastructure, running.
-            </p>
-
-            <p>
-              Same systems-thinking, whether the system is a hosting platform serving
-              Fortune 500s or a multi-AI partnership stack. Find the shape of the problem
-              first. Build from fundamentals. Design for the constraints that are actually
-              load-bearing. The
+              I build the systems humans and machines work through &mdash; and I
+              build them to be governed, not trusted. The
               <a href="https://nemooperans.com/a-structural-theory-of-harnesses" target="_blank" rel="noopener">harness paper</a>
               named the discipline. The work was already there.
             </p>
-
-            <p>
-              The thread connecting everything I've done professionally:
-              <strong>I build things that work.</strong> Not things that look good on paper.
-              Not things that follow best practices for their own sake.
-              Things that actually function under real-world constraints.
-            </p>
-
-            <p>
-              In 2026, I formalized my independent work into
-              <a href="https://claphamdigital.com" target="_blank" rel="noopener">Clapham Digital LLC</a>&mdash;consumer
-              apps, developer tools, and open source contributions.
-            </p>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- Constraint-Driven Design -->
-      <section class="about-section constraint-section">
-        <div class="container">
-          <div class="section-marker">03</div>
-          <h2 class="section-heading">Constraint-Driven Design</h2>
-
-          <div class="narrative-content">
+        <section class="chapter">
+          <h2 class="chapter-title">How I got here</h2>
+          <div class="prose">
             <p>
-              I work under real energy constraints. This isn't abstract&mdash;it's the operating
-              reality that shaped how I design systems.
+              I learned to build things by building things &mdash; taking systems
+              apart, figuring out how they work, putting them back together
+              better. That pattern hasn't changed in thirty years.
             </p>
-
             <p>
-              There's a Japanese concept called <em>kintsugi</em>&mdash;repairing broken pottery
-              with gold, making the breaks part of the design. That's my approach to engineering:
-              constraints aren't limitations ON the work. They SHAPE the work.
+              The tools got more interesting; the approach didn't. Start from
+              first principles. Question inherited assumptions. Build from
+              fundamentals. Find the shape of a problem before writing a line of
+              code.
             </p>
-
             <blockquote class="pull-quote">
-              "Limited energy means every system I build has to be efficient by default,
-              not as an optimization pass."
+              "I wasn't failing at discipline. I was succeeding at something
+              else."
             </blockquote>
-
             <p>
-              Everything I build accounts for limited energy, limited time, and the need for
-              systems that run reliably without constant intervention. This constraint
-              produced better architecture than unlimited resources ever could&mdash;automation
-              over manual process, exception-based alerting over continuous monitoring,
-              infrastructure that degrades gracefully instead of failing hard.
+              Pattern recognition, systems thinking, first-principles analysis
+              &mdash; my brain is wired for architecture. That turned out to be
+              the relevant wiring for a problem nobody had named yet.
             </p>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- Engineering Philosophy -->
-      <section class="about-section">
-        <div class="container">
-          <div class="section-marker">04</div>
-          <h2 class="section-heading">Engineering Philosophy</h2>
-
-          <div class="narrative-content">
-            <ul class="philosophy-list">
-              <li>
-                <strong>First principles over patterns.</strong>
-                Build from fundamentals, not best practices. Question inherited assumptions.
-              </li>
-              <li>
-                <strong>Everything is infrastructure.</strong>
-                No "small things." Anything might become load-bearing. Treat it accordingly.
-              </li>
-              <li>
-                <strong>Constraints are design material.</strong>
-                Don't fight limitations. Build with them.
-              </li>
-              <li>
-                <strong>Right over fast.</strong>
-                Do it right the first time. Backtracking costs 3&ndash;5x what thoroughness costs upfront.
-              </li>
-              <li>
-                <strong>Integration over components.</strong>
-                The innovation is rarely in the parts. It's in how they compose.
-              </li>
-            </ul>
-
-            <blockquote class="pull-quote">
-              "I'm not interested in appearing competent. I'm interested in things that work."
-            </blockquote>
-          </div>
-        </div>
-      </section>
-
-      <!-- What I'm Building -->
-      <section class="about-section">
-        <div class="container">
-          <div class="section-marker">05</div>
-          <h2 class="section-heading">What I'm Building Now</h2>
-
-          <div class="narrative-content">
-            <ul class="project-list">
-              <li>
-                <strong><a href="https://nemooperans.com/a-structural-theory-of-harnesses" target="_blank" rel="noopener">A Structural Theory of Harnesses</a></strong> &mdash;
-                April 2026 research paper. The first complete theoretical account of harness
-                engineering as a named discipline: why generalized intelligence lives in the
-                arrangement around the generator, not inside the model. ~25,000 words, 13 sections.
-                <a href="https://doi.org/10.5281/zenodo.19570642" target="_blank" rel="noopener">Zenodo DOI</a>.
-              </li>
-              <li>
-                <strong><a href="https://github.com/phillipclapham/anneal-memory" target="_blank" rel="noopener">anneal-memory</a></strong> &mdash;
-                Open-source agent memory architecture on PyPI. Four cognitive layers (episodic
-                store, continuity file, Hebbian association, affective state) with a cross-layer
-                immune system (citation-validated graduation, anti-inbreeding defense, principle
-                demotion) and a hash-chained JSONL audit trail. The constructive existence proof
-                for the harness paper's &sect;9. 12 framework integrations, 1,600+ tests passing on
-                Python 3.10/3.11/3.12/3.13, zero dependencies. MIT.
-              </li>
-              <li>
-                <strong><a href="https://github.com/levainhq/levain" target="_blank" rel="noopener">Levain</a></strong> &mdash;
-                Portable cognitive-partnership methodology kit on PyPI. Methodology core
-                + harness adapters (Claude Code, Codex) + scripted onboarding (CLI + locally-hosted
-                web pane). Built on anneal-memory as layer-1 dependency. The thesis: ship the seed
-                that grows a practice, not the grown practice &mdash; which transfers as a fossil.
-                Apache 2.0.
-              </li>
-              <li>
-                <strong><a href="https://github.com/phillipclapham/flow-methodology" target="_blank" rel="noopener">Flow System</a></strong> &mdash;
-                Distributed cognitive infrastructure for human-AI partnership. Multi-AI
-                orchestration, real-time sensor pipelines, automated consultation, relay
-                protocols, four-tier cost-optimized processing. The working harness instance
-                behind the papers. Python, FastAPI, SwiftUI.
-                <a href="https://nemooperans.com/iron-man-ruined-ai" target="_blank" rel="noopener">Published methodology</a>.
-              </li>
-              <li>
-                <strong><a href="https://claphamdigital.com" target="_blank" rel="noopener">Clapham Digital</a></strong> &mdash;
-                Consumer apps that teach complex skills through deliberate practice.
-                Video Poker Edge and Blackjack Edge. React Native, TypeScript.
-              </li>
-              <li>
-                <strong><a href="https://nemooperans.com" target="_blank" rel="noopener">Technical Writing</a></strong> &mdash;
-                Essays and research papers on AI architecture, harness engineering,
-                human-AI partnership, and technology at societal scale.
-              </li>
-            </ul>
-
+        <section class="chapter">
+          <h2 class="chapter-title">The work underneath</h2>
+          <div class="prose">
             <p>
-              Levain v0.3.13 and anneal-memory v0.9.6 on PyPI. A cited paper with
-              a DOI. Fortune 500 infrastructure that stayed up. I ship.
+              At <a href="https://pressable.com" target="_blank" rel="noopener">Pressable</a>,
+              through July 2026, I worked on WordPress hosting infrastructure at
+              scale &mdash; performance architecture, complex technical
+              problem-solving, team enablement. I built internal tools, designed
+              systems that handled real load, and helped teams ship better work.
+              Fortune 500 infrastructure, running.
+            </p>
+            <p>
+              Same systems-thinking whether the system is a hosting platform
+              serving Fortune 500s or a multi-AI partnership stack. Find the
+              shape of the problem first. Build from fundamentals. Design for the
+              constraints that are actually load-bearing.
+            </p>
+            <p>
+              That's the order it happened in, and the order matters: the theory
+              came out of the practice, not the other way round. Clapham Digital
+              LLC is the primary vehicle now &mdash; open source, developer
+              tools, and consumer apps.
             </p>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- CTA -->
-      <section class="about-cta-section">
-        <div class="container">
-          <h2>Want to connect?</h2>
-          <div class="cta-links">
-            <a href="connect.html" class="btn-primary">Get in touch</a>
-            <a href="/#work" class="btn-secondary">See the work</a>
+        <section class="chapter">
+          <h2 class="chapter-title">Engineering philosophy</h2>
+          <ul class="principles">
+            <li>
+              <b>First principles over patterns.</b>
+              <span>Build from fundamentals, not best practices. Question inherited assumptions.</span>
+            </li>
+            <li>
+              <b>Constraints are design material.</b>
+              <span>
+                There's a Japanese repair craft called <em>kintsugi</em> &mdash;
+                broken pottery mended with gold, so the break becomes part of the
+                design. Constraints aren't limitations on the work. They shape
+                the work.
+              </span>
+            </li>
+            <li>
+              <b>Everything is infrastructure.</b>
+              <span>No "small things." Anything might become load-bearing. Treat it accordingly.</span>
+            </li>
+            <li>
+              <b>Right over fast.</b>
+              <span>Do it right the first time. Backtracking costs 3&ndash;5&times; what thoroughness costs upfront.</span>
+            </li>
+            <li>
+              <b>Integration over components.</b>
+              <span>The innovation is rarely in the parts. It's in how they compose.</span>
+            </li>
+            <li>
+              <b>Govern, don't trust.</b>
+              <span>
+                As agents get more capable, the edge stops being raw capability
+                and becomes oversight &mdash; verification, invariants, and
+                governance built into the architecture instead of bolted on after.
+              </span>
+            </li>
+          </ul>
+          <blockquote class="pull-quote">
+            "I'm not interested in appearing competent. I'm interested in things
+            that work."
+          </blockquote>
+        </section>
+
+        <section class="chapter">
+          <h2 class="chapter-title">What I'm building now</h2>
+          <div class="rundown">
+            <div class="rundown-item">
+              <h3><a href="https://github.com/levainhq/levain" target="_blank" rel="noopener">Levain</a></h3>
+              <p>
+                Portable cognitive-partnership memory and methodology kit.
+                Methodology core, harness adapters, and scripted onboarding.
+                Built on anneal-memory as a layer-1 dependency. Ship the seed
+                that grows a practice, not the grown practice &mdash; which
+                transfers as a fossil.
+              </p>
+              <p class="rundown-meta">v0.3.13 &middot; Apache-2.0 &middot; PyPI</p>
+            </div>
+
+            <div class="rundown-item">
+              <h3><a href="https://github.com/phillipclapham/anneal-memory" target="_blank" rel="noopener">anneal-memory</a></h3>
+              <p>
+                Open-source agent memory architecture. Four cognitive layers
+                &mdash; episodic store, continuity file, Hebbian association,
+                affective state &mdash; with a cross-layer immune system and a
+                hash-chained JSONL audit trail. The constructive existence proof
+                for the harness paper's &sect;9.
+              </p>
+              <p class="rundown-meta">v0.9.6 &middot; 1,642 tests &middot; 12 integrations &middot; zero deps &middot; MIT</p>
+            </div>
+
+            <div class="rundown-item">
+              <h3><a href="https://github.com/phillipclapham/flow-methodology" target="_blank" rel="noopener">Flow System</a></h3>
+              <p>
+                Distributed cognitive infrastructure for human-AI partnership.
+                Multi-AI orchestration, real-time sensor pipelines, automated
+                consultation, relay protocols, tiered cost-optimized processing.
+                The working harness instance behind the papers.
+              </p>
+              <p class="rundown-meta">Python &middot; FastAPI &middot; SwiftUI</p>
+            </div>
+
+            <div class="rundown-item">
+              <h3><a href="https://claphamdigital.com" target="_blank" rel="noopener">Clapham Digital</a></h3>
+              <p>
+                Consumer apps that teach complex skills through deliberate
+                practice. Video Poker Edge and Blackjack Edge &mdash; math-optimal
+                strategy training, verified to 0.004% precision. One-time
+                purchase, no ads, no data harvesting.
+              </p>
+              <p class="rundown-meta">iOS &middot; Android</p>
+            </div>
+
+            <div class="rundown-item">
+              <h3><a href="writing.html">Writing</a></h3>
+              <p>
+                Essays and research papers on AI architecture, harness
+                engineering, human-AI partnership, and technology at societal
+                scale &mdash; here and at
+                <a href="https://nemooperans.com" target="_blank" rel="noopener">Nemo Operans</a>.
+              </p>
+              <p class="rundown-meta">Zenodo DOI 10.5281/zenodo.19570642</p>
+            </div>
           </div>
+        </section>
+      </div>
+
+      <hr class="seam" />
+
+      <div class="wrap">
+        <div class="cta-band">
+          <p>Levain and anneal-memory on PyPI. A cited paper with a DOI. Fortune 500 infrastructure that stayed up. I ship.</p>
+          <a href="connect.html">Get in touch &rarr;</a>
+          <a href="lab.html">See the work &rarr;</a>
         </div>
-      </section>
+      </div>
     </main>
 
-    <!-- Footer -->
     <footer class="site-footer">
-      <canvas id="life-canvas" class="life-canvas"></canvas>
-      <div class="container">
-        <p class="footer-tagline">Building things that work since 1996.</p>
-        <p class="footer-copyright">&copy; 2026 Phillip Clapham</p>
+      <canvas id="life" aria-hidden="true"></canvas>
+      <div class="footer-bar">
+        <span>Building things that work since 1996.</span>
+        <span>&copy; 2026 Phillip Clapham</span>
       </div>
     </footer>
 
-    <!-- Scripts -->
-    <script src="game-of-life-footer.js"></script>
-    <script src="interactions.js"></script>
-    <script src="founder-mode.js"></script>
-    <script src="console-features.js"></script>
-
-    <!-- Theme Toggle -->
-    <script>
-      (function () {
-        const STORAGE_KEY = "theme-preference";
-        const themeToggle = document.getElementById("theme-toggle");
-        const themeIcon = themeToggle.querySelector(".theme-icon");
-
-        function getCurrentTheme() {
-          return document.documentElement.getAttribute("data-theme") || "light";
-        }
-
-        function updateThemeIcon() {
-          const currentTheme = getCurrentTheme();
-          themeIcon.textContent = currentTheme === "dark" ? "☀️" : "🌙";
-        }
-
-        function toggleTheme() {
-          const currentTheme = getCurrentTheme();
-          const newTheme = currentTheme === "dark" ? "light" : "dark";
-          if (newTheme === "dark") {
-            document.documentElement.setAttribute("data-theme", "dark");
-          } else {
-            document.documentElement.removeAttribute("data-theme");
-          }
-          localStorage.setItem(STORAGE_KEY, newTheme);
-          updateThemeIcon();
-        }
-
-        updateThemeIcon();
-        themeToggle.addEventListener("click", toggleTheme);
-      })();
-    </script>
+    <script src="site.js"></script>
   </body>
 </html>
