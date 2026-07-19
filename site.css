@@ -110,12 +110,45 @@ a {
 }
 
 /* ============ HERO ============ */
-.hero {
-  display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
-  gap: var(--s-16);
+.hero-band {
+  position: relative;
+  overflow: hidden;
+}
+/* The field is a BACKGROUND layer of the band, as in the original header —
+   not an object inside a content column. That is what lets it bleed and
+   dissolve instead of being cut by a container edge. */
+.field-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  display: flex;
   align-items: center;
-  padding: var(--s-24) 0 var(--s-16);
+  justify-content: flex-end;
+  padding-right: 6vw;
+}
+/* Soft dissolve at the bottom so the band never shows a hard cut through
+   40px of blur. */
+.hero-band::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 26%;
+  background: linear-gradient(transparent, var(--bg));
+  pointer-events: none;
+  z-index: 1;
+}
+.hero-band > .wrap {
+  position: relative;
+  z-index: 2;
+}
+.hero {
+  position: relative;
+  padding: var(--s-24) 0 var(--s-24);
+  min-height: 34rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .eyebrow {
   font-family: var(--font-mono);
@@ -168,116 +201,123 @@ a {
   border-color: var(--accent);
 }
 
-/* ============ THE LIVING DIAGRAM ============
-   The original cognitive-pulse field, kept because it is the artistic
-   statement — conic-gradient spectrum arcs masked into concentric rings,
-   blurred, screen-blended, counter-rotating on independent breathing
-   cycles. What is ADDED is meaning: four rings are named, so the signal
-   visibly radiates from the generator out through memory, verification,
-   invariants, governance. The animation IS the thesis. */
+/* ============ THE LIVING FIELD ============
+   The original was never a contained circle — it was an ambient field of
+   enormous blurred arcs (280px to 1740px inside a ~600px header), so you
+   only ever saw FRAGMENTS, overlapping, with screen-blend mixing the
+   colours where they crossed. Containing it into a tidy widget turned it
+   into a dartboard. This restores the geometry: oversized, partial arcs,
+   heavy blur, bands that overlap rather than sit in neat lanes.
+   The labels annotate it; they don't imprison it. */
 .pulse-field {
   position: relative;
+  opacity: 0.85;
   aspect-ratio: 1;
   width: 100%;
-  max-width: 34rem;
-  margin-inline: auto;
+  max-width: 32rem;
   isolation: isolate;
+  overflow: visible;
 }
 .pring {
   position: absolute;
-  inset: 0;
   border-radius: 50%;
   mix-blend-mode: screen;
   will-change: transform;
   transform-origin: center;
+  top: 50%;
+  left: 50%;
 }
-@keyframes spin-cw {
-  to {
-    transform: rotate(360deg);
-  }
-}
-@keyframes spin-ccw {
-  to {
-    transform: rotate(-360deg);
-  }
-}
-@keyframes breathe {
-  0%,
-  100% {
-    opacity: 0.92;
-  }
-  50% {
-    opacity: 0.62;
-  }
+@keyframes spin-cw { to { transform: translate(-50%, -50%) rotate(360deg); } }
+@keyframes spin-ccw { to { transform: translate(-50%, -50%) rotate(-360deg); } }
+@keyframes breathe-scale {
+  0%, 100% { opacity: 0.95; }
+  50% { opacity: 0.55; }
 }
 
+/* Each ring is a thick, mostly-transparent arc. Sizes run well past the
+   container so the outer ones bleed off-frame, exactly like the original. */
 .pr-0 {
-  background: conic-gradient(from 0deg, transparent 0deg, rgba(220, 38, 38, 0.55) 70deg, rgba(249, 115, 22, 0.5) 150deg, rgba(245, 158, 11, 0.45) 220deg, transparent 300deg);
-  -webkit-mask-image: radial-gradient(circle closest-side at center, transparent 10%, #000 10%, #000 20%, transparent 20%);
-  mask-image: radial-gradient(circle closest-side at center, transparent 10%, #000 10%, #000 20%, transparent 20%);
-  filter: blur(6px);
-  animation: spin-ccw 22s linear infinite, breathe 16s ease-in-out infinite;
+  width: 30%; height: 30%;
+  transform: translate(-50%, -50%);
+  background: conic-gradient(from 0deg, transparent 0deg, rgba(220,38,38,0.85) 60deg, rgba(249,115,22,0.75) 160deg, transparent 250deg);
+  -webkit-mask-image: radial-gradient(circle closest-side at center, transparent 32%, #000 58%, #000 100%);
+  mask-image: radial-gradient(circle closest-side at center, transparent 32%, #000 58%, #000 100%);
+  filter: blur(16px);
+  animation: spin-ccw 22s linear infinite, breathe-scale 16s ease-in-out infinite;
 }
 .pr-1 {
-  background: conic-gradient(from 40deg, rgba(245, 158, 11, 0.5) 0deg, rgba(132, 204, 22, 0.44) 110deg, transparent 210deg, rgba(245, 158, 11, 0.3) 340deg);
-  -webkit-mask-image: radial-gradient(circle closest-side at center, transparent 26%, #000 26%, #000 38%, transparent 38%);
-  mask-image: radial-gradient(circle closest-side at center, transparent 26%, #000 26%, #000 38%, transparent 38%);
-  filter: blur(8px);
-  animation: spin-cw 15s linear infinite, breathe 10s ease-in-out infinite;
+  width: 50%; height: 50%;
+  transform: translate(-50%, -50%);
+  background: conic-gradient(from 40deg, rgba(245,158,11,0.7) 0deg, rgba(132,204,22,0.6) 120deg, transparent 230deg, transparent 340deg);
+  -webkit-mask-image: radial-gradient(circle closest-side at center, transparent 52%, #000 74%, #000 100%);
+  mask-image: radial-gradient(circle closest-side at center, transparent 52%, #000 74%, #000 100%);
+  filter: blur(22px);
+  animation: spin-cw 15s linear infinite, breathe-scale 10s ease-in-out infinite;
 }
 .pr-3 {
-  background: conic-gradient(from 210deg, transparent 0deg, rgba(132, 204, 22, 0.4) 120deg, rgba(6, 182, 212, 0.36) 240deg, transparent 360deg);
-  -webkit-mask-image: radial-gradient(circle closest-side at center, transparent 38%, #000 38%, #000 48%, transparent 48%);
-  mask-image: radial-gradient(circle closest-side at center, transparent 38%, #000 38%, #000 48%, transparent 48%);
-  filter: blur(9px);
-  animation: spin-cw 20s linear infinite, breathe 14s ease-in-out infinite;
+  width: 72%; height: 72%;
+  transform: translate(-50%, -50%);
+  background: conic-gradient(from 210deg, transparent 0deg, rgba(132,204,22,0.55) 110deg, rgba(6,182,212,0.5) 220deg, transparent 330deg);
+  -webkit-mask-image: radial-gradient(circle closest-side at center, transparent 58%, #000 78%, #000 100%);
+  mask-image: radial-gradient(circle closest-side at center, transparent 58%, #000 78%, #000 100%);
+  filter: blur(26px);
+  animation: spin-cw 20s linear infinite, breathe-scale 14s ease-in-out infinite;
   animation-delay: -5s;
 }
 .pr-2 {
-  background: conic-gradient(from 120deg, transparent 0deg, rgba(6, 182, 212, 0.46) 90deg, rgba(14, 165, 233, 0.42) 190deg, transparent 290deg);
-  -webkit-mask-image: radial-gradient(circle closest-side at center, transparent 50%, #000 50%, #000 64%, transparent 64%);
-  mask-image: radial-gradient(circle closest-side at center, transparent 50%, #000 50%, #000 64%, transparent 64%);
-  filter: blur(10px);
-  animation: spin-ccw 18s linear infinite, breathe 12s ease-in-out infinite;
+  width: 92%; height: 92%;
+  transform: translate(-50%, -50%);
+  background: conic-gradient(from 120deg, transparent 0deg, rgba(6,182,212,0.55) 80deg, rgba(14,165,233,0.5) 180deg, transparent 280deg);
+  -webkit-mask-image: radial-gradient(circle closest-side at center, transparent 62%, #000 80%, #000 100%);
+  mask-image: radial-gradient(circle closest-side at center, transparent 62%, #000 80%, #000 100%);
+  filter: blur(30px);
+  animation: spin-ccw 18s linear infinite, breathe-scale 12s ease-in-out infinite;
 }
 .pr-4 {
-  background: conic-gradient(from 300deg, rgba(79, 70, 229, 0.44) 0deg, rgba(147, 51, 234, 0.4) 110deg, transparent 230deg, rgba(79, 70, 229, 0.26) 350deg);
-  -webkit-mask-image: radial-gradient(circle closest-side at center, transparent 66%, #000 66%, #000 80%, transparent 80%);
-  mask-image: radial-gradient(circle closest-side at center, transparent 66%, #000 66%, #000 80%, transparent 80%);
-  filter: blur(11px);
-  animation: spin-ccw 16s linear infinite, breathe 13s ease-in-out infinite;
+  width: 110%; height: 110%;
+  transform: translate(-50%, -50%);
+  background: conic-gradient(from 300deg, rgba(79,70,229,0.5) 0deg, rgba(147,51,234,0.45) 100deg, transparent 210deg, transparent 350deg);
+  -webkit-mask-image: radial-gradient(circle closest-side at center, transparent 66%, #000 82%, #000 100%);
+  mask-image: radial-gradient(circle closest-side at center, transparent 66%, #000 82%, #000 100%);
+  filter: blur(34px);
+  animation: spin-ccw 16s linear infinite, breathe-scale 13s ease-in-out infinite;
   animation-delay: -2s;
 }
 .pr-5 {
-  background: conic-gradient(from 20deg, transparent 0deg, rgba(236, 72, 153, 0.4) 100deg, rgba(196, 181, 253, 0.34) 210deg, transparent 320deg);
-  -webkit-mask-image: radial-gradient(circle closest-side at center, transparent 82%, #000 82%, #000 94%, transparent 94%);
-  mask-image: radial-gradient(circle closest-side at center, transparent 82%, #000 82%, #000 94%, transparent 94%);
-  filter: blur(12px);
-  animation: spin-cw 25s linear infinite, breathe 17s ease-in-out infinite;
+  width: 168%; height: 168%;
+  transform: translate(-50%, -50%);
+  background: conic-gradient(from 20deg, transparent 0deg, rgba(236,72,153,0.45) 90deg, rgba(196,181,253,0.4) 200deg, transparent 310deg);
+  -webkit-mask-image: radial-gradient(circle closest-side at center, transparent 70%, #000 84%, #000 100%);
+  mask-image: radial-gradient(circle closest-side at center, transparent 70%, #000 84%, #000 100%);
+  filter: blur(40px);
+  animation: spin-cw 25s linear infinite, breathe-scale 17s ease-in-out infinite;
   animation-delay: -7s;
 }
 .pr-6 {
-  background: conic-gradient(from 160deg, rgba(196, 181, 253, 0.3) 0deg, transparent 140deg, rgba(244, 114, 182, 0.26) 280deg, transparent 360deg);
-  -webkit-mask-image: radial-gradient(circle closest-side at center, transparent 94%, #000 94%, #000 100%, transparent 100%);
-  mask-image: radial-gradient(circle closest-side at center, transparent 94%, #000 94%, #000 100%, transparent 100%);
-  filter: blur(16px);
-  animation: breathe 21s ease-in-out infinite;
+  width: 242%; height: 242%;
+  transform: translate(-50%, -50%);
+  background: conic-gradient(from 160deg, rgba(196,181,253,0.34) 0deg, transparent 130deg, rgba(244,114,182,0.3) 260deg, transparent 350deg);
+  -webkit-mask-image: radial-gradient(circle closest-side at center, transparent 74%, #000 86%, #000 100%);
+  mask-image: radial-gradient(circle closest-side at center, transparent 74%, #000 86%, #000 100%);
+  filter: blur(46px);
+  animation: breathe-scale 21s ease-in-out infinite;
   animation-delay: -3s;
-  opacity: 0.7;
+  opacity: 0.75;
 }
 .core {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 13%;
+  width: 22%;
   aspect-ratio: 1;
-  margin: -6.5% 0 0 -6.5%;
+  transform: translate(-50%, -50%);
   border-radius: 50%;
-  background: radial-gradient(circle at center, rgba(255, 238, 200, 0.9) 0%, rgba(245, 158, 11, 0.5) 45%, transparent 72%);
-  filter: blur(5px);
-  animation: breathe 10s ease-in-out infinite;
+  background: radial-gradient(circle at center, rgba(255,242,214,0.95) 0%, rgba(249,180,60,0.6) 38%, rgba(220,38,38,0.25) 62%, transparent 78%);
+  filter: blur(14px);
+  animation: breathe-scale 10s ease-in-out infinite;
   z-index: 4;
 }
+
 .lyr {
   position: absolute;
   left: 50%;
@@ -300,12 +340,13 @@ a {
   height: 7px;
   background: rgba(239, 231, 216, 0.4);
 }
-.lyr-gov { top: 6%; }
-.lyr-inv { top: 13.5%; }
-.lyr-ver { top: 21.5%; }
-.lyr-mem { top: 34%; }
+.lyr-gov { top: 2%; left: 50%; }
+.lyr-inv { top: 10%; left: 50%; }
+.lyr-ver { top: 19%; left: 50%; }
+.lyr-mem { top: 29%; left: 50%; }
 .lyr-core {
-  top: 60%;
+  top: 62%;
+  left: 50%;
   color: var(--gold-bright);
 }
 .lyr-core::after {
@@ -641,9 +682,19 @@ button:focus-visible,
 
 @media (max-width: 900px) {
   .hero {
-    grid-template-columns: 1fr;
-    gap: var(--s-12);
     padding: var(--s-16) 0;
+    min-height: 0;
+  }
+  .field-layer {
+    justify-content: center;
+    padding-right: 0;
+    opacity: 0.42;
+  }
+  /* Below the two-column breakpoint the field sits directly behind the
+     copy, so the layer labels would overlay the wordmark. The field stays
+     as atmosphere; the copy carries the meaning at this size. */
+  .lyr {
+    display: none;
   }
   .row {
     grid-template-columns: 1fr;
