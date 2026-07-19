@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Design direction — phillipclapham.com</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=IBM+Plex+Mono:wght@400;500&family=Literata:opsz,wght@7..72,300..600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="tokens.css" />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: var(--font-body);
+        font-size: var(--t-base);
+        line-height: var(--leading-body);
+        -webkit-font-smoothing: antialiased;
+      }
+      .wrap {
+        max-width: var(--container);
+        margin: 0 auto;
+        padding: 0 var(--s-6);
+      }
+
+      /* ============ HERO ============ */
+      .hero {
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: var(--s-16);
+        align-items: center;
+        padding: var(--s-24) 0;
+      }
+      .eyebrow {
+        font-family: var(--font-mono);
+        font-size: var(--t-xs);
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin: 0 0 var(--s-6);
+      }
+      .wordmark {
+        font-family: var(--font-display);
+        font-variation-settings: "wdth" 82, "opsz" 96;
+        font-weight: 700;
+        font-size: clamp(2.6rem, 6.4vw, var(--t-4xl));
+        line-height: 0.92;
+        letter-spacing: -0.03em;
+        margin: 0 0 var(--s-8);
+        color: var(--text);
+      }
+      .claim {
+        font-size: var(--t-md);
+        line-height: 1.45;
+        max-width: 30ch;
+        margin: 0 0 var(--s-6);
+        color: var(--text);
+      }
+      .claim em {
+        font-style: normal;
+        color: var(--accent);
+      }
+      .sub {
+        color: var(--text-dim);
+        max-width: 42ch;
+        margin: 0 0 var(--s-8);
+        font-size: var(--t-base);
+      }
+
+      /* ============ SIGNATURE: the arrangement ============ */
+      .arrangement {
+        position: relative;
+        aspect-ratio: 1;
+        width: 100%;
+        max-width: 30rem;
+        margin-inline: auto;
+        display: grid;
+        place-items: center;
+      }
+      .ring {
+        position: absolute;
+        border-radius: 50%;
+        border: 1px solid var(--rule);
+        inset: 0;
+      }
+      .ring--1 {
+        inset: 4%;
+        border-color: rgba(201, 169, 97, 0.4);
+      }
+      .ring--2 {
+        inset: 15%;
+        border-color: rgba(201, 169, 97, 0.3);
+      }
+      .ring--3 {
+        inset: 26%;
+        border-color: rgba(74, 138, 120, 0.42);
+      }
+      .ring--4 {
+        inset: 36%;
+        border-color: rgba(74, 138, 120, 0.32);
+      }
+      .ring--spin {
+        border-style: dashed;
+        border-color: rgba(201, 169, 97, 0.24);
+        animation: spin 64s linear infinite;
+      }
+      .ring--spin-alt {
+        border-style: dashed;
+        border-color: rgba(74, 138, 120, 0.22);
+        animation: spin 92s linear infinite reverse;
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      .generator {
+        position: relative;
+        width: 15%;
+        aspect-ratio: 1;
+        display: grid;
+        place-items: center;
+        background: var(--bg-inset);
+        border: 1px solid var(--accent);
+        color: var(--accent);
+        font-family: var(--font-mono);
+        font-size: 0.6rem;
+        letter-spacing: 0.14em;
+        text-align: center;
+        z-index: 2;
+      }
+      .ring-label {
+        position: absolute;
+        font-family: var(--font-mono);
+        font-size: 0.625rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--text-faint);
+        background: var(--bg);
+        padding: 0 var(--s-2);
+        z-index: 3;
+        white-space: nowrap;
+      }
+      /* Each label sits exactly on its own ring's top edge, so the stack
+         reads as descending layers rather than floating text. Percentages
+         mirror the .ring--N insets precisely. */
+      .ring-label {
+        left: 50%;
+      }
+      .rl-1 {
+        top: 4%;
+        transform: translate(-50%, -50%);
+        color: var(--accent);
+      }
+      .rl-2 {
+        top: 15%;
+        transform: translate(-50%, -50%);
+        color: var(--gold-deep);
+      }
+      .rl-3 {
+        top: 26%;
+        transform: translate(-50%, -50%);
+        color: var(--patina-bright);
+      }
+      .rl-4 {
+        top: 36%;
+        transform: translate(-50%, -50%);
+        color: var(--patina-deep);
+      }
+      .arr-caption {
+        margin-top: var(--s-6);
+        font-family: var(--font-mono);
+        font-size: var(--t-xs);
+        color: var(--text-faint);
+        text-align: center;
+        line-height: 1.6;
+      }
+
+      /* ============ SEAM (kintsugi join) ============ */
+      .seam {
+        height: 1px;
+        border: 0;
+        margin: 0;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--accent) 18%,
+          var(--gold-bright) 50%,
+          var(--accent) 82%,
+          transparent
+        );
+        opacity: 0.55;
+      }
+
+      /* ============ LEDGER: claim | receipt ============ */
+      .ledger {
+        padding: var(--s-24) 0;
+      }
+      .ledger-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: var(--s-6);
+        margin-bottom: var(--s-12);
+        font-family: var(--font-mono);
+        font-size: var(--t-xs);
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--text-faint);
+      }
+      .row {
+        display: grid;
+        grid-template-columns: 1.15fr 1fr;
+        gap: var(--s-12);
+        padding: var(--s-8) 0;
+        border-top: 1px solid var(--rule);
+        align-items: start;
+      }
+      .row:last-of-type {
+        border-bottom: 1px solid var(--rule);
+      }
+      .row-claim {
+        font-family: var(--font-display);
+        font-variation-settings: "wdth" 90;
+        font-weight: 600;
+        font-size: var(--t-lg);
+        line-height: var(--leading-snug);
+        letter-spacing: -0.015em;
+        margin: 0;
+      }
+      .row-note {
+        color: var(--text-dim);
+        font-size: var(--t-sm);
+        margin: var(--s-3) 0 0;
+        max-width: 40ch;
+      }
+      .receipt {
+        font-family: var(--font-mono);
+        font-size: var(--t-sm);
+        line-height: 1.85;
+        color: var(--text-dim);
+        margin: 0;
+        padding-left: var(--s-6);
+        border-left: 2px solid var(--patina-deep);
+      }
+      .receipt b {
+        color: var(--patina-bright);
+        font-weight: 500;
+      }
+      .receipt a {
+        color: var(--accent);
+        text-decoration: none;
+        border-bottom: 1px solid var(--gold-deep);
+      }
+      .receipt a:hover {
+        color: var(--gold-bright);
+      }
+      .receipt-tag {
+        display: block;
+        font-size: 0.625rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--text-faint);
+        margin-bottom: var(--s-2);
+      }
+
+      .note {
+        max-width: var(--measure);
+        color: var(--text-dim);
+        font-size: var(--t-sm);
+        padding: var(--s-8) 0 var(--s-24);
+      }
+      .note strong {
+        color: var(--text);
+      }
+
+      a:focus-visible,
+      .generator:focus-visible {
+        outline: 2px solid var(--gold-bright);
+        outline-offset: 3px;
+      }
+
+      @media (max-width: 900px) {
+        .hero {
+          grid-template-columns: 1fr;
+          gap: var(--s-12);
+          min-height: auto;
+          padding: var(--s-16) 0;
+        }
+        .row {
+          grid-template-columns: 1fr;
+          gap: var(--s-6);
+        }
+        .arrangement {
+          max-width: 22rem;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .ring--spin,
+        .ring--spin-alt {
+          animation: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <section class="hero">
+        <div>
+          <p class="eyebrow">Harness engineering</p>
+          <h1 class="wordmark">Phillip<br />Clapham</h1>
+          <p class="claim">
+            I named the discipline, then shipped the <em>proof</em>.
+          </p>
+          <p class="sub">
+            Generalized intelligence lives in the arrangement around the
+            generator, not inside the model. I build the arrangement — and I
+            build it to be governed, not trusted.
+          </p>
+        </div>
+
+        <div>
+          <div class="arrangement">
+            <div class="ring ring--spin"></div>
+            <div class="ring ring--1"></div>
+            <div class="ring ring--2 ring--spin-alt"></div>
+            <div class="ring ring--3"></div>
+            <div class="ring ring--4"></div>
+            <span class="ring-label rl-1">Governance</span>
+            <span class="ring-label rl-2">Invariants</span>
+            <span class="ring-label rl-3">Verification</span>
+            <span class="ring-label rl-4">Memory</span>
+            <div class="generator">MODEL</div>
+          </div>
+          <p class="arr-caption">
+            the harness — what surrounds the generator
+          </p>
+        </div>
+      </section>
+    </div>
+
+    <hr class="seam" />
+
+    <div class="wrap">
+      <section class="ledger">
+        <div class="ledger-head">
+          <span>Claim</span>
+          <span>Receipt</span>
+        </div>
+
+        <div class="row">
+          <div>
+            <p class="row-claim">I named the discipline.</p>
+            <p class="row-note">
+              The first complete theoretical account of harness engineering as a
+              named field. ~25,000 words, 13 sections.
+            </p>
+          </div>
+          <p class="receipt">
+            <span class="receipt-tag">Citable record</span>
+            <b>A Structural Theory of Harnesses</b><br />
+            DOI <a href="#">10.5281/zenodo.19570642</a><br />
+            Published 2026-04-14 · CC-BY-4.0<br />
+            Affiliation: Independent Researcher
+          </p>
+        </div>
+
+        <div class="row">
+          <div>
+            <p class="row-claim">Govern, don't trust.</p>
+            <p class="row-note">
+              An immune system spanning four cognitive layers, and a hash-chained
+              audit trail. The principle, in code.
+            </p>
+          </div>
+          <p class="receipt">
+            <span class="receipt-tag">Constructive proof · §9</span>
+            <b>anneal-memory v0.9.6</b><br />
+            1,642 tests passing · zero dependencies<br />
+            12 framework integrations · MIT<br />
+            <a href="#">pypi.org/project/anneal-memory</a>
+          </p>
+        </div>
+
+        <div class="row">
+          <div>
+            <p class="row-claim">Ship the seed, not the fossil.</p>
+            <p class="row-note">
+              A practice transfers as a living starter or not at all. Memory that
+              stays yours: on your machine, in a store you can read.
+            </p>
+          </div>
+          <p class="receipt">
+            <span class="receipt-tag">Flagship</span>
+            <b>Levain v0.3.13</b><br />
+            Apache-2.0 · built on anneal-memory<br />
+            <a href="#">pypi.org/project/levain</a>
+          </p>
+        </div>
+      </section>
+
+      <p class="note">
+        <strong>The layout is the argument.</strong> Every claim on the left is
+        structurally required to carry its verification on the right. If a claim
+        can't produce a receipt, it doesn't get made. That's govern-not-trust
+        enforced by the grid instead of asserted in a paragraph — and it's the
+        fix for a site that currently describes six systems and shows none of
+        them.
+      </p>
+    </div>
+  </body>
+</html>
