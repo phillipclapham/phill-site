@@ -1,0 +1,695 @@
+/**
+ * phillipclapham.com — component layer
+ *
+ * Pairs with tokens.css. Together these replace protocol-memory.css (the
+ * inherited foundation from an archived product) and site-overrides.css
+ * (35KB whose only job was fighting the first file).
+ *
+ * Structure: reset → layout → nav → hero + living diagram → seam → ledger
+ * → work → routing → writing → connect → footer.
+ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: var(--t-base);
+  line-height: var(--leading-body);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+.wrap {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--s-6);
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--bg-inset);
+  color: var(--text);
+  padding: var(--s-3) var(--s-4);
+  z-index: 100;
+}
+.skip-link:focus {
+  left: var(--s-4);
+  top: var(--s-4);
+}
+
+a {
+  color: var(--accent);
+}
+
+/* ============ NAV ============ */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--rule);
+}
+.nav-inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: var(--s-3) var(--s-6);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-6);
+}
+.nav-mark {
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" 84;
+  font-weight: 700;
+  font-size: var(--t-base);
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  color: var(--text);
+}
+.nav-links {
+  display: flex;
+  gap: var(--s-6);
+  align-items: center;
+}
+.nav-links a {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--text-dim);
+  transition: color 0.2s var(--ease);
+}
+.nav-links a:hover {
+  color: var(--accent);
+}
+.theme-toggle {
+  background: none;
+  border: 1px solid var(--rule);
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  padding: var(--s-2) var(--s-3);
+  cursor: pointer;
+  line-height: 1;
+}
+.theme-toggle:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* ============ HERO ============ */
+.hero {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: var(--s-16);
+  align-items: center;
+  padding: var(--s-24) 0 var(--s-16);
+}
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 var(--s-6);
+}
+.wordmark {
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" 82, "opsz" 96;
+  font-weight: 700;
+  font-size: clamp(2.6rem, 6.4vw, var(--t-4xl));
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+  margin: 0 0 var(--s-8);
+}
+.hero-claim {
+  font-size: var(--t-md);
+  line-height: 1.45;
+  max-width: 30ch;
+  margin: 0 0 var(--s-6);
+}
+.hero-claim em {
+  font-style: normal;
+  color: var(--accent);
+}
+.hero-sub {
+  color: var(--text-dim);
+  max-width: 44ch;
+  margin: 0 0 var(--s-8);
+}
+.hero-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-4);
+  font-family: var(--font-mono);
+  font-size: var(--t-sm);
+}
+.hero-links a {
+  text-decoration: none;
+  color: var(--text-dim);
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 2px;
+  transition: color 0.2s var(--ease), border-color 0.2s var(--ease);
+}
+.hero-links a:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* ============ THE LIVING DIAGRAM ============
+   The original cognitive-pulse field, kept because it is the artistic
+   statement — conic-gradient spectrum arcs masked into concentric rings,
+   blurred, screen-blended, counter-rotating on independent breathing
+   cycles. What is ADDED is meaning: four rings are named, so the signal
+   visibly radiates from the generator out through memory, verification,
+   invariants, governance. The animation IS the thesis. */
+.pulse-field {
+  position: relative;
+  aspect-ratio: 1;
+  width: 100%;
+  max-width: 34rem;
+  margin-inline: auto;
+  isolation: isolate;
+}
+.pring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  mix-blend-mode: screen;
+  will-change: transform;
+  transform-origin: center;
+}
+@keyframes spin-cw {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes spin-ccw {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+@keyframes breathe {
+  0%,
+  100% {
+    opacity: 0.92;
+  }
+  50% {
+    opacity: 0.62;
+  }
+}
+
+.pr-0 {
+  background: conic-gradient(from 0deg, transparent 0deg, rgba(220, 38, 38, 0.55) 70deg, rgba(249, 115, 22, 0.5) 150deg, rgba(245, 158, 11, 0.45) 220deg, transparent 300deg);
+  -webkit-mask-image: radial-gradient(circle closest-side at center, transparent 10%, #000 10%, #000 20%, transparent 20%);
+  mask-image: radial-gradient(circle closest-side at center, transparent 10%, #000 10%, #000 20%, transparent 20%);
+  filter: blur(6px);
+  animation: spin-ccw 22s linear infinite, breathe 16s ease-in-out infinite;
+}
+.pr-1 {
+  background: conic-gradient(from 40deg, rgba(245, 158, 11, 0.5) 0deg, rgba(132, 204, 22, 0.44) 110deg, transparent 210deg, rgba(245, 158, 11, 0.3) 340deg);
+  -webkit-mask-image: radial-gradient(circle closest-side at center, transparent 26%, #000 26%, #000 38%, transparent 38%);
+  mask-image: radial-gradient(circle closest-side at center, transparent 26%, #000 26%, #000 38%, transparent 38%);
+  filter: blur(8px);
+  animation: spin-cw 15s linear infinite, breathe 10s ease-in-out infinite;
+}
+.pr-3 {
+  background: conic-gradient(from 210deg, transparent 0deg, rgba(132, 204, 22, 0.4) 120deg, rgba(6, 182, 212, 0.36) 240deg, transparent 360deg);
+  -webkit-mask-image: radial-gradient(circle closest-side at center, transparent 38%, #000 38%, #000 48%, transparent 48%);
+  mask-image: radial-gradient(circle closest-side at center, transparent 38%, #000 38%, #000 48%, transparent 48%);
+  filter: blur(9px);
+  animation: spin-cw 20s linear infinite, breathe 14s ease-in-out infinite;
+  animation-delay: -5s;
+}
+.pr-2 {
+  background: conic-gradient(from 120deg, transparent 0deg, rgba(6, 182, 212, 0.46) 90deg, rgba(14, 165, 233, 0.42) 190deg, transparent 290deg);
+  -webkit-mask-image: radial-gradient(circle closest-side at center, transparent 50%, #000 50%, #000 64%, transparent 64%);
+  mask-image: radial-gradient(circle closest-side at center, transparent 50%, #000 50%, #000 64%, transparent 64%);
+  filter: blur(10px);
+  animation: spin-ccw 18s linear infinite, breathe 12s ease-in-out infinite;
+}
+.pr-4 {
+  background: conic-gradient(from 300deg, rgba(79, 70, 229, 0.44) 0deg, rgba(147, 51, 234, 0.4) 110deg, transparent 230deg, rgba(79, 70, 229, 0.26) 350deg);
+  -webkit-mask-image: radial-gradient(circle closest-side at center, transparent 66%, #000 66%, #000 80%, transparent 80%);
+  mask-image: radial-gradient(circle closest-side at center, transparent 66%, #000 66%, #000 80%, transparent 80%);
+  filter: blur(11px);
+  animation: spin-ccw 16s linear infinite, breathe 13s ease-in-out infinite;
+  animation-delay: -2s;
+}
+.pr-5 {
+  background: conic-gradient(from 20deg, transparent 0deg, rgba(236, 72, 153, 0.4) 100deg, rgba(196, 181, 253, 0.34) 210deg, transparent 320deg);
+  -webkit-mask-image: radial-gradient(circle closest-side at center, transparent 82%, #000 82%, #000 94%, transparent 94%);
+  mask-image: radial-gradient(circle closest-side at center, transparent 82%, #000 82%, #000 94%, transparent 94%);
+  filter: blur(12px);
+  animation: spin-cw 25s linear infinite, breathe 17s ease-in-out infinite;
+  animation-delay: -7s;
+}
+.pr-6 {
+  background: conic-gradient(from 160deg, rgba(196, 181, 253, 0.3) 0deg, transparent 140deg, rgba(244, 114, 182, 0.26) 280deg, transparent 360deg);
+  -webkit-mask-image: radial-gradient(circle closest-side at center, transparent 94%, #000 94%, #000 100%, transparent 100%);
+  mask-image: radial-gradient(circle closest-side at center, transparent 94%, #000 94%, #000 100%, transparent 100%);
+  filter: blur(16px);
+  animation: breathe 21s ease-in-out infinite;
+  animation-delay: -3s;
+  opacity: 0.7;
+}
+.core {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 13%;
+  aspect-ratio: 1;
+  margin: -6.5% 0 0 -6.5%;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, rgba(255, 238, 200, 0.9) 0%, rgba(245, 158, 11, 0.5) 45%, transparent 72%);
+  filter: blur(5px);
+  animation: breathe 10s ease-in-out infinite;
+  z-index: 4;
+}
+.lyr {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 6;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--bone);
+  text-shadow: 0 0 6px var(--ink-900), 0 0 12px var(--ink-900), 0 0 3px var(--ink-900);
+}
+.lyr::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  width: 1px;
+  height: 7px;
+  background: rgba(239, 231, 216, 0.4);
+}
+.lyr-gov { top: 6%; }
+.lyr-inv { top: 13.5%; }
+.lyr-ver { top: 21.5%; }
+.lyr-mem { top: 34%; }
+.lyr-core {
+  top: 60%;
+  color: var(--gold-bright);
+}
+.lyr-core::after {
+  display: none;
+}
+.diagram-caption {
+  margin-top: var(--s-4);
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  color: var(--text-faint);
+  text-align: center;
+}
+
+/* ============ SEAM (kintsugi join) ============ */
+.seam {
+  height: 1px;
+  border: 0;
+  margin: 0;
+  background: linear-gradient(90deg, transparent, var(--accent) 18%, var(--gold-bright) 50%, var(--accent) 82%, transparent);
+  opacity: 0.5;
+}
+
+/* ============ SECTION FURNITURE ============ */
+.section {
+  padding: var(--s-24) 0;
+}
+.section-title {
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" 86;
+  font-weight: 700;
+  font-size: var(--t-xl);
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+.section-sub {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin: var(--s-2) 0 var(--s-12);
+}
+
+/* ============ LEDGER: claim | receipt ============ */
+.ledger-head {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--s-8);
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+.row {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: var(--s-12);
+  padding: var(--s-8) 0;
+  border-top: 1px solid var(--rule);
+  align-items: start;
+}
+.row:last-of-type {
+  border-bottom: 1px solid var(--rule);
+}
+.row-claim {
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" 90;
+  font-weight: 600;
+  font-size: var(--t-lg);
+  line-height: var(--leading-snug);
+  letter-spacing: -0.015em;
+  margin: 0;
+}
+.row-note {
+  color: var(--text-dim);
+  font-size: var(--t-sm);
+  margin: var(--s-3) 0 0;
+  max-width: 42ch;
+}
+.receipt {
+  font-family: var(--font-mono);
+  font-size: var(--t-sm);
+  line-height: 1.85;
+  color: var(--text-dim);
+  margin: 0;
+  padding-left: var(--s-6);
+  border-left: 2px solid var(--patina-deep);
+}
+.receipt b {
+  color: var(--patina-bright);
+  font-weight: 500;
+}
+.receipt a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid var(--gold-deep);
+}
+.receipt a:hover {
+  color: var(--gold-bright);
+}
+.receipt-tag {
+  display: block;
+  font-size: 0.625rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-bottom: var(--s-2);
+}
+
+/* ============ WORK CARDS ============ */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));
+  gap: var(--s-6);
+  perspective: 1100px;
+}
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: var(--s-8);
+  background: var(--bg-raised);
+  border: 1px solid var(--rule);
+  overflow: hidden;
+  transform-style: preserve-3d;
+  transition: transform 0.34s var(--ease), border-color 0.34s var(--ease);
+  will-change: transform;
+}
+/* Kintsugi: the seam lights where the break is repaired. */
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto auto 0;
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(90deg, transparent, var(--gold-bright), transparent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s var(--ease);
+}
+.card:hover,
+.card:focus-within {
+  border-color: rgba(201, 169, 97, 0.45);
+}
+.card:hover::before,
+.card:focus-within::before {
+  transform: scaleX(1);
+}
+.card h3 {
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" 92;
+  font-weight: 600;
+  font-size: var(--t-md);
+  margin: 0 0 var(--s-3);
+  letter-spacing: -0.01em;
+}
+.card p {
+  margin: 0 0 var(--s-4);
+  font-size: var(--t-sm);
+  color: var(--text-dim);
+}
+.card-meta {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  color: var(--patina-bright);
+  margin: auto 0 var(--s-3) !important;
+}
+.card-link {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid var(--gold-deep);
+  align-self: flex-start;
+}
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0);
+  background: radial-gradient(circle, rgba(227, 199, 126, 0.34) 0%, rgba(227, 199, 126, 0) 68%);
+  animation: ripple 0.75s var(--ease) forwards;
+}
+@keyframes ripple {
+  to {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+  }
+}
+
+/* ============ ROUTING: by intent, not by identity label ============
+   Nobody self-identifies as "employer". Everybody knows what they came
+   to do. Routing on intent is what stops four audiences becoming mush. */
+.routes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+}
+.route {
+  display: block;
+  padding: var(--s-8);
+  background: var(--bg);
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.25s var(--ease);
+}
+.route:hover {
+  background: var(--bg-raised);
+}
+.route-verb {
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" 90;
+  font-weight: 600;
+  font-size: var(--t-md);
+  margin: 0 0 var(--s-2);
+  letter-spacing: -0.01em;
+}
+.route-desc {
+  font-size: var(--t-sm);
+  color: var(--text-dim);
+  margin: 0 0 var(--s-4);
+}
+.route-go {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  color: var(--accent);
+}
+
+/* ============ WRITING ============ */
+.piece {
+  padding: var(--s-8) 0;
+  border-top: 1px solid var(--rule);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--s-8);
+  align-items: baseline;
+}
+.piece:last-of-type {
+  border-bottom: 1px solid var(--rule);
+}
+.piece h3 {
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" 90;
+  font-weight: 600;
+  font-size: var(--t-md);
+  margin: 0 0 var(--s-2);
+}
+.piece h3 a {
+  color: var(--text);
+  text-decoration: none;
+}
+.piece h3 a:hover {
+  color: var(--accent);
+}
+.piece p {
+  margin: 0;
+  font-size: var(--t-sm);
+  color: var(--text-dim);
+  max-width: 62ch;
+}
+.piece-stamp {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  color: var(--text-faint);
+  white-space: nowrap;
+}
+
+/* ============ CONNECT ============ */
+.connect-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: var(--s-6);
+}
+.connect-item {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  border-top: 1px solid var(--rule);
+  padding-top: var(--s-4);
+}
+.connect-item span {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-bottom: var(--s-2);
+}
+.connect-item b {
+  font-weight: 400;
+  color: var(--text);
+}
+.connect-item:hover b {
+  color: var(--accent);
+}
+
+/* ============ FOOTER: Conway's Life ============ */
+.site-footer {
+  position: relative;
+  margin-top: var(--s-16);
+  border-top: 1px solid var(--rule);
+  overflow: hidden;
+}
+#life {
+  display: block;
+  width: 100%;
+  height: 190px;
+}
+.footer-bar {
+  position: absolute;
+  inset: auto 0 0 0;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--s-4);
+  padding: var(--s-6);
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  color: var(--text-faint);
+  background: linear-gradient(transparent, var(--bg) 62%);
+}
+
+a:focus-visible,
+button:focus-visible,
+.card:focus-visible {
+  outline: 2px solid var(--gold-bright);
+  outline-offset: 3px;
+}
+
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+    gap: var(--s-12);
+    padding: var(--s-16) 0;
+  }
+  .row {
+    grid-template-columns: 1fr;
+    gap: var(--s-6);
+  }
+  .piece {
+    grid-template-columns: 1fr;
+    gap: var(--s-2);
+  }
+  .nav-links a:not(.nav-cta) {
+    display: none;
+  }
+  .section {
+    padding: var(--s-16) 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pring,
+  .core {
+    animation: none;
+  }
+  .card {
+    transition: none;
+  }
+}
+
+/* ============ LIGHT-MODE DUALS ============
+   `screen` lightens, so on a cream ground it washes the spectrum out to
+   pastel and leaves the labels illegible (light text + dark halo on a light
+   field). `multiply` is the correct dual: it darkens, so the same arcs read
+   as saturated ink on paper. Labels invert to dark-on-light to match. */
+:root:not([data-theme="dark"]) .pring {
+  mix-blend-mode: multiply;
+}
+:root:not([data-theme="dark"]) .core {
+  mix-blend-mode: multiply;
+  background: radial-gradient(circle at center, rgba(180, 90, 20, 0.85) 0%, rgba(245, 158, 11, 0.55) 45%, transparent 72%);
+}
+:root:not([data-theme="dark"]) .lyr {
+  color: #241d13;
+  text-shadow: 0 0 6px var(--paper), 0 0 12px var(--paper), 0 0 3px var(--paper);
+}
+:root:not([data-theme="dark"]) .lyr::after {
+  background: rgba(36, 29, 19, 0.45);
+}
+:root:not([data-theme="dark"]) .lyr-core {
+  color: #7a4a10;
+}

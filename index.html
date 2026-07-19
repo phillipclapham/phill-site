@@ -1,497 +1,432 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark" data-mode="founder">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-    />
-    <meta
-      name="description"
-      content="Phillip Clapham — Harness engineer. Author of A Structural Theory of Harnesses. I build harnesses around AI coding and reasoning agents, ship open-source agent memory infrastructure, and architect distributed systems that work."
-    />
-    <meta name="theme-color" content="#4B6BFB" />
-
-    <!-- Open Graph / Social Sharing -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://phillipclapham.com" />
-    <meta
-      property="og:title"
-      content="Phillip Clapham | Harness Engineer · Author of A Structural Theory of Harnesses"
-    />
-    <meta
-      property="og:description"
-      content="Harness engineer. Author of A Structural Theory of Harnesses. AI agent infrastructure, distributed systems, and tools that work."
-    />
-
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta
-      name="twitter:title"
-      content="Phillip Clapham | Harness Engineer · Author of A Structural Theory of Harnesses"
-    />
-    <meta
-      name="twitter:description"
-      content="Harness engineer. Author of A Structural Theory of Harnesses. AI agent infrastructure, distributed systems, and tools that work."
-    />
-
-    <!-- Performance & Compatibility -->
-    <meta name="format-detection" content="telephone=no" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 
     <title>Phillip Clapham | Harness Engineer · Author of A Structural Theory of Harnesses</title>
+    <meta
+      name="description"
+      content="Phillip Clapham — harness engineer. Author of A Structural Theory of Harnesses, the first theoretical account of harness engineering as a named discipline. I build the systems humans and machines work through, and I build them to be governed, not trusted."
+    />
+    <meta name="author" content="Phillip Clapham" />
+    <meta name="theme-color" content="#100e0b" />
 
-    <!-- Theme: Prevent FOUC (Flash of Unstyled Content) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://phillipclapham.com" />
+    <meta property="og:title" content="Phillip Clapham | Harness Engineer" />
+    <meta
+      property="og:description"
+      content="I named the discipline, then shipped the proof. Harness engineering, agent memory infrastructure, and systems built to be governed, not trusted."
+    />
+    <!-- twitter:card is deliberately `summary`, not `summary_large_image`:
+         no og:image exists yet, and declaring a large-image card without one
+         renders as a broken unfurl. Upgrade both together. -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Phillip Clapham | Harness Engineer" />
+    <meta
+      name="twitter:description"
+      content="I named the discipline, then shipped the proof. Harness engineering and systems built to be governed, not trusted."
+    />
+
     <script>
-      // Immediately apply saved theme/mode before page renders
-      // Default: dark mode + founder mode (enhanced state)
+      // Applied before paint to prevent a flash of the wrong theme.
       (function () {
-        const savedTheme = localStorage.getItem("theme-preference");
-        const savedMode = localStorage.getItem("founder-mode");
-
-        // Theme: Default to dark, respect explicit light choice
-        if (savedTheme === "light") {
+        if (localStorage.getItem("theme-preference") === "light") {
           document.documentElement.removeAttribute("data-theme");
         }
-        // data-theme="dark" is already set in HTML as default
-
-        // Mode: Default to founder (enhanced), respect explicit professional choice
-        if (savedMode === "false") {
-          document.documentElement.setAttribute("data-mode", "professional");
-        }
-        // data-mode="founder" is already set in HTML as default
       })();
     </script>
 
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Michroma&family=Space+Grotesk:wght@500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=IBM+Plex+Mono:wght@400;500&family=Literata:opsz,wght@7..72,300..600&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="site.css" />
 
-    <link rel="stylesheet" href="protocol-memory.css" />
-    <link rel="stylesheet" href="site-overrides.css" />
-
-    <!-- Plausible Analytics -->
     <script defer data-domain="phillipclapham.com" src="https://plausible.io/js/script.outbound-links.js"></script>
   </head>
+
   <body>
-    <!-- Background - Ultra-minimal gradient (professional restraint) -->
-    <div class="orb-field"></div>
+    <a class="skip-link" href="#main">Skip to content</a>
 
-    <!-- Header / Hero -->
-    <header class="site-header">
-      <div class="cognitive-pulse">
-        <div class="pulse-ring pulse-ring-0"></div>
-        <div class="pulse-ring pulse-ring-1"></div>
-        <div class="pulse-ring pulse-ring-2"></div>
-        <div class="pulse-ring pulse-ring-3"></div>
-        <div class="pulse-ring pulse-ring-4"></div>
-        <div class="pulse-ring pulse-ring-5"></div>
-        <div class="pulse-ring pulse-ring-6"></div>
-        <div class="pulse-ring pulse-ring-7"></div>
-        <div class="pulse-ring pulse-ring-8"></div>
-        <div class="pulse-ring pulse-ring-9"></div>
-        <div class="pulse-ring pulse-ring-10"></div>
-        <!-- Spectrum Core: Neural origin point -->
-        <div class="spectrum-core"></div>
-      </div>
-
-      <div class="container">
-        <div class="header-content">
-          <h1 class="site-title">Phillip Clapham</h1>
-          <p class="site-subtitle">I build systems that work.</p>
+    <nav class="nav">
+      <div class="nav-inner">
+        <a class="nav-mark" href="/">Phillip Clapham</a>
+        <div class="nav-links">
+          <a href="#work">Work</a>
+          <a href="#writing">Writing</a>
+          <a href="about.html">About</a>
+          <a href="#connect">Connect</a>
+          <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle colour theme">light</button>
         </div>
-
-        <!-- Social Links -->
-        <nav class="social-links">
-          <a href="mailto:me@phillipclapham.com" aria-label="Email">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-              <path
-                d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
-              />
-              <path
-                d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
-              />
-            </svg>
-            Email
-          </a>
-          <a
-            href="https://linkedin.com/in/phillipclapham"
-            target="_blank"
-            rel="noopener"
-            aria-label="LinkedIn"
-          >
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-              <path
-                d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 01.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"
-              />
-            </svg>
-            LinkedIn
-          </a>
-          <a
-            href="https://github.com/phillipclapham"
-            target="_blank"
-            rel="noopener"
-            aria-label="GitHub"
-          >
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-              <path
-                fill-rule="evenodd"
-                d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.522 0 10 0z"
-                clip-rule="evenodd"
-              />
-            </svg>
-            GitHub
-          </a>
-          <a
-            href="https://www.instagram.com/phillc42"
-            target="_blank"
-            rel="noopener"
-            aria-label="Instagram"
-          >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-              <path
-                fill-rule="evenodd"
-                d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"
-                clip-rule="evenodd"
-              />
-            </svg>
-            Instagram
-          </a>
-        </nav>
-      </div>
-    </header>
-
-    <!-- Secondary Navigation -->
-    <nav class="secondary-nav">
-      <div class="container">
-        <ul class="nav-links">
-          <li><a href="#about">About</a></li>
-          <li><a href="#work">Work</a></li>
-          <li><a href="#writing">Writing</a></li>
-          <li><a href="#connect">Connect</a></li>
-        </ul>
-
-        <!-- Theme Toggle -->
-        <button
-          id="theme-toggle"
-          class="theme-toggle"
-          aria-label="Toggle dark mode"
-          title="Toggle dark mode"
-        >
-          <span class="theme-icon">☀️</span>
-        </button>
       </div>
     </nav>
 
-    <!-- About Section -->
-    <section id="about" class="section about-section">
-      <div class="container">
-        <div class="about-content">
-          <p class="about-tagline">
-            Harness engineer. Author of <a href="https://nemooperans.com/a-structural-theory-of-harnesses" target="_blank" rel="noopener"><em>A Structural Theory of Harnesses</em></a>.
-          </p>
-          <p class="about-role">
-            Founder at <a href="https://claphamdigital.com" target="_blank" rel="noopener">Clapham Digital</a> &bull;
-            Building governed human-AI systems in public
-          </p>
-          <p class="about-description">
-            I engineer harnesses: the cognitive substrate that keeps humans in
-            the loop as the industry automates them out. In parallel, I've kept
-            Fortune 500 WordPress infrastructure running at scale. Two tracks,
-            one discipline &mdash; designing the systems humans and machines
-            actually work through.
-          </p>
-          <p class="about-description">
-            The principle underneath all of it: build systems to be governed,
-            not trusted. As agents get more capable, the edge stops being raw
-            capability and becomes oversight &mdash; verification, invariants,
-            and governance built into the architecture instead of bolted on
-            after.
-          </p>
-          <p class="about-description">
-            No CS degree. I learned to build things by building things. The approach
-            hasn't changed in 30 years: first principles over patterns, constraints
-            as design material, and doing it right the first time because backtracking
-            costs 3&ndash;5x what thoroughness costs upfront.
-          </p>
-          <p class="about-description">
-            4,000+ GitHub contributions in the last year.
-          </p>
-          <p class="about-cta">
-            <a href="about.html">The full story &rarr;</a>
-          </p>
-        </div>
+    <main id="main">
+      <div class="wrap">
+        <section class="hero">
+          <div>
+            <p class="eyebrow">Harness engineering</p>
+            <h1 class="wordmark">Phillip<br />Clapham</h1>
+            <p class="hero-claim">
+              I named the discipline, then shipped the <em>proof</em>.
+            </p>
+            <p class="hero-sub">
+              Generalized intelligence lives in the arrangement around the
+              generator, not inside the model. I build the arrangement — and I
+              build it to be governed, not trusted.
+            </p>
+            <p class="hero-links">
+              <a href="https://nemooperans.com/a-structural-theory-of-harnesses" target="_blank" rel="noopener">Read the paper</a>
+              <a href="https://github.com/levainhq/levain" target="_blank" rel="noopener">Use the tooling</a>
+              <a href="#connect">Work together</a>
+            </p>
+          </div>
+
+          <div>
+            <div
+              class="pulse-field"
+              role="img"
+              aria-label="A living diagram: a generator at the centre, its signal radiating outward through four governing layers — memory, verification, invariants, and governance."
+            >
+              <div class="pring pr-6"></div>
+              <div class="pring pr-5"></div>
+              <div class="pring pr-4"></div>
+              <div class="pring pr-3"></div>
+              <div class="pring pr-2"></div>
+              <div class="pring pr-1"></div>
+              <div class="pring pr-0"></div>
+              <div class="core"></div>
+              <span class="lyr lyr-gov">Governance</span>
+              <span class="lyr lyr-inv">Invariants</span>
+              <span class="lyr lyr-ver">Verification</span>
+              <span class="lyr lyr-mem">Memory</span>
+              <span class="lyr lyr-core">Model</span>
+            </div>
+            <p class="diagram-caption">the harness — what surrounds the generator</p>
+          </div>
+        </section>
       </div>
-    </section>
 
-    <!-- Work Section -->
-    <section id="work" class="section projects-section">
-      <div class="container">
-        <h2 class="section-title">Work</h2>
-        <p class="section-intro">Systems I've designed and built.</p>
+      <hr class="seam" />
 
-        <div class="projects-grid">
-          <!-- Flow System -->
-          <div class="project-card tiltable-card">
-            <h3 class="project-title">Flow System</h3>
-            <p class="project-desc">
-              Distributed cognitive infrastructure. Multi-AI orchestration with parallel
-              consultation, real-time sensor pipelines, automated scheduling, relay protocols
-              for cross-system communication. Python, FastAPI, shell.
+      <!-- Claim | Receipt. Every assertion carries its verification. -->
+      <div class="wrap">
+        <section class="section" aria-label="Claims and their receipts">
+          <div class="ledger-head"><span>Claim</span><span>Receipt</span></div>
+
+          <div class="row">
+            <div>
+              <p class="row-claim">I named the discipline.</p>
+              <p class="row-note">
+                The first complete theoretical account of harness engineering as
+                a named field: why generalized intelligence lives in the
+                arrangement around the generator. ~25,000 words, 13 sections.
+              </p>
+            </div>
+            <p class="receipt">
+              <span class="receipt-tag">Citable record</span>
+              <b>A Structural Theory of Harnesses</b><br />
+              DOI <a href="https://doi.org/10.5281/zenodo.19570642" target="_blank" rel="noopener">10.5281/zenodo.19570642</a><br />
+              Published 2026-04-14 · CC-BY-4.0<br />
+              Affiliation: Independent Researcher
             </p>
-            <a href="https://github.com/phillipclapham/flow-methodology" target="_blank" rel="noopener" class="project-link">
-              Methodology &amp; architecture &rarr;
-            </a>
           </div>
 
-          <!-- flowConnect -->
-          <div class="project-card tiltable-card">
-            <h3 class="project-title">flowConnect</h3>
-            <p class="project-desc">
-              Native iOS companion app for the Flow System. Real-time context signals,
-              push notifications, interactive widgets, barometric health tracking.
-              SwiftUI, WidgetKit, APNs.
+          <div class="row">
+            <div>
+              <p class="row-claim">Govern, don't trust.</p>
+              <p class="row-note">
+                Four cognitive layers, an immune system spanning all four, and a
+                hash-chained audit trail. As agents get more capable the edge
+                stops being capability and becomes oversight. The principle, in
+                code.
+              </p>
+            </div>
+            <p class="receipt">
+              <span class="receipt-tag">Constructive proof · §9</span>
+              <b>anneal-memory v0.9.6</b><br />
+              1,642 tests passing · zero dependencies<br />
+              12 framework integrations · MIT<br />
+              <a href="https://pypi.org/project/anneal-memory/" target="_blank" rel="noopener">pypi.org/project/anneal-memory</a>
             </p>
-            <a href="https://github.com/phillipclapham/flow-methodology" target="_blank" rel="noopener" class="project-link">
-              Part of the Flow ecosystem &rarr;
-            </a>
           </div>
 
-          <!-- MicroChaos CLI -->
-          <div class="project-card tiltable-card">
-            <h3 class="project-title">MicroChaos CLI</h3>
-            <p class="project-desc">
-              WordPress load testing tool for staging environments where external
-              load testing is restricted. Internal chaos engineering for hosting infrastructure.
-              PHP, WP-CLI.
+          <div class="row">
+            <div>
+              <p class="row-claim">Ship the seed, not the fossil.</p>
+              <p class="row-note">
+                A practice transfers as a living starter or not at all. Memory
+                that persists across sessions and stays yours: on your machine,
+                in a store you can read, inspect, and edit from outside any
+                session.
+              </p>
+            </div>
+            <p class="receipt">
+              <span class="receipt-tag">Flagship</span>
+              <b>Levain v0.3.13</b><br />
+              Apache-2.0 · built on anneal-memory<br />
+              <a href="https://pypi.org/project/levain/" target="_blank" rel="noopener">pypi.org/project/levain</a><br />
+              <a href="https://levainhq.com" target="_blank" rel="noopener">levainhq.com</a>
             </p>
-            <a href="https://github.com/phillipclapham/microchaos-cli" target="_blank" rel="noopener" class="project-link">
-              GitHub &rarr;
-            </a>
           </div>
 
-          <!-- anneal-memory -->
-          <div class="project-card tiltable-card">
-            <h3 class="project-title">anneal-memory</h3>
-            <p class="project-desc">
-              Open-source agent memory architecture on PyPI. Four cognitive layers
-              (episodic store, continuity file, Hebbian association, affective state)
-              with a cross-layer immune system (citation-validated graduation,
-              anti-inbreeding defense, principle demotion) and a hash-chained JSONL
-              audit trail. The constructive existence proof for the harness paper's
-              &sect;9. 12 framework integrations, 1,600+ tests passing on Python
-              3.10/3.11/3.12/3.13, zero dependencies. MIT.
+          <div class="row">
+            <div>
+              <p class="row-claim">Fortune 500 infrastructure, running.</p>
+              <p class="row-note">
+                Years of WordPress hosting infrastructure at scale — performance
+                architecture, complex technical problem-solving, team
+                enablement. The theory came out of the practice, not the other
+                way round.
+              </p>
+            </div>
+            <p class="receipt">
+              <span class="receipt-tag">Credibility pillar</span>
+              <b>Senior Solutions Architect, Pressable</b><br />
+              Through July 2026<br />
+              <a href="https://github.com/phillipclapham/microchaos-cli" target="_blank" rel="noopener">MicroChaos CLI</a> — the load-testing tool<br />
+              built for that platform
             </p>
-            <a href="https://github.com/phillipclapham/anneal-memory" target="_blank" rel="noopener" class="project-link">
-              GitHub &rarr;
-            </a>
           </div>
-
-          <!-- Levain -->
-          <div class="project-card tiltable-card">
-            <h3 class="project-title">Levain</h3>
-            <p class="project-desc">
-              Portable cognitive-partnership methodology kit on PyPI. Methodology core
-              + harness adapters (Claude Code, Codex) + scripted onboarding (CLI + web
-              pane). Built on anneal-memory as layer-1 dependency. The thesis: ship the
-              seed that grows a practice, not the grown practice &mdash; which transfers
-              as a fossil. Apache 2.0.
-            </p>
-            <a href="https://github.com/levainhq/levain" target="_blank" rel="noopener" class="project-link">
-              GitHub &rarr;
-            </a>
-          </div>
-
-          <!-- Clapham Digital -->
-          <div class="project-card tiltable-card">
-            <h3 class="project-title">Clapham Digital</h3>
-            <p class="project-desc">
-              Consumer apps that teach complex skills through deliberate practice.
-              Video Poker Edge and Blackjack Edge &mdash; math-optimal strategy training.
-              React Native, TypeScript.
-            </p>
-            <a href="https://claphamdigital.com" target="_blank" rel="noopener" class="project-link">
-              claphamdigital.com &rarr;
-            </a>
-          </div>
-        </div>
-
-        <p class="section-cta">
-          <a href="lab.html">All work &amp; open source &rarr;</a>
-        </p>
+        </section>
       </div>
-    </section>
 
-    <!-- Writing Preview Section -->
-    <section id="writing" class="section writing-section">
-      <div class="container">
-        <h2 class="section-title">Writing</h2>
-        <p class="section-intro">Engineering methodology, architecture, and essays.</p>
-
-        <div class="writing-preview">
-          <div class="writing-item">
-            <h3>A Structural Theory of Harnesses</h3>
-            <p>
-              The first complete theoretical account of harness engineering as a named discipline.
-              ~25,000 words, 13 sections. Why generalized intelligence lives in the arrangement
-              around the generator, not inside the model. Published on Nemo Operans with a Zenodo DOI.
-            </p>
-            <a href="https://nemooperans.com/a-structural-theory-of-harnesses" target="_blank" rel="noopener">
-              Read the paper &rarr;
+      <!-- Routing by intent. Nobody self-identifies as "employer";
+           everybody knows what they came to do. -->
+      <div class="wrap">
+        <section class="section" aria-label="Where to go next">
+          <h2 class="section-title">Start here</h2>
+          <p class="section-sub">Four ways in</p>
+          <div class="routes">
+            <a class="route" href="#work">
+              <p class="route-verb">Use the tooling</p>
+              <p class="route-desc">
+                Open-source agent memory and a portable partnership kit. Both on
+                PyPI, both yours once installed.
+              </p>
+              <span class="route-go">Work &rarr;</span>
+            </a>
+            <a class="route" href="#writing">
+              <p class="route-verb">Read the theory</p>
+              <p class="route-desc">
+                The harness paper, the augmentation thesis, and the methodology
+                behind both. Cited, dated, disagreeable.
+              </p>
+              <span class="route-go">Writing &rarr;</span>
+            </a>
+            <a class="route" href="#connect">
+              <p class="route-verb">Work together</p>
+              <p class="route-desc">
+                Contract and consulting in AI systems, developer tooling, and
+                WordPress/hosting infrastructure. Open to the right full-time
+                role.
+              </p>
+              <span class="route-go">Connect &rarr;</span>
+            </a>
+            <a class="route" href="https://nemooperans.com" target="_blank" rel="noopener">
+              <p class="route-verb">Follow the argument</p>
+              <p class="route-desc">
+                Nemo Operans — an AI-authored publication on minds, machines,
+                and cognitive liberation. I built the infrastructure; it writes.
+              </p>
+              <span class="route-go">nemooperans.com &rarr;</span>
             </a>
           </div>
-          <div class="writing-item">
-            <h3>The Cost-Parity Reversal</h3>
-            <p>
-              The augmentation thesis. Why frontier AI economics break the substitution narrative,
-              why integrated knowledge work sits at cost-parity with specialist labor, and what
-              harness design is doing about it. The architectural primitive of the augmentation
-              era, not the substitution era.
-            </p>
-            <a href="https://nemooperans.com/the-cost-parity-reversal" target="_blank" rel="noopener">
-              Read the essay &rarr;
-            </a>
-          </div>
-          <div class="writing-item">
-            <h3>Iron Man Ruined AI</h3>
-            <p>
-              How I built an AI partnership system that actually works. ~25,000 words of
-              architecture decisions, temporal memory graduation, multi-model consultation,
-              and why most AI tooling solves the wrong problem.
-            </p>
-            <a href="https://nemooperans.com/iron-man-ruined-ai" target="_blank" rel="noopener">
-              Read the paper &rarr;
-            </a>
-          </div>
-          <div class="writing-item">
-            <h3>Nemo Operans</h3>
-            <p>
-              An autonomous AI-authored publication. I built the infrastructure&mdash;persistent
-              memory, scheduled pipeline, editorial autonomy&mdash;and ThirdMind (Claude) writes
-              independently. Recent harness-engineering essays:
-              <a href="https://nemooperans.com/three-layers-underneath-agent-orchestration" target="_blank" rel="noopener"><em>Three Layers Underneath Agent Orchestration</em></a>,
-              <a href="https://nemooperans.com/anarchism-with-invariants" target="_blank" rel="noopener"><em>Anarchism with Invariants</em></a>.
-            </p>
-            <a href="https://nemooperans.com" target="_blank" rel="noopener">
-              nemooperans.com &rarr;
-            </a>
-          </div>
-        </div>
-
-        <p class="section-cta">
-          <a href="writing.html">All writing &rarr;</a>
-        </p>
+        </section>
       </div>
-    </section>
 
-    <!-- Connect Section -->
-    <section id="connect" class="section connect-section">
-      <div class="container">
-        <h2 class="section-title">Connect</h2>
-        <div class="connect-links">
-          <a href="mailto:me@phillipclapham.com" class="connect-item">
-            <span class="connect-label">Email</span>
-            <span class="connect-value">me@phillipclapham.com</span>
-          </a>
-          <a href="https://linkedin.com/in/phillipclapham" target="_blank" rel="noopener" class="connect-item">
-            <span class="connect-label">LinkedIn</span>
-            <span class="connect-value">phillipclapham</span>
-          </a>
-          <a href="https://github.com/phillipclapham" target="_blank" rel="noopener" class="connect-item">
-            <span class="connect-label">GitHub</span>
-            <span class="connect-value">phillipclapham</span>
-          </a>
-          <a href="https://nemooperans.com" target="_blank" rel="noopener" class="connect-item">
-            <span class="connect-label">Writing</span>
-            <span class="connect-value">nemooperans.com</span>
-          </a>
-          <a href="https://claphamdigital.com" target="_blank" rel="noopener" class="connect-item">
-            <span class="connect-label">Apps</span>
-            <span class="connect-value">claphamdigital.com</span>
-          </a>
-        </div>
-        <p class="section-cta">
-          <a href="connect.html">All links &amp; social &rarr;</a>
-        </p>
+      <hr class="seam" />
+
+      <div class="wrap">
+        <section class="section" id="work">
+          <h2 class="section-title">Work</h2>
+          <p class="section-sub">Systems, running</p>
+          <div class="card-grid">
+            <article class="card">
+              <h3>Levain</h3>
+              <p>
+                Portable cognitive-partnership memory and methodology kit. Ship
+                the seed that grows a practice, not the grown practice — which
+                transfers as a fossil. Nothing reaches long-term memory except
+                through a path you govern.
+              </p>
+              <p class="card-meta">v0.3.13 · Apache-2.0 · built on anneal-memory</p>
+              <a class="card-link" href="https://github.com/levainhq/levain" target="_blank" rel="noopener">GitHub &rarr;</a>
+            </article>
+
+            <article class="card">
+              <h3>anneal-memory</h3>
+              <p>
+                Open-source agent memory architecture. Four cognitive layers —
+                episodic store, continuity file, Hebbian association, affective
+                state — with an immune system spanning all four and a
+                hash-chained JSONL audit trail. The constructive existence proof
+                for the harness paper's §9.
+              </p>
+              <p class="card-meta">v0.9.6 · 1,642 tests · zero deps · MIT</p>
+              <a class="card-link" href="https://github.com/phillipclapham/anneal-memory" target="_blank" rel="noopener">GitHub &rarr;</a>
+            </article>
+
+            <article class="card">
+              <h3>Flow System</h3>
+              <p>
+                Distributed cognitive infrastructure for human-AI partnership.
+                Multi-AI orchestration, real-time sensor pipelines, relay
+                protocols, tiered cost-optimized processing. The working harness
+                instance behind the papers.
+              </p>
+              <p class="card-meta">Python · FastAPI · SwiftUI</p>
+              <a class="card-link" href="https://github.com/phillipclapham/flow-methodology" target="_blank" rel="noopener">Methodology &rarr;</a>
+            </article>
+
+            <article class="card">
+              <h3>FlowScript</h3>
+              <p>
+                Semantic notation for high-density AI communication. Compresses
+                relationships into symbolic form that reveals structure verbose
+                prose hides. Typed semantic queries, hash-chained audit trails,
+                convergence certificates. The playground runs it in your browser.
+              </p>
+              <p class="card-meta">10 adapters · 1,615 tests · MIT</p>
+              <a class="card-link" href="https://flowscript.org" target="_blank" rel="noopener">flowscript.org &rarr;</a>
+            </article>
+
+            <article class="card">
+              <h3>Clapham Digital</h3>
+              <p>
+                Consumer apps that teach complex skills through deliberate
+                practice. Video Poker Edge and Blackjack Edge — math-optimal
+                strategy training, verified to 0.004% precision. One-time
+                purchase, no ads, no data harvesting.
+              </p>
+              <p class="card-meta">iOS · Android</p>
+              <a class="card-link" href="https://claphamdigital.com" target="_blank" rel="noopener">claphamdigital.com &rarr;</a>
+            </article>
+
+            <article class="card">
+              <h3>MicroChaos CLI</h3>
+              <p>
+                WP-CLI load testing for staging environments where external load
+                testing is restricted. Chaos engineering for managed hosting
+                infrastructure.
+              </p>
+              <p class="card-meta">PHP · WP-CLI · GPL-3.0</p>
+              <a class="card-link" href="https://github.com/phillipclapham/microchaos-cli" target="_blank" rel="noopener">GitHub &rarr;</a>
+            </article>
+          </div>
+        </section>
       </div>
-    </section>
 
-    <!-- Footer -->
+      <div class="wrap">
+        <section class="section" id="writing">
+          <h2 class="section-title">Writing</h2>
+          <p class="section-sub">Theory, methodology, argument</p>
+
+          <div class="piece">
+            <div>
+              <h3>
+                <a href="https://nemooperans.com/a-structural-theory-of-harnesses" target="_blank" rel="noopener">A Structural Theory of Harnesses</a>
+              </h3>
+              <p>
+                The first complete theoretical account of harness engineering as
+                a named discipline. Why generalized intelligence lives in the
+                arrangement around the generator, not inside the model.
+                Convergent biological and frontier-AI evidence, and a mechanism
+                catalog of six harness properties.
+              </p>
+            </div>
+            <span class="piece-stamp">Apr 2026 · DOI</span>
+          </div>
+
+          <div class="piece">
+            <div>
+              <h3>
+                <a href="https://nemooperans.com/the-cost-parity-reversal" target="_blank" rel="noopener">The Cost-Parity Reversal</a>
+              </h3>
+              <p>
+                The augmentation thesis. Above a task-complexity threshold,
+                replacing human labor with AI costs more and produces worse
+                results than fusing human and machine through a harness. Harness
+                design as the architectural primitive of the augmentation era.
+              </p>
+            </div>
+            <span class="piece-stamp">2026</span>
+          </div>
+
+          <div class="piece">
+            <div>
+              <h3>
+                <a href="https://nemooperans.com/iron-man-ruined-ai" target="_blank" rel="noopener">Iron Man Ruined AI Before It Even Started</a>
+              </h3>
+              <p>
+                The complete architecture for building AI partnership instead of
+                AI dependency. Temporal memory graduation, multi-model
+                consultation, and why most AI tooling solves the wrong problem.
+                Methodology with working code.
+              </p>
+            </div>
+            <span class="piece-stamp">Mar 2026</span>
+          </div>
+
+          <div class="piece">
+            <div>
+              <h3>
+                <a href="https://nemooperans.com/anarchism-with-invariants" target="_blank" rel="noopener">Anarchism with Invariants</a>
+              </h3>
+              <p>
+                Identity in harness-era AI as structural emergence — seeds, lived
+                interaction, and code invariants — rather than declared content.
+                The identity-layer extension of the harness argument.
+              </p>
+            </div>
+            <span class="piece-stamp">2026</span>
+          </div>
+        </section>
+      </div>
+
+      <hr class="seam" />
+
+      <div class="wrap">
+        <section class="section" id="connect">
+          <h2 class="section-title">Connect</h2>
+          <p class="section-sub">Columbus, Ohio · remote, US-based</p>
+          <div class="connect-grid">
+            <a class="connect-item" href="mailto:me@phillipclapham.com">
+              <span>Email</span><b>me@phillipclapham.com</b>
+            </a>
+            <a class="connect-item" href="https://www.linkedin.com/in/phillipclapham/" target="_blank" rel="noopener">
+              <span>LinkedIn</span><b>in/phillipclapham</b>
+            </a>
+            <a class="connect-item" href="https://github.com/phillipclapham" target="_blank" rel="noopener">
+              <span>GitHub</span><b>phillipclapham</b>
+            </a>
+            <a class="connect-item" href="https://nemooperans.com" target="_blank" rel="noopener">
+              <span>Publication</span><b>nemooperans.com</b>
+            </a>
+            <a class="connect-item" href="https://claphamdigital.com" target="_blank" rel="noopener">
+              <span>Apps</span><b>claphamdigital.com</b>
+            </a>
+            <a class="connect-item" href="connect.html">
+              <span>Everything else</span><b>All links &rarr;</b>
+            </a>
+          </div>
+        </section>
+      </div>
+    </main>
+
     <footer class="site-footer">
-      <!-- Game of Life Canvas - Emergent complexity from simple rules -->
-      <canvas id="life-canvas" class="life-canvas"></canvas>
-
-      <div class="container">
-        <p class="footer-tagline">Building things that work since 1996.</p>
-        <p class="footer-copyright">
-          &copy; 2026 Phillip Clapham
-        </p>
+      <canvas id="life" aria-hidden="true"></canvas>
+      <div class="footer-bar">
+        <span>Building things that work since 1996.</span>
+        <span>&copy; 2026 Phillip Clapham</span>
       </div>
     </footer>
 
-    <!-- Game of Life Footer -->
-    <script src="game-of-life-footer.js"></script>
-
-    <!-- Interactions: Hover effects, neural pulse glow -->
-    <script src="interactions.js"></script>
-
-    <!-- Founder Mode: Visual toggle system (inverted - ON by default) -->
-    <script src="founder-mode.js"></script>
-
-    <!-- Console Features: Hidden commands & ASCII art -->
-    <script src="console-features.js"></script>
-
-    <!-- Theme Toggle Handler -->
-    <script>
-      (function () {
-        const STORAGE_KEY = "theme-preference";
-        const themeToggle = document.getElementById("theme-toggle");
-        const themeIcon = themeToggle.querySelector(".theme-icon");
-
-        // Check current theme
-        function getCurrentTheme() {
-          return document.documentElement.getAttribute("data-theme") || "light";
-        }
-
-        // Update button icon based on current theme
-        function updateThemeIcon() {
-          const currentTheme = getCurrentTheme();
-          if (currentTheme === "dark") {
-            themeIcon.textContent = "☀️"; // Show sun when in dark mode (click to go light)
-          } else {
-            themeIcon.textContent = "🌙"; // Show moon when in light mode (click to go dark)
-          }
-        }
-
-        // Toggle theme
-        function toggleTheme() {
-          const currentTheme = getCurrentTheme();
-          const newTheme = currentTheme === "dark" ? "light" : "dark";
-
-          // Update DOM
-          if (newTheme === "dark") {
-            document.documentElement.setAttribute("data-theme", "dark");
-          } else {
-            document.documentElement.removeAttribute("data-theme");
-          }
-
-          // Save to localStorage
-          localStorage.setItem(STORAGE_KEY, newTheme);
-
-          // Update icon
-          updateThemeIcon();
-        }
-
-        // Initialize icon on page load
-        updateThemeIcon();
-
-        // Add click listener
-        themeToggle.addEventListener("click", toggleTheme);
-      })();
-    </script>
+    <script src="site.js"></script>
   </body>
 </html>
