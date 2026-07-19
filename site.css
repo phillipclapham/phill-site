@@ -223,10 +223,10 @@ a {
   height: 7px;
   background: rgba(239, 231, 216, 0.4);
 }
-.lyr-gov { top: 4.7%; left: 50%; }
-.lyr-inv { top: 15.9%; left: 50%; }
-.lyr-ver { top: 26.4%; left: 50%; }
-.lyr-mem { top: 33.6%; left: 50%; }
+.lyr-gov { top: 1.2%; left: 50%; }
+.lyr-inv { top: 7.7%; left: 50%; }
+.lyr-ver { top: 20.7%; left: 50%; }
+.lyr-mem { top: 29.7%; left: 50%; }
 .lyr-core {
   top: 56%;
   left: 50%;

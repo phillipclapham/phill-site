@@ -776,7 +776,7 @@
   width: 800px;
   height: 800px;
   margin: -400px 0 0 -400px;
-  transform: scale(0.42);
+  transform: scale(0.52);
   transform-origin: center center;
   pointer-events: none;
 }
