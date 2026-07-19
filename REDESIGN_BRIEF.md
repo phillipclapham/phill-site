@@ -170,9 +170,22 @@ flowscript.org metadata honesty + an "archived" badge + the npm/PyPI install nam
 
 ---
 
-## 7. Open questions for Phill
+## 7. Open questions — Phill's rulings (2026-07-19)
 
-1. **The Pressable interview one-liner.** Leaning corporate-safe. Draft: *"The role ended in July. I'd been building the independent work on the side for a while, so I moved the timeline up and went full-time on it."* Never goes on-profile; interviews only.
-2. **"Built by a neurodivergent"** is the sole identity claim on claphamdigital.com and appears on no other surface. Load-bearing or not? If yes, it's missing everywhere else. If no, it shouldn't be the only identity line on a whole property.
-3. **The gambling-adjacent product line vs enterprise harness positioning.** A real, currently unmanaged tension — an evaluator following the trail from the paper lands on card-counting training. Defensible via deliberate-practice framing, but nothing on any property does the defending.
-4. **`about.html` §03 discloses energy constraints** without naming MCAS. Currently the third-most-prominent section on the About page. Keep, reframe, or move?
+1. **The Pressable interview one-liner.** ✅ **DECIDED.** *"The role ended in July. I'd been building the independent work on the side for a while, so I moved the timeline up and went full-time on it."* **Reactive only — used if asked, never volunteered.** Never goes on-profile.
+
+2. **"Built by a neurodivergent" on claphamdigital.com.** ✅ **DECIDED — not load-bearing.** Phill: *"old positioning."* Strip it. It was the sole identity claim on the entire property and appeared on no other surface, so removing it leaves claphamdigital.com with **no** founder attribution — which must be replaced in the same pass, not merely deleted (see Tier-1 finding: the property is a positioning orphan that links to nothing).
+
+3. **Gambling adjacency vs enterprise positioning.** ✅ **DECIDED — keep, and do not apologize for it.** Phill: *"I am not scared of the gambling adjacency, if a potential employer doesn't like it they can fuck off because the apps are far from the most 'dangerous' or 'controversial' parts of me… so if they can't deal with them they can't deal with me, making them excellent filters as far as I am concerned."*
+
+   **Design consequence:** this converts a defensive problem into a positioning asset. The estate should **not** hedge, bury, or explain away the product line. The apps are a *deliberate practice* artifact — math-optimal strategy training, "mathematically verified to 0.004% precision" — which is the same engineering value the harness work runs on, applied to a different domain. Show it plainly, at full strength, and let it filter. **Do not write defensive framing copy for it.**
+
+4. **`about.html` §03 discloses energy constraints** without naming MCAS. Currently the third-most-prominent section on the About page. Keep, reframe, or move? ⬜ **STILL OPEN.**
+
+### Also open (surfaced after the first pass)
+
+5. **FlowScript's pin placement.** Phill sees no problem pinning it, and he's right that it belongs — the live playground is the best interactive artifact he's published. The objection was never *whether* to pin it, only that it holds **slot 1** while carrying GitHub's Archived banner, ahead of Levain and anneal. Ranking question, not an inclusion question. ⬜ **OPEN.**
+
+6. **The FlowScript adapter/test counts contradict across surfaces** — "11 adapters / ~1,400 tests" on the profile vs "nine adapters / 779 TS + 717 Py (=1,496)" on flowscript.org. Both were dropped from the profile README rather than guessing. **Needs reconciling at the source, then re-adding.** ⬜ **OPEN.**
+
+7. **"4,000+ contributions in the last year"** was removed from the profile README as a vanity stat that reads as green-square farming next to strictly stronger shipped-artifact evidence. Easy to restore. ⬜ **OPEN — flagged, not ruled.**
