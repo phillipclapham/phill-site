@@ -1,6 +1,6 @@
 # phillipclapham.com
 
-Personal website for [Phillip Clapham](https://phillipclapham.com) — harness engineer, author of *A Structural Theory of Harnesses*, Senior Solutions Architect at Pressable, founder of Clapham Digital LLC.
+Personal website for [Phillip Clapham](https://phillipclapham.com) — harness engineer, author of *A Structural Theory of Harnesses*, founder of Clapham Digital LLC. Building governed human-AI systems in public.
 
 ## What This Is
 
