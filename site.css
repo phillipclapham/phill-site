@@ -1038,11 +1038,12 @@ hr.seam.reveal.shown {
   position: relative;
   width: fit-content;
   max-width: 100%;
+  padding-bottom: var(--s-3);
 }
 .scribble-underline {
   position: absolute;
   left: 0;
-  bottom: -10px;
+  bottom: -3px;
   overflow: visible;
   pointer-events: none;
 }
@@ -1141,10 +1142,14 @@ hr.seam.reveal.shown {
   content: "";
   position: absolute;
   inset: -6px;
-  background: linear-gradient(135deg, #dc2626 0%, #f59e0b 18%, #84cc16 34%,
-    #06b6d4 50%, #4f46e5 66%, #9333ea 82%, #ec4899 100%);
+  background: radial-gradient(
+    ellipse at 50% 0%,
+    rgba(227, 199, 126, 0.85) 0%,
+    rgba(201, 169, 97, 0.45) 45%,
+    rgba(138, 113, 58, 0) 78%
+  );
   opacity: 0;
-  filter: blur(16px);
+  filter: blur(18px);
   transition: opacity 0.5s var(--ease);
   z-index: -1;
   pointer-events: none;
@@ -1157,12 +1162,12 @@ hr.seam.reveal.shown {
 }
 .principle-card:hover::before,
 .principle-card:focus-visible::before {
-  opacity: 0.22;
-  animation: spectrumPulse 3s ease-in-out infinite;
+  opacity: 0.5;
+  animation: spectrumPulse 3.4s ease-in-out infinite;
 }
 @keyframes spectrumPulse {
-  0%, 100% { filter: blur(16px) brightness(1); transform: scale(1); }
-  50% { filter: blur(22px) brightness(1.3); transform: scale(1.04); }
+  0%, 100% { filter: blur(18px) brightness(1); transform: scale(1); }
+  50% { filter: blur(24px) brightness(1.18); transform: scale(1.03); }
 }
 /* Cards a hovered card connects to. */
 .principle-card.connected {
