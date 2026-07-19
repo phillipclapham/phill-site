@@ -1029,3 +1029,244 @@ hr.seam.reveal.shown {
     transition: none !important;
   }
 }
+
+/* Scribble underlines need a positioning context and room beneath. */
+/* The scribble is sized from the element's width, so headings must hug
+   their text or the hand-drawn line runs the full container. */
+.section-title,
+.chapter-title {
+  position: relative;
+  width: fit-content;
+  max-width: 100%;
+}
+.scribble-underline {
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  overflow: visible;
+  pointer-events: none;
+}
+.motion-off .scribble-underline {
+  opacity: 0.4;
+}
+
+/* Counting receipts: gold while they tick, so the eye catches the motion. */
+.stat-value {
+  color: var(--gold-bright);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ============ THE HARNESS MAP ============
+   Ported from the Adaptive Human "principle network" — a topological
+   evidence board. Pinned index cards at slight rotations, curved SVG
+   string running between related ideas, spectrum glow on hover. The
+   original demonstrated FlowScript's vision (ideas connecting in
+   thought-space) rather than describing it; here it does the same job for
+   the harness architecture. Restyled to the estate palette — kintsugi
+   gold and verdigris, not the original teal. */
+.map-lede {
+  max-width: var(--measure);
+  color: var(--text-dim);
+  margin: 0 0 var(--s-12);
+}
+.principle-board {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--s-6);
+}
+.principle-connections {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: visible;
+}
+.principle-card {
+  position: relative;
+  background: var(--bg-raised);
+  border: 1px solid var(--rule);
+  padding: var(--s-8) var(--s-6) var(--s-6);
+  cursor: pointer;
+  transition: transform 0.3s var(--ease), border-color 0.3s var(--ease),
+    box-shadow 0.3s var(--ease);
+  z-index: 2;
+}
+/* Slight rotations so it reads as pinned card stock, not a CSS grid. */
+.principle-card:nth-child(2) { transform: rotate(-0.9deg); }
+.principle-card:nth-child(3) { transform: rotate(1.2deg); }
+.principle-card:nth-child(4) { transform: rotate(-0.5deg); }
+.principle-card:nth-child(5) { transform: rotate(0.7deg); }
+.principle-card:nth-child(6) { transform: rotate(-1.3deg); }
+.principle-card:nth-child(7) { transform: rotate(0.9deg); }
+.principle-card:nth-child(8) { transform: rotate(-0.7deg); }
+.principle-card:nth-child(9) { transform: rotate(1.1deg); }
+
+.card-pin {
+  position: absolute;
+  top: -9px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.85rem;
+  filter: saturate(0.75);
+}
+.principle-title {
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" 92;
+  font-weight: 600;
+  font-size: var(--t-base);
+  line-height: 1.25;
+  margin: 0 0 var(--s-2);
+  letter-spacing: -0.01em;
+}
+.principle-subtitle {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--patina-bright);
+  margin: 0 0 var(--s-3);
+}
+.principle-detail {
+  font-size: var(--t-sm);
+  color: var(--text-dim);
+  margin: 0;
+}
+
+/* Spectrum glow on hover — the same emergence cue as the original, in the
+   pulse field's colours so the page reads as one system. */
+.principle-card::before {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  background: linear-gradient(135deg, #dc2626 0%, #f59e0b 18%, #84cc16 34%,
+    #06b6d4 50%, #4f46e5 66%, #9333ea 82%, #ec4899 100%);
+  opacity: 0;
+  filter: blur(16px);
+  transition: opacity 0.5s var(--ease);
+  z-index: -1;
+  pointer-events: none;
+}
+.principle-card:hover,
+.principle-card:focus-visible {
+  transform: rotate(0deg) translateY(-4px);
+  border-color: rgba(201, 169, 97, 0.5);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+}
+.principle-card:hover::before,
+.principle-card:focus-visible::before {
+  opacity: 0.22;
+  animation: spectrumPulse 3s ease-in-out infinite;
+}
+@keyframes spectrumPulse {
+  0%, 100% { filter: blur(16px) brightness(1); transform: scale(1); }
+  50% { filter: blur(22px) brightness(1.3); transform: scale(1.04); }
+}
+/* Cards a hovered card connects to. */
+.principle-card.connected {
+  border-color: var(--patina-bright);
+  box-shadow: 0 0 0 1px var(--patina-deep);
+}
+
+.motion-off .principle-card { transform: none !important; }
+.motion-off .principle-card::before { display: none; }
+
+@media (max-width: 1000px) {
+  .principle-board { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 620px) {
+  .principle-board { grid-template-columns: 1fr; }
+  .principle-card { transform: none !important; }
+}
+
+/* Connection string between pinned cards. */
+.connection-line {
+  fill: none;
+  stroke: var(--gold-deep);
+  stroke-width: 1.2;
+  opacity: 0.45;
+  transition: stroke 0.3s var(--ease), opacity 0.3s var(--ease),
+    stroke-width 0.3s var(--ease);
+}
+.connection-line.highlighted {
+  stroke: var(--gold-bright);
+  stroke-width: 2;
+  opacity: 1;
+}
+
+/* Modal */
+/* JS toggles inline display flex/none, so the layout must work as flex. */
+.principle-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  align-items: center;
+  justify-content: center;
+  padding: var(--s-6);
+}
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(8, 7, 5, 0.82);
+  backdrop-filter: blur(6px);
+}
+.modal-panel {
+  position: relative;
+  max-width: 34rem;
+  width: 100%;
+  background: var(--bg-raised);
+  border: 1px solid rgba(201, 169, 97, 0.4);
+  padding: var(--s-12) var(--s-8) var(--s-8);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+}
+.modal-close {
+  position: absolute;
+  top: var(--s-3);
+  right: var(--s-4);
+  background: none;
+  border: 0;
+  color: var(--text-faint);
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.modal-close:hover { color: var(--accent); }
+.modal-title {
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" 90;
+  font-weight: 700;
+  font-size: var(--t-xl);
+  letter-spacing: -0.02em;
+  margin: 0 0 var(--s-2);
+}
+.modal-subtitle {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--patina-bright);
+  margin: 0 0 var(--s-6);
+}
+.modal-detail { margin: 0 0 var(--s-8); color: var(--text); }
+.modal-connects-label {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin: 0 0 var(--s-3);
+}
+.connection-links { display: flex; flex-wrap: wrap; gap: var(--s-3); }
+.connection-link {
+  border: 1px solid var(--rule);
+  padding: var(--s-2) var(--s-4);
+  cursor: pointer;
+  transition: border-color 0.25s var(--ease), color 0.25s var(--ease);
+}
+.connection-link:hover { border-color: var(--accent); color: var(--accent); }
+.connection-link-title {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+}

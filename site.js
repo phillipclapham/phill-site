@@ -33,8 +33,22 @@
         localStorage.setItem("theme-preference", "dark");
       }
       sync();
+      refireSeams();
     });
     sync();
+  }
+
+  /* The laser trick, carried over from Adaptive Human: a divider that
+     reacts to a state change is doing work a static rule never does. On
+     theme toggle the seams retract and fire again in the new colour. */
+  function refireSeams() {
+    if (root.classList.contains("motion-off")) return;
+    document.querySelectorAll("hr.seam.reveal").forEach(function (s, i) {
+      s.classList.remove("shown");
+      setTimeout(function () {
+        s.classList.add("shown");
+      }, 120 + i * 60);
+    });
   }
 
   if (reduced) {

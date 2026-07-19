@@ -157,8 +157,8 @@
             <p class="receipt">
               <span class="receipt-tag">Constructive proof · §9</span>
               <b>anneal-memory v0.9.6</b><br />
-              1,642 tests passing · zero dependencies<br />
-              12 framework integrations · MIT<br />
+              <span class="stat-value">1,642</span> tests passing · zero dependencies<br />
+              <span class="stat-value">12</span> framework integrations · MIT<br />
               <a href="https://pypi.org/project/anneal-memory/" target="_blank" rel="noopener">pypi.org/project/anneal-memory</a>
             </p>
           </div>
@@ -199,6 +199,71 @@
               <a href="https://github.com/phillipclapham/microchaos-cli" target="_blank" rel="noopener">MicroChaos CLI</a> — the load-testing tool<br />
               built for that platform
             </p>
+          </div>
+        </section>
+      </div>
+
+      <hr class="seam" />
+
+      <div class="wrap">
+        <section class="section" id="map" aria-label="The harness, mapped">
+          <h2 class="section-title">The harness, mapped</h2>
+          <p class="section-sub">Pull a thread &mdash; every piece connects</p>
+          <p class="map-lede">
+            The arrangement around the generator isn&rsquo;t a stack of
+            independent parts; it&rsquo;s a topology. Each layer holds because
+            the others do. Click any card to see what it connects to.
+          </p>
+          <div class="principle-board">
+            <svg class="principle-connections" aria-hidden="true"></svg>
+            <div class="principle-card" id="principle-memory" data-connects="verification,invariants,anneal" tabindex="0">
+              <div class="card-pin" aria-hidden="true">&#128204;</div>
+              <h3 class="principle-title">Memory</h3>
+              <p class="principle-subtitle">State that survives the session</p>
+              <p class="principle-detail">A generator with no persistence starts every conversation as a stranger. Episodes compress into continuity; what persists is a perspective, not a transcript.</p>
+            </div>
+            <div class="principle-card" id="principle-verification" data-connects="memory,invariants,governance" tabindex="0">
+              <div class="card-pin" aria-hidden="true">&#128204;</div>
+              <h3 class="principle-title">Verification</h3>
+              <p class="principle-subtitle">Grounding beats recall</p>
+              <p class="principle-detail">Memory without grounding is amplification infrastructure. A failed read must surface as <em>unknown</em>, never as a false all-clear.</p>
+            </div>
+            <div class="principle-card" id="principle-invariants" data-connects="verification,governance,levain" tabindex="0">
+              <div class="card-pin" aria-hidden="true">&#128204;</div>
+              <h3 class="principle-title">Invariants</h3>
+              <p class="principle-subtitle">Structure beats discipline</p>
+              <p class="principle-detail">Discipline drifts, then gets bypassed. An invariant refuses. Fail closed, not fail quiet.</p>
+            </div>
+            <div class="principle-card" id="principle-governance" data-connects="invariants,verification,paper" tabindex="0">
+              <div class="card-pin" aria-hidden="true">&#128204;</div>
+              <h3 class="principle-title">Governance</h3>
+              <p class="principle-subtitle">Govern, don&rsquo;t trust</p>
+              <p class="principle-detail">Nothing reaches long-term memory except through a path you govern. Every governed change is recorded, on a hash-chained trail.</p>
+            </div>
+            <div class="principle-card" id="principle-anneal" data-connects="memory,invariants,levain" tabindex="0">
+              <div class="card-pin" aria-hidden="true">&#128204;</div>
+              <h3 class="principle-title">anneal-memory</h3>
+              <p class="principle-subtitle">The constructive proof</p>
+              <p class="principle-detail">Four cognitive layers with an immune system spanning all four. Exists so the paper&rsquo;s &sect;9 is demonstrable rather than asserted.</p>
+            </div>
+            <div class="principle-card" id="principle-levain" data-connects="anneal,governance,thesis" tabindex="0">
+              <div class="card-pin" aria-hidden="true">&#128204;</div>
+              <h3 class="principle-title">Levain</h3>
+              <p class="principle-subtitle">Ship the seed, not the fossil</p>
+              <p class="principle-detail">Hand someone the grown practice and they receive a fossil: correct in shape, dead in function. Ship the seed instead.</p>
+            </div>
+            <div class="principle-card" id="principle-paper" data-connects="governance,memory,thesis" tabindex="0">
+              <div class="card-pin" aria-hidden="true">&#128204;</div>
+              <h3 class="principle-title">A Structural Theory of Harnesses</h3>
+              <p class="principle-subtitle">The discipline, named</p>
+              <p class="principle-detail">Generalized intelligence lives in the arrangement around the generator, not inside the model.</p>
+            </div>
+            <div class="principle-card" id="principle-thesis" data-connects="paper,levain" tabindex="0">
+              <div class="card-pin" aria-hidden="true">&#128204;</div>
+              <h3 class="principle-title">The augmentation thesis</h3>
+              <p class="principle-subtitle">Fuse above the threshold</p>
+              <p class="principle-detail">Above a complexity threshold, replacing human labour costs more <em>and</em> works worse than fusing through a harness.</p>
+            </div>
           </div>
         </section>
       </div>
@@ -424,6 +489,19 @@
           </div>
         </section>
       </div>
+
+      <!-- Harness map modal -->
+      <div class="principle-modal" id="principle-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" style="display: none">
+        <div class="modal-backdrop" data-close></div>
+        <div class="modal-panel">
+          <button class="modal-close" type="button" data-close aria-label="Close">&times;</button>
+          <h3 class="modal-title" id="modal-title"></h3>
+          <p class="modal-subtitle"></p>
+          <p class="modal-detail"></p>
+          <p class="modal-connects-label">Connects to</p>
+          <div class="connection-links"></div>
+        </div>
+      </div>
     </main>
 
     <footer class="site-footer">
@@ -439,5 +517,8 @@
     <script src="game-of-life-footer.js"></script>
     <script src="founder-mode.js"></script>
     <script src="console-features.js"></script>
+    <script src="scribble-underlines.js"></script>
+    <script src="stat-counters.js"></script>
+    <script src="harness-map.js"></script>
   </body>
 </html>
