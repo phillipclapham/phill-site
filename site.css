@@ -201,64 +201,6 @@ a {
   border-color: var(--accent);
 }
 
-/* ============ THE ORBITING FIELD ============
-   The original was never made of rings. Each element was ONE SIDE of a
-   border on a circle — a 90-degree arc, a short curved line — and ten of
-   them orbited at different radii, angles and speeds. Building annuli
-   (conic gradients masked into closed bands) and then blurring them
-   heavily smears any arc back into a solid ring, which is what went wrong
-   three times running. These are genuine arc segments: stroke-dasharray
-   on an SVG circle, 36-68 degrees of curve and nothing more. */
-.pulse-field {
-  position: relative;
-  width: 100%;
-  max-width: 40rem;
-  aspect-ratio: 1;
-  overflow: visible;
-  opacity: 0.95;
-}
-.orbit-svg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-}
-.arc {
-  fill: none;
-  stroke-linecap: round;
-  mix-blend-mode: screen;
-  transform-box: view-box;
-  transform-origin: 500px 500px;
-  filter: blur(var(--blur)) drop-shadow(0 0 18px var(--glow))
-    drop-shadow(0 0 42px var(--glow));
-  animation: orbit var(--dur) linear infinite;
-}
-.arc.ccw {
-  animation-direction: reverse;
-}
-@keyframes orbit {
-  from { transform: rotate(var(--a)); }
-  to { transform: rotate(calc(var(--a) + 360deg)); }
-}
-.core {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 15%;
-  aspect-ratio: 1;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  background: radial-gradient(circle at center, rgba(255,244,220,0.95) 0%, rgba(249,180,60,0.55) 40%, rgba(220,38,38,0.2) 66%, transparent 80%);
-  filter: blur(12px);
-  animation: corepulse 10s ease-in-out infinite;
-  z-index: 4;
-}
-@keyframes corepulse {
-  0%, 100% { opacity: 0.95; }
-  50% { opacity: 0.6; }
-}
-
 .lyr {
   position: absolute;
   left: 50%;
@@ -281,12 +223,12 @@ a {
   height: 7px;
   background: rgba(239, 231, 216, 0.4);
 }
-.lyr-gov { top: 6.5%; left: 50%; }
-.lyr-inv { top: 12.5%; left: 50%; }
-.lyr-ver { top: 23.5%; left: 50%; }
-.lyr-mem { top: 33.5%; left: 50%; }
+.lyr-gov { top: 4.7%; left: 50%; }
+.lyr-inv { top: 15.9%; left: 50%; }
+.lyr-ver { top: 26.4%; left: 50%; }
+.lyr-mem { top: 33.6%; left: 50%; }
 .lyr-core {
-  top: 57%;
+  top: 56%;
   left: 50%;
   color: var(--gold-bright);
 }
@@ -667,13 +609,8 @@ button:focus-visible,
    pastel and leaves the labels illegible (light text + dark halo on a light
    field). `multiply` is the correct dual: it darkens, so the same arcs read
    as saturated ink on paper. Labels invert to dark-on-light to match. */
-:root:not([data-theme="dark"]) .arc {
-  mix-blend-mode: multiply;
-}
-:root:not([data-theme="dark"]) .core {
-  mix-blend-mode: multiply;
-  background: radial-gradient(circle at center, rgba(180,90,20,0.8) 0%, rgba(245,158,11,0.5) 42%, transparent 74%);
-}
+
+
 :root:not([data-theme="dark"]) .lyr {
   color: #241d13;
   text-shadow: 0 0 6px var(--paper), 0 0 12px var(--paper), 0 0 3px var(--paper);
