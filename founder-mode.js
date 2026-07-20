@@ -2,10 +2,16 @@
  * Founder Mode - Visual Toggle System (INVERTED)
  *
  * Default: Founder Mode ON (enhanced state)
- * Toggle: Turns it DOWN to "professional" mode (normie mode)
+ * Toggle: Turns the PRESENTATION down to "raw" mode — motion off, calm visuals.
  *
- * Event-driven architecture for toggling between personal (founder) and professional
- * visual aesthetics. Built for future expansion to include content transformation.
+ * The toggled state was called "professional" when it only ever changed visuals.
+ * It now also turns the COPY UP (see founder-copy.js): the presentation gets
+ * quieter and the words get stranger, which is the opposite of professional.
+ * Renamed rather than left lying — nothing in CSS ever keyed off the old value,
+ * only [data-mode="founder"], which is unchanged.
+ *
+ * Event-driven architecture for toggling between the default (founder) and raw
+ * aesthetics. The content-transformation half now exists: founder-copy.js.
  *
  * Architecture:
  * - FounderModeState: State management + event dispatching + localStorage persistence
@@ -54,7 +60,7 @@ class FounderModeState {
    */
   applyMode() {
     document.documentElement.setAttribute('data-mode',
-      this._active ? 'founder' : 'professional'
+      this._active ? 'founder' : 'raw'
     );
   }
 
@@ -230,11 +236,12 @@ document.addEventListener('DOMContentLoaded', () => {
   // Create visual effects
   const founderModeEffects = new FounderModeEffects(founderModeState);
 
-  // Expose to window for console access (debugging + future expansion)
+  // Expose to window for console access (debugging)
   window.founderMode = {
     state: founderModeState,
     toggle: () => founderModeState.toggle(),
-    // Future expansion: content transformation methods will go here
+    // Content transformation is no longer "future" — founder-copy.js listens
+    // for founderModeChange and swaps the copy. It attaches nothing here.
   };
 
   console.log('🌀 Founder Mode initialized (default: ON - toggle to turn DOWN)');

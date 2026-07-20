@@ -406,6 +406,21 @@ a {
   border-bottom: 1px solid var(--gold-deep);
   align-self: flex-start;
 }
+/* Available to screen readers, invisible to everyone else. Used by the
+   founder-mode live region, which announces that the copy changed. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* ---------------------------------------------------------------
    The audit chain. Real hashes from a real store; the connector IS
    the argument, so it is drawn rather than described. Type-forward

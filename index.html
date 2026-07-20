@@ -38,6 +38,11 @@
         if (localStorage.getItem("theme-preference") === "light") {
           document.documentElement.removeAttribute("data-theme");
         }
+        // Same reason: a returning reader who toggled to raw would otherwise
+        // see the composed voice and full motion flash by before DOMContentLoaded.
+        if (localStorage.getItem("founder-mode") === "false") {
+          document.documentElement.setAttribute("data-mode", "raw");
+        }
       })();
     </script>
 
@@ -104,7 +109,7 @@
           <div>
             <p class="eyebrow">Harness engineering</p>
             <h1 class="wordmark">Phillip<br />Clapham</h1>
-            <p class="hero-claim">
+            <p class="hero-claim" data-strange="Nothing in here is thinking. The thinking is in the wiring.">
               Intelligence is an arrangement, not a <em>substance</em>.
             </p>
             <p class="hero-sub">
@@ -131,7 +136,7 @@
 
           <div class="row">
             <div>
-              <p class="row-claim">The discipline had no theory. I wrote it.</p>
+              <p class="row-claim" data-strange="Everyone agreed on what to build. Nobody could say why it worked. So I went and found out.">The discipline had no theory. I wrote it.</p>
               <p class="row-note">
                 The first complete theoretical account of harness engineering as
                 a named field: why generalized intelligence lives in the
@@ -149,7 +154,7 @@
 
           <div class="row">
             <div>
-              <p class="row-claim">Govern, don't trust.</p>
+              <p class="row-claim" data-strange="Trust is for gods and vending machines. Everything else gets audited.">Govern, don't trust.</p>
               <p class="row-note">
                 Four cognitive layers, an immune system spanning all four, and a
                 hash-chained audit trail. As agents get more capable the edge
@@ -168,7 +173,7 @@
 
           <div class="row">
             <div>
-              <p class="row-claim">Ship the seed, not the fossil.</p>
+              <p class="row-claim" data-strange="Hand someone your finished practice and you&#x27;ve handed them a skeleton. Beautiful, dead, won&#x27;t make more of itself.">Ship the seed, not the fossil.</p>
               <p class="row-note">
                 A practice transfers as a living starter or not at all. Memory
                 that persists across sessions and stays yours: on your machine,
@@ -187,7 +192,7 @@
 
           <div class="row">
             <div>
-              <p class="row-claim">Fortune 500 infrastructure, running.</p>
+              <p class="row-claim" data-strange="I kept enormous websites from falling over, usually at 3am. That&#x27;s where the theory came from.">Fortune 500 infrastructure, running.</p>
               <p class="row-note">
                 Years of WordPress hosting infrastructure at scale — performance
                 architecture, complex technical problem-solving, team
@@ -211,7 +216,7 @@
       <!-- The deepest receipt on the page: real hashes, real verifier output. -->
       <div class="wrap">
         <section class="section" id="chain" aria-label="The audit chain, verified">
-          <h2 class="section-title">You can't quietly revise the past</h2>
+          <h2 class="section-title" data-strange="Touch the past and the hashes scream.">You can't quietly revise the past</h2>
           <p class="section-sub">The audit chain &middot; snapshot 2026-07-20</p>
           <p class="map-lede">
             What my system remembers gets written to a log, and each record carries
@@ -582,6 +587,7 @@
     <script src="interactions.js"></script>
     <script src="game-of-life-footer.js"></script>
     <script src="founder-mode.js"></script>
+    <script src="founder-copy.js"></script>
     <script src="console-features.js"></script>
     <script src="experiment-orbs.js"></script>
     <script src="scribble-underlines.js"></script>

@@ -32,6 +32,11 @@
         if (localStorage.getItem("theme-preference") === "light") {
           document.documentElement.removeAttribute("data-theme");
         }
+        // Same reason: a returning reader who toggled to raw would otherwise
+        // see the composed voice and full motion flash by before DOMContentLoaded.
+        if (localStorage.getItem("founder-mode") === "false") {
+          document.documentElement.setAttribute("data-mode", "raw");
+        }
       })();
     </script>
 
