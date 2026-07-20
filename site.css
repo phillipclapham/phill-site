@@ -406,6 +406,24 @@ a {
   border-bottom: 1px solid var(--gold-deep);
   align-self: flex-start;
 }
+/* Homepage sections are previews; this is the door through to the full page. */
+.section-more {
+  display: inline-block;
+  margin-top: var(--s-8);
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid var(--gold-deep);
+  transition: color 0.25s var(--ease), border-color 0.25s var(--ease),
+    transform 0.25s var(--ease);
+}
+.section-more:hover {
+  color: var(--gold-bright);
+  transform: translateX(5px);
+}
 .ripple {
   position: absolute;
   border-radius: 50%;
@@ -1014,7 +1032,8 @@ hr.seam.reveal.shown {
   letter-spacing: 0;
 }
 .motion-off .card:hover .card-link,
-.motion-off .route:hover .route-go {
+.motion-off .route:hover .route-go,
+.motion-off .section-more:hover {
   transform: none;
 }
 .motion-off .cognitive-pulse {
