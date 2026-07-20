@@ -1,0 +1,93 @@
+<!doctype html>
+<!--
+  Source for og-home.png. Rendered at 1200x630 by headless Chrome:
+
+    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
+      --headless --disable-gpu --hide-scrollbars \
+      --window-size=1200,630 --screenshot=og-home.png \
+      design/og-source.html
+
+  Colours are the real token values from tokens.css, hardcoded because the
+  screenshot runs against file:// and CSS var indirection across a separate
+  stylesheet is not worth the coupling. If tokens.css changes, change these.
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=IBM+Plex+Mono:wght@400;500&family=Literata:opsz,wght@7..72,300..600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1200px; height: 630px; overflow: hidden; }
+      body {
+        background: #100e0b;
+        color: #efe7d8;
+        font-family: "Literata", Georgia, serif;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 0 86px;
+        position: relative;
+      }
+      /* A single kintsugi seam. The break is the design material. */
+      .seam {
+        position: absolute;
+        left: 0; right: 0; top: 0;
+        height: 3px;
+        background: linear-gradient(90deg, #8a713a 0%, #e3c77e 38%, #c9a961 55%, #2f5a4e 100%);
+      }
+      .eyebrow {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 19px;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: #8f8878;
+        margin-bottom: 34px;
+      }
+      h1 {
+        font-family: "Bricolage Grotesque", sans-serif;
+        font-variation-settings: "wdth" 86;
+        font-weight: 700;
+        font-size: 78px;
+        line-height: 1.02;
+        letter-spacing: -0.025em;
+        color: #f4efe4;
+        max-width: 15ch;
+      }
+      h1 em { font-style: normal; color: #e3c77e; }
+      .rule {
+        width: 88px;
+        height: 1px;
+        background: #8a713a;
+        margin: 38px 0 30px;
+      }
+      .name {
+        font-family: "Bricolage Grotesque", sans-serif;
+        font-variation-settings: "wdth" 86;
+        font-weight: 600;
+        font-size: 27px;
+        letter-spacing: 0.01em;
+        color: #efe7d8;
+      }
+      .meta {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 17px;
+        letter-spacing: 0.1em;
+        color: #6bb39d;
+        margin-top: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="seam"></div>
+    <p class="eyebrow">Harness engineering</p>
+    <h1>Intelligence is an arrangement, not a <em>substance</em>.</h1>
+    <div class="rule"></div>
+    <p class="name">Phillip Clapham</p>
+    <p class="meta">phillipclapham.com &nbsp;·&nbsp; governed, not trusted</p>
+  </body>
+</html>
