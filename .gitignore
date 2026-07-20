@@ -1,3 +1,6 @@
 PROTOCOL_OVERRIDE_STATE.md
 PROTOCOL_OVERRIDE_STATE.md.backup
 *.backup
+
+# Local bg-convo worktrees and agent state — never part of the site.
+.claude/
