@@ -86,6 +86,7 @@
   const SECTION_REGISTER = {
     hero: "claim", // the spine, stated
     ledger: "pair", // claim | receipt, the whole point of the grid
+    chain: "receipt", // real hashes + verifier output — evidence, nothing else
     map: "receipt", // the harness map carries §9.3 closure status
     routing: "claim", // where to go next — voice, not evidence
     work: "receipt", // shipped artifacts, versions, live status

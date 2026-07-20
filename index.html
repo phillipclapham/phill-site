@@ -205,6 +205,64 @@
 
       <hr class="seam" />
 
+      <!-- The deepest receipt on the page: real hashes, real verifier output. -->
+      <div class="wrap">
+        <section class="section" id="chain" aria-label="The audit chain, verified">
+          <h2 class="section-title">You can't quietly revise the past</h2>
+          <p class="section-sub">The audit chain &middot; snapshot 2026-07-20</p>
+          <p class="map-lede">
+            What my system remembers gets written to a log, and each record carries
+            the SHA-256 of the <em>entire</em> record before it. Change one entry from
+            last month and every hash after it stops matching. Nothing here
+            <em>prevents</em> anyone editing that file, and that&rsquo;s the point &mdash;
+            the chain doesn&rsquo;t stop tampering, it makes tampering detectable.
+            That&rsquo;s a far cheaper property to guarantee and a far harder one to
+            fake, and it&rsquo;s what &ldquo;governed, not trusted&rdquo; actually buys
+            you. Below are real hashes from my own store.
+          </p>
+
+          <div class="chain">
+            <div class="chain-link">
+              <span class="chain-seq">seq 0</span>
+              <span class="chain-hash">sha256:33eaf86ffd07bc93523&hellip;</span>
+              <span class="chain-rel">carried forward as <b>seq 1&rsquo;s prev_hash</b></span>
+            </div>
+            <div class="chain-link">
+              <span class="chain-seq">seq 1</span>
+              <span class="chain-hash">sha256:c92fd54689c80f02f8d&hellip;</span>
+              <span class="chain-rel">carried forward as <b>seq 2&rsquo;s prev_hash</b></span>
+            </div>
+            <div class="chain-link">
+              <span class="chain-seq">seq 2</span>
+              <span class="chain-hash">sha256:fbc701a319db917652f&hellip;</span>
+              <span class="chain-rel">carried forward as <b>seq 3&rsquo;s prev_hash</b></span>
+            </div>
+            <div class="chain-link">
+              <span class="chain-seq">seq 3</span>
+              <span class="chain-hash">sha256:92c4508a886f1a70546&hellip;</span>
+              <span class="chain-rel">&hellip; and so on, across weekly files</span>
+            </div>
+          </div>
+
+          <div class="proof">
+<pre><span class="proof-cmd">$ python -c "from anneal_memory import AuditTrail; \
+    print(AuditTrail.verify('~/.anneal-memory/memory.db'))"</span>
+
+<span class="proof-out">AuditVerifyResult(valid=True, total_entries=5503, files_verified=9,
+                  chain_break_at=None, chain_break_file=None,
+                  skipped_lines=0, error=None)</span></pre>
+          </div>
+          <p class="proof-note">
+            5,503 entries, 9 files, no breaks, as of 2026-07-20. Those numbers only
+            go up, so treat them as a floor. Don&rsquo;t take my word for any of it &mdash;
+            <code>pip install anneal-memory</code> and run the verifier against your
+            own store. Being checkable by a stranger is the entire point.
+          </p>
+        </section>
+      </div>
+
+      <hr class="seam" />
+
       <div class="wrap">
         <section class="section" id="map" aria-label="The harness, mapped">
           <h2 class="section-title">The harness, mapped</h2>

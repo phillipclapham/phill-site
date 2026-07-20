@@ -406,6 +406,89 @@ a {
   border-bottom: 1px solid var(--gold-deep);
   align-self: flex-start;
 }
+/* ---------------------------------------------------------------
+   The audit chain. Real hashes from a real store; the connector IS
+   the argument, so it is drawn rather than described. Type-forward
+   on purpose — a boxes-and-arrows diagram here would be decoration
+   pretending to be evidence.
+   --------------------------------------------------------------- */
+.chain {
+  margin: var(--s-12) 0;
+  border-left: 1px solid var(--rule);
+  padding-left: var(--s-6);
+}
+.chain-link {
+  position: relative;
+  padding: var(--s-3) 0;
+}
+/* the tick that meets the spine */
+.chain-link::before {
+  content: "";
+  position: absolute;
+  left: calc(var(--s-6) * -1 - 1px);
+  top: calc(var(--s-3) + 0.62em);
+  width: var(--s-4);
+  height: 1px;
+  background: var(--gold-deep);
+}
+.chain-seq {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-right: var(--s-3);
+}
+.chain-hash {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  color: var(--patina-bright);
+  word-break: break-all;
+}
+.chain-rel {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  color: var(--text-faint);
+  margin-top: var(--s-1);
+}
+.chain-rel b {
+  color: var(--accent);
+  font-weight: inherit;
+}
+/* Verifier output. Scrolls inside itself; the page never scrolls sideways. */
+.proof {
+  margin: var(--s-12) 0 var(--s-6);
+  background: var(--bg-inset);
+  border: 1px solid var(--rule);
+  padding: var(--s-6);
+  overflow-x: auto;
+}
+.proof pre {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  line-height: var(--leading-snug);
+  color: var(--text-dim);
+  white-space: pre;
+}
+.proof .proof-cmd {
+  color: var(--text-faint);
+}
+.proof .proof-out {
+  color: var(--accent);
+}
+.proof-note {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  color: var(--text-faint);
+  margin: 0;
+}
+.proof-note code {
+  font-family: var(--font-mono);
+  color: var(--patina-bright);
+}
+
 /* Homepage sections are previews; this is the door through to the full page. */
 .section-more {
   display: inline-block;
