@@ -414,10 +414,10 @@ a {
    silently collapsed the offsets to 0. */
 .founder-mode-toggle {
   position: absolute;
-  bottom: var(--s-4);
-  right: var(--s-4);
-  width: 36px;
-  height: 36px;
+  bottom: var(--toggle-inset);
+  right: var(--toggle-inset);
+  width: var(--toggle-size);
+  height: var(--toggle-size);
   padding: 0;
   border: none;
   background: transparent;
@@ -688,6 +688,11 @@ a {
 
 /* ============ FOOTER: Conway's Life ============ */
 .site-footer {
+  /* The 🌀 floats over this footer, so the bar below must reserve room for it.
+     Both read these two values — change the button's size here and the text
+     stops clearing it by luck. */
+  --toggle-size: 36px;
+  --toggle-inset: var(--s-4);
   position: relative;
   margin-top: var(--s-16);
   border-top: 1px solid var(--rule);
@@ -706,6 +711,8 @@ a {
   flex-wrap: wrap;
   gap: var(--s-4);
   padding: var(--s-6);
+  /* Clear the toggle: its inset + its width + a gap. Derived, not guessed. */
+  padding-right: calc(var(--toggle-inset) + var(--toggle-size) + var(--s-3));
   font-family: var(--font-mono);
   font-size: var(--t-xs);
   color: var(--text-faint);
