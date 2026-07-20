@@ -406,6 +406,46 @@ a {
   border-bottom: 1px solid var(--gold-deep);
   align-self: flex-start;
 }
+/* The 🌀 easter egg. Its styling lived in site-overrides.css and died with
+   that file in the design-system migration, so the button was being appended
+   to a `overflow: hidden` footer with no positioning and clipped out of sight.
+   Restored from `git show 083147a:site-overrides.css`, with --space-4 mapped
+   to --s-4 — the old token no longer exists, so a verbatim copy would have
+   silently collapsed the offsets to 0. */
+.founder-mode-toggle {
+  position: absolute;
+  bottom: var(--s-4);
+  right: var(--s-4);
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 20px;
+  line-height: 1;
+  opacity: 0.3;
+  transition: opacity 0.2s var(--ease), transform 0.2s var(--ease);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.founder-mode-toggle:hover {
+  opacity: 0.6;
+  transform: scale(1.15);
+}
+.founder-mode-toggle.active {
+  opacity: 0.8;
+}
+.founder-mode-toggle:active {
+  transform: scale(1.05);
+}
+.motion-off .founder-mode-toggle:hover,
+.motion-off .founder-mode-toggle:active {
+  transform: none;
+}
+
 /* Available to screen readers, invisible to everyone else. Used by the
    founder-mode live region, which announces that the copy changed. */
 .sr-only {
