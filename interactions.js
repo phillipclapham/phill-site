@@ -641,9 +641,19 @@
     const cardTilt = new Card3DTilt();
     console.log('[Interactions] Card 3D tilt initialized');
 
-    // Initialize Water Ripples (Session 2 FIX) - works on desktop + mobile
-    const waterRipples = new WaterRipples();
-    console.log('[Interactions] Water ripples initialized');
+    // Water Ripples: RETIRED 2026-07-19, superseded by experiment-orbs.js.
+    //
+    // Two reasons, not one. First, the effect had been dead since the design-
+    // system migration: `.water-ripple` and `.ripple-container` were styled in
+    // site-overrides.css, which was deleted, so this system had been appending
+    // unstyled divs to the DOM on every click and removing them 500ms later —
+    // invisible churn, no visual. Second, the replacement does the same job
+    // better: the same staggered concentric expansion, but coloured by the
+    // section you clicked in, which the neutral grey rings could never do.
+    //
+    // The class is left intact below so the behaviour is recoverable; it is
+    // simply no longer instantiated. Original CSS: `git show 083147a:site-overrides.css`.
+    const waterRipples = null;
 
     // Expose for debugging (optional)
     if (window.pmIntegration) {
