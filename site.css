@@ -1068,20 +1068,31 @@ hr.seam.reveal.shown {
   box-shadow: 0 18px 44px rgba(0, 0, 0, 0.45);
 }
 .card-meta {
-  transition: color 0.3s var(--ease), letter-spacing 0.3s var(--ease);
+  transition: color 0.3s var(--ease), transform 0.3s var(--ease);
+  transform-origin: left center;
 }
 .card:hover .card-meta {
   color: var(--gold-bright);
-  letter-spacing: 0.04em;
+  transform: scale(1.045);
 }
 .card-link {
   transition: color 0.25s var(--ease), border-color 0.25s var(--ease),
     transform 0.25s var(--ease);
   display: inline-block;
+  transform-origin: left center;
 }
 .card:hover .card-link {
   color: var(--gold-bright);
-  transform: translateX(5px);
+  transform: translateX(4px) scale(1.045);
+}
+/* Light mode: --gold-bright (pale) is never re-toned for light, so gold hover
+   text is unreadable on the light hover background. Emphasize by darkening,
+   and drop the letter-spacing widen (without the gold shift it's the only
+   visible change, so it reads as a jarring size jump instead of a transform). */
+:root:not([data-theme="dark"]) .card:hover .card-meta,
+:root:not([data-theme="dark"]) .card:hover .card-link {
+  color: var(--text);
+  letter-spacing: normal;
 }
 
 /* Nav: an underline that grows from the left. */
@@ -1175,6 +1186,7 @@ hr.seam.reveal.shown {
 .motion-off .card:hover .card-meta {
   color: var(--patina-bright);
   letter-spacing: 0;
+  transform: none;
 }
 .motion-off .card:hover .card-link,
 .motion-off .route:hover .route-go,
