@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Phillip Clapham — Resume</title>
+<meta name="author" content="Phillip Clapham" />
+<meta name="description" content="Enterprise WordPress engineer and web infrastructure architect. Twenty years of production WordPress, PHP, performance, and hosting. Available for contract." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=IBM+Plex+Mono:wght@400;500&family=Literata:opsz,wght@7..72,300..600&display=swap" rel="stylesheet" />
+<style>
+/* ---------------------------------------------------------------------------
+   Resume — phillipclapham.com/resume
+
+   Built on the Clapham Estate tokens so the PDF, this page, and the rest of
+   the site read as one hand. Three rules govern everything below:
+
+   1. SINGLE COLUMN, SEMANTIC ORDER, REAL TEXT. Applicant tracking systems
+      break on structure (columns, tables, text-in-images), never on
+      typography. So the layout stays linear and the whole design budget goes
+      into type and space.
+   2. GRAYSCALE-SAFE. This gets forwarded and printed. Hierarchy is carried by
+      weight, size, and space; gold is an accent laid over a hierarchy that
+      already holds in pure black and white.
+   3. RECEIPTS ARE PRINTED, NOT JUST LINKED. Every DOI, repo path, and version
+      is set in mono as visible text as well as being a live link, so a printed
+      copy carries the same verifiable claims a clicked one does.
+--------------------------------------------------------------------------- */
+
+:root {
+  --ink:        #100e0b;
+  --ink-soft:   #2c251c;
+  --ink-dim:    #5c5346;
+  --gold-deep:  #8a713a;
+  --gold:       #c9a961;
+  --rule:       rgba(138, 113, 58, 0.30);
+  --sheet:      #fffdf8;
+  --surround:   #f4efe4;
+
+  --font-display: "Bricolage Grotesque", "Helvetica Neue", sans-serif;
+  --font-body:    "Literata", Georgia, serif;
+  --font-mono:    "IBM Plex Mono", ui-monospace, "SF Mono", monospace;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--surround);
+  color: var(--ink-soft);
+  font-family: var(--font-body);
+  font-size: 9.15pt;
+  line-height: 1.34;
+  font-optical-sizing: auto;
+  -webkit-font-smoothing: antialiased;
+}
+
+.sheet {
+  background: var(--sheet);
+  max-width: 8.5in;
+  margin: 2.5rem auto;
+  padding: 0.6in 0.7in 0.5in;
+  box-shadow: 0 1px 2px rgba(16, 14, 11, 0.07), 0 12px 40px rgba(16, 14, 11, 0.10);
+}
+
+/* ---- Masthead ---------------------------------------------------------- */
+
+.name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 24pt;
+  line-height: 1;
+  letter-spacing: -0.021em;
+  color: var(--ink);
+  margin: 0;
+}
+
+.role {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 11pt;
+  letter-spacing: 0.004em;
+  color: var(--gold-deep);
+  margin: 0.34rem 0 0;
+}
+
+.spec {
+  font-family: var(--font-body);
+  font-size: 9.4pt;
+  color: var(--ink-dim);
+  margin: 0.16rem 0 0;
+}
+
+.contact {
+  font-family: var(--font-mono);
+  font-size: 8pt;
+  color: var(--ink-dim);
+  margin: 0.62rem 0 0;
+  line-height: 1.7;
+}
+.contact a { color: var(--ink-dim); }
+.contact .sep { color: var(--gold); padding: 0 0.34em; }
+
+/* ---- Section seams ----------------------------------------------------- */
+
+section { margin-top: 0.64rem; }
+
+/* NO letter-spacing here, deliberately. Tracked uppercase is the obvious
+   typographic move for a section head, but Chrome emits each tracked glyph as
+   separately-positioned text and pdftotext (like an ATS) reads the gaps as
+   spaces — "SUMMARY" extracts as "S U M M A RY", breaking the exact tokens a
+   parser segments on. Verified by extraction, not assumed. Distinction comes
+   from weight, size, color, and the gold seam instead. */
+h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 9pt;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+  margin: 0 0 0.36rem;
+  padding-bottom: 0.22rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+p { margin: 0 0 0.36rem; }
+p:last-child { margin-bottom: 0; }
+
+/* ---- Entries ----------------------------------------------------------- */
+
+/* Deliberately NOT break-inside:avoid. A 20-line entry that cannot fit the
+   remaining space jumps whole to the next page and strands a dozen blank lines
+   behind it — measured: page 1 came out 12 lines short. Instead: never orphan a
+   heading from its first line, never split a single bullet, but let a long list
+   flow across the break. */
+.entry { margin-bottom: 0.5rem; }
+.entry:last-child { margin-bottom: 0; }
+
+.entry-title {
+  break-after: avoid;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 10.1pt;
+  color: var(--ink);
+  margin: 0;
+}
+
+.entry-meta {
+  break-after: avoid;
+  font-family: var(--font-mono);
+  font-size: 7.9pt;
+  color: var(--ink-dim);
+  margin: 0.1rem 0 0.34rem;
+}
+
+ul { margin: 0.3rem 0 0; padding-left: 0; list-style: none; }
+li {
+  break-inside: avoid;
+  position: relative;
+  padding-left: 0.78rem;
+  margin-bottom: 0.14rem;
+}
+li::before {
+  content: "";
+  position: absolute;
+  left: 0.1rem;
+  top: 0.56em;
+  width: 3px;
+  height: 3px;
+  background: var(--gold);
+}
+
+/* ---- Skills ------------------------------------------------------------ */
+
+.skill { margin-bottom: 0.3rem; break-inside: avoid; }
+.skill:last-child { margin-bottom: 0; }
+/* Same no-tracking rule as h2 — these are keyword anchors a parser reads. */
+.skill-label {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 8pt;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin: 0 0 0.08rem;
+}
+.skill p { margin: 0; }
+
+/* ---- Receipts ---------------------------------------------------------- */
+
+.mono, .entry-meta a { font-family: var(--font-mono); }
+
+a { color: var(--gold-deep); text-decoration: none; border-bottom: 1px solid rgba(138,113,58,0.35); }
+a:hover { border-bottom-color: var(--gold-deep); }
+
+.lede { font-size: 9.6pt; }
+.coda { margin-top: 0.42rem; padding-top: 0.26rem; border-top: 1px solid var(--rule); }
+.coda p:last-child { font-size: 8.6pt; color: var(--ink-dim); }
+.dl { font-family: var(--font-mono); font-size: 8pt; margin: 0.5rem 0 0; }
+.avail {
+  font-size: 9pt;
+  color: var(--ink-soft);
+  margin: 0.5rem 0 0;
+  padding-top: 0.42rem;
+  border-top: 1px solid var(--rule);
+}
+
+/* ---- Print ------------------------------------------------------------- */
+
+@page { size: letter; margin: 0.46in 0.5in; }
+
+@media print {
+  body { background: #fff; font-size: 9.15pt; }
+  .sheet {
+    margin: 0;
+    padding: 0;
+    max-width: none;
+    box-shadow: none;
+    background: #fff;
+  }
+  /* Gold hairlines and bullet marks must survive the render, but the sheet
+     stays white so a grayscale printer produces crisp black on white rather
+     than a flat wash. */
+  h2, li::before { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  a { border-bottom: none; }
+  .dl { display: none; }
+  section { margin-top: 0.6rem; }
+  .skill { break-inside: avoid; }
+  li { break-inside: avoid; }
+  h2 { break-after: avoid; }
+}
+</style>
+</head>
+<body>
+<main class="sheet">
+
+  <header>
+    <h1 class="name">Phillip Clapham</h1>
+    <p class="role">Enterprise WordPress Engineer &amp; Web Infrastructure Architect</p>
+    <p class="spec">PHP · JavaScript · Performance · Security · Accessibility · AI-First Development Workflow</p>
+    <p class="contact">
+      Columbus, OH<span class="sep">·</span>(740) 919-1142<span class="sep">·</span><a href="mailto:me@phillipclapham.com">me@phillipclapham.com</a><br />
+      <a href="https://phillipclapham.com">phillipclapham.com</a><span class="sep">·</span><a href="https://claphamdigital.com">claphamdigital.com</a><span class="sep">·</span><a href="https://github.com/phillipclapham">github.com/phillipclapham</a><span class="sep">·</span><a href="https://linkedin.com/in/phillipclapham">linkedin.com/in/phillipclapham</a>
+    </p>
+    <p class="avail">Available now for contract, fractional, and project-based engagements. Remote, US-based. Sole technical resource or embedded in a team.</p>
+    <p class="dl"><a href="Phillip-Clapham-Resume.pdf">Download PDF</a></p>
+  </header>
+
+  <section>
+    <h2>Summary</h2>
+    <p class="lede">Twenty years building, hosting, securing, and rescuing production WordPress and web properties, at every scale from single-owner sites to Fortune 500 enterprise architecture. Custom themes and plugins from the ground up, PHP and modern JavaScript, the block editor, hooks, and the REST API, plus the infrastructure underneath: performance, caching, migration, security, and uptime.</p>
+    <p>Most recently the sole Senior Solutions Architect for Pressable's (Automattic) highest-value enterprise portfolio, where I authored the load-testing, migration, and performance tooling the entire technical account organization ran on, and handled thousands of customer migrations, including off WordPress VIP, through the WP Engine disruption. Alongside it I have run an AI-first development workflow in daily production since September 2025 — engineering practice, not research, because the hard problem in AI-assisted development is not generating code quickly, it is making sure what ships was actually verified.</p>
+  </section>
+
+  <section>
+    <h2>AI-First Development Practice</h2>
+    <ul>
+      <li>Author of <a href="https://nemooperans.com/a-structural-theory-of-harnesses"><em>A Structural Theory of Harnesses</em></a> (April 2026), the first theoretical account of harness engineering as a named discipline. <span class="mono">DOI 10.5281/zenodo.19570642</span> Claude Code has been daily production infrastructure here since September 2025, shipping real software rather than prototypes.</li>
+      <li>Multi-model adversarial code review: every significant change is reviewed by independent model lineages, because a reviewer sharing the author's training distribution shares its blind spots. Layered with deterministic checks and human sign-off.</li>
+      <li>Verification built in rather than bolted on: structural invariants at completion boundaries, grounding checks against source before a claim is accepted, hash-chained audit trails. Systems built to be governed, not trusted.</li>
+      <li>Supporting tooling shipped as open source: <a href="https://github.com/phillipclapham/anneal-memory">anneal-memory</a> and <a href="https://github.com/levainhq/levain">Levain</a>, both on PyPI. The practical result is AI-assisted delivery speed without the unreviewed-code debt that usually comes with it.</li>
+    </ul>
+  </section>
+
+
+  <section>
+    <h2>Experience</h2>
+
+    <div class="entry">
+      <p class="entry-title">Independent Solutions Consultant — Columbus, OH (Remote)</p>
+      <p class="entry-meta">November 2011 – October 2024 · Resumed July 2026, accepting engagements</p>
+      <p>Solo technical advisory and delivery for organizations with no supporting firm behind them: OCCRRA (Ohio Child Care Resource and Referral Association), Marana Healthcare, nonprofits, and government-adjacent clients.</p>
+      <ul>
+        <li>Full-lifecycle ownership as the only technical resource: custom theme and plugin development, solution design, hosting, migration, security, accessibility, training, and ongoing technical guidance.</li>
+        <li>Client relationships sustained for years, several past a decade — the only real measure of whether the work held up.</li>
+        <li>Translated technical decisions for non-technical stakeholders and boards, then executed them.</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <p class="entry-title">Pressable (Automattic) — Senior Solutions Architect / Technical Account Manager</p>
+      <p class="entry-meta">October 2024 – July 2026 · Remote</p>
+      <p>Sole technical account manager for Pressable's highest-value enterprise WordPress portfolio. Authored tooling that shipped as how the whole organization operated.</p>
+      <ul>
+        <li>WordPress.com and WordPress VIP to managed-host migration tooling, including automated Gutenberg block replacement. Handled thousands of customer migrations during the WP Engine / Automattic disruption and trained support teams on the migration playbook.</li>
+        <li>Load-testing and capacity-planning tool, adopted as the primary instrument across the technical account organization for infrastructure sizing and performance validation. Released publicly as <a href="https://github.com/phillipclapham/microchaos-cli">MicroChaos CLI</a>.</li>
+        <li>WooCommerce performance engineering that cut full seconds off checkout flows and directly preserved multi-six-figure accounts that were actively churning.</li>
+        <li>Performance-audit workshop pattern — backend profiling, architecture review, tailored remediation. Adopted org-wide as the standard motion; enterprise customers called it more valuable than paid consulting engagements.</li>
+        <li>100+ competitive technical evaluations and enterprise pilots combining frontend comparison, backend architecture analysis, and empirical capacity math — roughly 45 through an evaluation harness I automated.</li>
+        <li>Partnered with Fortune 500 technical leadership through C-suite on infrastructure strategy, translating architecture tradeoffs into revenue, risk, and cost terms. Delivered a public technical livestream for The WP Minute (May 2026): a full-stack WordPress performance walkthrough, live.</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <p class="entry-title">Forefront Web — Lead Support Developer · Dublin, OH (Remote)</p>
+      <p class="entry-meta">July 2020 – October 2024</p>
+      <p>Led development and support across 300+ web properties, and rebuilt customer engagement from reactive ticket-handling into structured technical enablement.</p>
+      <ul>
+        <li>Cut average resolution time from 2–3 weeks to under 2 days by redesigning workflows and introducing proactive customer outreach.</li>
+        <li>Built and delivered technical training for junior developers spanning infrastructure, security, and customer communication.</li>
+        <li>Authored <em>Digital Security for Website Owners</em>, a structured training guide used across the client base. The security enablement program tripled return business from high-trust enterprise clients.</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <p class="entry-title">InflatableOffice — Web Developer · Akron, OH (Remote)</p>
+      <p class="entry-meta">February 2018 – May 2020</p>
+      <p>Built custom ecommerce platforms and managed the infrastructure behind 300+ client sites across 10+ servers, plus custom integrations and internal developer tooling.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Technical Skills</h2>
+
+    <div class="skill">
+      <p class="skill-label">WordPress</p>
+      <p>Custom theme and plugin development from scratch, hooks and filters, PHP APIs, the block editor and Gutenberg, REST API, WP-CLI, multisite, WooCommerce, Advanced Custom Fields, Elementor, WordPress VIP and VIP migrations, large-scale migration, performance profiling and remediation with Query Monitor and New Relic, security hardening, managed-host and self-hosted environments.</p>
+    </div>
+
+    <div class="skill">
+      <p class="skill-label">Core Web Development</p>
+      <p>PHP, modern JavaScript (ES6+), TypeScript, HTML5, CSS3, responsive development, accessibility and WCAG-minded implementation, secure coding practice, code review, and documentation. Also Python, SQL, MySQL / MariaDB, Go, Swift, and Laravel for non-WordPress PHP work.</p>
+    </div>
+
+
+    <div class="skill">
+      <p class="skill-label">Hosting &amp; Infrastructure</p>
+      <p>Linux server administration, nginx and Apache, cPanel / WHM, object caching with Redis and Memcached, Varnish, Cloudflare and CDN configuration, DNS, SSL/TLS, load testing and capacity planning, migration at scale, incident response, uptime and performance monitoring. AWS (EC2, S3, RDS, CloudFront, Route 53), Docker, CI/CD pipelines, infrastructure as code, Git, staging and deployment workflows.</p>
+    </div>
+
+
+    <div class="skill">
+      <p class="skill-label">AI-Assisted Engineering</p>
+      <p>Claude and Claude Code as daily production tooling, agent orchestration, multi-model adversarial review, evaluation and grounding pipelines, context engineering, MCP.</p>
+    </div>
+
+  </section>
+
+  <section>
+    <h2>Selected Projects</h2>
+
+    <div class="entry">
+      <p class="entry-title">MicroChaos CLI — WP-CLI load testing tool</p>
+      <p class="entry-meta">PHP · Open source · <a href="https://github.com/phillipclapham/microchaos-cli">github.com/phillipclapham/microchaos-cli</a></p>
+      <p>Load testing from inside WordPress, for managed environments where external load testing is blocked. Simulates authenticated users, WooCommerce flows, REST endpoints, and warm or cold cache. Shipped as an mu-plugin and used by support engineers and technical account managers. Also shipped under my own LLC: Video Poker Edge and Blackjack Edge, on the App Store and Google Play.</p>
+    </div>
+
+
+  </section>
+
+  <section class="coda">
+    <p class="skill-label">Education &amp; Certifications</p>
+    <p>Musicians Institute, Hollywood, CA — Composition and Engineering, 2001 · Udacity Mobile Web Specialist · freeCodeCamp Full Stack · Google Analytics Certified</p>
+  </section>
+
+</main>
+</body>
+</html>
