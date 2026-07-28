@@ -4,3 +4,11 @@ PROTOCOL_OVERRIDE_STATE.md.backup
 
 # Local bg-convo worktrees and agent state — never part of the site.
 .claude/
+
+# macOS Finder metadata. Committed by accident in cc2ea89 and re-dirtied within a day —
+# Finder rewrites it on any window interaction, so it churns every commit. Not a web
+# exposure today (no .nojekyll, so Jekyll drops dotfiles), but the MECHANISM is the risk:
+# whenever Finder next touches this directory while .claude/ or PROTOCOL_OVERRIDE_STATE.md
+# is present, those names enter the blob and get committed — routing around the very
+# exclusions above.
+.DS_Store

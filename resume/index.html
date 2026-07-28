@@ -6,6 +6,25 @@
 <title>Phillip Clapham — Resume</title>
 <meta name="author" content="Phillip Clapham" />
 <meta name="description" content="Enterprise WordPress engineer and web infrastructure architect. Twenty years of production WordPress, PHP, performance, and hosting. Available for contract." />
+<link rel="canonical" href="https://phillipclapham.com/resume" />
+<!-- OpenGraph / Twitter. This is the one page on the site whose PURPOSE is to be
+     pasted somewhere — a LinkedIn message, a recruiter email, a Slack DM — and all
+     three render an unfurl card. It shipped with zero og:/twitter: tags while all six
+     sibling pages carried a full set, so the single most-shared URL was the only one
+     that unfurled bare. -->
+<meta property="og:type" content="profile" />
+<meta property="og:url" content="https://phillipclapham.com/resume" />
+<meta property="og:title" content="Phillip Clapham — Resume" />
+<meta property="og:image" content="https://phillipclapham.com/og-home.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Intelligence is an arrangement, not a substance. Phillip Clapham — solutions architect and harness engineer." />
+<meta property="og:description" content="Twenty years of production WordPress, PHP, performance, and hosting infrastructure. AI-first development practice. Available for contract." />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Phillip Clapham — Resume" />
+<meta name="twitter:description" content="Twenty years of production WordPress, PHP, performance, and hosting infrastructure. AI-first development practice. Available for contract." />
+<meta name="twitter:image" content="https://phillipclapham.com/og-home.png" />
+<meta name="twitter:image:alt" content="Intelligence is an arrangement, not a substance. Phillip Clapham — solutions architect and harness engineer." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=IBM+Plex+Mono:wght@400;500&family=Literata:opsz,wght@7..72,300..600&display=swap" rel="stylesheet" />
@@ -236,9 +255,13 @@ a:hover { border-bottom-color: var(--gold-deep); }
   h2, li::before { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   a { border-bottom: none; }
   .dl { display: none; }
-  section { margin-top: var(--sp-5); }
-  .skill { break-inside: avoid; }
-  li { break-inside: avoid; }
+  /* Only ONE pagination rule belongs here. `section` margin-top, `.skill` and `li`
+     break-inside were byte-identical restatements of the base cascade (a media query
+     does not reset inherited rules, so all three were no-ops). Removed 2026-07-28 —
+     the cost was never behavioural, it was that a future reader tuning pagination
+     could not tell which of the four lines did anything and would preserve all four.
+     This one IS load-bearing: the base h2 rule sets no break-after, so print is the
+     only place h2 gets it. */
   h2 { break-after: avoid; }
 }
 </style>
@@ -277,8 +300,8 @@ a:hover { border-bottom-color: var(--gold-deep); }
     <h2>Experience</h2>
 
     <div class="entry">
-      <p class="entry-title">Independent Solutions Consultant — Columbus, OH (Remote)</p>
-      <p class="entry-meta">November 2011 – October 2024 · Resumed July 2026, accepting engagements</p>
+      <h3 class="entry-title">Independent Solutions Consultant — Columbus, OH (Remote)</h3>
+      <p class="entry-meta">July 2026 – Present · Previously November 2011 – October 2024 · Accepting engagements</p>
       <ul>
         <li>Solo advisory and delivery for organizations with no supporting firm behind them — OCCRRA, Marana Healthcare, nonprofits, government-adjacent clients. Full-lifecycle ownership as the only technical resource: custom theme and plugin development, solution design, hosting, migration, security, accessibility, training.</li>
         <li>Client relationships sustained for years, several past a decade — the only real measure of whether the work held up. Translated technical decisions for non-technical stakeholders and boards, then executed them.</li>
@@ -286,7 +309,7 @@ a:hover { border-bottom-color: var(--gold-deep); }
     </div>
 
     <div class="entry">
-      <p class="entry-title">Pressable (Automattic) — Senior Solutions Architect / Technical Account Manager</p>
+      <h3 class="entry-title">Pressable (Automattic) — Senior Solutions Architect / Technical Account Manager</h3>
       <p class="entry-meta">October 2024 – July 2026 · Remote</p>
       <p>Sole technical account manager for Pressable's highest-value enterprise WordPress portfolio. Authored tooling that shipped as how the whole organization operated.</p>
       <ul>
@@ -300,7 +323,7 @@ a:hover { border-bottom-color: var(--gold-deep); }
     </div>
 
     <div class="entry">
-      <p class="entry-title">Forefront Web — Lead Support Developer · Dublin, OH (Remote)</p>
+      <h3 class="entry-title">Forefront Web — Lead Support Developer · Dublin, OH (Remote)</h3>
       <p class="entry-meta">July 2020 – October 2024</p>
       <p>Led development and support across 300+ web properties, and rebuilt customer engagement from reactive ticket-handling into structured technical enablement.</p>
       <ul>
@@ -310,7 +333,7 @@ a:hover { border-bottom-color: var(--gold-deep); }
     </div>
 
     <div class="entry">
-      <p class="entry-title">InflatableOffice — Web Developer · Akron, OH (Remote)</p>
+      <h3 class="entry-title">InflatableOffice — Web Developer · Akron, OH (Remote)</h3>
       <p class="entry-meta">February 2018 – May 2020</p>
       <p>Custom ecommerce platforms; infrastructure for 300+ client sites across 10+ servers.</p>
     </div>
@@ -320,23 +343,23 @@ a:hover { border-bottom-color: var(--gold-deep); }
     <h2>Technical Skills</h2>
 
     <div class="skill">
-      <p class="skill-label">WordPress</p>
+      <h4 class="skill-label">WordPress</h4>
       <p>Custom theme and plugin development from scratch, hooks and filters, PHP APIs, block editor and Gutenberg, REST API, WP-CLI, multisite, WooCommerce, ACF, Elementor, WordPress VIP and VIP migrations, migration at scale, performance profiling with Query Monitor and New Relic, security hardening, managed-host and self-hosted.</p>
     </div>
 
     <div class="skill">
-      <p class="skill-label">Core Web Development</p>
+      <h4 class="skill-label">Core Web Development</h4>
       <p>PHP, modern JavaScript (ES6+), TypeScript, HTML5, CSS3, responsive development, accessibility and WCAG-minded implementation, secure coding, code review. Also Python, SQL, MySQL / MariaDB, Go, Swift, Laravel.</p>
     </div>
 
 
     <div class="skill">
-      <p class="skill-label">Hosting, Infrastructure &amp; DevOps</p>
+      <h4 class="skill-label">Hosting, Infrastructure &amp; DevOps</h4>
       <p>Linux, nginx and Apache, cPanel / WHM, Redis and Memcached object caching, Varnish, Cloudflare and CDN, DNS, SSL/TLS, load testing and capacity planning, incident response, uptime monitoring. AWS (EC2, S3, RDS, CloudFront, Route 53), Docker, CI/CD, infrastructure as code, Git, staging and deploy.</p>
     </div>
 
     <div class="skill">
-      <p class="skill-label">Education &amp; Certifications</p>
+      <h4 class="skill-label">Education &amp; Certifications</h4>
       <p>Musicians Institute, Hollywood CA · Udacity Mobile Web Specialist · freeCodeCamp Full Stack · Google Analytics Certified</p>
     </div>
   </section>

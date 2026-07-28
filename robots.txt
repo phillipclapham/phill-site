@@ -1,0 +1,11 @@
+# phillipclapham.com
+#
+# Added 2026-07-28. Previously absent, along with sitemap.xml — so nothing on the
+# internet either invited or excluded a crawler, and /resume's de facto privacy was
+# only that no page linked to it. That gap is now closed deliberately rather than
+# by accident: the resume is linked from the homepage and connect, and listed below.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://phillipclapham.com/sitemap.xml
