@@ -579,7 +579,7 @@ a {
 
 /* ============ ROUTING: by intent, not by identity label ============
    Nobody self-identifies as "employer". Everybody knows what they came
-   to do. Routing on intent is what stops four audiences becoming mush. */
+   to do. Routing on intent is what stops the audiences becoming mush. */
 .routes {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));

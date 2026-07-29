@@ -6,14 +6,20 @@
 <title>Phillip Clapham — Resume</title>
 <meta name="author" content="Phillip Clapham" />
 <meta name="description" content="Enterprise WordPress engineer and web infrastructure architect. Twenty years of production WordPress, PHP, performance, and hosting. Available for contract." />
-<link rel="canonical" href="https://phillipclapham.com/resume" />
+<!-- TRAILING SLASH IS LOAD-BEARING. /resume is the site's only directory-served page,
+     which makes it the only URL that REDIRECTS: measured live, /resume 301s to
+     /resume/, while /connect, /about and /resume/ all return 200 in one hop. Naming
+     the redirecting form as canonical points a crawler at a URL that bounces straight
+     back to this page, and the sitemap's 0.9-priority entry was a redirect. Five sites
+     carried the bare form (here, og:url, sitemap loc, index.html and connect.html). -->
+<link rel="canonical" href="https://phillipclapham.com/resume/" />
 <!-- OpenGraph / Twitter. This is the one page on the site whose PURPOSE is to be
      pasted somewhere — a LinkedIn message, a recruiter email, a Slack DM — and all
      three render an unfurl card. It shipped with zero og:/twitter: tags while all six
      sibling pages carried a full set, so the single most-shared URL was the only one
      that unfurled bare. -->
 <meta property="og:type" content="profile" />
-<meta property="og:url" content="https://phillipclapham.com/resume" />
+<meta property="og:url" content="https://phillipclapham.com/resume/" />
 <meta property="og:title" content="Phillip Clapham — Resume" />
 <meta property="og:image" content="https://phillipclapham.com/og-home.png" />
 <meta property="og:image:width" content="1200" />
@@ -343,23 +349,23 @@ a:hover { border-bottom-color: var(--gold-deep); }
     <h2>Technical Skills</h2>
 
     <div class="skill">
-      <h4 class="skill-label">WordPress</h4>
+      <h3 class="skill-label">WordPress</h3>
       <p>Custom theme and plugin development from scratch, hooks and filters, PHP APIs, block editor and Gutenberg, REST API, WP-CLI, multisite, WooCommerce, ACF, Elementor, WordPress VIP and VIP migrations, migration at scale, performance profiling with Query Monitor and New Relic, security hardening, managed-host and self-hosted.</p>
     </div>
 
     <div class="skill">
-      <h4 class="skill-label">Core Web Development</h4>
+      <h3 class="skill-label">Core Web Development</h3>
       <p>PHP, modern JavaScript (ES6+), TypeScript, HTML5, CSS3, responsive development, accessibility and WCAG-minded implementation, secure coding, code review. Also Python, SQL, MySQL / MariaDB, Go, Swift, Laravel.</p>
     </div>
 
 
     <div class="skill">
-      <h4 class="skill-label">Hosting, Infrastructure &amp; DevOps</h4>
+      <h3 class="skill-label">Hosting, Infrastructure &amp; DevOps</h3>
       <p>Linux, nginx and Apache, cPanel / WHM, Redis and Memcached object caching, Varnish, Cloudflare and CDN, DNS, SSL/TLS, load testing and capacity planning, incident response, uptime monitoring. AWS (EC2, S3, RDS, CloudFront, Route 53), Docker, CI/CD, infrastructure as code, Git, staging and deploy.</p>
     </div>
 
     <div class="skill">
-      <h4 class="skill-label">Education &amp; Certifications</h4>
+      <h3 class="skill-label">Education &amp; Certifications</h3>
       <p>Musicians Institute, Hollywood CA · Udacity Mobile Web Specialist · freeCodeCamp Full Stack · Google Analytics Certified</p>
     </div>
   </section>
