@@ -920,6 +920,115 @@ button:focus-visible,
   color: var(--patina-bright);
 }
 
+/* Numbered variant of .principles, for sequences where order is part of
+   the meaning (first principles, ordinal tests) rather than a flat list. */
+.principles-numbered {
+  list-style: none;
+  counter-reset: principle;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--s-6);
+  max-width: var(--measure);
+}
+.principles-numbered li {
+  counter-increment: principle;
+  border-top: 1px solid var(--rule);
+  padding-top: var(--s-4);
+  padding-left: var(--s-8);
+  position: relative;
+}
+.principles-numbered li::before {
+  content: counter(principle);
+  position: absolute;
+  left: 0;
+  top: var(--s-4);
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  letter-spacing: 0.14em;
+  color: var(--accent);
+}
+.principles-numbered b {
+  display: block;
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" 92;
+  font-weight: 600;
+  font-size: var(--t-base);
+  margin-bottom: var(--s-2);
+  color: var(--text);
+}
+.principles-numbered span {
+  color: var(--text-dim);
+  font-size: var(--t-sm);
+}
+
+/* Plain numbered questions (Six Cuts) — no bold lead, just the ordinal. */
+.test-list {
+  list-style: none;
+  counter-reset: test;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--s-3);
+  max-width: var(--measure);
+}
+.test-list li {
+  counter-increment: test;
+  padding-left: var(--s-8);
+  position: relative;
+  color: var(--text);
+  font-size: var(--t-base);
+}
+.test-list li::before {
+  content: counter(test) ".";
+  position: absolute;
+  left: 0;
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  top: 0.3rem;
+}
+
+/* Domain / application tables (Energetic Economy's Application Domains). */
+.prose-table-wrap {
+  overflow-x: auto;
+  margin: var(--s-6) 0;
+}
+table.domain-table {
+  width: 100%;
+  border-collapse: collapse;
+  max-width: var(--container-narrow);
+  font-size: var(--t-sm);
+}
+table.domain-table th,
+table.domain-table td {
+  text-align: left;
+  padding: var(--s-3) var(--s-4);
+  border-top: 1px solid var(--rule);
+  vertical-align: top;
+}
+table.domain-table th {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border-top: none;
+  border-bottom: 1px solid var(--rule);
+  padding-top: 0;
+}
+table.domain-table td:first-child {
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" 92;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+}
+table.domain-table td {
+  color: var(--text-dim);
+}
+
 .cta-band {
   padding: var(--s-16) 0;
   display: flex;
