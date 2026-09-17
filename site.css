@@ -562,6 +562,13 @@ a {
   color: var(--gold-bright);
   transform: translateX(5px);
 }
+/* Same door as .section-more, delivered as running prose with an inline link. */
+.section-more-inline {
+  margin-top: var(--s-6);
+  font-size: var(--t-sm);
+  color: var(--text-dim);
+  max-width: 60ch;
+}
 .ripple {
   position: absolute;
   border-radius: 50%;
